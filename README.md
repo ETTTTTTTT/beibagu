@@ -63,14 +63,16 @@ cd idea
 
 ### VS Code / Cursor 插件
 
+普通用户装 `releases/` 里的 `.vsix` 即可（Cursor / VS Code 都行，不必装另一款编辑器）。
+
+开发调试（把源码联接到本机扩展目录）：
+
 ```powershell
 cd vscode
-npm run package
-# 或安装到本机 Cursor：
-.\install-to-cursor.ps1
+.\install-to-cursor.ps1              # 自动装到已安装的 Cursor 和/或 VS Code
+.\install-to-cursor.ps1 -Target vscode
+npm run package                      # 打出 vscode/beibagu-*.vsix
 ```
-
-产物：`vscode/beibagu-*.vsix`
 
 ## 题库说明
 
