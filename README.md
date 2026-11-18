@@ -14,7 +14,9 @@ IDEA / VS Code **编辑器插件**，**免费开源**。
 
 在编辑器里直接练：简答练习 · 错题强化 · 艾宾浩斯间隔复习 · 题库导入导出 · DeepSeek 详解 / 打分
 
-开源地址：https://gitee.com/gooooooooo/beibagu
+开源地址：
+- Gitee：https://gitee.com/gooooooooo/beibagu
+- GitHub：https://github.com/ETTTTTTTT/beibagu
 
 ## 下载安装包
 
