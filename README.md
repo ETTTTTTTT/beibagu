@@ -1,8 +1,9 @@
 # beibagu · 面试背题
 
-程序员面试「八股文」背题工具：支持 **IntelliJ IDEA** 与 **Cursor / VS Code** 双端。
+**程序员上班摸鱼神器：刷八股文、背面试题。**  
+IDEA / Cursor / VS Code **编辑器插件**，**免费开源**。
 
-简答练习 · 错题强化 · 艾宾浩斯间隔复习 · 题库导入导出 · DeepSeek 详解 / 打分（自动填入并发送）
+在编辑器里直接练：简答练习 · 错题强化 · 艾宾浩斯间隔复习 · 题库导入导出 · DeepSeek 详解 / 打分
 
 开源地址：https://gitee.com/gooooooooo/beibagu
 
