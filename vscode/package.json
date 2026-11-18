@@ -1,9 +1,23 @@
 {
   "name": "beibagu",
   "displayName": "beibagu · 面试背题",
-  "description": "在 VS Code 里背程序员面试题：简答练习、间隔复习、删除题目、本地持久化。",
+  "description": "IDEA/VS Code 摸鱼刷题插件：DeepSeek AI 一键详解/打分（白嫖网页 Token），艾宾浩斯复习，题库导入导出。",
   "version": "0.1.59",
   "publisher": "huaxin",
+  "license": "MIT",
+  "icon": "resources/icon.png",
+  "galleryBanner": {
+    "color": "#1e3a8a",
+    "theme": "dark"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ETTTTTTTT/beibagu.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ETTTTTTTT/beibagu/issues"
+  },
+  "homepage": "https://github.com/ETTTTTTTT/beibagu#readme",
   "engines": {
     "vscode": "^1.85.0"
   },
@@ -17,7 +31,9 @@
     "quiz",
     "八股文",
     "背题",
-    "beibagu"
+    "beibagu",
+    "DeepSeek",
+    "摸鱼"
   ],
   "activationEvents": [
     "onStartupFinished"
@@ -103,6 +119,7 @@
     }
   },
   "scripts": {
-    "package": "npx --yes @vscode/vsce package --allow-missing-repository"
+    "package": "npx --yes @vscode/vsce package",
+    "publish:vscode": "npx --yes @vscode/vsce publish"
   }
 }

@@ -1,10 +1,19 @@
 <idea-plugin>
   <id>com.huaxin.shiroha-quiz</id>
   <name>面试背题</name>
-  <vendor email="" url="">huaxin</vendor>
+  <vendor email="445446974@qq.com" url="https://github.com/ETTTTTTTT/beibagu">huaxin</vendor>
   <description><![CDATA[
-    <p>在 IntelliJ IDEA 中背程序员面试题：简答练习、艾宾浩斯间隔复习、题库管理、本地持久化。</p>
-    <p>打开方式：右侧工具窗口「面试背题」，或菜单 Tools → 打开面试背题，或快捷键 Ctrl+Alt+B。</p>
+    <h2>beibagu · 面试背题</h2>
+    <p>在 IntelliJ IDEA 里摸鱼刷八股、背面试题。支持 DeepSeek AI 一键详解 / 打分（走网页对话，不烧自备 API Token），以及艾宾浩斯间隔复习与题库导入导出。</p>
+    <h3>功能</h3>
+    <ul>
+      <li>DeepSeek AI 详解、打分（Chrome CDP 自动填入并发送）</li>
+      <li>练习 / 错题强化 / 间隔复习（7 档质量）</li>
+      <li>题库导入导出、本地进度持久化</li>
+    </ul>
+    <h3>打开方式</h3>
+    <p>右侧工具窗口「面试背题」，或菜单 Tools → 打开面试背题，或快捷键 Ctrl+Alt+B。</p>
+    <p>开源：<a href="https://github.com/ETTTTTTTT/beibagu">GitHub</a> / <a href="https://gitee.com/gooooooooo/beibagu">Gitee</a></p>
   ]]></description>
   <change-notes><![CDATA[
     <p>0.1.64 - 工程名改为 beibagu。</p>

@@ -35,6 +35,11 @@ intellijPlatform {
       untilBuild.set("269.*")
     }
   }
+  publishing {
+    // JetBrains Marketplace permanent token:
+    // https://plugins.jetbrains.com/author/me/tokens
+    token.set(providers.environmentVariable("JETBRAINS_MARKETPLACE_TOKEN"))
+  }
 }
 
 tasks {

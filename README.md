@@ -20,7 +20,10 @@
 
 ## 下载安装包
 
-见仓库 [`releases/`](./releases/) 目录，或 [Releases 页面](https://gitee.com/gooooooooo/beibagu/releases)：
+见仓库 [`releases/`](./releases/) 目录，或 [Releases 页面](https://gitee.com/gooooooooo/beibagu/releases)。  
+上架 VS Code / IDEA 商店步骤见 [`docs/PUBLISH.md`](./docs/PUBLISH.md)。
+
+临时安装：
 
 | 平台 | 文件 | 安装方式 |
 |---|---|---|
