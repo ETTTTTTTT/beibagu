@@ -1,4 +1,6 @@
-# beibagu · 面试背题
+# beibagu · 编辑器插件 · 摸鱼刷题 · AI 辅助解析 / 理解 / 记忆
+
+> IDEA / VS Code 面试背题插件 · DeepSeek 一键详解打分 · 白嫖网页 Token · 免费开源
 
 <p align="center"><b>IntelliJ IDEA</b></p>
 <p align="center">
@@ -9,11 +11,8 @@
   <img src="docs/vscode.png" alt="VS Code 版" width="100%" />
 </p>
 
-**程序员上班摸鱼神器：刷八股文、背面试题，还能白嫖 DeepSeek。**  
-IDEA / VS Code **编辑器插件**，**免费开源**。
-
-一键把题目丢给 **DeepSeek AI**：自动 **详解**、自动 **打分**——走网页端对话，**不烧你自己的 API Token**。  
-顺便还能：简答练习 · 错题强化 · 艾宾浩斯间隔复习 · 题库导入导出。
+上班摸鱼刷八股，不用切窗口：题目直接丢给 **DeepSeek AI**——**详解**帮你理解，**打分**帮你记忆，网页对话自动填发送，**不烧自己的 API Token**。  
+附赠：简答练习 · 错题强化 · 艾宾浩斯间隔复习 · 题库导入导出。
 
 开源地址：
 - Gitee：https://gitee.com/gooooooooo/beibagu
