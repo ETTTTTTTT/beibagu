@@ -1,0 +1,29 @@
+{
+  "meta": {
+    "title": "我的自制题库",
+    "questionCount": 2,
+    "sourceNote": "复制本文件改题目后，在插件里点「导入题目/导入题库」。"
+  },
+  "questions": [
+    {
+      "id": "my-001",
+      "type": "short",
+      "question": "HashMap 和 Hashtable 有什么区别？",
+      "answer": "HashMap 非线程安全、允许 null；Hashtable 线程安全、不允许 null……",
+      "analysis": "可补充：ConcurrentHashMap 适用场景。",
+      "categories": [
+        "Java SE / 集合"
+      ]
+    },
+    {
+      "id": "my-002",
+      "type": "short",
+      "question": "什么是索引下推（ICP）？",
+      "answer": "MySQL 5.6+ 在索引遍历时先过滤部分条件，减少回表……",
+      "analysis": "",
+      "categories": [
+        "MySQL / 索引"
+      ]
+    }
+  ]
+}

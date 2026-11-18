@@ -1,0 +1,110 @@
+{
+  "meta": {
+    "title": "入门体验（10题）",
+    "questionCount": 10,
+    "exportedAt": "2026-11-18T09:22:29.544525+00:00",
+    "sourceNote": "从内置题库截取前 10 题，方便试导入。"
+  },
+  "questions": [
+    {
+      "id": "java-core-0001",
+      "type": "short",
+      "question": "什么是 Java？",
+      "answer": "Java 是一门面向对象的编程语言，由 Sun 公司的詹姆斯·高斯林团队于 1995 年推出。吸收了 C++ 语言中大量的优点，但又抛弃了 C++ 中容易出错的地方，如垃圾回收、指针。\n\n同时，Java 又是一门平台无关的编程语言，即一次编译，处处运行。\n\n只需要在对应的平台上安装 JDK，就可以实现跨平台，在 Windows、macOS、Linux 操作系统上运行。\n\n多久开始学 Java 的？\n\n我是从大一下学期开始学习 Java 的，当时已经学完了 C 语言，但苦于 C 语言没有很好的应用方向，就开始学习 Java 了，因为我了解到，绝大多数的互联网公司，包括银行、国企，后端服务都是用 Java 开发的，另外就是，Java 的学习资料非常丰富，就业岗位和薪资待遇都比较理想。\n\n于是就一边学，一边实战，先做了前后端分离的社区项目，接触到了 Spring Boot、MyBatis-Plus、MySQL、Redis、ElasticSearch、MongoDB、Docker、RabbitMQ 等一系列的 Java 技术栈。\n\n后面又做了微服务项目 ，接触到了 Spring Cloud、Nacos、Sentinel、Seata、SkyWalking 等相关技术栈。\n\n平常用什么编程语言？\n\n大一上先学习的 C 语言，大一下半学期开始学习 Java，中间还学过一些 Python 和 JavaScript，但整体的感受上来说还是更喜欢 Java。\n\n因为它可以做的事情太多了，既可以用它来写 Web 后端服务，也可以用它来造一些轮子，比如 MYDB 这个轮子，就是用 Java 完成的，不进加深了我对 MySQL索引、事务、MVCC 的理解，还让我对 Java 的 NIO、多线程、JVM 有了更深的了解。\n\n平时是怎么学 Java 的？\n\n一开始，主要是跟着学校的课程走，入门后感觉课程已经满足不了我的求知欲了，于是就开始在 B 站和 GitHub 上找一些优质的视频资源和开源知识库来学习。\n\n比如说《Java 进阶之路》就很适合我的口味，从 Java 的语法、数组&字符串、OOP、集合框架、Java IO、异常处理、网络编程、NIO、并发编程、JVM 等，都有详细的讲解，还有很多手绘图和代码实例，我都跟着动手一步步实现了，感觉收获很大。\n\n后来又读了一遍《Java 编程思想》、《Effective Java》，周志明老师的《深入理解 Java 虚拟机》，以及 JDK 的一些源码，比如说 String、HashMap，还有字节码方面的知识。\n\n再后来就开始做实战项目 MYDB、、，算是彻底掌握 Java 项目的开发流程了。\n\nJava 语言和 C 语言有哪些区别？\n\nJava 是一种跨平台的编程语言，通过在不同操作系统上安装对应版本的 JVM 以实现“一次编译，处处运行”的目的。而 C 语言需要在不同的操作系统上重新编译。\n\nJava 实现了内存的自动管理，而 C 语言需要使用 malloc 和 free 来手动管理内存。",
+      "analysis": "【Java SE / Java 概述】",
+      "categories": [
+        "Java SE / Java 概述"
+      ]
+    },
+    {
+      "id": "java-core-0002",
+      "type": "short",
+      "question": "Java 语言有哪些特点？",
+      "answer": "Java 语言的特点有：\n\n①、面向对象，主要是封装，继承，多态。\n\n②、平台无关性，“一次编写，到处运行”，因此采用 Java 语言编写的程序具有很好的可移植性。\n\n③、支持多线程。C++ 语言没有内置的多线程机制，因此必须调用操作系统的 API 来完成多线程程序设计，而 Java 却提供了封装好多线程支持；\n\n④、支持 JIT 编译，也就是即时编译器，它可以在程序运行时将字节码转换为热点机器码来提高程序的运行速度。",
+      "analysis": "【Java SE / Java 概述】",
+      "categories": [
+        "Java SE / Java 概述"
+      ]
+    },
+    {
+      "id": "java-core-0003",
+      "type": "short",
+      "question": "JVM、JDK 和 JRE 有什么区别？",
+      "answer": "JVM：也就是 Java 虚拟机，是 Java 实现跨平台的关键所在，不同的操作系统有不同的 JVM 实现。JVM 负责将 Java 字节码转换为特定平台的机器码，并执行。\n\nJRE：也就是 Java 运行时环境，包含了运行 Java 程序所必需的库，以及 JVM。\n\nJDK：一套完整的 Java SDK，包括 JRE，编译器 javac、Java 文档生成工具 javadoc、Java 字节码工具 javap 等。为开发者提供了开发、编译、调试 Java 程序的一整套环境。\n\n简单来说，JDK 包含 JRE，JRE 包含 JVM。",
+      "analysis": "【Java SE / Java 概述】",
+      "categories": [
+        "Java SE / Java 概述"
+      ]
+    },
+    {
+      "id": "java-core-0004",
+      "type": "short",
+      "question": "说说什么是跨平台？原理是什么",
+      "answer": "所谓的跨平台，是指 Java 语言编写的程序，一次编译后，可以在多个操作系统上运行。\n\n原理是增加了一个中间件 JVM，JVM 负责将 Java 字节码转换为特定平台的机器码，并执行。",
+      "analysis": "【Java SE / Java 概述】",
+      "categories": [
+        "Java SE / Java 概述"
+      ]
+    },
+    {
+      "id": "java-core-0005",
+      "type": "short",
+      "question": "什么是字节码？采用字节码的好处是什么?",
+      "answer": "所谓的字节码，就是 Java 程序经过编译后产生的 .class 文件。\n\nJava 程序从源代码到运行需要经过三步：\n\n 编译：将源代码文件 .java 编译成 JVM 可以识别的字节码文件 .class\n 解释：JVM 执行字节码文件，将字节码翻译成操作系统能识别的机器码\n 执行**：操作系统执行二进制的机器码",
+      "analysis": "【Java SE / Java 概述】",
+      "categories": [
+        "Java SE / Java 概述"
+      ]
+    },
+    {
+      "id": "java-core-0006",
+      "type": "short",
+      "question": "为什么有人说 Java 是“编译与解释并存”的语言？",
+      "answer": "编译型语言是指编译器针对特定的操作系统，将源代码一次性翻译成可被该平台执行的机器码。\n\n解释型语言是指解释器对源代码进行逐行解释，解释成特定平台的机器码并执行。\n\n举个例子，我想读一本国外的小说，我有两种选择：\n\n 找个翻译，等翻译将小说全部都翻译成汉语，一次性读完。\n 找个翻译，翻译一段我读一段，慢慢把书读完。\n\n之所以有人说 Java 是“编译与解释并存”的语言，是因为 Java 程序需要先将 Java 源代码文件编译字节码文件，再解释执行。",
+      "analysis": "【Java SE / Java 概述】",
+      "categories": [
+        "Java SE / Java 概述"
+      ]
+    },
+    {
+      "id": "java-core-0007",
+      "type": "short",
+      "question": "Java 有哪些数据类型？",
+      "answer": "Java 的数据类型可以分为两种：基本数据类型和引用数据类型。\n\n基本数据类型有：\n\n①、数值型\n\n 整数类型（byte、short、int、long）\n 浮点类型（float、double）\n\n②、字符型（char）\n\n③、布尔型（boolean）\n\n它们的默认值和占用大小如下所示：\n\n| 数据类型 | 默认值 | 大小 |\n| --- | --- | --- |\n| boolean | false | 1 字节或 4 字节 |\n| char | '\\u0000' | 2 字节 |\n| byte | 0 | 1 字节 |\n| short | 0 | 2 字节 |\n| int | 0 | 4 字节 |\n| long | 0L | 8 字节 |\n| float | 0.0f | 4 字节 |\n| double | 0.0 | 8 字节 |\n\n引用数据类型有：\n\n （class）\n （interface）\n （[]）\n\nboolean 类型实际占用几个字节？\n\n这要依据具体的 JVM 实现细节。Java 虚拟机规范中，并没有明确规定 boolean 类型的大小，只规定了 boolean 类型的取值 true 或 false。\n\n> boolean: The boolean data type has only two possible values: true and false. Use this data type for simple flags that track true/false conditions. This data type represents one bit of information, but its \"size\" isn't something that's precisely defined.\n\n我本机的 64 位 JDK 中，通过 JOL 工具查看单独的 boolean 类型，以及 boolean 数组，所占用的空间都是 1 个字节。\n\n给Integer最大值+1，是什么结果？\n\n当给 Integer.MAX\\_VALUE 加 1 时，会发生溢出，变成 Integer.MIN\\_VALUE。\n\njava\nint maxValue = Integer.MAX_VALUE;\nSystem.out.println(\"Integer.MAX_VALUE = \" + maxValue); // Integer.MAX_VALUE = 2147483647\nSystem.out.println(\"Integer.MAX_VALUE + 1 = \" + (maxValue + 1)); // Integer.MAX_VALUE + 1 = -2147483648\n\n// 用二进制来表示最大值和最小值\nSystem.out.println(\"Integer.MAX_VALUE in binary: \" + Integer.toBinaryString(maxValue)); // Integer.MAX_VALUE in binary: 1111111111111111111111111111111\nSystem.out.println(\"Integer.MIN_VALUE in binary: \" + Integer.toBinaryString(Integer.MIN_VALUE)); // Integer.MIN_VALUE in binary: 10000000000000000000000000000000\n\n这是因为 Java 的整数类型采用的是二进制补码表示法，溢出时值会变成最小值。\n\n Integer.MAX\\_VALUE 的二进制表示是 01111111 11111111 11111111 11111111（32 位）。\n* 加 1 后结果变成 10000000 00000000 00000000 00000000，即 -2147483648（Integer.MIN\\_VALUE）。",
+      "analysis": "【Java SE / 基础语法】",
+      "categories": [
+        "Java SE / 基础语法"
+      ]
+    },
+    {
+      "id": "java-core-0008",
+      "type": "short",
+      "question": "自动类型转换、强制类型转换了解吗？",
+      "answer": "当把一个范围较小的数值或变量赋给另外一个范围较大的变量时，会进行自动类型转换；反之，需要强制转换。\n\n这就好像，小杯里的水倒进大杯没问题，但大杯的水倒进小杯就可能会溢出。\n\n①、float f=3.4，对吗？\n\n不正确。3.4 默认是双精度，将双精度赋值给浮点型属于下转型（down-casting，也称窄化）会造成精度丢失，因此需要强制类型转换float f =(float)3.4;或者写成float f =3.4F\n\n②、short s1 = 1; s1 = s1 + 1；对吗？short s1 = 1; s1 += 1;对吗？\n\nshort s1 = 1; s1 = s1 + 1; 会编译出错，由于 1 是 int 类型，因此 s1+1 运算结果也是 int 型，需要强制转换类型才能赋值给 short 型。\n\n而 short s1 = 1; s1 += 1;可以正确编译，因为 s1+= 1;相当于 s1 = (short(s1 + 1); 其中有隐含的强制类型转换。",
+      "analysis": "【Java SE / 基础语法】",
+      "categories": [
+        "Java SE / 基础语法"
+      ]
+    },
+    {
+      "id": "java-core-0009",
+      "type": "short",
+      "question": "什么是自动拆箱/装箱？",
+      "answer": "装箱：将基本数据类型转换为包装类型，例如 int 转换为 Integer。\n 拆箱：将包装类型转换为基本数据类型。\n\n举例：\n\njava\nInteger i = 10;  //装箱\nint n = i;   //拆箱\n\n再换句话说，i 是 Integer 类型，n 是 int 类型；变量 i 是包装器类，变量 n 是基本数据类型。",
+      "analysis": "【Java SE / 基础语法】",
+      "categories": [
+        "Java SE / 基础语法"
+      ]
+    },
+    {
+      "id": "java-core-0010",
+      "type": "short",
+      "question": "&和&&有什么区别？",
+      "answer": "& 是 逻辑与。\n\n&&是短路与运算。逻辑与跟短路与的差别是非常大的，虽然二者都要求运算符左右两端的布尔值都是 true，整个表达式的值才是 true。\n\n&&之所以称为短路运算是因为，如果&&左边的表达式的值是 false，右边的表达式会直接短路掉，不会进行运算。\n\n例如在验证用户登录时判定用户名不是 null 而且不是空字符串，应当写为username != null && !username.equals(\"\")，二者的顺序不能交换，更不能用 & 运算符，因为第一个条件如果不成立，根本不能进行字符串的 equals 比较，会抛出 。\n\n注意：逻辑或运算符（|）和短路或运算符（||）的差别也是类似。\n\n> 2024 年 12 月 23 日 更新到这里。",
+      "analysis": "【Java SE / 基础语法】",
+      "categories": [
+        "Java SE / 基础语法"
+      ]
+    }
+  ]
+}

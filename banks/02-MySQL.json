@@ -1,0 +1,850 @@
+{
+  "meta": {
+    "title": "MySQL 专项题库",
+    "questionCount": 84,
+    "exportedAt": "2026-11-18T09:22:29.535273+00:00",
+    "sourceNote": "仅供个人学习，请遵守原资料版权。"
+  },
+  "questions": [
+    {
+      "id": "java-core-0311",
+      "type": "short",
+      "question": "什么是 MySQL？",
+      "answer": "MySQL 是一个开源的关系型数据库，现在隶属于 Oracle 公司。是我们国内使用频率最高的一种数据库，我在本地安装的是最新的 8.3 版本。\n\n怎么删除/创建一张表？\n\n可以使用 DROP TABLE 来删除表，使用 CREATE TABLE 来创建表。\n\n创建表的时候，可以通过 PRIMARY KEY 设定主键。\n\nsql\nCREATE TABLE users (\n    id INT AUTO_INCREMENT,\n    name VARCHAR(100) NOT NULL,\n    email VARCHAR(100),\n    PRIMARY KEY (id)\n);\n\n请写一个升序/降序的 SQL 语句？\n\n在 SQL 中，可以使用 ORDER BY 子句来对查询结果进行升序或者降序。默认情况下，查询结果是升序的，如果需要降序，可以通过 DESC 关键字来实现。\n\n比如说在员工表中，我们要按工资降序，就可以使用 ORDER BY salary DESC 来完成：\n\nsql\nSELECT id, name, salary\nFROM employees\nORDER BY salary DESC;\n\n如果需对多个字段进行排序，例如按工资降序，按名字升序，就可以 ORDER BY salary DESC, name ASC 来完成：\n\nsql\nSELECT id, name, salary\nFROM employees\nORDER BY salary DESC, name ASC;\n\nMySQL出现性能差的原因有哪些？\n\n可能是 SQL 查询使用了全表扫描，也可能是查询语句过于复杂，如多表 JOIN 或嵌套子查询。\n\n也有可能是单表数据量过大。\n\n通常情况下，添加索引就能解决大部分性能问题。对于一些热点数据，还可以通过增加 Redis 缓存，来减轻数据库的访问压力。",
+      "analysis": "【MySQL / MySQL 基础】",
+      "categories": [
+        "MySQL / MySQL 基础"
+      ]
+    },
+    {
+      "id": "java-core-0312",
+      "type": "short",
+      "question": "两张表怎么进行连接？",
+      "answer": "可以通过内连接 inner join、外连接 outer join、交叉连接 cross join 来合并多个表的查询结果。\n\n什么是内连接？\n\n内连接用于返回两个表中有匹配关系的行。假设有两张表，用户表和订单表，想查询有订单的用户，就可以使用内连接 users INNER JOIN orders，按照用户 ID 关联就行了。\n\nsql\nSELECT users.name, orders.order_id\nFROM users\nINNER JOIN orders ON users.id = orders.user_id;\n\n只有那些在两个表中都存在 user\\_id 的记录才会出现在查询结果中。\n\n什么是外连接？\n\n和内连接不同，外连接不仅返回两个表中匹配的行，还返回没有匹配的行，用 null 来填充。\n\n外连接又分为左外连接 left join 和右外连接 right join。\n\nleft join 会保留左表中符合条件的所有记录，如果右表中有匹配的记录，就返回匹配的记录，否则就用 null 填充，常用于某表中有，但另外一张表中可能没有的数据的查询场景。\n\n假设要查询所有用户及他们的订单，即使用户没有下单，就可以使用左连接：\n\nsql\nSELECT users.id, users.name, orders.order_id\nFROM users\nLEFT JOIN orders ON users.id = orders.user_id;\n\n查询前：\n\n| users | orders |\n| --- | --- |\n| id | name |\n| 1 | 练习伴侣二 |\n| 2 | 张三 |\n| 3 | 李四 |\n\n查询后：\n\n| id | name | order\\_id |\n| --- | --- | --- |\n| 1 | 练习伴侣二 | 10 |\n| 2 | 张三 | 20 |\n| 3 | 李四 | null |\n\n右连接就是左连接的镜像，right join 会保留右表中符合条件的所有记录，如果左表中有匹配的记录，就返回匹配的记录，否则就用 null 填充。\n\n什么是交叉连接？\n\n交叉连接会返回两张表的笛卡尔积，也就是将左表的每一行与右表的每一行进行组合，返回的行数是两张表行数的乘积。\n\n假设有 A 表和 B 表，A 表有 2 行数据，B 表有 3 行数据，那么交叉连接的结果就是 2 ✖️ 3 = 6 行。\n\nsql\nSELECT A.id, B.id\nFROM A\nCROSS JOIN B;\n\n笛卡尔积是数学中的一个概念，例如集合 A={a,b}，集合 B={0,1,2}，那么 A✖️B={,,,,,,}。",
+      "analysis": "【MySQL / MySQL 基础】",
+      "categories": [
+        "MySQL / MySQL 基础"
+      ]
+    },
+    {
+      "id": "java-core-0313",
+      "type": "short",
+      "question": "内连接、左连接、右连接有什么区别？",
+      "answer": "MySQL 的连接主要分为内连接和外连接，外连接又可以分为左连接和右连接。\n\n内连接可以用来找出两个表中共同的记录，相当于两个数据集的交集。\n\n左连接和右连接可以用来找出两个表中不同的记录，相当于两个数据集的并集。两者的区别是，左连接会保留左表中符合条件的所有记录，右连接则刚好相反。\n\n拿的表为例来详细验证下。\n\n有三张表，一张文章表 article，主要存文章标题 title， 一张文章详情表 article\\_detail，主要存文章的内容 content，一张文章评论表 comment，主要存评论 content，三个表通过文章 id 关联。\n\n先来看内连接：\n\nsql\nSELECT LEFT(a.title, 20) AS ArticleTitle, LEFT(c.content, 20) AS CommentContent\nFROM article a\nINNER JOIN comment c ON a.id = c.article_id\nLIMIT 2;\n\n返回至少有一条评论的文章标题和评论内容（前 20 个字符），只返回符合条件的前 2 条记录。\n\n再来看做连接：\n\nsql\nSELECT LEFT(a.title, 20) AS ArticleTitle, LEFT(c.content, 20) AS CommentContent\nFROM article a\nLEFT JOIN comment c ON a.id = c.article_id\nLIMIT 2;\n\n返回所有文章的标题和文章评论，即使某些文章没有评论（填充为 NULL）。\n\n最后来看右连：\n\nsql\nSELECT LEFT(a.title, 20) AS ArticleTitle, LEFT(c.content, 20) AS CommentContent\nFROM comment c\nRIGHT JOIN article a ON a.id = c.article_id\nLIMIT 2;",
+      "analysis": "【MySQL / MySQL 基础】",
+      "categories": [
+        "MySQL / MySQL 基础"
+      ]
+    },
+    {
+      "id": "java-core-0314",
+      "type": "short",
+      "question": "说一下数据库的三大范式？",
+      "answer": "第一范式，确保表的每一列都是不可分割的基本数据单元，比如说用户地址，应该拆分成省、市、区、详细地址等 4 个字段。\n\n第二范式，要求表中的每一列都和主键直接相关。比如在订单表中，商品名称、单位、商品价格等字段应该拆分到商品表中。\n\n然后新建一个订单商品关联表，用订单编号和商品编号进行关联就好了。\n\n第三范式，非主键列应该只依赖于主键列。比如说在设计订单信息表的时候，可以把客户名称、所属公司、联系方式等信息拆分到客户信息表中，然后在订单信息表中用客户编号进行关联。\n\n建表的时候需要考虑哪些问题？\n\n首先需要考虑表是否符合数据库的三大范式，确保字段不可再分，消除非主键依赖，确保字段仅依赖于主键等。\n\n然后在选择字段类型时，应该尽量选择合适的数据类型。\n\n在字符集上，尽量选择 utf8mb4，这样不仅可以支持中文和英文，还可以支持表情符号等。\n\n当数据量较大时，比如上千万行数据，需要考虑分表。比如订单表，可以采用水平分表的方式来分散单表存储压力。",
+      "analysis": "【MySQL / MySQL 基础】",
+      "categories": [
+        "MySQL / MySQL 基础"
+      ]
+    },
+    {
+      "id": "java-core-0315",
+      "type": "short",
+      "question": "varchar 与 char 的区别？",
+      "answer": "varchar 是可变长度的字符类型，原则上最多可以容纳 65535 个字符，但考虑字符集，以及 MySQL 需要 1 到 2 个字节来表示字符串长度，所以实际上最大可以设置到 65533。\n\n> latin1 字符集，且列属性定义为 NOT NULL。\n\nchar 是固定长度的字符类型，当定义一个 CHAR(10) 字段时，不管实际存储的字符长度是多少，都只会占用 10 个字符的空间。如果插入的数据小于 10 个字符，剩余的部分会用空格填充。\n\n| 值 | CHAR(4) | 存储需求（字节） | VARCHAR(4) | 存储需求（字节） |\n| --- | --- | --- | --- | --- |\n| '' | ' ' | 4 | '' | 1 |\n| 'ab' | 'ab ' | 4 | 'ab' | 3 |\n| 'abcd' | 'abcd' | 4 | 'abcd' | 5 |\n| 'abcdefgh' | 'abcd' | 4 | 'abcd' | 5 |",
+      "analysis": "【MySQL / MySQL 基础】",
+      "categories": [
+        "MySQL / MySQL 基础"
+      ]
+    },
+    {
+      "id": "java-core-0316",
+      "type": "short",
+      "question": "blob 和 text 有什么区别？",
+      "answer": "blob 用于存储二进制数据，比如图片、音频、视频、文件等；但实际开发中，我们都会把这些文件存储到 OSS 或者文件服务器上，然后在数据库中存储文件的 URL。\n\ntext 用于存储文本数据，比如文章、评论、日志等。",
+      "analysis": "【MySQL / MySQL 基础】",
+      "categories": [
+        "MySQL / MySQL 基础"
+      ]
+    },
+    {
+      "id": "java-core-0317",
+      "type": "short",
+      "question": "DATETIME 和 TIMESTAMP 有什么区别？",
+      "answer": "DATETIME 直接存储日期和时间的完整值，与时区无关。\n\nTIMESTAMP 存储的是 Unix 时间戳，1970-01-01 00:00:01 UTC 以来的秒数，受时区影响。\n\n另外，DATETIME 的默认值为 null，占用 8 个字节；TIMESTAMP 的默认值为当前时间——CURRENT\\_TIMESTAMP，占 4 个字节，实际开发中更常用，因为可以自动更新。",
+      "analysis": "【MySQL / MySQL 基础】",
+      "categories": [
+        "MySQL / MySQL 基础"
+      ]
+    },
+    {
+      "id": "java-core-0318",
+      "type": "short",
+      "question": "in 和 exists 的区别？",
+      "answer": "当使用 IN 时，MySQL 会首先执行子查询，然后将子查询的结果集用于外部查询的条件。这意味着子查询的结果集需要全部加载到内存中。\n\n而 EXISTS 会对外部查询的每一行，执行一次子查询。如果子查询返回任何行，则 EXISTS 条件为真。EXISTS 关注的是子查询是否返回行，而不是返回的具体值。\n\nsql\n-- IN 的临时表可能成为性能瓶颈\nSELECT  FROM users \nWHERE id IN (SELECT user_id FROM orders WHERE amount > 100);\n\n-- EXISTS 可以利用关联索引\nSELECT  FROM users u\nWHERE EXISTS (SELECT 1 FROM orders o \n            WHERE o.user_id = u.id AND o.amount > 100);\n\nIN 适用于子查询结果集较小的情况。如果子查询返回大量数据，IN 的性能可能会下降，因为它需要将整个结果集加载到内存。\n\n而 EXISTS 适用于子查询结果集可能很大的情况。由于 EXISTS 只需要判断子查询是否返回行，而不需要加载整个结果集，因此在某些情况下性能更好，特别是当子查询可以使用索引时。\n\nNULL值陷了解吗？\n\nIN: 如果子查询的结果集中包含 NULL 值，可能会导致意外的结果。例如，WHERE column IN (subquery)，如果 subquery 返回 NULL，则 column IN (subquery) 永远不会为真，除非 column 本身也为 NULL。\n\nEXISTS: 对 NULL 值的处理更加直接。EXISTS 只是检查子查询是否返回行，不关心行的具体值，因此不受 NULL 值的影响。",
+      "analysis": "【MySQL / MySQL 基础】",
+      "categories": [
+        "MySQL / MySQL 基础"
+      ]
+    },
+    {
+      "id": "java-core-0319",
+      "type": "short",
+      "question": "记录货币用什么类型比较好？",
+      "answer": "如果是电商、交易、账单等涉及货币的场景，建议使用 DECIMAL 类型，因为 DECIMAL 类型是精确数值类型，不会出现浮点数计算误差。\n\n例如，DECIMAL(19,4) 可以存储最多 19 位数字，其中 4 位是小数。\n\nsql\nCREATE TABLE orders (\n    id INT AUTO_INCREMENT,\n    amount DECIMAL(19,4),\n    PRIMARY KEY (id)\n);\n\n如果是银行，涉及到支付的场景，建议使用 BIGINT 类型。可以将货币金额乘以一个固定因子，比如 100，表示以“分”为单位，然后存储为 BIGINT。这种方式既避免了浮点数问题，同时也提供了不错的性能。但在展示的时候需要除以相应的因子。\n\n为什么不推荐使用 FLOAT 或 DOUBLE？\n\n因为 FLOAT 和 DOUBLE 都是浮点数类型，会存在精度问题。\n\n在许多编程语言中，0.1 + 0.2 的结果会是类似 0.30000000000000004 的值，而不是预期的 0.3。",
+      "analysis": "【MySQL / MySQL 基础】",
+      "categories": [
+        "MySQL / MySQL 基础"
+      ]
+    },
+    {
+      "id": "java-core-0320",
+      "type": "short",
+      "question": "怎么存储 emoji?",
+      "answer": "因为 emoji（😊）是 4 个字节的 UTF-8 字符，而 MySQL 的 utf8 字符集只支持最多 3 个字节的 UTF-8 字符，所以在 MySQL 中存储 emoji 时，需要使用 utf8mb4 字符集。\n\nsql\nALTER TABLE mytable CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;\n\nMySQL 8.0 已经默认支持 utf8mb4 字符集，可以通过 SHOW VARIABLES WHERE Variable_name LIKE 'character\\_set\\_%' OR Variable_name LIKE 'collation%'; 查看。",
+      "analysis": "【MySQL / MySQL 基础】",
+      "categories": [
+        "MySQL / MySQL 基础"
+      ]
+    },
+    {
+      "id": "java-core-0321",
+      "type": "short",
+      "question": "drop、delete 与 truncate 的区别？",
+      "answer": "DROP 是物理删除，用来删除整张表，包括表结构，且不能回滚。\n\nDELETE 支持行级删除，可以带 WHERE 条件，可以回滚。\n\nTRUNCATE 用于清空表中的所有数据，但会保留表结构，不能回滚。",
+      "analysis": "【MySQL / MySQL 基础】",
+      "categories": [
+        "MySQL / MySQL 基础"
+      ]
+    },
+    {
+      "id": "java-core-0322",
+      "type": "short",
+      "question": "UNION 与 UNION ALL 的区别？",
+      "answer": "UNION 会自动去除合并后结果集中的重复行。UNION ALL 不会去重，会将所有结果集合并起来。",
+      "analysis": "【MySQL / MySQL 基础】",
+      "categories": [
+        "MySQL / MySQL 基础"
+      ]
+    },
+    {
+      "id": "java-core-0323",
+      "type": "short",
+      "question": "count(1)、count(*) 与 count(列名) 的区别？",
+      "answer": "在 InnoDB 引擎中，COUNT(1) 和 COUNT() 没有区别，都是用来统计所有行，包括 NULL。\n\n如果表有索引，COUNT() 会直接用索引统计，而不是全表扫描，而 COUNT(1) 也会被 MySQL 优化为 COUNT()。\n\nCOUNT(列名) 只统计列名不为 NULL 的行数。\n\ntext\n-- 假设 users 表：\n+----+-------+------------+\n| id | name  | email      |\n+----+-------+------------+\n| 1  | 张三  | zhang@xx.com |\n| 2  | 李四  | NULL       |\n| 3  | 练习伴侣二  | wang@xx.com |\n+----+-------+------------+\n\n-- COUNT()\nSELECT COUNT() FROM users;\n-- 结果：3  （统计所有行）\n\n-- COUNT(1)\nSELECT COUNT(1) FROM users;\n-- 结果：3  （统计所有行）\n\n-- COUNT(email)\nSELECT COUNT(email) FROM users;\n-- 结果：2  （NULL 不计入统计）\n\n这里解释一下，假设有这样一张表：\n\nsql\nCREATE TABLE t1 (\n    id INT,\n    name VARCHAR(50),\n    value INT\n);\n\n插入的数据为：\n\nsql\nINSERT INTO t1 VALUES \n    (1, 'A', 10),\n    (2, 'B', NULL),  -- NULL in value column\n    (3, 'C', 30),\n    (4, NULL, 40),   -- NULL in name column\n    (5, 'E', NULL);  -- NULL in value column\n\n因为 id 列没有索引，所以 select count() 是全表扫描。\n\n然后我们给 id 列加上索引。\n\nsql\nalter table t1 add primary key (id);\n\n再来看一下 select count()，发现用了索引（MySQL 默认为给主键添加索引）。\n\n另外，MySQL 8.0 官方手册有明确说明，InnoDB 引擎对 SELECT COUNT() 和 SELECT COUNT(1) 的处理方式完全一致，性能并无差异。",
+      "analysis": "【MySQL / MySQL 基础】",
+      "categories": [
+        "MySQL / MySQL 基础"
+      ]
+    },
+    {
+      "id": "java-core-0324",
+      "type": "short",
+      "question": "SQL 查询语句的执行顺序了解吗？",
+      "answer": "了解。先执行 FROM 确定主表，再执行 JOIN 连接，然后 WHERE 进行过滤，接着 GROUP BY 进行分组，HAVING 过滤聚合结果，SELECT 选择最终列，ORDER BY 排序，最后 LIMIT 限制返回行数。\n\nWHERE 先执行是为了减少数据量，HAVING 只能过滤聚合数据，ORDER BY 必须在 SELECT 之后排序最终结果，LIMIT 最后执行以减少数据传输。\n\n| 执行顺序 | SQL 关键字 | 作用 |\n| --- | --- | --- |\n| ① | FROM | 确定主表，准备数据 |\n| ② | ON | 连接多个表的条件 |\n| ③ | JOIN | 执行 INNER JOIN / LEFT JOIN 等 |\n| ④ | WHERE | 过滤行数据（提高效率） |\n| ⑤ | GROUP BY | 进行分组 |\n| ⑥ | HAVING | 过滤聚合后的数据 |\n| ⑦ | SELECT | 选择最终返回的列 |\n| ⑧ | DISTINCT | 进行去重 |\n| ⑨ | ORDER BY | 对最终结果排序 |\n| ⑩ | LIMIT | 限制返回行数 |\n\n这个执行顺序与编写 SQL 语句的顺序不同，这也是为什么有时候在 SELECT 子句中定义的别名不能在 WHERE 子句中使用得原因，因为 WHERE 是在 SELECT 之前执行的。\n\nLIMIT 为什么在最后执行？\n\n因为 LIMIT 是在最终结果集上执行的，如果在 WHERE 之前执行 LIMIT，那么就会先返回所有行，然后再进行 LIMIT 限制，这样会增加数据传输的开销。\n\nORDER BY 为什么在 SELECT 之后执行？\n\n因为排序需要基于最终返回的列，如果 ORDER BY 早于 SELECT 执行，计算 COUNT() 之类的聚合函数就会出问题。\n\nsql\nSELECT name, COUNT() AS order_count\nFROM orders\nGROUP BY name\nORDER BY order_count DESC;",
+      "analysis": "【MySQL / MySQL 基础】",
+      "categories": [
+        "MySQL / MySQL 基础"
+      ]
+    },
+    {
+      "id": "java-core-0325",
+      "type": "short",
+      "question": "介绍一下 MySQL 的常用命令（补充）",
+      "answer": "> 2024 年 03 月 13 日增补。\n\nMySQL 的常用命令主要包括数据库操作命令、表操作命令、行数据 CRUD 命令、索引和约束的创建修改命令、用户和权限管理的命令、事务控制的命令等。\n\n说说数据库操作命令？\n\nCREATE DATABASE database_name; 用于创建数据库；DROP DATABASE database_name; 用于删除数据库；SHOW DATABASES; 用于显示所有数据库；USE database_name; 用于切换数据库。\n\n说说表操作命令？\n\nCREATE TABLE table_name (列名1 数据类型1, 列名2 数据类型2,...); 用于创建表；DROP TABLE table_name; 用于删除表；SHOW TABLES; 用于显示所有表；DESCRIBE table_name; 用于查看表结构；ALTER TABLE table_name ADD column_name datatype; 用于修改表。\n\n说说行数据的 CRUD 命令？\n\nINSERT INTO table_name (column1, column2, ...) VALUES (value1, value2, ...); 用于插入数据；SELECT column_names FROM table_name WHERE condition; 用于查询数据；UPDATE table_name SET column1 = value1, column2 = value2 WHERE condition; 用于更新数据；DELETE FROM table_name WHERE condition; 用于删除数据。\n\n说说索引和约束的创建修改命令？\n\nCREATE INDEX index_name ON table_name (column_name); 用于创建索引；ALTER TABLE table_name ADD PRIMARY KEY (column_name); 用于添加主键；ALTER TABLE table_name ADD CONSTRAINT fk_name FOREIGN KEY (column_name) REFERENCES parent_table (parent_column_name); 用于添加外键。\n\n说说用户和权限管理的命令？\n\nCREATE USER 'username'@'host' IDENTIFIED BY 'password'; 用于创建用户；GRANT ALL PRIVILEGES ON database_name.table_name TO 'username'@'host'; 用于授予权限；REVOKE ALL PRIVILEGES ON database_name.table_name FROM 'username'@'host'; 用于撤销权限；DROP USER 'username'@'host'; 用于删除用户。\n\n说说事务控制的命令？\n\nSTART TRANSACTION; 用于开始事务；COMMIT; 用于提交事务；ROLLBACK; 用于回滚事务。",
+      "analysis": "【MySQL / MySQL 基础】",
+      "categories": [
+        "MySQL / MySQL 基础"
+      ]
+    },
+    {
+      "id": "java-core-0326",
+      "type": "short",
+      "question": "MySQL bin 目录下的可执行文件了解吗（补充）",
+      "answer": "> 2024 年 03 月 13 日增补\n\n了解的。MySQL 的 bin 目录下有很多可执行文件，主要用于管理 MySQL 服务器、数据库、表、数据等。比如说：\n\n mysql：用于连接 MySQL 服务器\n mysqldump：用于数据库备份，对数据备份、迁移或恢复时非常有用\n mysqladmin：用来执行一些管理操作，比如说创建数据库、删除数据库、查看 MySQL 服务器的状态等。\n mysqlcheck：用于检查、修复、分析和优化数据库表，对数据库的维护和性能优化非常有用。\n mysqlimport：用于从文本文件中导入数据到数据库表中，适合批量数据导入。\n mysqlshow：用于显示 MySQL 数据库服务器中的数据库、表、列等信息。\n* mysqlbinlog：用于查看 MySQL 二进制日志文件的内容，可以用于恢复数据、查看数据变更等。",
+      "analysis": "【MySQL / MySQL 基础】",
+      "categories": [
+        "MySQL / MySQL 基础"
+      ]
+    },
+    {
+      "id": "java-core-0327",
+      "type": "short",
+      "question": "MySQL 第 3-10 条记录怎么查？（补充）",
+      "answer": "> 2024 年 03 月 30 日增补\n\n可以使用 limit 语句，结合偏移量和行数来实现。\n\nsql\nSELECT  FROM table_name LIMIT 2, 8;\n\nlimit 语句用于限制查询结果的数量，偏移量表示从哪条记录开始，行数表示返回的记录数量。\n\n 2：偏移量，表示跳过前两条记录，从第三条记录开始。\n* 8：行数，表示从偏移量开始，返回 8 条记录。\n\n偏移量是从 0 开始的，即第一条记录的偏移量是 0；如果想从第 3 条记录开始，偏移量就应该是 2。",
+      "analysis": "【MySQL / MySQL 基础】",
+      "categories": [
+        "MySQL / MySQL 基础"
+      ]
+    },
+    {
+      "id": "java-core-0328",
+      "type": "short",
+      "question": "用过哪些 MySQL 函数？（补充）",
+      "answer": "> 2024 年 04 月 12 日增补\n\n用过挺多的，比如说处理字符串的函数：\n\n CONCAT(): 用于连接两个或多个字符串。\n LENGTH(): 用于返回字符串的长度。\n SUBSTRING(): 从字符串中提取子字符串。\n REPLACE(): 替换字符串中的某部分。\n TRIM(): 去除字符串两侧的空格或其他指定字符。\n\n实测数据：\n\nsql\n-- 连接字符串\nSELECT CONCAT('practice-mate', ' ', '练习伴侣二') AS concatenated_string;\n\n-- 获取字符串长度\nSELECT LENGTH('practice-mate 练习伴侣二') AS string_length;\n\n-- 提取子字符串\nSELECT SUBSTRING('practice-mate 练习伴侣二', 1, 5) AS substring;\n\n-- 替换字符串内容\nSELECT REPLACE('practice-mate 练习伴侣二', '练习伴侣二', 'MySQL') AS replaced_string;\n\n-- 去除字符串两侧的空格\nSELECT TRIM('  practice-mate 练习伴侣二  ') AS trimmed_string;\n\n处理数字的函数：\n\n ABS(): 返回一个数的绝对值。\n ROUND(): 四舍五入到指定的小数位数。\n MOD(): 返回除法操作的余数。\n\n实测数据：\n\nsql\n-- 返回绝对值\nSELECT ABS(-123) AS absolute_value;\n\n-- 四舍五入\nSELECT ROUND(123.4567, 2) AS rounded_value;\n\n-- 余数\nSELECT MOD(10, 3) AS modulus;\n\n日期和时间处理函数：\n\n NOW(): 返回当前的日期和时间。\n CURDATE(): 返回当前的日期。\n\n实测数据：\n\nsql\n-- 返回当前日期和时间\nSELECT NOW() AS current_date_time;\n\n-- 返回当前日期\nSELECT CURDATE() AS current_date;\n\n汇总函数：\n\n SUM(): 计算数值列的总和。\n AVG(): 计算数值列的平均值。\n COUNT(): 计算某列的行数。\n\n实测数据：\n\nsql\n-- 创建一个表并插入数据进行聚合查询\nCREATE TABLE sales (\n    product_id INT,\n    sales_amount DECIMAL(10, 2)\n);\n\nINSERT INTO sales (product_id, sales_amount) VALUES (1, 100.00);\nINSERT INTO sales (product_id, sales_amount) VALUES (1, 150.00);\nINSERT INTO sales (product_id, sales_amount) VALUES (2, 200.00);\n\n-- 计算总和\nSELECT SUM(sales_amount) AS total_sales FROM sales;\n\n-- 计算平均值\nSELECT AVG(sales_amount) AS average_sales FROM sales;\n\n-- 计算总行数\nSELECT COUNT() AS total_entries FROM sales;\n\n逻辑函数：\n\n IF(): 如果条件为真，则返回一个值；否则返回另一个值。\n CASE: 根据一系列条件返回值。\n\nsql\n-- IF函数\nSELECT IF(1 > 0, 'True', 'False') AS simple_if;\n\n-- CASE表达式\nSELECT CASE WHEN 1 > 0 THEN 'True' ELSE 'False' END AS case_expression;",
+      "analysis": "【MySQL / MySQL 基础】",
+      "categories": [
+        "MySQL / MySQL 基础"
+      ]
+    },
+    {
+      "id": "java-core-0329",
+      "type": "short",
+      "question": "说说 SQL 的隐式数据类型转换？（补充）",
+      "answer": "> 2024 年 04 月 25 日增补\n\n当一个整数和一个浮点数相加时，整数会被转换为浮点数。\n\nsql\nSELECT 1 + 1.0; -- 结果为 2.0\n\n当一个字符串和一个整数相加时，字符串会被转换为整数。\n\nsql\nSELECT '1' + 1; -- 结果为 2\n\n隐式转换会导致意想不到的结果，最好通过显式转换来规避。\n\nsql\nSELECT CAST('1' AS SIGNED INTEGER) + 1; -- 结果为 2\n\n实际验证结果：",
+      "analysis": "【MySQL / MySQL 基础】",
+      "categories": [
+        "MySQL / MySQL 基础"
+      ]
+    },
+    {
+      "id": "java-core-0330",
+      "type": "short",
+      "question": "说说 SQL 的语法树解析？（补充）",
+      "answer": "> 2024 年 09 月 19 日增补\n\nSQL 语法树解析是将 SQL 查询语句转换成抽象语法树 —— AST 的过程，是数据库引擎处理查询的第一步，也是防止 SQL 注入的重要手段。\n\n通常分为 3 个阶段。\n\n第一个阶段，词法分析：拆解 SQL 语句，识别关键字、表名、列名等。\n\n---这部分是帮助大家理解 start，面试中可不背---\n\n比如说：\n\nsql\nSELECT id, name FROM users WHERE age > 18;\n\n将会被拆解为：\n\ntext\n[SELECT] [id] [,] [name] [FROM] [users] [WHERE] [age] [>] [18] [;]\n\n---这部分是帮助大家理解 end，面试中可不背---\n\n第二个阶段，语法分析：检查 SQL 是否符合语法规则，并构建抽象语法树。\n\n---这部分是帮助大家理解 start，面试中可不背---\n\n比如说上面的语句会被构建成如下的语法树：\n\ntext\n          SELECT\n         /      \\\n     Columns     FROM\n    /      \\      |\n  id      name  users\n               |\n             WHERE\n               |\n            age > 18\n\n或者这样表示：\n\ntext\nSELECT\n ├── COLUMNS: id, name\n ├── FROM: users\n ├── WHERE\n │    ├── CONDITION: age > 18\n\n---这部分是帮助大家理解 end，面试中可不背---\n\n第三个阶段，语义分析：检查表、列是否存在，进行权限验证等。\n\n---这部分是帮助大家理解 start，面试中可不背---\n\n比如说执行：\n\nsql\nSELECT id, name FROM users WHERE age > 'eighteen';\n\n会报错：\n\ntext\nERROR: Column 'age' is INT, but 'eighteen' is STRING.\n\n---这部分是帮助大家理解 end，面试中可不背---",
+      "analysis": "【MySQL / MySQL 基础】",
+      "categories": [
+        "MySQL / MySQL 基础"
+      ]
+    },
+    {
+      "id": "java-core-0331",
+      "type": "short",
+      "question": "说说 MySQL 的基础架构？",
+      "answer": "MySQL 采用分层架构，主要包括连接层、服务层、和存储引擎层。\n\n①、连接层主要负责客户端连接的管理，包括验证用户身份、权限校验、连接管理等。可以通过数据库连接池来提升连接的处理效率。\n\n②、服务层是 MySQL 的核心，主要负责查询解析、优化、执行等操作。在这一层，SQL 语句会经过解析、优化器优化，然后转发到存储引擎执行，并返回结果。这一层包含查询解析器、优化器、执行计划生成器、日志模块等。\n\n③、存储引擎层负责数据的实际存储和提取。MySQL 支持多种存储引擎，如 InnoDB、MyISAM、Memory 等。\n\nbinlog写入在哪一层？\n\nbinlog 在服务层，负责记录 SQL 语句的变化。它记录了所有对数据库进行更改的操作，用于数据恢复、主从复制等。",
+      "analysis": "【MySQL / 数据库架构】",
+      "categories": [
+        "MySQL / 数据库架构"
+      ]
+    },
+    {
+      "id": "java-core-0332",
+      "type": "short",
+      "question": "一条查询语句是如何执行的？",
+      "answer": "当我们执行一条 SELECT 语句时，MySQL 并不会直接去磁盘读取数据，而是经过 6 个步骤来解析、优化、执行，然后再返回结果。\n\n第一步，客户端发送 SQL 查询语句到 MySQL 服务器。\n\n第二步，MySQL 服务器的连接器开始处理这个请求，跟客户端建立连接、获取权限、管理连接。\n\n第三步，解析器对 SQL 语句进行解析，检查语句是否符合 SQL 语法规则，确保数据库、表和列都是存在的，并处理 SQL 语句中的名称解析和权限验证。\n\n第四步，优化器负责确定 SQL 语句的执行计划，这包括选择使用哪些索引，以及决定表之间的连接顺序等。\n\n第五步，执行器会调用存储引擎的 API 来进行数据的读写。\n\n第六步，存储引擎负责查询数据，并将执行结果返回给客户端。客户端接收到查询结果，完成这次查询请求。",
+      "analysis": "【MySQL / 数据库架构】",
+      "categories": [
+        "MySQL / 数据库架构"
+      ]
+    },
+    {
+      "id": "java-core-0333",
+      "type": "short",
+      "question": "一条更新语句是如何执行的？",
+      "answer": "总的来说，一条 UPDATE 语句的执行过程包括读取数据页、加锁解锁、事务提交、日志记录等多个步骤。\n\n拿 update test set a=1 where id=2 举例来说：\n\n在事务开始前，MySQL 需要记录undo log，用于事务回滚。\n\n| 操作 | id | 旧值 | 新值 |\n| --- | --- | --- | --- |\n| update | 2 | N | 1 |\n\n除了记录 undo log，存储引擎还会将更新操作写入 redo log，状态标记为 prepare，并确保 redo log 持久化到磁盘。这一步可以保证即使系统崩溃，数据也能通过 redo log 恢复到一致状态。\n\n写完 redo log 后，MySQL 会获取行锁，将 a 的值修改为 1，标记为脏页，此时数据仍然在内存的 buffer pool 中，不会立即写入磁盘。后台线程会在适当的时候将脏页刷盘，以提高性能。\n\n最后提交事务，redo log 中的记录被标记为 committed，行锁释放。\n\n如果 MySQL 开启了 binlog，还会将更新操作记录到 binlog 中，主要用于主从复制。\n\n以及数据恢复，可以结合 redo log 进行点对点的恢复。binlog 的写入通常发生在事务提交时，与 redo log 共同构成“两阶段提交”，确保两者的一致性。\n\n注意，redo log 的写入有两个阶段的提交，一是 binlog 写入之前prepare 状态的写入，二是 binlog 写入之后 commit 状态的写入。",
+      "analysis": "【MySQL / 数据库架构】",
+      "categories": [
+        "MySQL / 数据库架构"
+      ]
+    },
+    {
+      "id": "java-core-0334",
+      "type": "short",
+      "question": "说说 MySQL 的段区页行（补充）",
+      "answer": "> 2024 年 04 月 26 日增补\n\nMySQL 是以表的形式存储数据的，而表空间的结构则由段、区、页、行组成。\n\n①、段：表空间由多个段组成，常见的段有数据段、索引段、回滚段等。\n\n创建索引时会创建两个段，数据段和索引段，数据段用来存储叶子节点中的数据；索引段用来存储非叶子节点的数据。\n\n回滚段包含了事务执行过程中用于数据回滚的旧数据。\n\n②、区：段由一个或多个区组成，区是一组连续的页，通常包含 64 个连续的页，也就是 1M 的数据。\n\n使用区而非单独的页进行数据分配可以优化磁盘操作，减少磁盘寻道时间，特别是在大量数据进行读写时。\n\n③、页：页是 InnoDB 存储数据的基本单元，标准大小为 16 KB，索引树上的一个节点就是一个页。\n\n也就意味着数据库每次读写都是以 16 KB 为单位的，一次最少从磁盘中读取 16KB 的数据到内存，一次最少写入 16KB 的数据到磁盘。\n\n④、行：InnoDB 采用行存储方式，意味着数据按照行进行组织和管理，行数据可能有多个格式，比如说 COMPACT、REDUNDANT、DYNAMIC 等。\n\nMySQL 8.0 默认的行格式是 DYNAMIC，由COMPACT 演变而来，意味着这些数据如果超过了页内联存储的限制，则会被存储在溢出页中。\n\n可以通过 show table status like '%article%' 查看行格式。",
+      "analysis": "【MySQL / 数据库架构】",
+      "categories": [
+        "MySQL / 数据库架构"
+      ]
+    },
+    {
+      "id": "java-core-0335",
+      "type": "short",
+      "question": "MySQL 有哪些常见存储引擎？",
+      "answer": "MySQL 支持多种存储引擎，常见的有 MyISAM、InnoDB、MEMORY 等。\n\n---这部分是帮助大家理解 start，面试中可不背---\n\n我来做一个表格对比：\n\n| 功能 | InnoDB | MyISAM | MEMORY |\n| --- | --- | --- | --- |\n| 支持事务 | Yes | No | No |\n| 支持全文索引 | Yes | Yes | No |\n| 支持 B+树索引 | Yes | Yes | Yes |\n| 支持哈希索引 | Yes | No | Yes |\n| 支持外键 | Yes | No | No |\n\n---这部分是帮助大家理解 end，面试中可不背---\n\n除此之外，我还了解到：\n\n①、MySQL 5.5 之前，默认存储引擎是 MyISAM，5.5 之后是 InnoDB。\n\n②、InnoDB 支持的哈希索引是自适应的，不能人为干预。\n\n③、InnoDB 从 MySQL 5.6 开始，支持全文索引。\n\n④、InnoDB 的最小表空间略小于 10M，最大表空间取决于页面大小。\n\n如何切换 MySQL 的数据引擎？\n\n可以通过 alter table 语句来切换 MySQL 的数据引擎。\n\nsql\nALTER TABLE your_table_name ENGINE=InnoDB;\n\n不过不建议，应该提前设计好到底用哪一种存储引擎。",
+      "analysis": "【MySQL / 存储引擎】",
+      "categories": [
+        "MySQL / 存储引擎"
+      ]
+    },
+    {
+      "id": "java-core-0336",
+      "type": "short",
+      "question": "存储引擎应该怎么选择？",
+      "answer": "大多数情况下，使用默认的 InnoDB 就可以了，InnoDB 可以提供事务、行级锁、外键、B+ 树索引等能力。\n\nMyISAM 适合读多写少的场景。\n\nMEMORY 适合临时表，数据量不大的情况。因为数据都存放在内存，所以速度非常快。",
+      "analysis": "【MySQL / 存储引擎】",
+      "categories": [
+        "MySQL / 存储引擎"
+      ]
+    },
+    {
+      "id": "java-core-0337",
+      "type": "short",
+      "question": "InnoDB 和 MyISAM 主要有什么区别？",
+      "answer": "InnoDB 和 MyISAM 的最大区别在于事务支持和锁机制。InnoDB 支持事务、行级锁，适合大多数业务系统；而 MyISAM 不支持事务，用的是表锁，查询快但写入性能差，适合读多写少的场景。\n\n另外，从存储结构上来说，MyISAM 用三种格式的文件来存储，.frm 文件存储表的定义；.MYD 存储数据；.MYI 存储索引；而 InnoDB 用两种格式的文件来存储，.frm 文件存储表的定义；.ibd 存储数据和索引。\n\n从索引类型上来说，MyISAM 为非聚簇索引，索引和数据分开存储，索引保存的是数据文件的指针。\n\nInnoDB 为聚簇索引，索引和数据不分开。\n\n更细微的层面上来讲，MyISAM 不支持外键，可以没有主键，表的具体行数存储在表的属性中，查询时可以直接返回；InnoDB 支持外键，必须有主键，具体行数需要扫描整个表才能返回，有索引的情况下会扫描索引。\n\nInnoDB的内存结构了解吗？\n\n> 2025 年 04 月 04 日增补\n\nInnoDB 的内存区域主要有两块，buffer pool 和 log buffer。 buffer pool 用于缓存数据页和索引页，提升读写性能；log buffer 用于缓存 redo log，提升写入性能。\n\n数据页的结构了解吗？\n\nInnoDB 的数据页由 7 部分组成，其中文件头、页头和文件尾的大小是固定的，分别为 38、56 和 8 个字节，用来标记该页的一些信息。行记录、空闲空间和页目录的大小是动态的，为实际的行记录存储空间。\n\n来个表格总结下：\n\n| 名称 | 中文名 | 大小（单位：B） | 描述 |\n| --- | --- | --- | --- |\n| File Header | 文件头部 | 38 | 页的一些通用信息 |\n| Page Header | 页面头部 | 56 | 数据页专有的一些信息 |\n| Infimum + Supermum | 最小记录和最大记录 | 26 | 两个虚拟的行记录 |\n| User Records | 用户真实记录 | 不确定 | 实际存储的行记录内容 |\n| Free Space | 空闲空间 | 不确定 | 页中尚未使用的空间 |\n| Page Directory | 页面目录 | 不确定 | 页中的某些记录的相对位置 |\n| File Trailer | 文件尾部 | 8 | 校验页是否完整 |\n\n真实的记录会按照指定的行格式存储到 User Records 中。\n\n每个数据页的 File Header 都有一个上一页和下一页的编号，所有的数据页会形成一个双向链表。\n\n在 InnoDB 中，默认的页大小是 16KB。可以通过 show variables like 'innodb_page_size'; 查看。",
+      "analysis": "【MySQL / 存储引擎】",
+      "categories": [
+        "MySQL / 存储引擎"
+      ]
+    },
+    {
+      "id": "java-core-0338",
+      "type": "short",
+      "question": "InnoDB 的 Buffer Pool了解吗？（补充）",
+      "answer": "> 2024 年 11 月 04 日增补\n\nBuffer Pool 是 InnoDB 存储引擎中的一个内存缓冲区，它会将经常使用的数据页、索引页加载进内存，读的时候先查询 Buffer Pool，如果命中就不用访问磁盘了。\n\n如果没有命中，就从磁盘读取，并加载到 Buffer Pool，此时可能会触发页淘汰，将不常用的页移出 Buffer Pool。\n\n写操作时不会直接写入磁盘，而是先修改内存中的页，此时页被标记为脏页，后台线程会定期将脏页刷新到磁盘。\n\nBuffer Pool 可以显著减少磁盘的读写次数，从而提升 MySQL 的读写性能。\n\nBuffer Pool 的默认大小是多少？\n\n我本机上 InnoDB 的 Buffer Pool 默认大小是 128MB。\n\nsql\nSHOW VARIABLES LIKE 'innodb_buffer_pool_size';\n\n另外，在具有 1GB-4GB RAM 的系统上，默认值为系统 RAM 的 25%；在具有超过 4GB RAM 的系统上，默认值为系统 RAM 的 50%，但不超过 4GB。\n\nInnoDB 对 LRU 算法的优化了解吗？\n\n了解，InnoDB 对 LRU 算法进行了改良，最近访问的数据并不直接放到 LRU 链表的头部，而是放在一个叫 midpoiont 的位置。默认情况下，midpoint 位于 LRU 列表的 5/8 处。\n\n比如 Buffer Pool 有 100 页，新页插入的位置大概是在第 80 页；当页数据被频繁访问后，再将其移动到 young 区，这样做的好处是热点页能长时间保留在内存中，不容易被挤出去。\n\n----这部分是帮助大家理解 start，面试中可不背----\n\n可以通过 innodb_old_blocks_pct 参数来调整 Buffer Pool 中 old 和 young 区的比例；通过 innodb_old_blocks_time 参数来调整页在 young 区的停留时间。\n\n默认情况下，LRU 链表中 old 区占 37%；同一页再次访问提升的最小时间间隔是 1000 毫秒。\n\n也就是说，如果某页在 1 秒内被多次访问，只会计算一次，不会立刻升级为热点页，防止短时间批量访问导致缓存污染。\n\n----这部分是帮助大家理解 end，面试中可不背----",
+      "analysis": "【MySQL / 存储引擎】",
+      "categories": [
+        "MySQL / 存储引擎"
+      ]
+    },
+    {
+      "id": "java-core-0339",
+      "type": "short",
+      "question": "MySQL 日志文件有哪些？",
+      "answer": "有 6 大类，其中错误日志用于问题诊断，慢查询日志用于 SQL 性能分析，general log 用于记录所有的 SQL 语句，binlog 用于主从复制和数据恢复，redo log 用于保证事务持久性，undo log 用于事务回滚和 MVCC。\n\n----这部分是帮助大家理解 start，面试中可不背----\n\n①、错误日志（Error Log）：记录 MySQL 服务器启动、运行或停止时出现的问题。\n\n②、慢查询日志（Slow Query Log）：记录执行时间超过 long\\_query\\_time 值的所有 SQL 语句。这个时间值是可配置的，默认情况下，慢查询日志功能是关闭的。\n\n③、一般查询日志（General Query Log）：记录 MySQL 服务器的启动关闭信息，客户端的连接信息，以及更新、查询的 SQL 语句等。\n\n④、二进制日志（Binary Log）：记录所有修改数据库状态的 SQL 语句，以及每个语句的执行时间，如 INSERT、UPDATE、DELETE 等，但不包括 SELECT 和 SHOW 这类的操作。\n\n⑤、重做日志（Redo Log）：记录对于 InnoDB 表的每个写操作，不是 SQL 级别的，而是物理级别的，主要用于崩溃恢复。\n\n⑥、回滚日志（Undo Log，或者叫事务日志）：记录数据被修改前的值，用于事务的回滚。\n\n----这部分是帮助大家理解 end，面试中可不背----\n\n请重点说说 binlog？\n\nbinlog 是一种物理日志，会在磁盘上记录数据库的所有修改操作。\n\n如果误删了数据，就可以使用 binlog 进行回退到误删之前的状态。\n\nsql\n步骤1：恢复全量备份\nmysql -u root -p  另外一种回答方式。\n\nbinlog 会记录整个 SQL 或行变化；redo log 是为了恢复“已提交但未刷盘”的数据，undo log 是为了撤销未提交的事务。\n\n以一次事务更新为例：\n\nsql\n开启事务\nBEGIN;\n更新数据\nUPDATE users SET age = age + 1 WHERE id = 1;\n提交事务\nCOMMIT;\n\n事务开始的时候会生成 undo log，记录更新前的数据，比如原值是 18：\n\ntext\nundo log: id=1, age=18\n\n修改数据的时候，会将数据写入到 redo log。\n\n比如数据页 page\\_id=123 上，id=1 的用户被更新为 age=26：\n\ntext\nredo log (prepare):\npage_id=123, offset=0x40, before=18, after=26\n\n等事务提交的时候，redo log 刷盘，binlog 刷盘。\n\nbinlog 写完之后，redo log 的状态会变为 commit：\n\ntext\nredo log (commit):\npage_id=123, offset=0x40, before=18, after=26\n\nbinlog 如果是 Statement 格式，会记录一条 SQL 语句：\n\nsql\nUPDATE users SET age = age + 1 WHERE id = 1;\n\nbinlog 如果是 Row 格式，会记录：\n\ntext\n表：users\nbefore: id=1, age=18\nafter:  id=1, age=26\n\n随后，后台线程会将 redo log 中的变更异步刷新到磁盘。",
+      "analysis": "【MySQL / 日志】",
+      "categories": [
+        "MySQL / 日志"
+      ]
+    },
+    {
+      "id": "java-core-0340",
+      "type": "short",
+      "question": "binlog 和 redo log 有什么区别？",
+      "answer": "binlog 由 MySQL 的 Server 层实现，与存储引擎无关；redo log 由 InnoDB 存储引擎实现。\n\nbinlog 记录的是逻辑日志，包括原始的 SQL 语句或者行数据变化，例如“将 id=2 这行数据的 age 字段+1”。\n\nredo log 记录物理日志，即数据页的具体修改，例如“将 page\\_id=123 上 offset=0x40 的数据从 18 修改为 26”。\n\nbinlog 是追加写入的，文件写满后会新建文件继续写入，不会覆盖历史日志，保存的是全量操作记录；redo log 是循环写入的，空间是固定的，写满后会覆盖旧的日志，仅保存未刷盘的脏页日志，已持久化的数据会被清除。\n\n另外，为保证两种日志的一致性，innodb 采用了两阶段提交策略，redo log 在事务执行过程中持续写入，并在事务提交前进入 prepare 状态；binlog 在事务提交的最后阶段写入，之后 redo log 会被标记为 commit 状态。\n\n可以通过回放 binlog 实现数据同步或者恢复到指定时间点；redo log 用来确保事务提交后即使系统宕机，数据仍然可以通过重放 redo log 恢复。",
+      "analysis": "【MySQL / 日志】",
+      "categories": [
+        "MySQL / 日志"
+      ]
+    },
+    {
+      "id": "java-core-0341",
+      "type": "short",
+      "question": "为什么要两阶段提交呢？",
+      "answer": "为了保证 redo log 和 binlog 中的数据一致性，防止主从复制和事务状态不一致。\n\n为什么 2PC 能保证 redo log 和 binlog 的强⼀致性？\n\n假如 MySQL 在预写 redo log 之后、写入 binlog 之前崩溃。那么 MySQL 重启后 InnoDB 会回滚该事务，因为 redo log 不是提交状态。并且由于 binlog 中没有写入数据，所以从库也不会有该事务的数据。\n\n假如 MySQL 在写入 binlog 之后、redo log 提交之前崩溃。那么 MySQL 重启后 InnoDB 会提交该事务，因为 redo log 是提交状态。并且由于 binlog 中有写入数据，所以从库也会同步到该事务的数据。\n\n伪代码如下所示：\n\njava\n// 事务开始\nbegin;\n\n// try\n{\n    // 执行 SQL\n    execute SQL;\n\n    // 写入 redo log 并标记为 prepare\n    write redo log prepare xid;\n\n    // 写入 binlog\n    write binlog xid sql;\n\n    // 提交 redo log\n    commit redo log xid;\n}\n// catch\n{\n    // 回滚 redo log\n    innodb rollback redo log xid;\n}\n\n// 事务结束\nend;\n\nXID 了解吗？\n\nXID 是 binlog 中用来标识事务提交的唯一标识符。\n\n在事务提交时，会写入一个 XID\\_EVENT 到 binlog，表示这个事务真正完成了。\n\nsql\n  Log_name         | Pos  | Event_type     | Server_id | End_log_pos | Info      \n| mysql-bin.000003 | 2005 | Gtid           |   1013307 |        2070 | SET @@SESSION.GTID_NEXT= 'f971d5f1-d450-11ec-9e7b-5254000a56df:11'                 |\n| mysql-bin.000003 | 2070 | Query          |   1013307 |        2142 | BEGIN                                                                              |\n| mysql-bin.000003 | 2142 | Table_map      |   1013307 |        2187 | table_id: 109 (test.t1)                                                            |\n| mysql-bin.000003 | 2187 | Write_rows     |   1013307 |        2227 | table_id: 109 flags: STMT_END_F                                                    |\n| mysql-bin.000003 | 2227 | Xid            |   1013307 |        2258 | COMMIT / xid=121 /\n\n它不仅用于主从复制中事务完整性的判断，也在崩溃恢复中对 redo log 和 binlog 的一致性校验起到关键作用。\n\nXID 可以帮助 MySQL 判断哪些 redo log 是已提交的，哪些是未提交需要回滚的，是两阶段提交机制中非常关键的一环。",
+      "analysis": "【MySQL / 日志】",
+      "categories": [
+        "MySQL / 日志"
+      ]
+    },
+    {
+      "id": "java-core-0342",
+      "type": "short",
+      "question": "redo log 的写入过程了解吗？",
+      "answer": "InnoDB 会先将 Redo Log 写入内存中的 Redo Log Buffer，之后再以一定的频率刷入到磁盘的 Redo Log File 中。\n\n哪些场景会触发 redo log 的刷盘动作？\n\n比如说 Redo Log Buffer 的空间不足时，事务提交时，触发 Checkpoint 时，后台线程定期刷盘时。\n\n不过，Redo Log Buffer 刷盘到 Redo Log File 还会涉及到操作系统的磁盘缓存策略，可能不会立即刷盘，而是等待一定时间后才刷盘。\n\ninnodb\\_flush\\_log\\_at\\_trx\\_commit 参数你了解多少？\n\ninnodb\\_flush\\_log\\_at\\_trx\\_commit 参数是用来控制事务提交时，Redo Log 的刷盘策略，一共有三种。\n\n0 表示事务提交时不刷盘，而是交给后台线程每隔 1 秒执行一次。这种方式性能最好，但是在 MySQL 宕机时可能会丢失一秒内的事务。\n\n1 表示事务提交时会立即刷盘，确保事务提交后数据就持久化到磁盘。这种方式是最安全的，也是 InnoDB 的默认值。\n\n2 表示事务提交时只把 Redo Log Buffer 写入到 Page Cache，由操作系统决定什么时候刷盘。操作系统宕机时，可能会丢失一部分数据。\n\n一个没有提交事务的 redo log，会不会刷盘？\n\nInnoDB 有一个后台线程，每隔 1 秒会把 Redo Log Buffer 中的日志写入到文件系统的缓存中，然后调用刷盘操作。\n\n因此，一个没有提交事务的 Redo Log 也可能会被刷新到磁盘中。\n\n另外，如果当 Redo Log Buffer 占用的空间即将达到 innodb\\_log\\_buffer\\_size 的一半时，也会触发刷盘操作。",
+      "analysis": "【MySQL / 日志】",
+      "categories": [
+        "MySQL / 日志"
+      ]
+    },
+    {
+      "id": "java-core-0343",
+      "type": "short",
+      "question": "什么是慢 SQL？",
+      "answer": "MySQL 中有一个叫 long\\_query\\_time 的参数，原则上执行时间超过该参数值的 SQL 就是慢 SQL，会被记录到慢查询日志中。\n\n----这部分是帮助大家理解 start，面试中可不背----\n\n可通过 show variables like 'long_query_time'; 查看当前的 long\\_query\\_time 的参数值。\n\n----这部分是帮助大家理解 end，面试中可不背----\n\nSQL 的执行过程了解吗？\n\n了解。\n\nSQL 的执行过程大致可以分为六个阶段：连接管理、语法解析、语义分析、查询优化、执行器调度、存储引擎读写等。Server 层负责理解和规划 SQL 怎么执行，存储引擎层负责数据的真正读写。\n\n----这部分是帮助大家理解 start，面试中可不背----\n\n来详细拆解一下：\n\n1. 客户端发送 SQL 语句给 MySQL 服务器。\n2. 如果查询缓存打开则会优先查询缓存，缓存中有对应的结果就直接返回。不过，MySQL 8.0 已经移除了查询缓存。这部分的功能正在被 Redis 等缓存中间件取代。\n3. 分析器对 SQL 语句进行语法分析，判断是否有语法错误。\n4. 搞清楚 SQL 语句要干嘛后，MySQL 会通过优化器生成执行计划。\n5. 执行器调用存储引擎的接口，执行 SQL 语句。\n\nSQL 执行过程中，优化器通过成本计算预估出执行效率最高的方式，基本的预估维度为：\n\n IO 成本：从磁盘读取数据到内存的开销。\n CPU 成本：CPU 处理内存中数据的开销。\n\n基于这两个维度，可以得出影响 SQL 执行效率的因素有：\n\n①、IO 成本，数据量越大，IO 成本越高。所以要尽量查询必要的字段；尽量分页查询；尽量通过索引加快查询。\n\n②、CPU 成本，尽量避免复杂的查询条件，如有必要，考虑对子查询结果进行过滤。\n\n----这部分是帮助大家理解 end，面试中可不背----\n\n如何优化慢 SQL 呢？\n\n首先，需要找到那些比较慢的 SQL，可以通过启用慢查询日志，记录那些超过指定执行时间的 SQL 查询。\n\n也可以使用 show processlist; 命令查看当前正在执行的 SQL 语句，找出执行时间较长的 SQL。\n\n或者在业务基建中加入对慢 SQL 的监控，常见的方案有字节码插桩、连接池扩展、ORM 框架扩展等。\n\n然后，使用 EXPLAIN 查看慢 SQL 的执行计划，看看有没有用索引，大部分情况下，慢 SQL 的原因都是因为没有用到索引。\n\nsql\nEXPLAIN SELECT * FROM your_table WHERE conditions;\n\n最后，根据分析结果，通过添加索引、优化查询条件、减少返回字段等方式进行优化。\n\n慢sql日志怎么开启？\n\n编辑 MySQL 的配置文件 my.cnf，设置 slow\\_query\\_log 参数为 1。\n\nini\n[mysqld]\nslow_query_log = 1\nslow_query_log_file = /var/log/mysql/slow.log\nlong_query_time = 2  记录执行时间超过2秒的查询\n\n然后重启 MySQL 就好了。\n\n也可以通过 set global 命令动态设置。\n\nsql\nSET GLOBAL slow_query_log = 'ON';\nSET GLOBAL slow_query_log_file = '/var/log/mysql/slow.log';\nSET GLOBAL long_query_time = 2;",
+      "analysis": "【MySQL / SQL 优化】",
+      "categories": [
+        "MySQL / SQL 优化"
+      ]
+    },
+    {
+      "id": "java-core-0344",
+      "type": "short",
+      "question": "你知道哪些方法来优化 SQL？",
+      "answer": "SQL 优化的方法非常多，但本质上就一句话：尽可能少地扫描、尽快地返回结果。\n\n最常见的做法就是加索引、改写 SQL 让它用上索引，比如说使用覆盖索引、让联合索引遵守最左前缀原则等。\n\n如何利用覆盖索引？\n\n覆盖索引的核心是“查询所需的字段都在同一个索引里”，这样 MySQL 就不需要回表，直接从索引中返回结果。\n\n实际使用中，我会优先考虑把 WHERE 和 SELECT 涉及的字段一起建联合索引，并通过 EXPLAIN 观察结果是否有 Using index，确认命中索引。\n\n----这部分是帮助大家理解 start，面试中可不背----\n\n举个例子，现在要从 test 表中查询 city 为上海的 name 字段。\n\nsql\nselect name from test where city='上海'\n\n如果仅在 city 字段上添加索引，那么这条查询语句会先通过索引找到 city 为上海的行，然后再回表查询 name 字段。\n\n为了避免回表查询，可以在 city 和 name 字段上建立联合索引，这样查询结果就可以直接从索引中获取。\n\nsql\nalter table test add index index1(city,name);\n\n----这部分是帮助大家理解 end，面试中可不背----\n\n如何正确使用联合索引？\n\n使用联合索引最重要的一条是遵守最左前缀原则，也就是查询条件需要从索引的左侧字段开始。\n\n----这部分是帮助大家理解 start，面试中可不背----\n\n比如说我们创建了一个三列的联合索引。\n\nsql\nCREATE INDEX idx_name_age_sex ON user(name, age, sex);\n\n我们来看一下什么样的查询条件可以用到这个索引：\n\n| 查询条件 | 能否用上 idx\\_name\\_age\\_sex？ | 说明 |\n| --- | --- | --- |\n| WHERE name = 'itwanger' | ✅ 可以 | 匹配第一列，命中索引 |\n| WHERE name = 'itwanger' AND age=20 | ✅ 可以 | 匹配前两列，命中索引 |\n| WHERE age = 20 | ❌ 不行 | 第一列没用上，索引失效 |\n| WHERE name='itwanger' AND sex='女' | ✅ 部分可用（只用前一列） | age 被跳过，后面的列无法使用 |\n| WHERE name LIKE 'it%' | ✅ 可以（前缀匹配） | name 是前缀匹配，不影响使用 |\n| WHERE name LIKE '%wanger%' | ❌ 不行 | 通配符在前，不能用索引 |\n\n----这部分是帮助大家理解 end，面试中可不背----\n\n如何进行分页优化？\n\n分页优化的核心是避免深度偏移带来的全表扫描，可以通过两种方式来优化：延迟关联和添加书签。\n\n延迟关联适用于需要从多个表中获取数据且主表行数较多的情况。它首先从索引表中检索出需要的行 ID，然后再根据这些 ID 去关联其他的表获取详细信息。\n\nsql\nSELECT e.id, e.name, d.details\nFROM employees e\nJOIN department d ON e.department_id = d.id\nORDER BY e.id\nLIMIT 1000, 20;\n\n延迟关联后，第一步只查主键，速度快，第二步只处理 20 条数据，效率高。\n\nsql\nSELECT e.id, e.name, d.details\nFROM (\n    SELECT id\n    FROM employees\n    ORDER BY id\n    LIMIT 1000, 20\n) AS sub\nJOIN employees e ON sub.id = e.id\nJOIN department d ON e.department_id = d.id;\n\n添加书签的方式是通过记住上一次查询返回的最后一行主键值，然后在下一次查询的时候从这个值开始，从而跳过偏移量计算，仅扫描目标数据，适合翻页、资讯流等场景。\n\n假设需要对用户表进行分页。\n\nsql\nSELECT id, name\nFROM users\nOR…",
+      "analysis": "【MySQL / SQL 优化】",
+      "categories": [
+        "MySQL / SQL 优化"
+      ]
+    },
+    {
+      "id": "java-core-0345",
+      "type": "short",
+      "question": "explain平常有用过吗？",
+      "answer": "经常用，explain 是 MySQL 提供的一个用于查看 SQL 执行计划的工具，可以帮助我们分析查询语句的性能问题。\n\n一共有 10 来个输出参数。\n\n比如说 type=ALL,key=NULL 表示 SQL 正在全表扫描，可以考虑为 where 字段添加索引进行优化；Extra=Using filesort 表示 SQL 正在文件排序，可以考虑为 order by 字段添加索引。\n\n使用方式也非常简单，直接在 select 前加上 explain 关键字就可以了。\n\nsql\nexplain select  from students where name='练习伴侣二';\n\n更高级的用法可以配合 format=json 参数，将 explain 的输出结果以 JSON 格式返回。\n\nsql\nexplain format=json select  from students where name='练习伴侣二';\n\nexplain 输出结果中常见的字段含义理解吗？\n\n在 EXPLAIN 输出结果中我最关注的字段是 type、key、rows 和 Extra。\n\n我会通过它们判断 SQL 有没有走索引、是否全表扫描、预估扫描行数是否太大，以及是否触发了 filesort 或临时表。一旦发现问题，比如 type=ALL 或者 Extra=Using filesort，我会考虑建索引、改写 SQL 或控制查询结果集来做优化。\n\n----这部分是帮助大家理解 start，面试中可不背----\n\n以 EXPLAIN SELECT  FROM orders WHERE user_id = 100 的输出为例：\n\n| 字段 | 值 | 含义与优化指导 |\n| --- | --- | --- |\n| id | 1 | 查询序列号。 |\n| select\\_type | SIMPLE | 简单查询（无子查询或 UNION）。复杂场景还有 PRIMARY、SUBQUERY、DERIVED 等。 |\n| table | orders | 当前步骤操作的表名。 |\n| partitions | NULL | 涉及的分区。 |\n| type | ref | 访问类型：关键性能指标，常见类型：  - system/const：唯一值匹配（性能最佳）  - eq\\_ref：主键/唯一索引连接  - ref：非唯一索引匹配  - range：索引范围扫描  - index：全索引扫描  - ALL：全表扫描（需优化） |\n| possible\\_keys | idx\\_user\\_id | 可能使用的索引。若为空，说明无合适索引。 |\n| key | idx\\_user\\_id | 实际选择的索引。若为 NULL，表示未使用索引。 |\n| key\\_len | 4 | 索引使用的字节数，可判断是否使用完整索引。例如，联合索引 (a,b)，若 key\\_len=4 可能只用到了 a 列。 |\n| ref | const | 与索引比较的列或常量（如 WHERE user\\_id=100 中的 100）。 |\n| rows | 50 | 预估扫描行数。数值越小越好，若与实际差距大，可能统计信息过期（需 ANALYZE TABLE）。 |\n| filtered | 100.00 | 查询条件过滤后剩余行的百分比。例如 rows=1000 且 filtered=10%，则最终返回约 100 行。 |\n| Extra | Using where | 附加信息： - Using index：覆盖索引（无需回表） - Using temporary：使用临时表 - Using filesort：文件排序 |\n\n非表格版本：\n\n①、id 列：查询的执行顺序编号。id 相同：同一执行层级，按 table 列从上到下顺序执行（如多表 JOIN）；id 递增：嵌套子查询，数值越大优先级越高，越先执行。\n\nsql\nEXPLAIN SELECT  FROM t1 JOIN (SELECT  FROM t2 WHERE id = 1) AS sub;\n\nt2 子查询的 id=2，优先执行。\n\n②、select\\_type 列：查询的类型。常见的类型有：\n\n SIMPLE：简单查询，不包含子…",
+      "analysis": "【MySQL / SQL 优化】",
+      "categories": [
+        "MySQL / SQL 优化"
+      ]
+    },
+    {
+      "id": "java-core-0346",
+      "type": "short",
+      "question": "索引为什么能提高MySQL查询效率？",
+      "answer": "索引就像一本书的目录，能让 MySQL 快速定位数据，避免全表扫描。\n\n它一般是 B+ 树结构，查找效率是 O(log n)，比从头到尾扫一遍数据要快得多。\n\n除了查得快，索引还能加速排序、分组、连接等操作。\n\n可以通过 create index 创建索引，比如：\n\nsql\ncreate index idx_name on students(name);\n\n----这部分是帮助大家理解 start，面试中可不背----\n\n我们通过 wrap 的 agent 验证一下有没有索引的查询效率。\n\n先上结果，有索引的查询时间是 0.007 秒，没有索引的查询时间是 0.036 秒。\n\n创建数据库和表。\n\n插入 10 万条数据。\n\n然后依次执行 explain 查看没有索引和有索引时的执行计划。\n\n----这部分是帮助大家理解 end，面试中可不背----",
+      "analysis": "【MySQL / 索引】",
+      "categories": [
+        "MySQL / 索引"
+      ]
+    },
+    {
+      "id": "java-core-0347",
+      "type": "short",
+      "question": "能简单说一下索引的分类吗？",
+      "answer": "从功能上分类的话，有主键索引、唯一索引、全文索引；从数据结构上分类的话，有 B+ 树索引、哈希索引；从存储内容上分类的话，有聚簇索引、非聚簇索引。\n\n你对主键索引了解多少？\n\n主键索引用于唯一标识表中的每条记录，其列值必须唯一且非空。创建主键时，MySQL 会自动生成对应的唯一索引。\n\n每个表只能有一个主键索引，一般是表中的自增 id 字段。\n\nsql\nCREATE TABLE emp6 (emp_id INT PRIMARY KEY, name VARCHAR(50));  -- 单列主键\nCREATE TABLE CountryLanguage (\n    CountryCode CHAR(3),\n    Language VARCHAR(30),\n    PRIMARY KEY (CountryCode, Language)  -- 复合主键\n);\n\n---- 这部分是帮助大家理解 start，面试中可不背 ----\n\n如果创建表的时候没有指定主键，MySQL 的 InnoDB 存储引擎会优先选择一个非空的唯一索引作为主键；如果没有符合条件的索引，MySQL 会自动生成一个隐藏的 \\_rowid 列作为主键。\n\n可以通过 show index from table_name 查看索引信息：\n\n Table 当前索引所属的表名。\n Non_unique 是否唯一索引，0 表示唯一索引（如主键），1 表示非唯一。\n Key_name 主键索引默认叫 PRIMARY；普通索引为自定义名。\n Seq_in_index 索引中的列顺序，在联合索引中这个字段表示第几列（第 1 个）。\n Column_name 当前索引中包含的字段名。\n Collation A 表示升序（Ascend）；D 表示降序。\n Cardinality 索引的基数，即不重复的索引值的数量。越高说明区分度越好（影响优化器是否用此索引）。\n Sub_part 前缀索引的长度。\n Packed 是否压缩存储索引；一般不用，默认为 NULL。\n Null 字段是否允许为 NULL；主键字段不允许为 NULL。\n Index_type 索引底层结构，InnoDB 默认是 B+ 树（BTREE）。\n Comment 索引的注释。\n* Visible 是否可见；MySQL 8.0+ 可隐藏索引。\n\n---- 这部分是帮助大家理解 end，面试中可不背 ----\n\n唯一索引和主键索引有什么区别？\n\n主键索引=唯一索引+非空。每个表只能有一个主键索引，但可以有多个唯一索引。\n\nsql\n-- 在 email 列上添加唯一索引\nCREATE TABLE users (\n    id INT AUTO_INCREMENT PRIMARY KEY,\n    username VARCHAR(50) NOT NULL,\n    email VARCHAR(100) NOT NULL,\n    UNIQUE KEY uk_email (email)  -- 唯一索引\n);\n\n-- 复合唯一索引（保证 user_id 和 role 组合唯一）\nCREATE TABLE user_roles (\n    user_id INT NOT NULL,\n    role VARCHAR(20) NOT NULL,\n    UNIQUE KEY uk_user_role (user_id, role)\n);\n\n主键索引不允许插入 NULL 值，尝试插入 NULL 会报错；唯一索引允许插入多个 NULL 值。\n\nunique key 和 unique index 有什么区别？\n\n创建唯一键时，MySQL 会自动生成一个同名的唯一索引；反之，创建唯一索引也会隐式添加唯一性约束。\n\n可通过 UNIQUE KEY uk\\_name 定义或者 CONSTRAINT uk\\_name UNIQUE 定义唯一键。\n\nsql\nCREATE TABLE users (\n    id INT PRIMARY KEY,\n    email VARCHAR(100),\n    -- 显式命名唯一键\n    CONSTRAINT uk_email UNIQUE (email)\n);\n\nCREATE TABLE users3 (\n  …",
+      "analysis": "【MySQL / 索引】",
+      "categories": [
+        "MySQL / 索引"
+      ]
+    },
+    {
+      "id": "java-core-0348",
+      "type": "short",
+      "question": "创建索引有哪些注意点？",
+      "answer": "第一，选择合适的字段\n\n 比如说频繁出现在 WHERE、JOIN、ORDER BY、GROUP BY 中的字段。\n 优先选择区分度高的字段，比如用户 ID、手机号等唯一值多的，而不是性别、状态等区分度极低的字段，如果真的需要，可以考虑联合索引。\n\n第二，要控制索引的数量，避免过度索引，每个索引都要占用存储空间，单表的索引数量不建议超过 5 个。\n\n要定期通过 SHOW INDEX FROM table_name 查看索引的使用情况，删除不必要的索引。比如说已经有联合索引 (a, b)，单索引（a）就是冗余的。\n\n第三，联合索引的时候要遵循最左前缀原则，即在查询条件中使用联合索引的第一个字段，才能充分利用索引。\n\n比如说联合索引 (A, B, C) 可支持 A、A+B、A+B+C 的查询，但无法支持 B 或 C 的单独查询。\n\n区分度高的字段放在左侧，等值查询的字段优先于范围查询的字段。例如 WHERE A=1 AND B>10 AND C=2，优先 (A, C, B)。\n\n如果联合索引包含查询的所需字段，还可以避免回表，提高查询效率。",
+      "analysis": "【MySQL / 索引】",
+      "categories": [
+        "MySQL / 索引"
+      ]
+    },
+    {
+      "id": "java-core-0349",
+      "type": "short",
+      "question": "索引哪些情况下会失效呢？",
+      "answer": "简版：比如索引列使用了函数、使用了通配符开头的模糊查询、联合索引不满足最左前缀原则，或者使用 or 的时候部分字段无索引等。\n\n第一，对索引列使用函数或表达式会导致索引失效。\n\nsql\n-- 索引失效\nSELECT  FROM users WHERE YEAR(create_time) = 2023;\nSELECT  FROM products WHERE price2 > 100;\n\n-- 优化方案（使用范围查询）\nSELECT  FROM users WHERE create_time BETWEEN '2023-01-01' AND '2023-12-31';\nSELECT  FROM products WHERE price > 50;\n\n第二，LIKE 模糊查询以通配符开头会导致索引失效。\n\nsql\n-- 索引失效\nSELECT  FROM articles WHERE title LIKE '%数据库%';\n\n-- 可以使用索引（但范围有限）\nSELECT  FROM articles WHERE title LIKE '数据库%';\n\n-- 解决方案：考虑全文索引或搜索引擎\nSELECT  FROM articles WHERE MATCH(title) AGAINST('数据库');\n\n第三，联合索引违反了最左前缀原则，索引会失效。\n\nsql\n-- 假设有联合索引 (a, b, c)\nSELECT  FROM table WHERE b = 2 AND c = 3;  -- 索引失效\nSELECT  FROM table WHERE a = 1 AND c = 3;  -- 只使用a列索引\n\n-- 正确使用联合索引\nSELECT  FROM table WHERE a = 1 AND b = 2 AND c = 3;\n\n 联合索引，但 WHERE 不满足最左前缀原则，索引无法起效。例如：SELECT  FROM table WHERE column2 = 2，联合索引为 (column1, column2)。\n\n---- 这部分是帮助大家理解 start，面试中可不背 ----\n\n第四，使用 OR 连接非索引列条件，会导致索引失效。\n\nsql\n-- 假设name有索引但age没有\nSELECT  FROM users WHERE name = '张三' OR age = 25;  -- 全表扫描\n\n-- 优化方案1：使用UNION ALL\nSELECT  FROM users WHERE name = '张三'\nUNION ALL\nSELECT  FROM users WHERE age = 25 AND name != '张三';\n\n-- 优化方案2：考虑为age添加索引\n\n第五，使用 != 或 <> 不等值查询会导致索引失效。\n\nsql\nSELECT  FROM user WHERE status != 1;  -- 若大部分行 status=1，可能全表扫描\n\n-- 优化方案：使用范围查询\nSELECT  FROM user WHERE status  1;\n\n---- 这部分是帮助大家理解 end，面试中可不背 ----\n\n什么情况下模糊查询不走索引？\n\n模糊查询主要使用 LIKE 语句，结合通配符来实现。\n\n> %（代表任意多个字符）和 \\_（代表单个字符）\n\nsql\nSELECT * FROM table WHERE column LIKE '%xxx%';\n\n这个查询会返回所有 column 列中包含 xxx 的记录。\n\n但是，如果模糊查询的通配符 % 出现在搜索字符串的开始位置，如 LIKE '%xxx'，MySQL 将无法使用索引，因为数据库必须扫描全表以匹配任意位置的字符串。",
+      "analysis": "【MySQL / 索引】",
+      "categories": [
+        "MySQL / 索引"
+      ]
+    },
+    {
+      "id": "java-core-0350",
+      "type": "short",
+      "question": "索引不适合哪些场景呢？",
+      "answer": "第一，区分度低的列，可以和其他高区分度的列组成联合索引。\n\n第二，频繁更新的列，索引会增加更新的成本。\n\n第三，TEXT、BLOB 等大对象类型的字段，可以使用前缀索引、全文索引替代。\n\n第四，当表的数据量很小的时候，不超过 1000 行，全表扫描可能比使用索引更快。\n\n---- 这部分是帮助大家理解 start，面试中可不背 ----\n\n为了验证第四条，我们创建了一个小表，然后分别执行全表扫描和索引查询。\n\n得出的结论的确是这样的，全表扫描更快一些。\n\n原因时当数据量很小时，全表扫描的成本很低，因为所有的数据可能都加载到内存中了，使用索引反而需要先查找索引，再通过索引去找到实际的数据行，增加了额外的 I/O 寻址时间。\n\n---- 这部分是帮助大家理解 end，面试中可不背 ----\n\n性别字段要建立索引吗？\n\n性别字段不适合建立单独索引。因为性别字段的区分度很低。\n\n如果性别字段确实经常用于查询条件，数据规模也比较大，可以将性别字段作为联合索引的一部分，与区分度高的字段一起，效果会好很多。\n\n什么是区分度？\n\n区分度是衡量一个字段在 MySQL 表中唯一值的比例。\n\n区分度 = 字段的唯一值数量 / 字段的总记录数；越接近 1，就越适合作为索引。因为索引可以更有效地缩小查询范围。\n\n例如，一个表中有 1000 条记录，其中性别字段只有两个值（男、女），那么性别字段的区分度只有 0.002，就不适合建立索引。\n\n可以通过 COUNT(DISTINCT column_name) 和 COUNT() 的比值来计算字段的区分度。例如：\n\nsql\nSELECT \n    COUNT(DISTINCT gender) / COUNT() AS gender_selectivity\nFROM \n    users;\n\n什么样的字段适合加索引？\n\n一句话回答：\n\n一般来说，主键、唯一键、以及经常作为查询条件的字段最适合加索引。除此之外，字段的区分度要高，这样索引才能起到过滤作用；如果字段经常用于表连接、排序或分组，也建议加索引。同时如果多个字段经常一起出现在查询条件中，也可以建立联合索引来提升性能。\n\n---- 这部分是帮助大家理解 start，面试中可不背 ----\n\n查询条件中的高频字段，比如说WHERE子句中频繁用于等值查询、范围查询或者 IN 列表的字段。\n\nsql\nSELECT  FROM orders WHERE status = 'PAID' AND create_time > '2023-01-01';\n-- 若status和create_time常组合查询，建联合索引(status, create_time)\n\n多表连接时的关联字段，比如说 user.id 和 order.user\\_id。\n\nsql\nSELECT  FROM user u JOIN order o ON u.id = o.user_id;  -- user_id需索引\n\n参与排序或者分组的字段，可以直接利用索引的有序性，避免文件排序。\n\nsql\nSELECT  FROM product ORDER BY price DESC;       -- 单字段排序\nSELECT category, COUNT() FROM product GROUP BY category;  -- 分组统计\n\n需要利用覆盖索引的字段，可以避免回表操作。\n\nsql\n-- 创建联合索引(user_id, create_time)\nSELECT user_id, create_time FROM orders WHERE user_id = 100;  -- 覆盖索引生效\n\n---- 这部分是帮助大家理解 end，面试中可不背 ----",
+      "analysis": "【MySQL / 索引】",
+      "categories": [
+        "MySQL / 索引"
+      ]
+    },
+    {
+      "id": "java-core-0351",
+      "type": "short",
+      "question": "索引是不是建的越多越好？",
+      "answer": "索引不是越多越好。虽然索引可以加快查询，但也会带来写入变慢、占用更多存储空间、甚至让优化器选错索引的风险。\n\n---- 这部分是帮助大家理解 start，面试中可不背 ----\n\n每次数据写入（INSERT/UPDATE/DELETE）时，MySQL 都需同步更新所有相关索引，索引越多，维护成本越高。\n\n假如某表有 10 个索引，插入一行数据需更新 10 个 B+树结构，导致写入延迟增加 5~10 倍。\n\n假如某表数据量 100GB，若建 5 个索引，总存储可能达到 200GB+。\n\n索引过多时，优化器需评估更多可能的执行路径，可能导致选择困难症，优化器也会选错索引。\n\n再比如说，已有联合索引 (A, B, C)，再单独建 (A) 或 (A, B) 索引即为冗余。\n\n单表索引数量建议不超过 5 个，MySQL 官方建议单表索引总字段数 ≤ 表字段数的 30%。\n\n---- 这部分是帮助大家理解 end，面试中可不背 ----\n\n说说索引优化的思路？\n\n一句话回答：\n\n先通过慢查询日志找出性能瓶颈，然后用 EXPLAIN 分析执行计划，判断是否走了索引、是否回表、是否排序。接着根据字段特性设计合适的索引，如选择区分度高的字段，使用联合索引和覆盖索引，避免索引失效的写法，最后通过实测来验证优化效果。",
+      "analysis": "【MySQL / 索引】",
+      "categories": [
+        "MySQL / 索引"
+      ]
+    },
+    {
+      "id": "java-core-0352",
+      "type": "short",
+      "question": "为什么 InnoDB 要使用 B+树作为索引？",
+      "answer": "一句话总结：\n\n因为 B+ 树是一种高度平衡的多路查找树，能有效降低磁盘的 IO 次数，并且支持有序遍历和范围查询。\n\n查询性能非常高，其结构也适合 MySQL 按照页为单位在磁盘上存储。\n\n像其他选项，比如说哈希表不支持范围查询，二叉树层级太深，B 树又不方便范围扫描，所以最终选择了 B+ 树。\n\n再换一种回答：\n\n 相比哈希表：B+ 树支持范围查询和排序\n 相比二叉树和红黑树：B+ 树更“矮胖”，层级更少，磁盘 IO 次数更少\n 相比 B 树：B+ 树的非叶子节点只存储键值，叶子节点存储数据并通过链表连接，支持范围查询\n\n另外一种回答版本：\n\nB+树是一种自平衡的多路查找树，和红黑树、二叉平衡树不同，B+树的每个节点可以有 m 个子节点，而红黑树和二叉平衡树都只有 2 个。\n\n另外，和 B 树不同，B+树的非叶子节点只存储键值，不存储数据，而叶子节点存储了所有的数据，并且构成了一个有序链表。\n\n这样做的好处是，非叶子节点上由于没有存储数据，就可以存储更多的键值对，再加上叶子节点构成了一个有序链表，范围查询时就可以直接通过叶子节点间的指针顺序访问整个查询范围内的所有记录，而无需对树进行多次遍历。查询的效率比 B 树更高。\n\n---- 这部分是帮助大家理解 start，面试中可不背 ----\n\n先说说 B 树。\n\nB 树是一种自平衡的多路查找树，和红黑树、二叉平衡树不同，B 树的每个节点可以有 m 个子节点，而红黑树和二叉平衡树都只有 2 个。\n\n换句话说，红黑树、二叉平衡树是细高个，而 B 树是矮胖子。\n\n再来说说内存和磁盘的 IO 读写。\n\n为了提高读写效率，从磁盘往内存中读数据的时候，一次会读取至少一页的数据，如果不满一页，会再多读点。\n\n比如说查询只需要读取 2KB 的数据，但 MySQL 实际上会读取 4KB 的数据，以装满整页。页是 MySQL 进行内存和磁盘交互的最小逻辑单元。\n\n再比如说需要读取 5KB 的数据，实际上 MySQL 会读取 8KB 的数据，刚好两页。\n\n因为读的次数越多，效率就越低。就好比我们在工地上搬砖，一次搬 10 块砖肯定比一次搬 1 块砖的效率要高，反正我每次都搬 10 块（😁）。\n\n对于红黑树、二叉平衡树这种细高个来说，每次搬的砖少，因为力气不够嘛，那来回跑的次数就越多。\n\n> 通常 B+ 树高度为 3-4 层即可支持 TB 级数据，而每次查询只需 2-4 次磁盘 I/O，远低于二叉树或红黑树的 O(log2N) 复杂度\n\n树越高，意味着查找数据时就需要更多的磁盘 IO，因为每一层都可能需要从磁盘加载新的节点。\n\nB 树的节点通常与页的大小对齐，这样每次从磁盘加载一个节点时，正好就是一页的大小。\n\nB 树的一个节点通常包括三个部分：\n\n 键值：即表中的主键\n 指针：存储子节点的信息\n 数据：除主键外的行数据\n\n正所谓“祸兮福所倚，福兮祸所伏”，因为 B 树的每个节点上都存储了数据，就导致每个节点能存储的键值和指针变少了，因为每一个节点的大小是固定的，对吧？\n\n于是 B+树就来了，B+树的非叶子节点只存储键值，不存储数据，而叶子节点会存储所有的行数据，并且构成一个有序链表。\n\n这样做的好处是，非叶子节点由于没有存储数据，就可以存储更多的键值对，树就变得更加矮胖了，于是就更有劲了，每次搬的砖也就更多了（😂）。\n\n> 相比 B 树，B+ 树的非叶子节点可容纳的键值更多，一个 16KB 的节点可存储约 1200 个键值，大幅降低树的高度。\n\n由此一来，查找数据进行的磁盘 IO 就更少了，查询的效率也就更高了。\n\n再加上叶子节点构成了一个有序链表，范围查询时就可以直接通过叶子节点间的指针顺序访问整个查询范围内的所有记录，而无需对树进行多次遍历。\n\nB 树就做不到这一点。\n\n---- 这部分是帮助大家理解 end，面试中可不背 ----\n\nB+树的叶子节点是单向链表还是双向链表？如果从大值向小值检索，如何操作？\n\nB+树的叶子节点是通过双向链表连接的，这样可以方便范围查询和反向遍历。\n\n 当执行范围查询时，可以从范围的开始点或结束点开始，向前或向后遍历。\n 在需要对数据进行逆序处理时，双向链表非常有用。\n\n如果需要在 B+树中从大值向小值进行检索，可以先定位到最右侧节点，找到包含最大值的叶子节点。从根…",
+      "analysis": "【MySQL / 索引】",
+      "categories": [
+        "MySQL / 索引"
+      ]
+    },
+    {
+      "id": "java-core-0353",
+      "type": "short",
+      "question": "一棵B+树能存储多少条数据呢？",
+      "answer": "一句话回复：\n\n一棵 B+ 树能存多少数据，取决于它的分支因子和高度。在 InnoDB 中，页的默认大小为 16KB，当主键为 bigint 时，3 层 B+ 树通常可以存储约 2000 万条数据。\n\n---- 这部分是帮助大家理解 start，面试中可不背 ----\n\n先来看一下计算公式：\n\ntext\n最大记录数 = (分支因子)^(树高度-1) × 叶子节点容量\n\n再来看一下关键参数：\n\n①、页大小，默认 16KB\n\n②、主键大小，假设是 bigint 类型，那么它的大小就是 8 个字节。\n\n③、页指针大小，InnoDB 源码中设置为 6 字节，4 字节页号 + 2 字节页内偏移。\n\n所以非叶子节点可以存储 16384/14(键值+指针)=1170 个这样的单元。\n\n当层高为 2 时，根节点可以存储 1170 个指针，指向 1170 个叶子节点，所以总数据量为 1170×16 =18720 条。\n\n当层高为 3 时，根节点指向 1170 个非叶子节点，每个非叶子节点再指向 1170 个叶子节点，所以总数据量为 1170×1170×16≈21,902,400 条（约2,190万条）记录。\n\n---- 这部分是帮助大家理解 end，面试中可不背 ----\n\n现在有一张表 2kw 数据，我这个 b+树的高度有几层？\n\n对于 2KW 条数据来说，B+树的高度为 3 层就够了。\n\n每个叶子节点能存放多少条数据？\n\n如果单行数据大小为 1KB，那么每页可存储约 16 行（16KB/1KB）数据。\n\n---- 这部分是帮助大家理解 start，面试中可不背 ----\n\n假设有这样一个表结构：\n\nsql\nCREATE TABLE user (\n  id BIGINT PRIMARY KEY,        -- 8字节\n  name VARCHAR(255) NOT NULL,   -- 实际长度50字节（UTF8MB4，每个字符最多4字节）\n  age TINYINT,                  -- 1字节\n  email VARCHAR(255)            -- 实际长度30字节，可为NULL\n) ROW_FORMAT=COMPACT;\n\n那么一行数据的大小为：8 + 50 + 1 + 30 = 89 字节。\n\n行格式的开销为：行头 5 字节+指针 6 字节+可变长度字段开销 2 字节（name 和 email 各占 1 字节）+ NULL 位图 1 字节 = 14 字节。\n\n所以每行数据的实际大小为：89 + 14 = 103 字节。\n\n每页大小默认为 16KB，那么每页最多可以存储 16384 / 103 ≈ 158 行数据。\n\n---- 这部分是帮助大家理解 end，面试中可不背 ----",
+      "analysis": "【MySQL / 索引】",
+      "categories": [
+        "MySQL / 索引"
+      ]
+    },
+    {
+      "id": "java-core-0354",
+      "type": "short",
+      "question": "索引为什么用 B+树不用普通二叉树？",
+      "answer": "普通二叉树的每个节点最多有两个子节点。当数据按顺序递增插入时，二叉树会退化成链表，导致树的高度等于数据量。\n\n此时查找 id=7 就需要 7 次 I/O 操作，相当于全表扫描。而 B+ 树作为多叉平衡树，能将数亿级的数据量控制在 3-4 层的树高，能极大减少磁盘的 I/O 次数。\n\n为什么不用平衡二叉树呢？\n\n平衡二叉树虽然解决了普通二叉树的退化问题，但每个节点最多只有两个子节点的问题依然存在。",
+      "analysis": "【MySQL / 索引】",
+      "categories": [
+        "MySQL / 索引"
+      ]
+    },
+    {
+      "id": "java-core-0355",
+      "type": "short",
+      "question": "为什么用 B+ 树而不用 B 树呢？",
+      "answer": "B+ 树相比 B 树有 3 个显著优势：\n\n第一，B 树的每个节点既存储键值，又存储数据和指针，导致单节点存储的键值数量较少。\n\n一个 16KB 的 InnoDB 页，如果数据较大，B 树的非叶子节点只能容纳几十个键值，而 B+ 树的非叶子节点可以容纳上千个键值。\n\n第二，B 树的范围查询需要通过中序遍历逐层回溯；而 B+ 树的叶子节点通过双向链表顺序连接，范围查询只需定位起始点后顺序遍历链表即可，没有回溯开销。\n\n第三，B 树的数据可能存储在任意节点，假如目标数据恰好位于根节点或上层节点，查询仅需 1-2 次 I/O；但如果数据位于底层节点，则需多次 I/O，导致查询时间波动较大。\n\n而 B+ 树的所有数据都存储在叶子节点，查询路径的长度是固定的，时间稳定为 O(logN)，对 MySQL 在高并发场景下的稳定性至关重要。\n\n GitHub：B 树和 B+树详解\n 思否：面试官问你 B 树和 B+树，就把这篇文章丢给他\n 极客时间：为什么用 B+树来做索引？\n 一颗剽悍的种子：用 16 张图就给你讲明白 MySQL 为什么要用 B+树做索引\n\nB+树的时间复杂度是多少？\n\nO(logN)。\n\n树的高度 h 为：\n\nh=⌈logm⁡N⌉\n\n其中 N 是数据总量，m 是阶数。每层需要做一次二分查找，复杂度为 O(log⁡m)。\n\n总复杂度为：\n\nO(logm⁡N⋅log⁡m)=O(log⁡N)\n\n为什么用 B+树不用跳表呢？\n\n跳表本质上还是链表结构，只不过把某些节点抽到上层做了索引。\n\n一条数据一个节点，如果需要存放 2000 万条数据，且每次查询都要能达到二分查找的效果，那么跳表的高度大约为 24 层（2 的 24 次方）。\n\n在最坏的情况下，这 24 层数据分散在不同的数据页，查找一次数据就需要 24 次磁盘 I/O。\n\n而 2000 万条数据在 B+树中只需要 3 层就可以了。\n\nB+树的范围查找怎么做的？\n\n一句话回答：\n\n先通过索引路径定位到第一个满足条件的叶子节点，然后顺着叶子节点之间的链表向右/向左扫描，直到超过范围。\n\n详细版：\n\nB+ 树索引的范围查找主要依赖叶子节点之间的双向链表来完成。\n\n第一步，从 B+ 树的根节点开始，通过索引键值逐层向下，找到第一个满足条件的叶子节点。\n\n第二步，利用叶子节点之间的双向链表，从起始节点开始，依次向后遍历每个节点。当索引值超过查询范围，或者遍历到链表末尾时，终止查询。\n\n---- 这部分是帮助大家理解 start，面试中可不背 ----\n\n比如说在下面这棵 B+ 树上查找 45。\n\n第一步，从根节点开始，因为比 25 大，所以从右子树开始。因为 45 比 35大，所以和右边的索引比较，右侧的索引也是 45，所以继续往右子树查找。\n\n第二步，从叶子节点 45 开始，依次遍历，找到 45。\n\n---- 这部分是帮助大家理解 end，面试中可不背 ----\n\n了解快排吗？\n\n快速排序使用分治法将一个序列分为较小和较大的 2 个子序列，然后递归排序两个子序列，由东尼·霍尔在 1960 年提出。\n\n其核心思想是：\n\n1. 选择一个基准值。\n2. 将数组分为两部分，左边小于基准值，右边大于或等于基准值。\n3. 对左右两部分递归排序，最终合并。\n\njava\npublic static void quickSort(int[] arr, int low, int high) {\n    if (low < high) {\n        int pivotIndex = partition(arr, low, high);\n        quickSort(arr, low, pivotIndex - 1);\n        quickSort(arr, pivotIndex + 1, high);\n    }\n}\nprivate static int partition(int[] arr, int low, int high) {\n    int pivot = arr[high];\n    int i = low - 1;\n    for (int j = low; j < high; j++) {\n        if (arr[j] <= pivot) {\n            …",
+      "analysis": "【MySQL / 索引】",
+      "categories": [
+        "MySQL / 索引"
+      ]
+    },
+    {
+      "id": "java-core-0356",
+      "type": "short",
+      "question": "B+树索引和 Hash 索引有什么区别？",
+      "answer": "简版回答：\n\nB+ 树索引支持范围查询、有序扫描，是 InnoDB 的默认索引结构。\n\nHash 索引只支持等值查找，速度快但功能弱，常见于 Memory 引擎。\n\n稍微详细一点的回答：\n\nB+ 树索引是一种平衡多路搜索树，所有数据存储在叶子节点上，非叶子节点仅存储索引键。叶子节点通过指针连接形成有序链表，天然支持排序。\n\n并且支持范围查询、模糊查询，是 InnoDB 默认的索引结构。\n\nHash 索引基于哈希函数将键值映射到固定长度的哈希值，通过哈希值定位数据存储的位置。\n\n完全无序，只支持等值查询，常见于 Memory 引擎。\n\n---- 这部分是帮助大家理解 start，面试中可不背 ----\n\n因为 B+ 树是 InnoDB 的默认索引类型，所以创建 B+ 树的时候不需要指定索引类型。\n\nsql\nCREATE TABLE example_btree (\n    id INT AUTO_INCREMENT PRIMARY KEY,\n    name VARCHAR(255),\n    INDEX name_index (name)\n) ENGINE=InnoDB;\n\n可以通过 UNIQUE HASH 创建哈希索引：\n\nsql\nCREATE TABLE example_hash (\n    id INT AUTO_INCREMENT PRIMARY KEY,\n    name VARCHAR(255),\n    UNIQUE HASH (name)\n) ENGINE=MEMORY;\n\nInnoDB 并不提供直接创建哈希索引的选项，因为 B+ 树索引能够很好地支持范围查询和等值查询，满足了大多数数据库操作的需要。\n\n不过，InnoDB 内部使用了一种名为“自适应哈希索引”（Adaptive Hash Index, AHI）的技术，当某些索引值频繁访问时，InnoDB 会在 B+ 树基础上自动创建哈希索引，兼具两者的优点。\n\n可通过 SHOW VARIABLES LIKE 'innodb_adaptive_hash_index'; 查看自适应哈希索引的状态。\n\n如果返回的值是 ON，说明自适应哈希索引是开启的。\n\n---- 这部分是帮助大家理解 end，面试中可不背 ----",
+      "analysis": "【MySQL / 索引】",
+      "categories": [
+        "MySQL / 索引"
+      ]
+    },
+    {
+      "id": "java-core-0357",
+      "type": "short",
+      "question": "聚族索引和非聚族索引有什么区别？",
+      "answer": "聚簇索引的叶子节点存储了完整的数据行，数据和索引是在一起的。InnoDB 的主键索引就是聚簇索引，叶子节点不仅存储了主键值，还存储了其他列的值，因此按照主键进行查询的速度会非常快。\n\n每个表只能有一个聚簇索引，通常由主键定义。如果没有显式指定主键，InnoDB 会隐式创建一个隐藏的主键索引 row\\_id。\n\n非聚簇索引的叶子节点只包含了主键值，需要通过回表按照主键去聚簇索引查找其他列的值，唯一索引、普通索引等非主键索引都是非聚簇索引。\n\n每个表都可以创建多个非聚簇索引，如果不想回表的话，可以通过覆盖索引把要查询的字段也放到索引中。\n\n---- 这部分是帮助大家理解 start，面试中可不背 ----\n\n一张表只能有一个聚簇索引。\n\nsql\nCREATE TABLE user (\n  id INT PRIMARY KEY,\n  name VARCHAR(100),\n  age INT\n);\n\n主键 id 是聚簇索引，B+ 树的叶子节点直接存储了 (id, name, age)。\n\n一张表可以有多个非聚簇索引。\n\nsql\nCREATE INDEX idx_name ON user(name);\nCREATE INDEX idx_age ON user(age);\n\nidx\\_name 是非聚簇索引，叶子节点存的是 name -> id，查整行数据要回表。\n\nidx\\_age 也是非聚簇索引，叶子节点存的是 age -> id，查整行数据也要回表。\n\n 磊哥：聚簇索引和非聚簇索引有什么区别？\n 浅谈聚簇索引与非聚簇索引\n 聚簇索引、非聚簇索引、联合索引、唯一索引\n 松哥：再聊 MySQL 聚簇索引\n\n---- 这部分是帮助大家理解 end，面试中可不背 ----",
+      "analysis": "【MySQL / 索引】",
+      "categories": [
+        "MySQL / 索引"
+      ]
+    },
+    {
+      "id": "java-core-0358",
+      "type": "short",
+      "question": "回表了解吗？",
+      "answer": "当使用非聚簇索引进行查询时，MySQL 需要先通过非聚簇索引找到主键值，然后再根据主键值回到聚簇索引中查找完整数据行，这个过程称为回表。\n\n假设现在有一张用户表 users：\n\nsql\nCREATE TABLE users (\n    id INT PRIMARY KEY,\n    name VARCHAR(50),\n    age INT,\n    email VARCHAR(50),\n    INDEX (name)\n);\n\n执行查询：\n\nsql\nSELECT  FROM users WHERE name = '练习伴侣二';\n\n查询过程如下：\n\n 第一步，MySQL 使用 name 列上的非聚簇索引查找所有 name = '练习伴侣二' 的主键 id。\n 第二步，使用主键 id 到聚簇索引中查找完整记录。\n\n回表的代价是什么？\n\n回表通常需要访问额外的数据页，如果数据不在内存中，还需要从磁盘读取，增加 I/O 开销。\n\n可通过覆盖索引或者联合索引来避免回表。\n\nsql\n-- 原表结构\nCREATE TABLE users (\n    id INT PRIMARY KEY,\n    name VARCHAR(50),\n    age INT,\n    INDEX idx_name (name)\n);\n\n-- 需要查询name和age\nSELECT name, age FROM users WHERE name = '张三';\n-- 这会回表，因为age不在idx_name索引中\n\n-- 优化方案1：创建包含age的联合索引\nALTER TABLE users ADD INDEX idx_name_age (name, age);\n-- 现在同样的查询不需要回表\n\n什么情况下会触发回表？\n\n第一，当查询字段不在非聚簇索引中时，必须回表到主键索引获取数据。\n\n第二，查询字段包含非索引列（如 SELECT \\），必然触发回表。\n\n回表记录越多好吗？\n\n回表记录越多，通常代表性能越差，因为每条记录都需要通过主键再查询一次完整数据。这个过程涉及内存访问或磁盘 IO，尤其当缓存命中率不高时，回表会严重影响查询效率。\n\n了解 MRR 吗？\n\nMRR 是 InnoDB 为了解决回表带来的大量随机 IO 问题而引入的一种优化策略。\n\n它会先把非聚簇索引查到的主键值列表进行排序，再按顺序去主键索引中批量回表，将随机 I/O 转换为顺序 I/O，以减少磁盘寻道时间。\n\n---- 这部分是帮助大家理解 start，面试中可不背 ----\n\n可通过 SHOW VARIABLES LIKE 'optimizer_switch'; 查看 MRR 是否启用。\n\n其中 mrr=on 表示启用 MRR，mrr_cost_based=on 表示基于成本决定使用 MRR。\n\n另外可以通过 show variables like 'read_rnd_buffer_size'; 查看 MRR 的缓冲区大小，默认是 256KB。\n\n我们来创建一个表，插入一些数据，然后执行一个查询来演示 MRR 的效果。\n\nsql\nCREATE DATABASE IF NOT EXISTS mrr_test; \nUSE mrr_test; \nCREATE TABLE IF NOT EXISTS orders (id INT AUTO_INCREMENT PRIMARY KEY, user_id INT, order_date DATE, amount DECIMAL(10,2), status VARCHAR(20), INDEX idx_user_date(user_id, order_date));\n\nDELIMITER //\nCREATE PROCEDURE generate_test_data()\nBEGIN\n    DECLARE i INT DEFAULT 1;\n    WHILE i <= 100000 DO\n        INSERT INTO orders (user_id, order_date, amount, status)\n        VALUES (\n            FLOOR(1 + RAND()  1000),  -- Random user_id…",
+      "analysis": "【MySQL / 索引】",
+      "categories": [
+        "MySQL / 索引"
+      ]
+    },
+    {
+      "id": "java-core-0359",
+      "type": "short",
+      "question": "联合索引了解吗？（补充）",
+      "answer": "> 2024 年 11 月 22 日增补\n\n联合索引就是把多个字段放在一个索引里，但必须遵守“最左前缀”原则，只有从第一个字段开始连续使用，索引才会生效。\n\n联合索引会按字段顺序构建B+树。例如（age, name）索引会先按照 age 排序，age 相同则按照 name 排序，若两者都相同则按主键排序，确保叶子节点无重复索引项。\n\n创建(A,B,C)联合索引相当于同时创建了(A)、(A,B)和(A,B,C)三个索引。\n\nsql\n-- 创建联合索引\nCREATE INDEX idx_order_user_product ON orders(user_id, product_id, create_time)\n\n-- 高效查询\nSELECT * FROM orders \nWHERE user_id=1001 AND product_id=2002\nORDER BY create_time DESC\n\n联合索引底层的存储结构是怎样的？\n\n联合索引在底层采用 B+ 树结构进行存储，这一点与单列索引相同。\n\n与单列索引不同的是，联合索引的每个节点会存储所有索引列的值，而不仅仅是第一列的值。例如，对于联合索引(a,b,c)，每个节点都包含 a、b、c 三列的值。\n\nsql\n非叶子节点示例：  \n[(a=1, b=2, c=3) → 子节点1, (a=5, b=3, c=1) → 子节点2]\n\n叶子节点示例（InnoDB）：  \n(a=1, b=2, c=3) → PK=100 | (a=1, b=2, c=4) → PK=101  \n（通过指针连接形成双向链表）\n\n联合索引的叶子节点存的什么内容?\n\n联合索引属于非聚簇索引，叶子节点存储的是联合索引各列的值和对应行的主键值，而不是完整的数据行。查询非索引字段时，需要通过主键值回表到聚簇索引获取完整数据。\n\n例如索引(a, b)的叶子节点会完整存储(a, b)的值，并按字段顺序排序（如 a 优先，a 相同则按 b 排序）。如果主键是 id，叶子节点会存储 (a, b, id) 的组合。",
+      "analysis": "【MySQL / 索引】",
+      "categories": [
+        "MySQL / 索引"
+      ]
+    },
+    {
+      "id": "java-core-0360",
+      "type": "short",
+      "question": "覆盖索引了解吗？",
+      "answer": "覆盖索引指的是：查询所需的字段全部都在索引中，不需要回表，从索引页就能直接返回结果。\n\n> empname 和 job 两个字段是一个联合索引，而查询也恰好是这两个字段，这时候单次查询就可以达到目的，不需要回表。\n\n可以将高频查询的字段（如 WHERE 条件和 SELECT 列）组合为联合索引，实现覆盖索引。 例如：\n\nsql\nCREATE INDEX idx_empname_job ON employee(empname, job);\n\n这样查询的时候就可以走索引：\n\nsql\nSELECT empname, job FROM employee WHERE empname = '练习伴侣二' AND job = '程序员';\n\n普通索引只用于加速查询条件的匹配，而覆盖索引还能直接提供查询结果。\n\n一个表（name, sex,age,id），select age,id,name from tblname where name='paicoding';怎么建索引\n\n由于查询条件有 name 字段，所以最少应该为 name 字段添加一个索引。、\n\nsql\nCREATE INDEX idx_name ON tblname(name);\n\n查询结果中还需要 age、id 字段，可以为这三个字段创建一个联合索引，利用覆盖索引，直接从索引中获取数据，减少回表。\n\nsql\nCREATE INDEX idx_name_age_id ON tblname (name, age, id);",
+      "analysis": "【MySQL / 索引】",
+      "categories": [
+        "MySQL / 索引"
+      ]
+    },
+    {
+      "id": "java-core-0361",
+      "type": "short",
+      "question": "什么是最左前缀原则？",
+      "answer": "最左前缀原则指的是：MySQL 使用联合索引时，必须从最左边的字段开始匹配，才能命中索引。\n\n假设有一个联合索引 (A, B, C)，其生效条件如下：\n\n| 查询条件 | 是否触发索引？ | 说明 |\n| --- | --- | --- |\n| WHERE A = 1 | ✅ 是 | 使用索引的第一列 |\n| WHERE A = 1 AND B = 2 | ✅ 是 | 使用索引的前两列 |\n| WHERE A = 1 AND B = 2 AND C = 3 | ✅ 是 | 使用索引的全部列 |\n| WHERE B = 2 | ❌ 否 | 跳过左侧列 A，索引失效 |\n| WHERE B = 2 AND C = 3 | ❌ 否 | 无左侧列，索引失效 |\n| WHERE A = 1 AND C = 3 | ⚠️ 部分生效 | 仅用 A 列，C 列无法利用索引优化 |\n| WHERE A = 1 | ✅ 是 | 使用索引的第一列 |\n| WHERE A = 1 AND B = 2 | ✅ 是 | 使用索引的前两列 |\n| WHERE A = 1 AND B = 2 AND C = 3 | ✅ 是 | 使用索引全部列（最理想情况） |\n| WHERE B = 2 | ❌ 否 | 跳过左侧列 A，索引失效 |\n| WHERE B = 2 AND C = 3 | ❌ 否 | 无左侧列，索引失效 |\n| WHERE A = 1 AND C = 3 | ⚠️ 部分生效 | 仅用 A 列，C 列无法利用索引优化 |\n\n如果排序或分组的列是最左前缀的一部分，索引还可以加速操作。\n\nsql\nSQL\n-- 索引(a,b)\nSELECT  FROM table WHERE a = 1 ORDER BY b; -- 可以利用索引排序\n\n范围查询后的列还能用索引吗？\n\n范围查询只能应用于最左前缀的最后一列。范围查询之后的列无法使用索引。\n\nsql\nSQL\n-- 索引(a,b,c)\nSELECT  FROM table WHERE a = 1 AND b > 2 AND c = 3; \n-- 只能使用a和b，c无法使用索引\n\n为什么不从最左开始查，就无法匹配呢？\n\n一句话回答：\n\n因为联合索引在 B+ 树中是按照最左字段优先排序构建的，如果跳过最左字段，MySQL 无法判断查找范围从哪里开始，自然也就无法使用索引。\n\n比如有一个 user 表，我们给 name 和 age 建立了一个联合索引 (name, age)。\n\nsql\nALTER TABLE user add INDEX comidx_name_phone (name,age);\n\n联合索引在 B+ 树中按照从左到右的顺序依次建立搜索树，name 在左，age 在右。\n\n当我们使用 where name= '练习伴侣二' and age = '20' 去查询的时候， B+ 树会优先比较 name 来确定下一步应该搜索的方向，往左还是往右。\n\n如果 name 相同的时候再比较 age。\n\n但如果查询条件没有 name，就不知道应该怎么查了，因为 name 是 B+树中的前置条件，没有 name，索引就派不上用场了。\n\n联合索引 (a, b)，where a = 1 和 where b = 1，效果是一样的吗\n\n不一样。\n\nWHERE a = 1 能命中联合索引，因为 a 是联合索引的第一个字段，符合最左前缀匹配原则。而 WHERE b = 1 无法命中联合索引，因为缺少 a 的匹配条件，MySQL 会全表扫描。\n\n---- 这部分是帮助大家理解 start，面试中可不背 ----\n\n我们来验证一下，假设有一个 ab 表，建立了联合索引 (a, b)：\n\nsql\nCREATE TABLE ab (\n    a INT,\n    b INT,\n    INDEX ab_index (a, b)\n);\n\n插入数据：\n\nsql\nINSERT INTO ab (a, b) VALUES (1, 2), (1, 3), (2, 1), (3, 3), (2, 2);\n\n执行查询：\n\n通过 explain 可以看到，WHERE a = 1 使用了联合索引，而 WHERE b = 1 需要全表扫描，依次检查每一行。\n\n--…",
+      "analysis": "【MySQL / 索引】",
+      "categories": [
+        "MySQL / 索引"
+      ]
+    },
+    {
+      "id": "java-core-0362",
+      "type": "short",
+      "question": "什么是索引下推？",
+      "answer": "索引下推是指：MySQL 把 WHERE 条件尽可能“下推”到索引扫描阶段，在存储引擎层提前过滤掉不符合条件的记录。\n\n当查询条件包含索引列但未完全匹配时，ICP 会在存储引擎层过滤非索引列条件，以减少回表次数。\n\n传统的查询流程是，储引擎通过联合索引定位到符合最左前缀条件的主键 ID；回表读取完整数据行并返回给 Server 层；Server 层对所有返回的行进行 WHERE 条件过滤。\n\n有了 ICP 后，存储引擎在索引层直接过滤可下推的条件，仅对符合索引条件的记录回表读取数据，再返回给 Server 层进行剩余条件过滤。\n\n---- 这部分是帮助大家理解 start，面试中可不背 ----\n\n例如有一张 user 表，建了一个联合索引（name, age），查询语句：select  from user where name like '张%' and age=10;，没有索引下推优化的情况下：\n\nMySQL 会使用索引 name 找到所有 name like '张%' 的主键，根据这些主键，一条条回表查询整行数据，并在 Server 层过滤掉不符合 age=10 的数据行。\n\n启用 ICP 后，InnoDB 会通过联合索引直接筛选出符合条件的主键 ID（name like '张%' and age=10），然后再回表查询整行数据。\n\n换句话说，假设 name like '张%' 找到 10000 行数据，age=10 只有其中 10 行，没有索引下推的情况下，MySQL 会回表 10000 次，读取 10000 行数据，然后在 Server 层过滤掉 9990 行。\n\n而有了索引下推后，MySQL 只会回表 10 次，读取 10 行数据。\n\n我们来验证一下。\n\n从结果中我们可以清楚地看到 ICP 的效果。ICP 开启时，Extra 列显示\"Using index condition\"，表明过滤条件被下推到存储引擎层。\n\nICP关闭时，Extra 列仅显示\"Using where\"，表明过滤条件在服务器层执行。\n\nsql\n-- 开启ICP\nSET optimizer_switch='index_condition_pushdown=on';\n\n-- 清理状态\nFLUSH STATUS;\n\nSELECT 'Performance test with ICP ON' as test_case;\n-- 执行查询并分析性能\nEXPLAIN ANALYZE\nSELECT /+ ICP_ON / \nFROM orders_mrr_test\nWHERE user_id BETWEEN 100 AND 200\n  AND order_date >= '2023-01-01'\n  AND order_date = '2023-01-01'\n  AND order_date < '2023-02-01'\n  AND order_date NOT LIKE '2023-01-15%';\n\n-- 显示处理器状态\nSHOW STATUS LIKE 'Handler_read%';\"\n\n实际的性能差距也很大。ICP 开启时，实际扫描行数：1,649 行，执行时间：约12.3 毫秒。关闭时，实际扫描行数：19,959 行，执行时间：约 32.1 毫秒。\n\n---- 这部分是帮助大家理解 start，面试中可不背 ----",
+      "analysis": "【MySQL / 索引】",
+      "categories": [
+        "MySQL / 索引"
+      ]
+    },
+    {
+      "id": "java-core-0363",
+      "type": "short",
+      "question": "如何查看是否用到了索引？（补充）",
+      "answer": "> 2024 年 03 月 15 日增补。\n\n可以通过 EXPLAIN 关键字来查看是否使用了索引。\n\nsql\nEXPLAIN SELECT  FROM table WHERE column = 'value';\n\n如果使用了索引，结果中的 key 值会显示索引的名称。\n\n联合索引 abc，a=1,c=1/b=1,c=1/a=1,c=1,b=1 走不走索引？\n\n> 2024 年 03 月 19 日增补\n\nac 能用上索引，条件 a=1 符合最左前缀原则，触发索引的第一列 a；由于跳过了中间列 b，c=1 无法直接利用索引的有序性优化，但可通过索引下推在存储引擎层过滤 c 的条件，减少回表次数。\n\nbc 无法使用索引，只能全表扫描，因为不符合最左前缀原则；acb 虽然顺序是乱的，但 MySQL 优化器会自动重排为 abc，所以能命中索引。\n\n---- 这部分是帮助大家理解 start，面试中可不背 ----\n\n我们通过实际的 SQL 来验证一下。\n\n示例 1（a=1,c=1）：\n\nsql\nEXPLAIN SELECT  FROM tbn WHERE A=1 AND C=1\\G\n\nkey 是 idx\\_abc，表明 a=1,c=1 会使用联合索引。Extra: Using index condition 表示 ICP 生效。\n\n示例 2（b=1,c=1）：\n\nsql\nEXPLAIN SELECT  FROM tbn WHERE B=1 AND C=1\\G\n\nkey 是 NULL，表明 b=1,c=1 不会使用联合索引。这是因为查询条件没有遵循最左前缀原则。\n\n示例 3（a=1,c=1,b=1）：\n\nsql\nEXPLAIN SELECT  FROM tbn WHERE A=1 AND C=1 AND B=1\\G\n\n优化器会自动调整条件顺序为 a=1 AND b=1 AND c=1。\n\nkey 是 idx\\_abc，表明 a=1,c=1,b=1 会使用联合索引。\n\n并且 rows=1，因为 MySQL 优化器会自动重排查询条件，以满足最左前缀原则，直接使用联合索引找出 a=1 AND b=1 AND c=1 的行。",
+      "analysis": "【MySQL / 索引】",
+      "categories": [
+        "MySQL / 索引"
+      ]
+    },
+    {
+      "id": "java-core-0364",
+      "type": "short",
+      "question": "MySQL 中有哪几种锁？",
+      "answer": "MySQL 中有多种类型的锁，可以从不同维度来分类，按锁粒度划分的话，有表锁、行锁。\n\n按照加锁机制划分的话，有乐观锁和悲观锁。按照兼容性划分的话，有共享锁和排他锁。\n\n---- 这部分是帮助大家理解 start，面试中可不背 ----\n\n表锁：锁定整个表，资源开销小，加锁快，但并发度低，不会出现死锁；适合查询为主、少量更新的场景（如 MyISAM 引擎）。\n\n再细分的话，有表共享读锁（S锁）：允许多个事务同时读，但阻塞写操作；表独占写锁（X锁）：独占表，阻塞其他事务的读写。\n\n行锁：锁定单行或多行，开销大、加锁慢，可能出现死锁，但并发度高（InnoDB 默认支持）。\n\n再细分的话，有记录锁（Record Lock）：锁定索引中的具体记录；间隙锁（Gap Lock）：锁定索引记录之间的间隙，防止幻读；临键锁（Next-Key Lock）：结合记录锁和间隙锁，锁定一个左开右闭的区间（如 (5, 10]）。\n\n共享锁（S锁/读锁），允许多个事务同时读取数据，但阻塞写操作。语法：SELECT ... LOCK IN SHARE MODE\n\n排他锁（X锁/写锁），独占数据，阻塞其他事务的读写。语法：SELECT ... FOR UPDATE。\n\n乐观锁假设冲突少，通过版本号或 CAS 机制检测冲突（如 UPDATE SET version=version+1 WHERE version=old_version）。\n\n悲观锁假设并发冲突频繁，先加锁再操作SELECT FOR UPDATE。\n\n---- 这部分是帮助大家理解 end，面试中可不背",
+      "analysis": "【MySQL / 锁】",
+      "categories": [
+        "MySQL / 锁"
+      ]
+    },
+    {
+      "id": "java-core-0365",
+      "type": "short",
+      "question": "全局锁了解吗？（补充）",
+      "answer": "> 2024 年 07 月 15 日增补。\n\n全局锁就是对整个数据库实例进行加锁，当执行全局锁定操作时，整个数据库将会处于只读状态，所有写操作都会被阻塞，直到全局锁被释放。\n\n在进行全库备份，或者数据迁移时，可以使用全局锁来保证数据的一致性。\n\n在 MySQL 中，可以使用 FLUSH TABLES WITH READ LOCK 命令来获取全局锁。\n\n执行该命令后，所有表将被锁定为只读状态。记得在完成备份或迁移后，使用 UNLOCK TABLES 命令释放全局锁。\n\nsql\n-- 锁定整个数据库\nFLUSH TABLES WITH READ LOCK;\n\n-- 执行备份操作\n-- 例如使用 mysqldump 进行备份\n! mysqldump -u username -p database_name > backup.sql\n\n-- 释放全局锁定\nUNLOCK TABLES;\n\n表锁了解吗？\n\n了解。\n\n表锁常见于 MyISAM 引擎，InnoDB 也可以手动通过 LOCK TABLES 加锁。\n\n适合读多写少、全表扫描或者表结构变更的场景用。\n\n表锁又可以细分为共享锁和排他锁。共享锁允许多个事务同时读表，但不允许写操作。\n\nsql\nLOCK TABLES table_name READ;  -- 显式加读锁\nSELECT * FROM table_name;     -- 其他会话可读，不可写\nUNLOCK TABLES;                -- 释放锁\n\n排他锁只允许一个事务进行写操作，其他事务不能读也不能写。\n\nsql\nLOCK TABLES table_name WRITE; -- 显式加写锁\nINSERT/UPDATE/DELETE table_name; -- 其他会话读写均阻塞\nUNLOCK TABLES;\n\nMyISAM 在执行 SELECT 时会自动加读锁，执行 INSERT/UPDATE/DELETE 时会加写锁。\n\n对于 InnoDB 引擎，无索引的 UPDATE/DELETE 可能会导致锁升级为表锁。\n\nsql\nUPDATE innodb_table SET name='new' WHERE name='old'; -- 全表扫描，退化为表锁\n\n执行 ALTER TABLE 时会自动加表锁，阻塞所有读写操作。",
+      "analysis": "【MySQL / 锁】",
+      "categories": [
+        "MySQL / 锁"
+      ]
+    },
+    {
+      "id": "java-core-0366",
+      "type": "short",
+      "question": "说说 MySQL 的行锁？",
+      "answer": "行锁是 InnoDB 存储引擎中最细粒度的锁，它锁定表中的一行记录，允许其他事务访问表中的其他行。\n\n底层是通过给索引加锁实现的，这就意味着只有通过索引条件检索数据时，InnoDB 才能使用行级锁，否则会退化为表锁。\n\n行锁又可以细分为记录锁、间隙锁和临键锁三种形式。通过 SELECT ... FOR UPDATE 可以加排他锁。\n\nsql\nSTART TRANSACTION;\n\n-- 加排他锁，锁定某一行\nSELECT  FROM your_table WHERE id = 1 FOR UPDATE;\n-- 对该行进行操作\nUPDATE your_table SET column1 = 'new_value' WHERE id = 1;\n\nCOMMIT;\n\n通过 SELECT ...LOCK IN SHARE MODE 可以加共享锁。\n\nsql\nSTART TRANSACTION;\n\n-- 加共享锁，锁定某一行\nSELECT  FROM your_table WHERE id = 1 LOCK IN SHARE MODE;\n-- 只能读取该行，不能修改\n\nCOMMIT;\n\nselect for update 有什么需要注意的？\n\n第一，必须在事务中使用，否则锁会立即释放。\n\nsql\nSTART TRANSACTION;\nSELECT  FROM your_table WHERE id = 1 FOR UPDATE;\n-- 对该行进行操作\nCOMMIT;\n\n第二，使用时必须注意是否命中索引，否则可能锁全表。\n\nsql\n-- name 没有索引，会退化为表锁\nSELECT  FROM user WHERE name = '练习伴侣二' FOR UPDATE;\n\n---- 这部分是帮助大家理解 start，面试中可不背 ----\n\n假设有一张名为 orders 的表，包含以下数据：\n\nsql\nCREATE TABLE orders (\n    id INT PRIMARY KEY,\n    order_no VARCHAR(255),\n    amount DECIMAL(10,2),\n    status VARCHAR(50),\n    INDEX (order_no)  -- order_no 上有索引\n);\n\n表中的数据是这样的：\n\n| id | order\\_no | amount | status |\n| --- | --- | --- | --- |\n| 1 | 10001 | 50.00 | pending |\n| 2 | 10002 | 75.00 | pending |\n| 3 | 10003 | 100.00 | pending |\n| 4 | 10004 | 150.00 | completed |\n| 5 | 10005 | 200.00 | pending |\n\n如果我们通过主键索引执行 SELECT FOR UPDATE，确实只会锁定特定的行：\n\nsql\nSTART TRANSACTION;\nSELECT  FROM orders WHERE id = 1 FOR UPDATE;\n-- 对 id=1 的行进行操作\nCOMMIT;\n\n由于 id 是主键，所以只会锁定 id=1 这行，不会影响其他行的操作。其他事务依然可以对 id = 2, 3, 4, 5 等行执行更新操作，因为它们没有被锁定。\n\n如果使用 order\\_no 这个普通索引执行 SELECT FOR UPDATE，也只会锁定特定的行：\n\nsql\nSTART TRANSACTION;\nSELECT  FROM orders WHERE order_no = '10001' FOR UPDATE;\n-- 对 order_no=10001 的行进行操作\nCOMMIT;\n\n因为 order\\_no 是唯一索引，所以只会锁定 order_no=10001 这行，不会影响其他行的操作。\n\n但如果 WHERE 条件是 status='pending'，而 status 上没有索引：\n\nsql\nSTART TRANSACTION;\nSELECT * FROM orders WHERE status = 'pending' FOR UPDATE;\n-- 对 sta…",
+      "analysis": "【MySQL / 锁】",
+      "categories": [
+        "MySQL / 锁"
+      ]
+    },
+    {
+      "id": "java-core-0367",
+      "type": "short",
+      "question": "临键锁了解吗？",
+      "answer": "临键锁是记录锁和间隙锁的结合体，锁住的是索引记录和索引记录之间的间隙。\n\n和间隙锁不同，临键锁的间隙是一个左开右闭区间。例如 (1,3] 表示锁定大于 1 且小于等于 3 的所有记录。\n\n当 InnoDB 执行一个范围查询时，会使用临键锁来锁定满足条件的行数据以及该范围内的间隙。\n\n比如说下面这条语句会锁定 id 在 5 到 10 之间的所有记录，以及这些记录之间的间隙。\n\nsql\nSELECT * FROM table WHERE id BETWEEN 5 AND 10 FOR UPDATE;\n\nMySQL 默认的行锁类型就是临键锁。当使用唯一索引的等值查询匹配到一条记录时，临键锁会退化成记录锁；如果没有匹配到任何记录，会退化成间隙锁。",
+      "analysis": "【MySQL / 锁】",
+      "categories": [
+        "MySQL / 锁"
+      ]
+    },
+    {
+      "id": "java-core-0368",
+      "type": "short",
+      "question": "意向锁是什么知道吗？",
+      "answer": "意向锁是一种表级锁，表示事务打算对表中的某些行数据加锁，但不会直接锁定数据行本身。\n\n由 InnoDB 自动管理，当事务需要添加行锁时，会先在表上添加意向锁。这样当要添加表锁的时候，可以通过查看表上的意向锁，快速判断是否有冲突，而无需逐行检查，从而提高加锁效率。\n\n当执行 SELECT ... LOCK IN SHARE MODE 时，会自动加意向共享锁；当执行 SELECT ... FOR UPDATE 时，会自动加意向排他锁。\n\n意向锁之间互相兼容，也不会与行锁冲突。\n\n| 兼容关系 | 意向共享锁 | 意向排他锁 | 共享锁(表级) | 拍他锁(表级) |\n| --- | --- | --- | --- | --- |\n| 意向共享锁 | 兼容 | 兼容 | 兼容 | 冲突 |\n| 意向排他锁 | 兼容 | 兼容 | 冲突 | 冲突 |\n| S锁 | 兼容 | 冲突 | 兼容 | 冲突 |\n| X锁 | 冲突 | 冲突 | 冲突 | 冲突 |\n\n意向锁的意义是什么？\n\n在没有意向锁的情况下，当事务 A 持有某表的行锁时，如果事务 B 想添加表锁，InnoDB 必须检查表中每一行数据是否被加锁，这种全表扫描的方式效率极低。\n\n有了意向锁之后，事务在加行锁前，先在表上加对应的意向锁；其他事务加表锁时，只需检查表上的意向锁，无需逐行检查。\n\nsql\n-- 事务A获取某行的排他锁\nBEGIN;\nSELECT * FROM users WHERE id = 6 FOR UPDATE;  -- 自动加IX锁和行X锁\n\n-- 事务B尝试加表锁\nLOCK TABLES users READ;  -- 发现表上有IX锁，与S锁冲突，直接阻塞而无需扫描全表",
+      "analysis": "【MySQL / 锁】",
+      "categories": [
+        "MySQL / 锁"
+      ]
+    },
+    {
+      "id": "java-core-0369",
+      "type": "short",
+      "question": "MySQL 的乐观锁和悲观锁了解吗？",
+      "answer": "悲观锁是一种\"先上锁再操作\"的保守策略，它假设数据被外界访问时必然会产生冲突，因此在数据处理过程中全程加锁，保证同一时间只有一个线程可以访问数据。\n\nMySQL 中的行锁和表锁都是悲观锁。\n\n乐观锁会假设并发操作不会总发生冲突，属于小概率事件，因此不会在读取数据时加锁，而是在提交更新时才检查数据是否被其他事务修改过。\n\n乐观锁并不是 MySQL 内置的锁机制，而是通过程序逻辑实现的，常见的实现方式有版本号机制和时间戳机制。通过在表中增加 version 字段或者 timestamp 字段来实现。\n\n---- 这部分是帮助大家理解 start，面试中可不背 ----\n\n当事务 A 已经上锁后，事务 B 会一直等待事务 A 释放锁；如果事务 A 长时间不释放锁，事务 B 就会报错 Lock wait timeout exceeded; try restarting transaction。\n\n事务 A 和事务 B 同时读取同一个主键 ID 的数据，版本号为 0；事务 A 将版本号（version=1）作为条件进行数据更新，同时版本号 +1；事务 B 也将 version=1 作为更新条件，发现版本号不匹配，更新失败。\n\n---- 这部分是帮助大家理解 end，面试中可不背 ----\n\n如何通过悲观锁和乐观锁解决库存超卖问题？\n\n悲观锁通过 SELECT ... FOR UPDATE 在查询时直接锁定记录，确保其他事务必须等待当前事务完成才能操作该行数据。\n\nsql\nBEGIN;\n-- 对id=1的商品记录加排他锁\nSELECT stock FROM products WHERE id=1 FOR UPDATE;\n-- 生成订单\nINSERT INTO orders (user_id, product_id) VALUES (123, 1);\n-- 扣减库存\nUPDATE products SET stock=stock-1 WHERE id=1;\nCOMMIT;\n\n乐观锁通过在表中增加 version 字段作为判断条件。\n\nsql\n-- 查询商品信息，获取版本号\nSELECT stock, version FROM products WHERE id=1;\n\n-- 更新库存时检查版本号\nUPDATE products \nSET stock=stock-1, version=version+1 \nWHERE id=1 AND version=旧版本号;\n\n---- 这部分是帮助大家理解 start，面试中可不背 ----\n\n库存超卖是一个非常经典的问题：\n\n 事务A查询商品库存，得到库存值为1\n 事务B也查询同一商品库存，同样得到库存值为1\n 事务A基于查询结果执行库存扣减，将库存更新为0\n 事务B也执行库存扣减，将库存更新为-1\n\n悲观锁的关键点：\n\n 必须在一个事务中执行；\n 通过 SELECT ... FOR UPDATE 锁定行，确保其他事务必须等待当前事务完成才能操作该行数据；\n 记得给查询条件加索引，避免全表扫描导致锁升级为表锁。\n\n乐观锁的关键点：\n\n 在表中增加 version 字段；\n 查询时获取当前版本号；\n 更新时检查版本号是否发生了变化。\n\nJava 程序的完整代码示例：\n\njava\n@Service\npublic class ProductService {\n    @Autowired\n    private ProductMapper productMapper;\n    \n    @Transactional\n    public boolean purchaseWithOptimisticLock(Long productId, int quantity) {\n        int retryCount = 0;\n        while(retryCount  0) {\n                return true; // 更新成功\n            }\n            retryCount++;\n        }\n        return false; // 更新失败\n    }\n}\n\n对应的 mapper：\n\njava\n@Update(\"UPDATE products…",
+      "analysis": "【MySQL / 锁】",
+      "categories": [
+        "MySQL / 锁"
+      ]
+    },
+    {
+      "id": "java-core-0370",
+      "type": "short",
+      "question": "遇到过MySQL死锁问题吗，你是如何解决的？",
+      "answer": "遇到过。MySQL 的死锁是由于多个事务持有资源并相互等待引起的。我通过 SHOW ENGINE INNODB STATUS 查看死锁信息，定位到是加锁顺序不一致导致的，最后通过调整加锁顺序解决了这个问题。\n\n比如说项目中，两个事务分别更新两张表，但是更新顺序不一致。\n\nsql\n-- 创建表/插入数据\nCREATE TABLE account (\n    id INT AUTO_INCREMENT PRIMARY KEY,\n    balance INT NOT NULL\n);\n\nINSERT INTO account (balance) VALUES (100), (200);\n\n-- 事务 1\nSTART TRANSACTION;\n-- 锁住 id=1 的行\nUPDATE account SET balance = balance - 10 WHERE id = 1;\n\n-- 等待锁住 id=2 的行（事务 2 已锁住）\nUPDATE account SET balance = balance + 10 WHERE id = 2;\n\n-- 事务 2\nSTART TRANSACTION;\n-- 锁住 id=2 的行\nUPDATE account SET balance = balance - 10 WHERE id = 2;\n\n-- 等待锁住 id=1 的行（事务 1 已锁住）\nUPDATE account SET balance = balance + 10 WHERE id = 1;\n\n访问相同的资源，但顺序不同，就会导致死锁。\n\n解决办法也很简单，先使用 SHOW ENGINE INNODB STATUS\\G; 确认死锁的具体信息，然后调整资源的访问顺序。",
+      "analysis": "【MySQL / 锁】",
+      "categories": [
+        "MySQL / 锁"
+      ]
+    },
+    {
+      "id": "java-core-0371",
+      "type": "short",
+      "question": "MySQL事务的四大特性说一下？",
+      "answer": "事务是一条或多条 SQL 语句组成的执行单元。四个特性分别是原子性、一致性、隔离性和持久性。原子性保证事务中的操作要么全部执行、要么全部失败；一致性保证数据从事务开始前的一个一致状态转移到结束后的另外一个一致状态；隔离性保证并发事务之间互不干扰；持久性保证事务提交后数据不会丢失。\n\n详细说一下原子性？\n\n原子性意味着事务中的所有操作要么全部完成，要么全部不完成，它是不可分割的单位。如果事务中的任何一个操作失败了，整个事务都会回滚到事务开始之前的状态，如同这些操作从未被执行过一样。\n\nsql\nSTART TRANSACTION;\nUPDATE accounts SET balance = balance - 100 WHERE user_id = 1;\nUPDATE accounts SET balance = balance + 100 WHERE user_id = 2;\n-- 如果第二条语句失败，第一条也会回滚\nCOMMIT;\n\n简短回答：原子性要求事务的所有操作要么全部提交成功，要么全部失败回滚，对于一个事务中的操作不能只执行其中一部分。\n\n详细说一下一致性？\n\n一致性确保事务从一个一致的状态转换到另一个一致的状态。\n\n比如在银行转账事务中，无论发生什么，转账前后两个账户的总金额应保持不变。假如 A 账户（100 块）给 B 账户（10 块）转了 10 块钱，不管成功与否，A 和 B 的总金额都是 110 块。\n\nsql\n-- 假设 A 账户余额为 100，B 账户余额为 10\n\n-- 转账前状态\nSELECT balance FROM accounts WHERE user_id = 'A'; -- 100\nSELECT balance FROM accounts WHERE user_id = 'B'; -- 10\n\n-- 转账操作\nSTART TRANSACTION;\nUPDATE accounts SET balance = balance - 10 WHERE user_id = 'A';\nUPDATE accounts SET balance = balance + 10 WHERE user_id = 'B';\nCOMMIT;\n\n-- 转账后状态\nSELECT balance FROM accounts WHERE user_id = 'A'; -- 90\nSELECT balance FROM accounts WHERE user_id = 'B'; -- 20\n-- 总金额仍然是 110\n\n简短回答：一致性确保数据的状态从一个一致状态转变为另一个一致状态。一致性与业务规则有关，比如银行转账，不论事务成功还是失败，转账双方的总金额应该是不变的。\n\n详细说一下隔离性？\n\n隔离性意味着并发执行的事务是彼此隔离的，一个事务的执行不会被其他事务干扰。事务之间是井水不犯河水的。\n\n隔离性主要是为了解决事务并发执行时可能出现的脏读、不可重复读、幻读等问题。\n\n---- 这部分是帮助大家理解 start，面试中可不背 ----\n\n比如说在读未提交的隔离级别下，会出现脏读现象：一个事务C 读取了事务B 尚未提交的修改数据。如果事务B 最终回滚，事务C 读取的数据就是无效的“脏数据”。\n\nsql\n-- 会话 A\n-- 创建模拟并发的测试表\nDROP TABLE IF EXISTS accounts;\nCREATE TABLE accounts (\n    id INT PRIMARY KEY AUTO_INCREMENT,\n    name VARCHAR(50),\n    balance DECIMAL(10,2)\n);\n\n-- 插入测试数据\nINSERT INTO accounts (name, balance) VALUES\n('练习伴侣二', 1000.00),\n('张三', 2000.00),\n('李四', 3000.00);\n\n-- 会话B 中，设置隔离级别为读未提交\nSET SESSION TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;\nSTART TRANSACTION;\n\n-- 在会话 B 中更新数据但不提交\nUPDATE accounts SET balance =…",
+      "analysis": "【MySQL / 事务】",
+      "categories": [
+        "MySQL / 事务"
+      ]
+    },
+    {
+      "id": "java-core-0372",
+      "type": "short",
+      "question": "ACID 靠什么保证的呢？",
+      "answer": "一句话总结：\n\nACID 中的原子性主要通过 Undo Log 来实现，持久性通过 Redo Log 来实现，隔离性由 MVCC 和锁机制来实现，一致性则由其他三大特性共同保证。\n\n详细说说如何保证原子性？\n\n事务对数据进行修改前，会记录一份快照到 Undo Log，如果事务中有任何一步执行失败，系统会读取 Undo Log 将所有操作回滚，恢复到事务开始前的状态，从而保证事务要么全部成功，要么全部失败。\n\nsql\n1）BEGIN;\n\n2）UPDATE user SET balance = balance - 100 WHERE id = 1;\n   => 写入 Undo Log：记录 id=1 的原始余额 500\n\n3）UPDATE user SET balance = balance + 100 WHERE id = 2;\n   => 写入 Undo Log：记录 id=2 的原始余额 300\n\n4）COMMIT;\n   => 清空 Undo Log，事务成功\n\n❗如果失败：\n   => 执行 ROLLBACK：根据 Undo Log 把数据还原！\n\n详细说说如何保证持久性？\n\nMySQL 的持久性主要由预写 Redo Log、双写机制、两阶段提交以及 Checkpoint 刷盘机制共同保证。\n\n当事务提交时，MySQL 会先将事务的修改操作写入 Redo Log，并强制刷盘，然后再将内存中的数据页刷入磁盘。这样即使系统崩溃，重启后也能通过 Redo Log 重放恢复数据。\n\n在将数据页写入到磁盘时，如果发生崩溃，可能会导致数据页不完整。InnoDB 的数据页大小为16KB，通常大于操作系统的 4KB页大小。\n\n为了解决只写入部分的问题，MySQL 采用了双写机制，脏盘刷页时，先将数据页写入到一个双写缓冲区中，2M 的连续空间，然后再将其写入到磁盘的实际位置。\n\n崩溃恢复时，如果发现数据页不完整，会从双写缓冲区中恢复副本，确保数据页的完整性。\n\n在涉及主从复制时，MySQL 通过两阶段提交保证 Redo Log 和 Binlog 的一致性：第一阶段，写入 Redo Log 并标记为 prepare 状态；第二阶段，写入 Binlog 再提交 Redo Log 为 commit 状态。\n\n崩溃恢复时，如果发现 Redo Log 是 prepare 但 Binlog 完整，则会提交事务；反之会回滚，避免主从不一致。\n\n另外，由于 Redo Log 的容量有限，Checkpoint 机制会定期将内存中的脏页刷到磁盘，这样能减少崩溃恢复时需要处理的 Redo Log 数量。\n\n详细说说如何保证隔离性？\n\n隔离性主要通过锁机制和 MVCC 来实现。\n\n比如说一个事务正在修改某条数据时，MySQL 会通过临键锁来防止其他事务同时进行修改，避免数据冲突。\n\n同时，临键锁可以防止幻读现象的发生。比如事务 A 查询 id > 10 的记录，那么临键锁不仅会锁住 id=10 的行，还会锁住 10 后面的“间隙”，防止其他事务插入 id=15 的数据。\n\n假如表中的主键有 id: 5, 10, 15, 20, 25，那么 InnoDB 会对以下区间和记录加锁：\n\n| 加锁对象 | 类型 | 锁定含义 |\n| --- | --- | --- |\n| (10, 15] | 临键锁 | 锁住 id=15 和前间隙，防止插入11~14 |\n| (15, 20] | 临键锁 | 锁住了 id=20 和前间隙 |\n| (20, 25] | 临键锁 | 锁住了 id=25 和前间隙 |\n| (25, +∞) | 间隙锁 | 锁住尾部防止插入30等 |\n\nMVCC 主要用来优化读操作，通过保存数据的历史版本，让读操作不需要加锁就能直接读取快照，提高读的并发性能。\n\n不同的隔离级别对应不同的实现策略，比如说在可重复读隔离级别下，事务第一次查询时会生成一个 Read View，之后所有读操作都复用这个视图，保证多次读取的结果一致。\n\n如何保证一致性呢？\n\nMySQL 的一致性并不是靠某一个机制单独保证的，而是原子性、隔离性和持久性协同作用的结果。\n\n事务会不会自动提交？\n\n是的，MySQL 默认开启了事务自动提交模式。\n\n每条单独的 SQL 语句都会被视为一个独立的事务处…",
+      "analysis": "【MySQL / 事务】",
+      "categories": [
+        "MySQL / 事务"
+      ]
+    },
+    {
+      "id": "java-core-0373",
+      "type": "short",
+      "question": "事务的隔离级别有哪些？",
+      "answer": "隔离级别定义了一个事务可能受其他事务影响的程度，MySQL 支持四种隔离级别，分别是：读未提交、读已提交、可重复读和串行化。\n\n读未提交会出现脏读，读已提交会出现不可重复读，可重复读是 InnoDB 默认的隔离级别，可以避免脏读和不可重复读，但会出现幻读。不过通过 MVCC 和临键锁，能够防止大多数并发问题。\n\n串行化最安全，但性能较差，通常不推荐使用。\n\n详细说说读未提交？\n\n事务可以读取其他未提交事务修改的数据。也就是说，如果未提交的事务一旦回滚，读取到的数据就会变成了“脏数据”，通常不会使用。\n\n什么是读已提交？\n\n读已提交避免了脏读，但可能会出现不可重复读，即同一事务内多次读取同一数据结果会不同，因为其他事务提交的修改，对当前事务是可见的。\n\n是 Oracle、SQL Server 等数据库的默认隔离级别。\n\n什么是可重复读？\n\n可重复读能确保同一事务内多次读取相同数据的结果一致，即使其他事务已提交修改。\n\n是 MySQL 默认的隔离级别，避免了“脏读”和“不可重复读”，通过 MVCC 和临键锁也能在一定程度上避免幻读。\n\nsql\n-- Session A:\nSTART TRANSACTION;\nSELECT balance FROM accounts WHERE id=1; --返回500\n\n-- Session B:\nUPDATE accounts SET balance = balance +100 WHERE id=1;\nCOMMIT;\n\n-- Session A再次查询:\nSELECT balance FROM accounts WHERE id=1; --仍返回500(可重复读)\n\n-- Session A更新后查询:\nUPDATE accounts SET balance = balance +50 WHERE id=1; --基于最新值550更新为600 \nSELECT balance FROM accounts WHERE id=1; --返回600\n\n什么是串行化？\n\n串行化是最高的隔离级别，通过强制事务串行执行来解决“幻读”问题。\n\n但会导致大量的锁竞争问题，实际应用中很少用。\n\nA 事务未提交，B 事务上查询到的是旧值还是新值？\n\n如果 B 是普通的 SELECT，也就是快照读，它读的是旧值，即事务 A 修改前的快照，并且不会阻塞；如果 B 是当前读，比如 SELECT … FOR UPDATE，它会被阻塞直到事务 A 提交或回滚。\n\nsql\n-- 会话 A 中，更新练习伴侣二的余额\nSTART TRANSACTION;\nUPDATE accounts SET balance = 8000 WHERE name = '练习伴侣二';\n-- 此时并没有 COMMIT\n\n-- 会话 B 中查询练习伴侣二的余额\nSELECT  FROM accounts WHERE name = '练习伴侣二';\n-- 会话 B 会读取到 旧值 1000\n\n-- 会话 C 中使用当前读查询练习伴侣二的余额\nSELECT  FROM accounts WHERE name = '练习伴侣二' FOR UPDATE;\n-- 会话 C 会被阻塞，直到会话 A 提交或回滚\n\n怎么更改事务的隔离级别？\n\nMySQL 支持通过 SET 语句修改事务隔离级别，包括全局级别、当前会话，但一般不建议在生产环境中随意修改隔离级别。\n\n测试环境下可以使用 SET SESSION TRANSACTION ISOLATION LEVEL REPEATABLE READ; 可以修改当前会话的隔离级别。\n\n使用 SET GLOBAL TRANSACTION ISOLATION LEVEL READ COMMITTED; 可以修改全局隔离级别，影响新的连接，但不会改变现有会话。",
+      "analysis": "【MySQL / 事务】",
+      "categories": [
+        "MySQL / 事务"
+      ]
+    },
+    {
+      "id": "java-core-0374",
+      "type": "short",
+      "question": "事务的隔离级别是如何实现的？",
+      "answer": "读未提交通过行锁共享锁确保一个事务在更新行数据但没有提交的情况下，其他事务不能更新该行数据，但不会阻止脏读，意味着事务2 可以在事务1 提交之前读取到事务1 修改的数据。\n\n读已提交会在更新数据前加行级排他锁，不允许其他事务写入或者读取未提交的数据，也就意味着事务2 不能在事务 1 提交之前读取到事务1 修改的数据，从而解决脏读的问题。\n\n另外，读已提交会在每次读取数据前都生成一个新的 ReadView，所以会出现不可重复读的问题。\n\n可重复读只在第一次读操作时生成 ReadView，后续读操作都会使用这个 ReadView，从而避免不可重复读的问题。\n\n另外，对于当前读操作，可重复读会通过临键锁来锁住当前行和前间隙，防止其他事务在这个范围内插入数据，从而避免幻读的问题。\n\n串行化级别下，事务在读操作时，会先加表级共享锁；在写操作时，会先加表级排他锁。\n\n直到事务结束后才释放锁，这样就能确保事务之间不会相互干扰。",
+      "analysis": "【MySQL / 事务】",
+      "categories": [
+        "MySQL / 事务"
+      ]
+    },
+    {
+      "id": "java-core-0375",
+      "type": "short",
+      "question": "请详细说说幻读呢？",
+      "answer": "幻读是指在同一个事务中，多次执行相同的范围查询，结果却不同。这种现象通常发生在其他事务在两次查询之间插入或删除了符合当前查询条件的数据。\n\n---- 这部分是帮助大家理解 start，面试中可以不背 ----\n\n比如说事务 A 在第一次查询某个条件范围的数据行后，事务 B 插入了一条新数据且符合条件范围，事务 A 再次查询时，发现多了一条数据。\n\n我们来验证一下，先创建测试表，插入测试数据。\n\nsql\nCREATE TABLE user_info (\n  id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键id',\n  name VARCHAR(32) NOT NULL DEFAULT '' COMMENT '姓名',\n  gender VARCHAR(32) NOT NULL DEFAULT '' COMMENT '性别',\n  email VARCHAR(32) NOT NULL DEFAULT '' COMMENT '邮箱',\n  PRIMARY KEY (id)\n) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COMMENT='用户信息表';\n\n-- 插入测试数据\nINSERT INTO user_info (id, name, gender, email) VALUES \n  (1, 'Curry', '男', 'curry@163.com'),\n  (2, 'Wade', '男', 'wade@163.com'),\n  (3, 'James', '男', 'james@163.com');\n\nCOMMIT;\n\n然后我们在事务 A 中执行查询 SELECT  FROM user_info WHERE id > 1;，在事务 B 中插入数据 INSERT INTO user_info (name, gender, email) VALUES ('wanger', '女', 'wanger@163.com');，再在事务 A 中修改刚刚插入的数据 update user_info set gender='男' where id = 4;，最后在事务 A 中再次查询 SELECT  FROM user_info WHERE id > 1;。\n\n---- 这部分是帮助大家理解 end，面试中可以不背 ----\n\n如何避免幻读？\n\nMySQL 在可重复读隔离级别下，通过 MVCC 和临键锁可以在一定程度上避免幻读。\n\n比如说在查询时显示加锁，利用临键锁锁定查询范围，防止其他事务插入新的数据。\n\nsql\nSTART TRANSACTION;\nSELECT  FROM user_info WHERE id > 1 FOR UPDATE; -- 加临键锁\nCOMMIT;\n\n其他事务在插入数据时，会被阻塞，直到当前事务提交或回滚。\n\n---- 这部分是帮助大家理解 start，面试中可以不背 ----\n\n解释一下。\n\n如果查询语句中包含显式加锁（如 FOR UPDATE），InnoDB 会使用当前读，直接读取最新的数据，并加锁。\n\n在范围查询时，InnoDB 不仅会对符合条件的记录加行锁，还会对相邻的索引间隙加间隙锁，从而形成临键锁。\n\n临键锁可以防止其他事务在间隙中插入新数据，从而避免幻读。\n\n---- 这部分是帮助大家理解 end，面试中可以不背 ----\n\n比如说在执行查询的事务中，不要尝试去更新其他事务插入/删除的数据，利用快照读来避免幻读。\n\n---- 这部分是帮助大家理解 start，面试中可以不背 ----\n\n使用 SELECT 查询时，如果没有显式加锁，InnoDB 会使用 MVCC 提供一致性视图。\n\n每个事务在启动时都会生成一个 Read View，用来确定哪些数据对当前事务可见。\n\n其他事务在当前事务启动后插入的新数据不会被当前事务看到，因此不会出现幻读。\n\n---- 这部分是帮助大家理解 end，面试中可以不背 ----\n\n什么是当前读呢？\n\n当前读是指读取记录的最新已提交版本，并且在读取时对记录加锁，确保其他并发事务不能修改当前记录。\n\n比如 SELECT ... LOCK IN SHARE MODE、SELECT ...…",
+      "analysis": "【MySQL / 事务】",
+      "categories": [
+        "MySQL / 事务"
+      ]
+    },
+    {
+      "id": "java-core-0376",
+      "type": "short",
+      "question": "MVCC 了解吗？",
+      "answer": "MVCC 指的是多版本并发控制，每次修改数据时，都会生成一个新的版本，而不是直接在原有数据上进行修改。并且每个事务只能看到在它开始之前已经提交的数据版本。\n\n这样的话，读操作就不会阻塞写操作，写操作也不会阻塞读操作，从而避免加锁带来的性能损耗。\n\n其底层实现主要依赖于 Undo Log 和 Read View。\n\n每次修改数据前，先将记录拷贝到Undo Log，并且每条记录会包含三个隐藏列，DB\\_TRX\\_ID 用来记录修改该行的事务 ID，DB\\_ROLL\\_PTR 用来指向 Undo Log 中的前一个版本，DB\\_ROW\\_ID 用来唯一标识该行数据（仅无主键时生成）。\n\n每次读取数据时，都会生成一个 ReadView，其中记录了当前活跃事务的 ID 集合、最小事务 ID、最大事务 ID 等信息，通过与 DB\\_TRX\\_ID 进行对比，判断当前事务是否可以看到该数据版本。\n\n请详细说说什么是版本链？\n\n版本链是指 InnoDB 中同一条记录的多个历史版本，通过 DB\\_ROLL\\_PTR 字段将它们像链表一样串起来，用来支持 MVCC 的快照读。\n\n假设有一张hero表，表中有这样一行记录，name 为张三，city 为帝都，插入这行记录的事务 id 是 80。\n\n此时，DB_TRX_ID的值就是 80，DB_ROLL_PTR的值就是指向这条 insert undo 日志的指针。\n\n接下来，如果有两个DB_TRX_ID分别为100、200的事务对这条记录进行了update操作，那么这条记录的版本链就会变成下面这样：\n\n也就是说，当更新一行数据时，InnoDB 不会直接覆盖原有数据，而是创建一个新的数据版本，并更新 DB\\_TRX\\_ID 和 DB\\_ROLL\\_PTR，使它们指向前一个版本和相关的 undo 日志。\n\n这样，老版本的数据就不会丢失，可以通过版本链找到。\n\n由于 undo 日志会记录每一次的 update，并且新插入的行数据会记录上一条 undo 日志的指针，所以可以通过 DB\\_ROLL\\_PTR 这个指针找到上一条记录，这样就形成了一个版本链。\n\n请详细说说什么是ReadView？\n\nReadView 是 InnoDB 为每个事务创建的一份“可见性视图”，用于判断在执行快照读时，哪些数据版本是当前这个事务可以看到的，哪些不能看到。\n\n当事务开始执行时，InnoDB 会为该事务创建一个 ReadView，这个 ReadView 会记录 4 个重要的信息：\n\n creator\\_trx\\_id：创建该 ReadView 的事务 ID。\n m\\_ids：所有活跃事务的 ID 列表，活跃事务是指那些已经开始但尚未提交的事务。\n min\\_trx\\_id：所有活跃事务中最小的事务 ID。它是 m\\_ids 数组中最小的事务 ID。\n max\\_trx\\_id ：事务 ID 的最大值加一。换句话说，它是下一个将要生成的事务 ID。\n\nReadView 是如何判断记录的某个版本是否可见的？\n\n会通过三个步骤来判断：\n\n①、如果某个数据版本的 DB\\_TRX\\_ID 小于 min\\_trx\\_id，则该数据版本在生成 ReadView 之前就已经提交，因此对当前事务是可见的。\n\n②、如果 DB\\_TRX\\_ID 大于 max\\_trx\\_id，则表示创建该数据版本的事务在生成 ReadView 之后开始，因此对当前事务不可见。\n\n③、如果 DB\\_TRX\\_ID 在 min\\_trx\\_id 和 max\\_trx\\_id 之间，需要判断 DB\\_TRX\\_ID 是否在 m\\_ids 列表中：\n\n 不在，表示创建该数据版本的事务在生成 ReadView 之后已经提交，因此对当前事务也是可见的。\n 在，表示事务仍然活跃，或者在当前事务生成 ReadView 之后才开始，因此是不可见的。\n\n举个实际的例子。\n\n读事务开启了一个 ReadView，这个 ReadView 里面记录了当前活跃事务的 ID 列表（444、555、665），以及最小事务 ID（444）和最大事务 ID（666）。当然还有自己的事务 ID 520，也就是 creator\\_trx\\_id。\n\n它要读的这行数据的写事务 ID 是 x，也就是 DB\\_TRX\\…",
+      "analysis": "【MySQL / 事务】",
+      "categories": [
+        "MySQL / 事务"
+      ]
+    },
+    {
+      "id": "java-core-0377",
+      "type": "short",
+      "question": "MySQL数据库读写分离了解吗？",
+      "answer": "读写分离就是把“写操作”交给主库处理，“读操作”分给多个从库处理，从而提升系统并发性能。\n\n应用层通过中间件（如 MyCat、ShardingSphere）自动路由请求，将 INSERT / UPDATE / DELETE 等写操作发送给主库，将 SELECT 查询操作发送给从库。\n\nsql\n// 示例：Java中通过不同数据源切换\n@Transactional\npublic void updateOrder(Order order) {\n    masterDataSource.update(order); // 写操作走主库\n}\n\npublic Order getOrderById(Long id) {\n    return slaveDataSource.query(id); // 读操作走从库\n}\n\n主库将数据变更通过 binlog 同步到从库，从而保持数据一致性。\n\n主库 dump\\_thread 线程通过 TCP 将 binlog 推送给从库，从库 io\\_thread 线程，接收主库 binlog，写入 relay log，从库 sql\\_thread 线程读取 relay log，并顺序执行 SQL 语句，更新从库数据。",
+      "analysis": "【MySQL / 高可用】",
+      "categories": [
+        "MySQL / 高可用"
+      ]
+    },
+    {
+      "id": "java-core-0378",
+      "type": "short",
+      "question": "读写分离的实现方式有哪些？",
+      "answer": "实现读写分离有三种方式：最简单的是在应用层手动控制主从数据源，适用于小型项目；\n\n中等项目是通过 Spring + 多数据源插件、AOP 注解自动路由；\n\n大型系统通常使用中间件，如 ShardingSphere、MyCat，支持自动路由、负载均衡、故障转移等功能。\n\nMycat 的读写分离功能依赖于 MySQL 的主从复制架构：\n\n writeHost: 表示主节点，负责处理所有的 DML SQL 语句，如 INSERT、UPDATE 和 DELETE。\n readHost: 表示从节点，负责处理查询 SQL 语句（如 SELECT），以实现读写分离。\n\n正常情况下，Mycat 会将第一个配置的 writeHost 作为默认的写节点。所有的 DML SQL 语句会被发送到此默认写节点执行。\n\n写节点完成数据写入后，通过 MySQL 的主从复制机制，将数据同步到所有从节点，确保主从数据一致性。",
+      "analysis": "【MySQL / 高可用】",
+      "categories": [
+        "MySQL / 高可用"
+      ]
+    },
+    {
+      "id": "java-core-0379",
+      "type": "short",
+      "question": "主从复制原理了解吗？",
+      "answer": "MySQL 的主从复制是一种数据同步机制，用于将数据从主数据库复制到一个或多个从数据库。\n\n主库执行事务提交时，将数据变更以事件形式记录到 Binlog。从库通过 I/O 线程从主库的 Binlog 中读取变更事件，并将这些事件写入到本地的中继日志文件中，SQL 线程会实时监控中继日志的内容，按顺序读取并执行这些事件，从而保证从库与主库数据一致。",
+      "analysis": "【MySQL / 高可用】",
+      "categories": [
+        "MySQL / 高可用"
+      ]
+    },
+    {
+      "id": "java-core-0380",
+      "type": "short",
+      "question": "主从同步延迟怎么处理？",
+      "answer": "主从同步延迟是因为从库需要先接收 binlog，再执行 SQL 才能同步主库数据，在高并发写或网络抖动时容易出现延迟，导致读写不一致。\n\n第一种解决方案：对一致性要求高的查询（如支付结果查询）可以直接走主库。\n\njava\n// 伪代码示例\npublic Object query(String sql) {\n    if(isWriteQuery(sql) || needStrongConsistency(sql)) {\n        return masterDataSource.query(sql);\n    } else {\n        return slaveDataSource.query(sql);\n    }\n}\n\n第二种解决方案：对于非关键业务允许短暂数据不一致，可以提示用户“数据同步中，请稍后刷新”，然后借助异步通知机制替代实时查询。\n\njava\n// 伪代码示例\npublic Object query(String sql) {\n    if(isWriteQuery(sql)) {\n        return masterDataSource.query(sql);\n    } else {\n        // 异步通知用户数据已更新\n        notifyUser(\"数据同步中，请稍后刷新\");\n        return slaveDataSource.query(sql);\n    }\n}\n\n第三种解决方案：采用半同步复制，主库在事务提交时，要等至少一个从库确认收到 binlog（但不要求执行完成），才算提交成功。\n\n请说说半同步复制的流程？\n\n第一步，主库安装半同步插件：\n\nsql\nINSTALL PLUGIN rpl_semi_sync_master SONAME 'semisync_master.so';\n\n第二步，主库启用半同步复制并设置超时时间：\n\nsql\nSET GLOBAL rpl_semi_sync_master_enabled = 1;\nSET GLOBAL rpl_semi_sync_master_timeout = 10000;\n\n主库 my.cnf 配置示例：\n\nini\n[mysqld]\nplugin-load = \"rpl_semi_sync_master=semisync_master.so\"\nrpl_semi_sync_master_enabled = 1\nrpl_semi_sync_master_timeout = 10000\nMySQL 5.7+建议使用无损模式\nrpl_semi_sync_master_wait_point = AFTER_SYNC\n\n第三步，从库安装半同步插件：\n\nsql\nINSTALL PLUGIN rpl_semi_sync_slave SONAME 'semisync_slave.so';\n\n第四步，从库启用半同步复制：\n\nsql\nSET GLOBAL rpl_semi_sync_slave_enabled = 1;\n\n从库 my.cnf 配置示例：\n\nini\n[mysqld]\nplugin-load = \"rpl_semi_sync_slave=semisync_slave.so\"\nrpl_semi_sync_slave_enabled = 1",
+      "analysis": "【MySQL / 高可用】",
+      "categories": [
+        "MySQL / 高可用"
+      ]
+    },
+    {
+      "id": "java-core-0381",
+      "type": "short",
+      "question": "你们一般是怎么分库的呢？",
+      "answer": "分库的策略有两种，第一种是垂直分库：按照业务模块将不同的表拆分到不同的库中，比如说用户、登录、权限等表放在用户库中，商品、分类、库存放在商品库中，优惠券、满减、秒杀放在活动库中。\n\n第二种是水平分库：按照一定的策略将一个表中的数据拆分到多个库中，比如哈希分片和范围分片，对用户 id 进行取模运算或者范围划分，将数据分散到不同的库中。\n\n贴一段使用 ShardingSphere 的 inline 算法定义分片规则：\n\nyaml\nrules:\n- !SHARDING\n  tables:\n    order:\n      actualDataNodes: db_${0..3}.order_${0..15}\n      databaseStrategy:\n        standard:\n          shardingColumn: user_id\n          shardingAlgorithmName: db_hash_mod\n      tableStrategy:\n        standard:\n          shardingColumn: order_time\n          shardingAlgorithmName: table_interval_yearly\n  shardingAlgorithms:\n    db_hash_mod:\n      type: HASH_MOD\n      props:\n        sharding-count: 4\n    table_interval_yearly:\n      type: INTERVAL\n      props:\n        datetime-pattern: 'yyyy-MM-dd HH:mm:ss'\n        datetime-lower: '2024-01-01 00:00:00'\n        datetime-upper: '2025-01-01 00:00:00'\n        sharding-suffix-pattern: 'yyyy'\n        datetime-interval-amount: 1\n        datetime-interval-unit: 'Years'",
+      "analysis": "【MySQL / 高可用】",
+      "categories": [
+        "MySQL / 高可用"
+      ]
+    },
+    {
+      "id": "java-core-0382",
+      "type": "short",
+      "question": "那你们是怎么分表的？",
+      "answer": "当单表超过 500 万条数据，就可以考虑水平分表了。比如说我们可以将文章表拆分成多个表，如 article\\_0、article\\_9999、article\\_19999 等。\n\n在中，我们将文章的基本信息和内容详情做了垂直分表处理，因为文章的内容会占用比较大的空间，在只需要查看文章基本信息时把文章详情也带出来的话，就会占用更多的网络 IO 和内存导致查询变慢；而文章的基本信息，如标题、作者、状态等信息占用的空间较小，很适合不需要查询文章详情的场景。",
+      "analysis": "【MySQL / 高可用】",
+      "categories": [
+        "MySQL / 高可用"
+      ]
+    },
+    {
+      "id": "java-core-0383",
+      "type": "short",
+      "question": "水平分库分表的分片策略有哪几种？",
+      "answer": "常见的分片策略有三种，范围分片、Hash 分片和路由分片。\n\n范围分片是根据某个字段的值范围进行水平拆分。适用于分片键具有连续性的场景。\n\n比如说将 user\\_id 作为分片键：\n\n 1 ~ 10000 → db1.user\\_1\n 10001 ~ 20000 → db2.user\\_2\n\nHash 分片是指通过对分片键的值进行哈希取模，将数据均匀分布到多个库表中，适用于分片键具有离散性的场景。\n\n比如说我们一开始规划好了 4 个表，那么就可以简单地通过取模来实现分表：\n\njava\npublic String getTableNameByHash(long userId) {\n    int tableIndex = (int) (userId % 4);\n    return \"user_\" + tableIndex;\n}\n\n路由分片是通过路由配置来确定数据应该存储在哪个库表，适用于分片键不规律的场景。\n\n比如说我们可以通过 order\\_router 表来确定订单数据存储在哪个表中：\n\n| order\\_id | table\\_id |\n| --- | --- |\n| xxxx | table\\_1 |\n| yyyy | table\\_2 |\n| zzzz | table\\_3 |",
+      "analysis": "【MySQL / 高可用】",
+      "categories": [
+        "MySQL / 高可用"
+      ]
+    },
+    {
+      "id": "java-core-0384",
+      "type": "short",
+      "question": "不停机扩容怎么实现？",
+      "answer": "第一个阶段：新旧库同时写入，确保数据实时同步；可以借助消息队列实现异步补偿，幂等避免重复写入。读操作仍然走旧库。\n\n代码参考：\n\njava\n@Transactional\npublic void createOrder(Order order) {\n    oldDB.insert(order);  // 写入旧库\n    newDB.insert(order);  // 写入新扩容节点\n    kafka.send(\"data_sync\", order);  // 异步补偿通道\n}\n\n第二个阶段，通过 Canal 或者自研脚本将旧库的历史数据同步到新库。关键业务在查询时同时查询新旧库，进行数据校验，确保一致性。\n\njava\npublic List getOrders(Long userId) {\n    List orders = newDB.getOrders(userId);\n    List oldOrders = oldDB.getOrders(userId);\n    if (!orders.equals(oldOrders)) {\n        // 数据不一致，进行补偿\n        kafka.send(\"data_sync\", oldOrders);\n    }\n}\n\n第三个阶段，在确认新库数据一致性后，逐步将读请求切换到新库，然后下线旧库。",
+      "analysis": "【MySQL / 高可用】",
+      "categories": [
+        "MySQL / 高可用"
+      ]
+    },
+    {
+      "id": "java-core-0385",
+      "type": "short",
+      "question": "常用的分库分表中间件有哪些？",
+      "answer": "常用的分库分表中间件有 ShardingSphere 和 Mycat。\n\n①、ShardingSphere 最初由当当开源，后来贡献给了 Apache，其子项目 Sharding-JDBC 主要在 Java 的 JDBC 层提供额外的服务。无需额外部署和依赖，可理解为增强版的 JDBC 驱动，完全兼容 JDBC 和各种 ORM 框架。\n\n②、Mycat 是由阿里巴巴的一款产品 Cobar 衍生而来，可以把它看作一个数据库代理。",
+      "analysis": "【MySQL / 高可用】",
+      "categories": [
+        "MySQL / 高可用"
+      ]
+    },
+    {
+      "id": "java-core-0386",
+      "type": "short",
+      "question": "你觉得分库分表会带来什么问题呢？",
+      "answer": "第一，跨库事务无法依赖单机 MySQL 的 ACID 特性，需要使用分布式事务解决方案，如 Seata 的 AT 模式、TCC 模式等。\n\n第二，跨库后无法使用 JOIN 联表查询。可以在业务层进行拼接，或者把需要联表查询的数据放到 ES 中。\n\njava\n// Java 代码示例\nUser user = userService.getUserById(1);\nList orders = orderService.getOrdersByUserId(1);\n\n第三，自增 ID 在分片场景下容易冲突，需要使用全局唯一方案。\n\n数据库表被切分后，不能再依赖数据库自身的主键生成机制，所以需要一些手段来保证全局主键唯一。比如说雪花算法、京东的 JD-hotkey。\n\n你们项目中的分布式主键 id 是怎么生成的？\n\n在项目中，我们在雪花算法的基础上实现了一套自定义的 ID 生成方案，通过更改时间戳单位、ID 长度、workId 与 dataCenterId 的分配比例，ID 生成的延迟降低了 20%；满足了分布式环境下 ID 的唯一性。\n\n雪花算法具体是怎么实现的？\n\n雪花算法是 Twitter 开源的分布式 ID 生成算法，其核心思想是：使用一个 64 位的数字来作为全局唯一 ID。\n\n 第 1 位是符号位，永远是 0，表示正数。\n 接下来的 41 位是时间戳，记录的是当前时间戳减去一个固定的开始时间戳，可以使用 69 年。\n 然后是 10 位的工作机器 ID。\n 最后是 12 位的序列号，每毫秒最多可生成 4096 个 ID。\n\n大致的实现代码如下所示：\n\njava\npublic class SnowflakeIdGenerator {\n    private long datacenterId = 1L; // 数据中心ID\n    private long machineId = 1L; // 机器ID\n    private long sequence = 0L; // 序列号\n\n    private long lastTimestamp = -1L;\n\n    public synchronized long nextId() {\n        long timestamp = System.currentTimeMillis();\n        if (timestamp == lastTimestamp) {\n            sequence = (sequence + 1) & 4095;\n            if (sequence == 0) {\n                while (timestamp == lastTimestamp) {\n                    timestamp = System.currentTimeMillis();\n                }\n            }\n        } else {\n            sequence = 0;\n        }\n\n        lastTimestamp = timestamp;\n\n        return ((timestamp - 1609459200000L) << 22) | (datacenterId << 17) | (machineId << 12) | sequence;\n    }\n}",
+      "analysis": "【MySQL / 高可用】",
+      "categories": [
+        "MySQL / 高可用"
+      ]
+    },
+    {
+      "id": "java-core-0387",
+      "type": "short",
+      "question": "百万级别以上的数据如何删除？",
+      "answer": "在处理百万级别的数据删除时，大范围的 DELETE 语句往往会造成锁表时间长、事务日志膨胀等问题。\n\n可以采用批量删除的方案，将删除操作分成多个小批次进行处理。\n\njava\npublic void batchDelete(String tableName, String condition, int batchSize) {\n    // 1. 创建线程池\n    int threadCount = Runtime.getRuntime().availableProcessors();\n    ExecutorService executor = Executors.newFixedThreadPool(threadCount);\n    CountDownLatch latch = new CountDownLatch(threadCount);\n\n    // 2. 获取总记录数\n    long totalCount = getTotalCount(tableName, condition);\n    \n    // 3. 计算每个线程处理的数据量\n    long perThreadCount = totalCount / threadCount;\n    \n    // 4. 分配任务给线程池\n    for (int i = 0; i  {\n            try {\n                // 分批次删除数据\n                for (long j = startId; j  @total END REPEAT;\n\n-- 4. 验证数据一致性\nSELECT COUNT() FROM new_table;\nSELECT COUNT() FROM large_table WHERE condition;\n\n-- 5. 在业务低峰期执行表切换\nRENAME TABLE large_table TO old_table, \n             new_table TO large_table;\n\n-- 6. 确认无误后再删除旧表（建议不要立即删除）\n-- DROP TABLE old_table;",
+      "analysis": "【MySQL / 运维】",
+      "categories": [
+        "MySQL / 运维"
+      ]
+    },
+    {
+      "id": "java-core-0388",
+      "type": "short",
+      "question": "千万级大表如何添加字段？",
+      "answer": "在低版本的 MySQL 中，千万级数据量的表中添加字段时，直接使用 ALTER TABLE 命令会导致长时间锁表、甚至数据库崩溃等。\n\n可以使用 Percona Toolkit 的 pt-online-schema-change 来完成，它通过创建临时表、逐步同步数据并使用触发器捕获变更来实现。\n\nbash\npt-online-schema-change --alter \"ADD COLUMN new_column datatype\" D=database,t=your_table --execute\n\n对于 MySQL 8.0+ 版本，可以直接通过 ALTER TABLE 来完成，因为加入了 INSTAN 算法，添加列并不会长时间锁表。\n\nsql\nALTER TABLE your_table ADD COLUMN new_column datatype;\n\n如果没有指定 ALGORITHM=INSTANT 算法，MySQL 会先尝试 INSTANT 算法；如果无法完成，会切换到 INPLACE 算法；如果仍然无法完成，会尝试 COPY 算法。",
+      "analysis": "【MySQL / 运维】",
+      "categories": [
+        "MySQL / 运维"
+      ]
+    },
+    {
+      "id": "java-core-0389",
+      "type": "short",
+      "question": "MySQL 导致 cpu 飙升的话，要怎么处理呢？",
+      "answer": "我通常先通过 top 命令确认是否是 mysqld 的进程占用。\n\n然后通过 SHOW PROCESSLIST 和慢查询日志定位是否存在耗时 SQL，再配合 explain 和 performance\\_schema 分析 SQL 是否命中索引，是否存在临时表和排序。\n\nsql\n-- 使用 EXPLAIN 分析SQL执行计划\nEXPLAIN SELECT * FROM large_table WHERE condition;\n\n-- 查看表的索引使用情况\nSHOW INDEX FROM table_name;\n\n-- 查看InnoDB状态\nSHOW ENGINE INNODB STATUS;\n\n-- 查看表的统计信息\nANALYZE TABLE table_name;\n\n最终通过 SQL 优化、加索引、分批操作等手段逐步优化。",
+      "analysis": "【MySQL / 运维】",
+      "categories": [
+        "MySQL / 运维"
+      ]
+    },
+    {
+      "id": "java-core-0390",
+      "type": "short",
+      "question": "一张表：id，name，age，sex，class，sql 语句：所有年龄为 18 的人的名字？找到每个班年龄大于 18 有多少人？找到每个班年龄排前两名的人？（补充）",
+      "answer": "> 建议大家在本地建表，实操一下。 2024 年 04 月 11 日增补。\n\n第一步，建表：\n\nsql\nCREATE TABLE students (\n    id INT AUTO_INCREMENT PRIMARY KEY,\n    name VARCHAR(50),\n    age INT,\n    sex CHAR(1),\n    class VARCHAR(50)\n);\n\n第二步，插入数据：\n\nsql\nINSERT INTO students (name, age, sex, class) VALUES\n('练习伴侣二', 18, '女', '三年二班'),\n('练习伴侣一', 20, '男', '三年二班'),\n('练习伴侣三', 19, '男', '三年三班'),\n('练习伴侣四', 17, '男', '三年三班'),\n('练习伴侣五', 20, '女', '三年四班'),\n('练习伴侣六', 21, '男', '三年四班'),\n('练习伴侣七', 18, '女', '三年四班');\n\n所有年龄为 18 的人的名字？\n\nsql\nSELECT name FROM students WHERE age = 18;\n\n这条 SQL 语句从表中选择age等于 18 的所有记录，并返回这些记录的name字段。\n\n如果可以的话，可以给 age 字段加上索引。\n\nsql\nALTER TABLE students ADD INDEX age_index (age);\n\n找到每个班年龄大于 18 有多少人?\n\nsql\nSELECT class, COUNT(*) AS number_of_students\nFROM students\nWHERE age > 18\nGROUP BY class;\n\n这条 SQL 语句先筛选出年龄大于 18 的记录，然后按class分组，并通过 count 统计每个班的学生数。\n\n找到每个班年龄排前两名的人？\n\n这个查询稍微复杂一些，需要使用子查询和去重 DISTINCT。\n\nsql\nSELECT a.class, a.name, a.age\nFROM students a\nWHERE (\n    SELECT COUNT(DISTINCT b.age)\n    FROM students b\n    WHERE b.class = a.class AND b.age > a.age\n) < 2\nORDER BY a.class, a.age DESC;\n\n这条 SQL 语句首先从students表中选择class、name和age字段，然后使用子查询计算每个班级中年龄排前两名的学生。",
+      "analysis": "【MySQL / SQL 题】",
+      "categories": [
+        "MySQL / SQL 题"
+      ]
+    },
+    {
+      "id": "java-core-0391",
+      "type": "short",
+      "question": "有一个查询需求，MySQL 中有两个表，一个表 1000W 数据，另一个表只有几千数据，要做一个关联查询，如何优化",
+      "answer": "第一步，为关联字段建立索引，确保 on 连接的字段都有索引。\n\nsql\nALTER TABLE big_table ADD INDEX idx_small_id(small_id);\n\n第二步，小表驱动大表，将小表放在 JOIN 的左边（驱动表），大表放在右边。\n\nsql\nSELECT ... FROM small_table s \nJOIN big_table b ON s.id = b.small_id",
+      "analysis": "【MySQL / SQL 题】",
+      "categories": [
+        "MySQL / SQL 题"
+      ]
+    },
+    {
+      "id": "java-core-0392",
+      "type": "short",
+      "question": "新建一个表结构，创建索引，将百万或千万级的数据使用 insert 导入该表，新建一个表结构，将百万或千万级的数据使用 isnert 导入该表，再创建索引，这两种效率哪个高呢？或者说用时短呢？",
+      "answer": "先说结论：\n\n在大数据量导入场景下，先导入数据，后建索引的效率显著高于先建索引，后导入数据的效率。\n\n来，实操。\n\n先创建一个表，然后创建索引，执行插入语句，来看看执行时间（100 万数据在我本机上执行时间比较长，我们就用 10 万条数据来测试）。\n\nsql\nCREATE TABLE test_table (\n    id BIGINT AUTO_INCREMENT PRIMARY KEY,\n    name VARCHAR(255) NOT NULL,\n    email VARCHAR(255) NOT NULL,\n    created_at DATETIME NOT NULL\n);\nCREATE INDEX idx_name ON test_table(name);\nDELIMITER //\n\nCREATE PROCEDURE insert_data()\nBEGIN\n    DECLARE i INT DEFAULT 0;\n\n    WHILE i < 1000000 DO\n        INSERT INTO test_table(name, email, created_at)\n        VALUES (CONCAT('wanger',i), CONCAT('email', i, '@example.com'), NOW());\n        SET i = i + 1;\n    END WHILE;\nEND //\n\nDELIMITER ;\nCALL insert_data();\n\n总的时间 13.93+0.01+0.01+0.01=13.96 秒。\n\n接下来，我们再创建一个表，执行插入操作，然后创建索引。\n\nsql\nCREATE TABLE test_table_no_index (\n    id BIGINT AUTO_INCREMENT PRIMARY KEY,\n    name VARCHAR(255) NOT NULL,\n    email VARCHAR(255) NOT NULL,\n    created_at DATETIME NOT NULL\n);\nDELIMITER //\n\nCREATE PROCEDURE insert_data_no_index()\nBEGIN\n    DECLARE i INT DEFAULT 0;\n\n    WHILE i < 1000000 DO\n        INSERT INTO test_table_no_index(name, email, created_at)\n        VALUES (CONCAT('wanger', i), CONCAT('email', i, '@example.com'), NOW());\n        SET i = i + 1;\n    END WHILE;\nEND //\n\nDELIMITER ;\nCALL insert_data_no_index();\nCREATE INDEX idx_name_no_index ON test_table_no_index(name);\n\n来看一下总的时间，0.01+0.00+13.08+0.18=13.27 秒。\n\n先插入数据再创建索引的方式比先创建索引再插入数据要快一点。\n\n然后时间差距很微小，主要是因为我们插入的数据少。说一下差别。\n\n 先插入数据再创建索引：在没有索引的情况下插入数据，数据库不需要在每次插入时更新索引。\n 先创建索引再插入数据：数据库需要在每次插入新记录时维护索引结构，随着数据量的增加，索引的维护会导致额外的性能开销。\n\nMySQL是先建立索引好还是先插入数据好？\n\n如果是小批量插入，可以先建索引；但在大数据量数据导入场景下，推荐先插入数据再建索引。\n\n因为索引是基于 B+ 树的，大量插入时如果提前建索引，会频繁触发页分裂和索引结构调整，影响性能。\n\n插入完成后统一构建索引，MySQL 会按顺序批量生成索引结构，速度更快、资源消耗更低。",
+      "analysis": "【MySQL / SQL 题】",
+      "categories": [
+        "MySQL / SQL 题"
+      ]
+    },
+    {
+      "id": "java-core-0393",
+      "type": "short",
+      "question": "什么是深分页，select * from tbn limit 1000000000 这个有什么问题，如果表大或者表小分别什么问题",
+      "answer": "深分页是指在 MySQL 中获取比较靠后的数据页，比如第 1000 页、第 10000 页等。特别是使用 LIMIT offset,count 这种方式，当 offset 特别大，就会带来严重的性能问题。\n\n对于 SELECT  FROM tbn LIMIT 1000000,10，这样的查询语句来说，MySQL 会：\n\n 从表中读取第一条记录，判断是否满足 where 条件；如果满足，计数器+1；否则直到 计数器累计到 1000000 时才开始真正取数据\n 再继续获取 10 条数据，返回\n\n性能会非常差，因为需要从头扫描，无法利用索引优化，并且需要抛弃大量不需要的数据，占用大量的内存和 CPU 资源。\n\n可以借助主键索引分页进行优化：\n\nsql\nSELECT  FROM tbn\nWHERE id > (SELECT id FROM tbn ORDER BY id LIMIT 1000000, 1)\nLIMIT 10\n\n或者记住上次分页的最大 ID，然后再查询：\n\nsql\nSELECT * FROM tbn\nWHERE id > last_page_max_id\nLIMIT 10",
+      "analysis": "【MySQL / SQL 题】",
+      "categories": [
+        "MySQL / SQL 题"
+      ]
+    },
+    {
+      "id": "java-core-0394",
+      "type": "short",
+      "question": "SQL 题：一个学生成绩表，字段有学生姓名、班级、成绩，求各班前十名",
+      "answer": "第一步，建表：\n\nsql\nCREATE TABLE student_scores (\n    student_name VARCHAR(100),\n    class VARCHAR(50),\n    score INT\n);\n\n第二步，插入数据：\n\nsql\nINSERT INTO student_scores (student_name, class, score) VALUES\n('练习伴侣二', '三年二班', 88),\n('练习伴侣三', '三年二班', 92),\n('练习伴侣四', '三年二班', 87),\n('练习伴侣五', '三年二班', 85),\n('练习伴侣六', '三年二班', 90),\n('练习伴侣七', '三年二班', 95),\n('练习伴侣八', '三年二班', 82),\n('练习伴侣九', '三年二班', 78),\n('练习伴侣十', '三年二班', 91),\n('练习伴侣十一', '三年二班', 79),\n('练习伴侣十二', '三年三班', 84),\n('练习伴侣十三', '三年三班', 81),\n('练习伴侣十四', '三年三班', 90),\n('练习伴侣十五', '三年三班', 88),\n('练习伴侣十六', '三年三班', 87),\n('练习伴侣十七', '三年三班', 93),\n('练习伴侣十八', '三年三班', 89),\n('练习伴侣十九', '三年三班', 85),\n('练习伴侣二十', '三年三班', 92),\n('练习伴侣二十一', '三年三班', 84);\n\n第三步，查询各班前十名。如果 MySQL 是 8.0 以下版本，不支持窗口函数，可以通过在查询中维护班级当前处理状态和排名，实现分组内按成绩排序并打标号，再取前十名。\n\nsql\nSET @cur_class = NULL, @cur_rank = 0;\n\nSELECT student_name, class, score\nFROM (\n    SELECT\n        student_name,\n        class,\n        score,\n        @cur_rank := IF(@cur_class = class, @cur_rank + 1, 1) AS rank,\n        @cur_class := class\n    FROM student_scores\n    ORDER BY class, score DESC\n) AS ranked\nWHERE ranked.rank <= 10;\n\n| 步骤 | 解释 |\n| --- | --- |\n| @cur\\_class 变量 | 记录当前正在处理的班级 |\n| @cur\\_rank 变量 | 记录当前班级的排名，默认 0 |\n| IF(@cur_class = class, @cur_rank + 1, 1) | 如果班级没变，就排名 +1；如果换了新班级，排名从 1 重新开始 |\n| @cur_class := class | 更新当前班级变量，保持班级变化跟踪 |\n| ORDER BY class, score DESC | 必须先按班级升序、成绩降序排好，才能保证变量正确打排名 |\n| 外层 WHERE rank <= 10 | 只取每班前十名 ✅ |\n\n如果是 MySQL 8.0+ 版本，可以使用窗口函数来完成：\n\nsql\nSELECT student_name, class, score\nFROM (\n    SELECT \n        student_name, \n        class, \n        score,\n        ROW_NUMBER() OVER (PARTITION BY class ORDER BY score DESC) AS rn\n    FROM student_scores\n) AS tmp\nWHERE rn <= 10;\n\n| SQL 用到的技术 | 说明 |\n| --- | --- |\n| ROW_NUMBER() OVER (PARTITION BY class ORDER BY score DESC) | 给每个班独立打排名，从 1 开始 |\n| 子查询 tmp | 用…",
+      "analysis": "【MySQL / SQL 题】",
+      "categories": [
+        "MySQL / SQL 题"
+      ]
+    }
+  ]
+}

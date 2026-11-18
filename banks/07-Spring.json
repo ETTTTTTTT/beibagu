@@ -1,0 +1,420 @@
+{
+  "meta": {
+    "title": "Spring 专项题库",
+    "questionCount": 41,
+    "exportedAt": "2026-11-18T09:22:29.542526+00:00",
+    "sourceNote": "仅供个人学习，请遵守原资料版权。"
+  },
+  "questions": [
+    {
+      "id": "java-core-0213",
+      "type": "short",
+      "question": "Spring 是什么？特性？有哪些模块？",
+      "answer": "一句话概括：Spring 是一个轻量级、非入侵式的控制反转 (IoC) 和面向切面 (AOP) 的框架。\n\n2003 年，一个音乐家 Rod Johnson 决定发展一个轻量级的 Java 开发框架，Spring作为 Java 战场的龙骑兵渐渐崛起，并淘汰了EJB这个传统的重装骑兵。\n\n到了现在，企业级开发的标配基本就是 Spring5 + Spring Boot 2 + JDK 8\n\nSpring 有哪些特性呢？\n\n1. IoC 和 DI 的支持\n\nSpring 的核心就是一个大的工厂容器，可以维护所有对象的创建和依赖关系，Spring 工厂用于生成 Bean，并且管理 Bean 的生命周期，实现高内聚低耦合的设计理念。\n\n2. AOP 编程的支持\n\nSpring 提供了面向切面编程，可以方便的实现对程序进行权限拦截、运行监控等切面功能。\n\n3. 声明式事务的支持\n\n支持通过配置就来完成对事务的管理，而不需要通过硬编码的方式，以前重复的一些事务提交、回滚的 JDBC 代码，都可以不用自己写了。\n\n4. 快捷测试的支持\n\nSpring 对 Junit 提供支持，可以通过注解快捷地测试 Spring 程序。\n\n5. 快速集成功能\n\n方便集成各种优秀框架，Spring 不排斥各种优秀的开源框架，其内部提供了对各种优秀框架（如：Struts、Hibernate、MyBatis、Quartz 等）的直接支持。\n\n6. 复杂 API 模板封装\n\nSpring 对 JavaEE 开发中非常难用的一些 API（JDBC、JavaMail、远程调用等）都提供了模板化的封装，这些封装 API 的提供使得应用难度大大降低。\n\n简单说一下什么是AOP 和 IoC？\n\nAOP：面向切面编程，是一种编程范式，它的主要作用是将那些与核心业务逻辑无关，但是对多个对象产生影响的公共行为封装起来，如日志记录、性能统计、事务等。\n\nIoC：控制反转，是一种设计思想，它的主要作用是将对象的创建和对象之间的调用过程交给 Spring 容器来管理。\n\nSpring源码看过吗？\n\n看过一些，主要就是针对 Spring 循环依赖、Bean 声明周期、AOP、事务、IOC 这五部分。\n\nPS：关于这份小册的 PDF 版本，目前只有的用户可以获取，后续会考虑开放给大家。",
+      "analysis": "【Spring / 基础】",
+      "categories": [
+        "Spring / 基础"
+      ]
+    },
+    {
+      "id": "java-core-0214",
+      "type": "short",
+      "question": "Spring 有哪些模块呢？",
+      "answer": "Spring 框架是分模块存在，除了最核心的Spring Core Container是必要模块之外，其他模块都是可选，大约有 20 多个模块。\n\n最主要的七大模块：\n\n1. Spring Core：Spring 核心，它是框架最基础的部分，提供 IoC 和依赖注入 DI 特性。\n2. Spring Context：Spring 上下文容器，它是 BeanFactory 功能加强的一个子接口。\n3. Spring Web：它提供 Web 应用开发的支持。\n4. Spring MVC：它针对 Web 应用中 MVC 思想的实现。\n5. Spring DAO：提供对 JDBC 抽象层，简化了 JDBC 编码，同时，编码更具有健壮性。\n6. Spring ORM：它支持用于流行的 ORM 框架的整合，比如：Spring + Hibernate、Spring + iBatis、Spring + JDO 的整合等。\n7. Spring AOP：即面向切面编程，它提供了与 AOP 联盟兼容的编程实现。",
+      "analysis": "【Spring / 基础】",
+      "categories": [
+        "Spring / 基础"
+      ]
+    },
+    {
+      "id": "java-core-0215",
+      "type": "short",
+      "question": "Spring 有哪些常用注解呢？",
+      "answer": "Spring 提供了大量的注解来简化 Java 应用的开发和配置，主要用于 Web 开发、往容器注入 Bean、AOP、事务控制等。\n\nWeb 开发方面有哪些注解呢？\n\n①、@Controller：用于标注控制层组件。\n\n②、@RestController：是@Controller 和 @ResponseBody 的结合体，返回 JSON 数据时使用。\n\n③、@RequestMapping：用于映射请求 URL 到具体的方法上，还可以细分为：\n\n @GetMapping：只能用于处理 GET 请求\n @PostMapping：只能用于处理 POST 请求\n @DeleteMapping：只能用于处理 DELETE 请求\n\n④、@ResponseBody：直接将返回的数据放入 HTTP 响应正文中，一般用于返回 JSON 数据。\n\n⑤、@RequestBody：表示一个方法参数应该绑定到 Web 请求体。\n\n⑥、@PathVariable：用于接收路径参数，比如 @RequestMapping(“/hello/{name}”)，这里的 name 就是路径参数。\n\n⑦、@RequestParam：用于接收请求参数。比如 @RequestParam(name = \"key\") String key，这里的 key 就是请求参数。\n\n容器类注解有哪些呢？\n\n @Component：标识一个类为 Spring 组件，使其能够被 Spring 容器自动扫描和管理。\n @Service：标识一个业务逻辑组件（服务层）。比如 @Service(\"userService\")，这里的 userService 就是 Bean 的名称。\n @Repository：标识一个数据访问组件（持久层）。\n @Autowired：按类型自动注入依赖。\n @Configuration：用于定义配置类，可替换 XML 配置文件。\n @Value：用于将 Spring Boot 中 application.properties 配置的属性值赋值给变量。\n\nAOP 方面有哪些注解呢？\n\n@Aspect 用于声明一个切面，可以配合其他注解一起使用，比如：\n\n @After：在方法执行之后执行。\n @Before：在方法执行之前执行。\n @Around：方法前后均执行。\n* @PointCut：定义切点，指定需要拦截的方法。\n\n事务注解有哪些？\n\n主要就是 @Transactional，用于声明一个方法需要事务支持。",
+      "analysis": "【Spring / 基础】",
+      "categories": [
+        "Spring / 基础"
+      ]
+    },
+    {
+      "id": "java-core-0216",
+      "type": "short",
+      "question": "Spring 中应用了哪些设计模式呢？",
+      "answer": "Spring 框架中用了蛮多设计模式的：\n\n①、比如说工厂模式用于 BeanFactory 和 ApplicationContext，实现 Bean 的创建和管理。\n\njava\nApplicationContext context = new ClassPathXmlApplicationContext(\"applicationContext.xml\");\nMyBean myBean = context.getBean(MyBean.class);\n\n②、比如说单例模式，这样可以保证 Bean 的唯一性，减少系统开销。\n\njava\nApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);\nMyService myService1 = context.getBean(MyService.class);\nMyService myService2 = context.getBean(MyService.class);\n\n// This will print \"true\" because both references point to the same instance\nSystem.out.println(myService1 == myService2);\n\n③、比如说 AOP 使用了代理模式来实现横切关注点（如事务管理、日志记录、权限控制等）。\n\njava\n@Transactional\npublic void myTransactionalMethod() {\n    // 方法实现\n}\n\nSpring如何实现单例模式？\n\nSpring 通过 IOC 容器实现单例模式，具体步骤是：\n\n单例 Bean 在容器初始化时创建并使用 DefaultSingletonBeanRegistry 提供的 singletonObjects 进行缓存。\n\njava\n// 单例缓存\nprivate final Map singletonObjects = new ConcurrentHashMap<>();\n\npublic Object getSingleton(String beanName) {\n    return this.singletonObjects.get(beanName);\n}\n\nprotected void addSingleton(String beanName, Object singletonObject) {\n    this.singletonObjects.put(beanName, singletonObject);\n}\n\n在请求 Bean 时，Spring 会先从缓存中获取。",
+      "analysis": "【Spring / 基础】",
+      "categories": [
+        "Spring / 基础"
+      ]
+    },
+    {
+      "id": "java-core-0217",
+      "type": "short",
+      "question": "Spring 容器、Web 容器之间的区别？（补充）",
+      "answer": "> 2024 年 7 月 11 日增补\n\nSpring 容器是 Spring 框架的核心部分，负责管理应用程序中的对象生命周期和依赖注入。\n\nWeb 容器（也称 Servlet 容器），是用于运行 Java Web 应用程序的服务器环境，支持 Servlet、JSP 等 Web 组件。常见的 Web 容器包括 Apache Tomcat、Jetty等。\n\nSpring MVC 是 Spring 框架的一部分，专门用于处理 Web 请求，基于 MVC（Model-View-Controller）设计模式。",
+      "analysis": "【Spring / 基础】",
+      "categories": [
+        "Spring / 基础"
+      ]
+    },
+    {
+      "id": "java-core-0218",
+      "type": "short",
+      "question": "说一说什么是 IoC、DI？",
+      "answer": "所谓的IoC，就是由容器来控制对象的生命周期和对象之间的关系。控制对象生命周期的不再是引用它的对象，而是容器，这就叫控制反转（Inversion of Control）。\n\n以前是我们想要什么就自己创建什么，现在是我们需要什么容器就帮我们送来什么。\n\n没有 IoC 之前：\n\n有了 IoC 之后：\n\n> 我需要一个女朋友，于是我就去找婚介所，告诉婚介所，我需要一个长的像赵露思的，会打 Dota2 的，于是婚介所在它的人才库里开始找，找不到它就直接说没有，找到它就直接介绍给我。\n\n婚介所就相当于一个 IoC 容器，我就是一个对象，我需要的女朋友就是另一个对象，我不用关心女朋友是怎么来的，我只需要告诉婚介所我需要什么样的女朋友，婚介所就帮我去找。\n\nSpring 倡导的开发方式就是这样，所有类的创建和销毁都通过 Spring 容器来，不再是开发者去 new，去 = null，这样就实现了对象的解耦。\n\n于是，对于某个对象来说，以前是它控制它依赖的对象，现在是所有对象都被 Spring 控制。\n\n说说什么是 DI？\n\nIOC 是一种思想，DI 是实现 IOC 的具体方式，比如说利用注入机制（如构造器注入、Setter 注入）将依赖传递给目标对象。\n\n2004 年，Martin Fowler 在他的文章《控制反转容器&依赖注入模式》首次提出了 DI（依赖注入，Dependency Injection） 这个名词。\n\n打个比方，你现在想吃韭菜馅的饺子，这时候就有人用针管往你吃的饺子里注入韭菜鸡蛋馅。就好像 A 类需要 B 类，以前是 A 类自己 new 一个 B 类，现在是有人把 B 类注入到 A 类里。\n\n为什么要使用 IoC 呢？\n\n在平时的 Java 开发中，如果我们要实现某一个功能，可能至少需要两个以上的对象来协助完成，在没有 Spring 之前，每个对象在需要它的合作对象时，需要自己 new 一个，比如说 A 要使用 B，A 就对 B 产生了依赖，也就是 A 和 B 之间存在了一种耦合关系。\n\n有了 Spring 之后，就不一样了，创建 B 的工作交给了 Spring 来完成，Spring 创建好了 B 对象后就放到容器中，A 告诉 Spring 我需要 B，Spring 就从容器中取出 B 交给 A 来使用。\n\n至于 B 是怎么来的，A 就不再关心了，Spring 容器想通过 newnew 创建 B 还是 new 创建 B，无所谓。\n\n这就是 IoC 的好处，它降低了对象之间的耦合度，使得程序更加灵活，更加易于维护。",
+      "analysis": "【Spring / IoC】",
+      "categories": [
+        "Spring / IoC"
+      ]
+    },
+    {
+      "id": "java-core-0219",
+      "type": "short",
+      "question": "能简单说一下 Spring IoC 的实现机制吗？",
+      "answer": "PS:这道题老三在面试中被问到过，问法是“你有自己实现过简单的 Spring 吗？”\n\nSpring 的 IoC 本质就是一个大工厂，我们想想一个工厂是怎么运行的呢？\n\n 生产产品：一个工厂最核心的功能就是生产产品。在 Spring 里，不用 Bean 自己来实例化，而是交给 Spring，应该怎么实现呢？——答案毫无疑问，反射。\n\n  那么这个厂子的生产管理是怎么做的？你应该也知道——工厂模式。\n 库存产品：工厂一般都是有库房的，用来库存产品，毕竟生产的产品不能立马就拉走。Spring 我们都知道是一个容器，这个容器里存的就是对象，不能每次来取对象，都得现场来反射创建对象，得把创建出的对象存起来。\n 订单处理：还有最重要的一点，工厂根据什么来提供产品呢？订单。这些订单可能五花八门，有线上签签的、有到工厂签的、还有工厂销售上门签的……最后经过处理，指导工厂的出货。\n\n  在 Spring 里，也有这样的订单，它就是我们 bean 的定义和依赖关系，可以是 xml 形式，也可以是我们最熟悉的注解形式。\n\n我们简单地实现一个 mini 版的 Spring IoC：\n\nBean 定义：\n\nBean 通过一个配置文件定义，把它解析成一个类型。\n\n beans.properties\n\n  偷懒，这里直接用了最方便解析的 properties，这里直接用一个类型的配置来代表 Bean 的定义，其中 key 是 beanName，value 是 class\n\n  \njava\nuserDao:cn.fighter3.bean.UserDao\n\n BeanDefinition.java\n\n  bean 定义类，配置文件中 bean 定义对应的实体\n\n  \njava\npublic class BeanDefinition {\n\n    private String beanName;\n\n    private Class beanClass;\n     //省略getter、setter\n }\n\n ResourceLoader.java\n\n  资源加载器，用来完成配置文件中配置的加载\n\n  \njava\npublic class ResourceLoader {\n\n    public static Map getResource() {\n        Map beanDefinitionMap = new HashMap<>(16);\n        Properties properties = new Properties();\n        try {\n            InputStream inputStream = ResourceLoader.class.getResourceAsStream(\"/beans.properties\");\n            properties.load(inputStream);\n            Iterator it = properties.stringPropertyNames().iterator();\n            while (it.hasNext()) {\n                String key = it.next();\n                String className = properties.getProperty(key);\n                BeanDefinition beanDefinition = new BeanDefinition();\n                beanDefinition.setBeanName(key);\n                Class clazz = Class.forName(className);\n                beanDefinition.setBeanClass(clazz);\n                beanDefinitionMap.put(key, beanDefinition);\n            }\n            inputStream.close();\n        } catch (IOExc…",
+      "analysis": "【Spring / IoC】",
+      "categories": [
+        "Spring / IoC"
+      ]
+    },
+    {
+      "id": "java-core-0220",
+      "type": "short",
+      "question": "说说 BeanFactory 和 ApplicantContext?",
+      "answer": "可以这么比喻，BeanFactory 是 Spring 的“心脏”，而 ApplicantContext 是 Spring 的完整“身躯”。\n\n BeanFactory 主要负责配置、创建和管理 bean，为 Spring 提供了基本的依赖注入（DI）支持。\n ApplicationContext 是 BeanFactory 的子接口，在 BeanFactory 的基础上添加了企业级的功能支持。\n\n详细说说 BeanFactory\n\nBeanFactory 位于整个 Spring IoC 容器的顶端，ApplicationContext 算是 BeanFactory 的子接口。\n\n它最主要的方法就是 getBean()，这个方法负责从容器中返回特定名称或者类型的 Bean 实例。\n\n来看一个 XMLBeanFactory（已过时） 获取 bean 的例子：\n\njava\nclass HelloWorldApp{\n   public static void main(String[] args) {\n      BeanFactory factory = new XmlBeanFactory (new ClassPathResource(\"beans.xml\"));\n      HelloWorld obj = (HelloWorld) factory.getBean(\"itwanger\");\n      obj.getMessage();\n   }\n}\n\n请详细说说 ApplicationContext\n\nApplicationContext 继承了 HierachicalBeanFactory 和 ListableBeanFactory 接口，算是 BeanFactory 的自动挡版本，是 Spring 应用的默认方式。\n\nApplicationContext 会在启动时预先创建和配置所有的单例 bean，并支持如 JDBC、ORM 框架的集成，内置面向切面编程（AOP）的支持，可以配置声明式事务管理等。\n\n这是 ApplicationContext 的使用例子：\n\njava\nclass MainApp {\n    public static void main(String[] args) {\n        // 使用 AppConfig 配置类初始化 ApplicationContext\n        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);\n\n        // 从 ApplicationContext 获取 messageService 的 bean\n        MessageService service = context.getBean(MessageService.class);\n\n        // 使用 bean\n        service.printMessage();\n    }\n}\n\n通过 AnnotationConfigApplicationContext 类，我们可以使用 Java 配置类来初始化 ApplicationContext，这样就可以使用 Java 代码来配置 Spring 容器。\n\njava\n@Configuration\n@ComponentScan(basePackages = \"com.github.paicoding.forum.test.javabetter.spring1\") // 替换为你的包名\npublic class AppConfig {\n}",
+      "analysis": "【Spring / IoC】",
+      "categories": [
+        "Spring / IoC"
+      ]
+    },
+    {
+      "id": "java-core-0221",
+      "type": "short",
+      "question": "你知道 Spring 容器启动阶段会干什么吗？",
+      "answer": "Spring 的 IoC 容器工作的过程，其实可以划分为两个阶段：容器启动阶段和Bean 实例化阶段。\n\n其中容器启动阶段主要做的工作是加载和解析配置文件，保存到对应的 Bean 定义中。\n\n容器启动开始，首先会通过某种途径加载 Configuration MetaData，在大部分情况下，容器需要依赖某些工具类（BeanDefinitionReader）对加载的 Configuration MetaData 进行解析和分析，并将分析后的信息组为相应的 BeanDefinition。\n\n最后把这些保存了 Bean 定义必要信息的 BeanDefinition，注册到相应的 BeanDefinitionRegistry，这样容器启动就完成了。\n\n说说 Spring 的 Bean 实例化方式\n\nSpring 提供了 4 种不同的方式来实例化 Bean，以满足不同场景下的需求。\n\n说说构造方法的方式\n\n在类上使用@Component（或@Service、@Repository 等特定于场景的注解）标注类，然后通过构造方法注入依赖。\n\njava\n@Component\npublic class ExampleBean {\n    private DependencyBean dependency;\n\n    @Autowired\n    public ExampleBean(DependencyBean dependency) {\n        this.dependency = dependency;\n    }\n}\n\n说说静态工厂的方式\n\n在这种方式中，Bean 是由一个静态方法创建的，而不是直接通过构造方法。\n\njava\npublic class ClientService {\n    private static ClientService clientService = new ClientService();\n\n    private ClientService() {}\n\n    public static ClientService createInstance() {\n        return clientService;\n    }\n}\n\n说说实例工厂方法实例化的方式\n\n与静态工厂方法相比，实例工厂方法依赖于某个类的实例来创建 Bean。这通常用在需要通过工厂对象的非静态方法来创建 Bean 的场景。\n\njava\npublic class ServiceLocator {\n    public ClientService createClientServiceInstance() {\n        return new ClientService();\n    }\n}\n\n说说 FactoryBean 接口实例化方式\n\nFactoryBean 是一个特殊的 Bean 类型，可以在 Spring 容器中返回其他对象的实例。通过实现 FactoryBean 接口，可以自定义实例化逻辑，这对于构建复杂的初始化逻辑非常有用。\n\njava\npublic class ToolFactoryBean implements FactoryBean {\n    private int factoryId;\n    private int toolId;\n\n    @Override\n    public Tool getObject() throws Exception {\n        return new Tool(toolId);\n    }\n\n    @Override\n    public Class getObjectType() {\n        return Tool.class;\n    }\n\n    @Override\n    public boolean isSingleton() {\n        return true;\n    }\n\n    // setter and getter methods for factoryId and toolId\n}",
+      "analysis": "【Spring / IoC】",
+      "categories": [
+        "Spring / IoC"
+      ]
+    },
+    {
+      "id": "java-core-0222",
+      "type": "short",
+      "question": "你是怎么理解 Bean 的？",
+      "answer": "Bean 是指由 Spring 容器管理的对象，它的生命周期由容器控制，包括创建、初始化、使用和销毁。以通过三种方式声明：注解方式、XML 配置、Java 配置。\n\n①、使用 @Component、@Service、@Repository、@Controller 等注解定义，主流。\n\n②、基于 XML 配置，Spring Boot 项目已经不怎么用了。\n\n③、使用 Java 配置类创建 Bean：\n\njava\n@Configuration\npublic class AppConfig {\n    @Bean\n    public UserService userService() {\n        return new UserService();\n    }\n}\n\n@Component 和 @Bean 的区别\n\n@Component 是 Spring 提供的一个类级别注解，由 Spring 自动扫描并注册到 Spring 容器中。\n\n@Bean 是一个方法级别的注解，用于显式地声明一个 Bean，当我们需要第三方库或者无法使用 @Component 注解类时，可以使用 @Bean 来将其实例注册到容器中。",
+      "analysis": "【Spring / IoC】",
+      "categories": [
+        "Spring / IoC"
+      ]
+    },
+    {
+      "id": "java-core-0223",
+      "type": "short",
+      "question": "能说一下 Bean 的生命周期吗？",
+      "answer": "Bean 的生命周期大致分为五个阶段：\n\n 实例化：Spring 首先使用构造方法或者工厂方法创建一个 Bean 的实例。在这个阶段，Bean 只是一个空的 Java 对象，还未设置任何属性。\n 属性赋值：Spring 将配置文件中的属性值或依赖的 Bean 注入到该 Bean 中。这个过程称为依赖注入，确保 Bean 所需的所有依赖都被注入。\n 初始化：Spring 调用 afterPropertiesSet 方法，或通过配置文件指定的 init-method 方法，完成初始化。\n 使用中：Bean 准备好可以使用了。\n 销毁：在容器关闭时，Spring 会调用 destroy 方法，完成 Bean 的清理工作。\n\n可以从源码角度讲一下吗？\n\n 实例化：Spring 容器根据 Bean 的定义创建 Bean 的实例，相当于执行构造方法，也就是 new 一个对象。\n 属性赋值：相当于执行 setter 方法为字段赋值。\n 初始化：初始化阶段允许执行自定义的逻辑，比如设置某些必要的属性值、开启资源、执行预加载操作等，以确保 Bean 在使用之前是完全配置好的。\n 销毁：相当于执行 = null，释放资源。\n\n可以在源码 AbstractAutowireCapableBeanFactory 中的 doCreateBean 方法中，看到 Bean 的前三个生命周期：\n\njava\nprotected Object doCreateBean(String beanName, RootBeanDefinition mbd, @Nullable Object[] args) throws BeanCreationException {\n    BeanWrapper instanceWrapper = null;\n    if (mbd.isSingleton()) {\n        instanceWrapper = (BeanWrapper)this.factoryBeanInstanceCache.remove(beanName);\n    }\n\n    if (instanceWrapper == null) {\n        // 实例化阶段\n        instanceWrapper = this.createBeanInstance(beanName, mbd, args);\n    }\n\n    ...\n\n    Object exposedObject = bean;\n\n    try {\n        // 属性赋值阶段\n        this.populateBean(beanName, mbd, instanceWrapper);\n        // 初始化阶段\n        exposedObject = this.initializeBean(beanName, exposedObject, mbd);\n    } catch (Throwable var18) {\n        ...\n    }\n\n    ...\n}\n\n源码位置，见下图：\n\n至于销毁，是在容器关闭的时候调用的，详见 ConfigurableApplicationContext 的 close 方法。\n\n请在一个已有的 Spring Boot 项目中通过单元测试的形式来展示 Spring Bean 的生命周期？\n\n第一步，创建一个 LifecycleDemoBean 类：\n\njava\npublic class LifecycleDemoBean implements InitializingBean, DisposableBean {\n\n    // 使用@Value注解注入属性值，这里演示了如何从配置文件中读取值\n    // 如果配置文件中没有定义lifecycle.demo.bean.name，则使用默认值\"default name\"\n    @Value(\"${lifecycle.demo.bean.name:default name}\")\n    private String name;\n\n    // 构造方法：在Bean实例化时调用\n    public LifecycleDemoBean() {\n        Sys…",
+      "analysis": "【Spring / IoC】",
+      "categories": [
+        "Spring / IoC"
+      ]
+    },
+    {
+      "id": "java-core-0224",
+      "type": "short",
+      "question": "为什么 IDEA 不推荐使用 @Autowired 注解注入 Bean？",
+      "answer": "当使用 @Autowired 注解注入 Bean 时，IDEA 会提示“Field injection is not recommended”。\n\n这是因为字段注入的方式：\n\n 不能像构造方法那样使用 final 注入不可变对象\n 隐藏了依赖关系，调用者可以看到构造方法注入或者 setter 注入，但无法看到私有字段的注入\n\n在 Spring 4.3 及更高版本中，如果一个类只有一个构造方法，Spring 会自动使用该构造方法进行依赖注入，无需使用 @Autowired 注解。\n\n@Autowired 和 @Resource 注解的区别？\n\n @Autowired 是 Spring 提供的注解，按类型（byType）注入。\n @Resource 是 Java EE 提供的注解，按名称（byName）注入。\n\n虽然 IDEA 不推荐使用 @Autowired，但对 @Resource 注解却没有任何提示。\n\n这是因为 @Resource 属于 Java EE 标准的注解，如果使用其他 IOC 容器而不是 Spring 也是可以兼容的。\n\n提到了byType，如果两个类型一致的发生了冲突，应该怎么处理\n\n当容器中存在多个相同类型的 bean，编译器会提示 Could not autowire. There is more than one bean of 'UserRepository2' type.\n\njava\n@Component\npublic class UserRepository21 implements UserRepository2 {}\n\n@Component\npublic class UserRepository22 implements UserRepository2 {}\n\n@Component\npublic class UserService2 {\n    @Autowired\n    private UserRepository2 userRepository; // 冲突\n}\n\n这时候，就可以配合 @Qualifier 注解来指定具体的 bean 名称：\n\njava\n@Component(\"userRepository21\")\npublic class UserRepository21 implements UserRepository2 {\n}\n@Component(\"userRepository22\")\npublic class UserRepository22 implements UserRepository2 {\n}\n@Autowired\n@Qualifier(\"userRepository22\")\nprivate UserRepository2 userRepository22;\n\n或者使用 @Resource 注解按名称进行注入，指定 name 属性。\n\njava\n@Resource(name = \"userRepository21\")\nprivate UserRepository2 userRepository21;",
+      "analysis": "【Spring / IoC】",
+      "categories": [
+        "Spring / IoC"
+      ]
+    },
+    {
+      "id": "java-core-0225",
+      "type": "short",
+      "question": "Spring 有哪些自动装配的方式？",
+      "answer": "> 什么是自动装配？\n\nSpring IoC 容器知道所有 Bean 的配置信息，此外，通过 Java 反射机制还可以获知实现类的结构信息，如构造方法的结构、属性等信息。掌握所有 Bean 的这些信息后，Spring IoC 容器就可以按照某种规则对容器中的 Bean 进行自动装配，而无须通过显式的方式进行依赖配置。\n\nSpring 提供的这种方式，可以按照某些规则进行 Bean 的自动装配，元素提供了一个指定自动装配类型的属性：autowire=\"\"\n\n> Spring 提供了哪几种自动装配类型？\n\nSpring 提供了 4 种自动装配类型：\n\n byName：根据名称进行自动匹配，假设 Boss 有一个名为 car 的属性，如果容器中刚好有一个名为 car 的 bean，Spring 就会自动将其装配给 Boss 的 car 属性\n byType：根据类型进行自动匹配，假设 Boss 有一个 Car 类型的属性，如果容器中刚好有一个 Car 类型的 Bean，Spring 就会自动将其装配给 Boss 这个属性\n constructor：与 byType 类似， 只不过它是针对构造函数注入而言的。如果 Boss 有一个构造函数，构造函数包含一个 Car 类型的入参，如果容器中有一个 Car 类型的 Bean，则 Spring 将自动把这个 Bean 作为 Boss 构造函数的入参；如果容器中没有找到和构造函数入参匹配类型的 Bean，则 Spring 将抛出异常。\n autodetect：根据 Bean 的自省机制决定采用 byType 还是 constructor 进行自动装配，如果 Bean 提供了默认的构造函数，则采用 byType，否则采用 constructor。",
+      "analysis": "【Spring / IoC】",
+      "categories": [
+        "Spring / IoC"
+      ]
+    },
+    {
+      "id": "java-core-0226",
+      "type": "short",
+      "question": "Bean 的作用域有哪些?",
+      "answer": "在 Spring 中，Bean 默认是单例的，即在整个 Spring 容器中，每个 Bean 只有一个实例。\n\n可以通过在配置中指定 scope 属性，将 Bean 改为多例（Prototype）模式，这样每次获取的都是新的实例。\n\njava\n@Bean\n@Scope(\"prototype\")  // 每次获取都是新的实例\npublic MyBean myBean() {\n    return new MyBean();\n}\n\n除了单例和多例，Spring 还支持其他作用域，如请求作用域（Request）、会话作用域（Session）等，适合 Web 应用中特定的使用场景。\n\n request：每一次 HTTP 请求都会产生一个新的 Bean，该 Bean 仅在当前 HTTP Request 内有效。\n session：同一个 Session 共享一个 Bean，不同的 Session 使用不同的 Bean。\n globalSession**：同一个全局 Session 共享一个 Bean，只用于基于 Protlet 的 Web 应用，Spring5 中已经移除。",
+      "analysis": "【Spring / IoC】",
+      "categories": [
+        "Spring / IoC"
+      ]
+    },
+    {
+      "id": "java-core-0227",
+      "type": "short",
+      "question": "Spring 中的单例 Bean 会存在线程安全问题吗？",
+      "answer": "Spring Bean 的默认作用域是单例（Singleton），这意味着 Spring 容器中只会存在一个 Bean 实例，并且该实例会被多个线程共享。\n\n如果单例 Bean 是无状态的，也就是没有成员变量，那么这个单例 Bean 是线程安全的。比如 Spring MVC 中的 Controller、Service、Dao 等，基本上都是无状态的。\n\n但如果 Bean 的内部状态是可变的，且没有进行适当的同步处理，就可能出现线程安全问题。\n\n单例 Bean 线程安全问题怎么解决呢？\n\n第一，使用局部变量。局部变量是线程安全的，因为每个线程都有自己的局部变量副本。尽量使用局部变量而不是共享的成员变量。\n\njava\npublic class MyService {\n    public void process() {\n        int localVar = 0;\n        // 使用局部变量进行操作\n    }\n}\n\n第二，尽量使用无状态的 Bean，即不在 Bean 中保存任何可变的状态信息。\n\njava\npublic class MyStatelessService {\n    public void process() {\n        // 无状态处理\n    }\n}\n\n第三，同步访问。如果 Bean 中确实需要保存可变状态，可以通过 或者 来保证线程安全。\n\njava\npublic class MyService {\n    private int sharedVar;\n\n    public synchronized void increment() {\n        sharedVar++;\n    }\n}\n\n或者将 Bean 中的成员变量保存到 ThreadLocal 中， 可以保证多线程环境下变量的隔离。\n\njava\npublic class MyService {\n    private ThreadLocal localVar = ThreadLocal.withInitial(() -> 0);\n\n    public void process() {\n        localVar.set(localVar.get() + 1);\n    }\n}\n\n再或者使用线程安全的工具类，比如说 、、 等。\n\njava\npublic class MyService {\n    private ConcurrentHashMap map = new ConcurrentHashMap<>();\n\n    public void putValue(String key, String value) {\n        map.put(key, value);\n    }\n}\n\n第四，将 Bean 定义为原型作用域（Prototype）。原型作用域的 Bean 每次请求都会创建一个新的实例，因此不存在线程安全问题。\n\njava\n@Component\n@Scope(\"prototype\")\npublic class MyService {\n    // 实例变量\n}",
+      "analysis": "【Spring / IoC】",
+      "categories": [
+        "Spring / IoC"
+      ]
+    },
+    {
+      "id": "java-core-0228",
+      "type": "short",
+      "question": "说说循环依赖?",
+      "answer": "A 依赖 B，B 依赖 A，或者 C 依赖 C，就成了循环依赖。\n\n> 循环依赖只发生在 Singleton 作用域的 Bean 之间，因为如果是 Prototype 作用域的 Bean，Spring 会直接抛出异常。\n\n原因很简单，AB 循环依赖，A 实例化的时候，发现依赖 B，创建 B 实例，创建 B 的时候发现需要 A，创建 A1 实例……无限套娃。。。。\n\n我们来看一个实例，先是 PrototypeBeanA：\n\njava\n@Component\n@Scope(\"prototype\")\npublic class PrototypeBeanA {\n    private final PrototypeBeanB prototypeBeanB;\n\n    @Autowired\n    public PrototypeBeanA(PrototypeBeanB prototypeBeanB) {\n        this.prototypeBeanB = prototypeBeanB;\n    }\n}\n\n然后是 PrototypeBeanB：\n\njava\n@Component\n@Scope(\"prototype\")\npublic class PrototypeBeanB {\n    private final PrototypeBeanA prototypeBeanA;\n\n    @Autowired\n    public PrototypeBeanB(PrototypeBeanA prototypeBeanA) {\n        this.prototypeBeanA = prototypeBeanA;\n    }\n}\n\n再然后是测试：\n\njava\n@SpringBootApplication\npublic class DemoApplication {\n\n    public static void main(String[] args) {\n        SpringApplication.run(DemoApplication.class, args);\n    }\n\n    @Bean\n    CommandLineRunner commandLineRunner(ApplicationContext ctx) {\n        return args -> {\n            // 尝试获取PrototypeBeanA的实例\n            PrototypeBeanA beanA = ctx.getBean(PrototypeBeanA.class);\n        };\n    }\n}\n\n运行结果：\n\n在这个示例中，当 Spring 应用启动并尝试获取 PrototypeBeanA 或 PrototypeBeanB 的实例时，将会遇到问题。因为它们互相依赖，而 Spring 无法解决 Prototype 作用域 bean 的循环依赖问题。\n\nSpring 可以解决哪些情况的循环依赖？\n\n看看这几种情形（AB 循环依赖）：\n\n也就是说：\n\n AB 均采用构造器注入，不支持\n AB 均采用 setter 注入，支持\n AB 均采用属性自动注入，支持\n A 中注入的 B 为 setter 注入，B 中注入的 A 为构造器注入，支持\n* B 中注入的 A 为 setter 注入，A 中注入的 B 为构造器注入，不支持\n\n第四种可以，第五种不可以的原因是 Spring 在创建 Bean 时默认会根据自然排序进行创建，所以 A 会先于 B 进行创建。\n\n简单总结下，当循环依赖的实例都采用 setter 方法注入时，Spring 支持，都采用构造器注入的时候，不支持；构造器注入和 setter 注入同时存在的时候，看天（😂）。",
+      "analysis": "【Spring / IoC】",
+      "categories": [
+        "Spring / IoC"
+      ]
+    },
+    {
+      "id": "java-core-0229",
+      "type": "short",
+      "question": "Spring 怎么解决循环依赖呢？",
+      "answer": "Spring 通过三级缓存机制来解决循环依赖：\n\n1. 一级缓存：存放完全初始化好的单例 Bean。\n2. 二级缓存：存放正在创建但未完全初始化的 Bean 实例。\n3. 三级缓存：存放 Bean 工厂对象，用于提前暴露 Bean。\n\n三级缓存解决循环依赖的过程是什么样的？\n\n1. 实例化 Bean 时，将其早期引用放入三级缓存。\n2. 其他依赖该 Bean 的对象，可以从缓存中获取其引用。\n3. 初始化完成后，将 Bean 移入一级缓存。\n\n假如 A、B 两个类发生循环依赖：\n\nA 实例的初始化过程：\n\n①、创建 A 实例，实例化的时候把 A 的对象⼯⼚放⼊三级缓存，表示 A 开始实例化了，虽然这个对象还不完整，但是先曝光出来让大家知道。\n\n②、A 注⼊属性时，发现依赖 B，此时 B 还没有被创建出来，所以去实例化 B。\n\n③、同样，B 注⼊属性时发现依赖 A，它就从缓存里找 A 对象。依次从⼀级到三级缓存查询 A。\n\n发现可以从三级缓存中通过对象⼯⼚拿到 A，虽然 A 不太完善，但是存在，就把 A 放⼊⼆级缓存，同时删除三级缓存中的 A，此时，B 已经实例化并且初始化完成了，把 B 放入⼀级缓存。\n\n④、接着 A 继续属性赋值，顺利从⼀级缓存拿到实例化且初始化完成的 B 对象，A 对象创建也完成，删除⼆级缓存中的 A，同时把 A 放⼊⼀级缓存\n\n⑤、最后，⼀级缓存中保存着实例化、初始化都完成的 A、B 对象。",
+      "analysis": "【Spring / IoC】",
+      "categories": [
+        "Spring / IoC"
+      ]
+    },
+    {
+      "id": "java-core-0230",
+      "type": "short",
+      "question": "为什么要三级缓存？⼆级不⾏吗？",
+      "answer": "不行，主要是为了 ⽣成代理对象。如果是没有代理的情况下，使用二级缓存解决循环依赖也是 OK 的。但是如果存在代理，三级没有问题，二级就不行了。\n\n因为三级缓存中放的是⽣成具体对象的匿名内部类，获取 Object 的时候，它可以⽣成代理对象，也可以返回普通对象。使⽤三级缓存主要是为了保证不管什么时候使⽤的都是⼀个对象。\n\n假设只有⼆级缓存的情况，往⼆级缓存中放的显示⼀个普通的 Bean 对象，Bean 初始化过程中，通过 BeanPostProcessor 去⽣成代理对象之后，覆盖掉⼆级缓存中的普通 Bean 对象，那么可能就导致取到的 Bean 对象不一致了。\n\n如果缺少第二级缓存会有什么问题？\n\n如果没有二级缓存，Spring 无法在未完成初始化的情况下暴露 Bean。会导致代理 Bean 的循环依赖问题，因为某些代理逻辑无法在三级缓存中提前暴露。最终可能抛出 BeanCurrentlyInCreationException。",
+      "analysis": "【Spring / IoC】",
+      "categories": [
+        "Spring / IoC"
+      ]
+    },
+    {
+      "id": "java-core-0231",
+      "type": "short",
+      "question": "@Autowired 的实现原理？",
+      "answer": "实现@Autowired 的关键是：AutowiredAnnotationBeanPostProcessor\n\n在 Bean 的初始化阶段，会通过 Bean 后置处理器来进行一些前置和后置的处理。\n\n实现@Autowired 的功能，也是通过后置处理器来完成的。这个后置处理器就是 AutowiredAnnotationBeanPostProcessor。\n\n Spring 在创建 bean 的过程中，最终会调用到 doCreateBean()方法，在 doCreateBean()方法中会调用 populateBean()方法，来为 bean 进行属性填充，完成自动装配等工作。\n 在 populateBean()方法中一共调用了两次后置处理器，第一次是为了判断是否需要属性填充，如果不需要进行属性填充，那么就会直接进行 return，如果需要进行属性填充，那么方法就会继续向下执行，后面会进行第二次后置处理器的调用，这个时候，就会调用到 AutowiredAnnotationBeanPostProcessor 的 postProcessPropertyValues()方法，在该方法中就会进行@Autowired 注解的解析，然后实现自动装配。\n\njava\n/\n 属性赋值\n/\nprotected void populateBean(String beanName, RootBeanDefinition mbd, @Nullable BeanWrapper bw) {\n          //…………\n          if (hasInstAwareBpps) {\n              if (pvs == null) {\n                  pvs = mbd.getPropertyValues();\n              }\n\n              PropertyValues pvsToUse;\n              for(Iterator var9 = this.getBeanPostProcessorCache().instantiationAware.iterator(); var9.hasNext(); pvs = pvsToUse) {\n                  InstantiationAwareBeanPostProcessor bp = (InstantiationAwareBeanPostProcessor)var9.next();\n                  pvsToUse = bp.postProcessProperties((PropertyValues)pvs, bw.getWrappedInstance(), beanName);\n                  if (pvsToUse == null) {\n                      if (filteredPds == null) {\n                          filteredPds = this.filterPropertyDescriptorsForDependencyCheck(bw, mbd.allowCaching);\n                      }\n                      //执行后处理器，填充属性，完成自动装配\n                      //调用InstantiationAwareBeanPostProcessor的postProcessPropertyValues()方法\n                      pvsToUse = bp.postProcessPropertyValues((PropertyValues)pvs, filteredPds, bw.getWrappedInstance(), beanName);\n                      if (pvsToUse == null) {\n                          return;\n                      }\n                  }\n …",
+      "analysis": "【Spring / IoC】",
+      "categories": [
+        "Spring / IoC"
+      ]
+    },
+    {
+      "id": "java-core-0232",
+      "type": "short",
+      "question": "说说什么是 AOP？",
+      "answer": "AOP，也就是面向切面编程，简单点说，AOP 就是把一些业务逻辑中的相同代码抽取到一个独立的模块中，让业务逻辑更加清爽。\n\n举个例子，假如我们现在需要在业务代码开始前进行参数校验，在结束后打印日志，该怎么办呢？\n\n我们可以把日志记录和数据校验这两个功能抽取出来，形成一个切面，然后在业务代码中引入这个切面，这样就可以实现业务逻辑和通用逻辑的分离。\n\n业务代码不再关心这些通用逻辑，只需要关心自己的业务实现，这样就实现了业务逻辑和通用逻辑的分离。\n\nAOP 有哪些核心概念？\n\n 切面（Aspect）：类是对物体特征的抽象，切面就是对横切关注点的抽象\n 连接点（Join Point）：被拦截到的点，因为 Spring 只支持方法类型的连接点，所以在 Spring 中，连接点指的是被拦截到的方法，实际上连接点还可以是字段或者构造方法\n 切点（Pointcut）：对连接点进行拦截的定位\n 通知（Advice）：指拦截到连接点之后要执行的代码，也可以称作增强\n 目标对象 （Target）：代理的目标对象\n 引介（introduction）：一种特殊的增强，可以动态地为类添加一些属性和方法\n 织入（Weabing）：织入是将增强添加到目标类的具体连接点上的过程。\n\n织入有哪几种方式？\n\n①、编译期织入：切面在目标类编译时被织入。\n\n②、类加载期织入：切面在目标类加载到 JVM 时被织入。需要特殊的类加载器，它可以在目标类被引入应用之前增强该目标类的字节码。\n\n③、运行期织入：切面在应用运行的某个时刻被织入。一般情况下，在织入切面时，AOP 容器会为目标对象动态地创建一个代理对象。\n\nSpring AOP 采用运行期织入，而 AspectJ 可以在编译期织入和类加载时织入。\n\nAspectJ 是什么？\n\nAspectJ 是一个 AOP 框架，它可以做很多 Spring AOP 干不了的事情，比如说支持编译时、编译后和类加载时织入切面。并且提供更复杂的切点表达式和通知类型。\n\n下面是一个简单的 AspectJ 示例：\n\njava\n// 定义一个切面\n@Aspect\npublic class LoggingAspect {\n\n    // 定义一个切点，匹配 com.example 包下的所有方法\n    @Pointcut(\"execution( com.example..(..))\")\n    private void selectAll() {}\n\n    // 定义一个前置通知，在匹配的方法执行之前执行\n    @Before(\"selectAll()\")\n    public void beforeAdvice() {\n        System.out.println(\"A method is about to be executed.\");\n    }\n}\n\nAOP 有哪些环绕方式？\n\nAOP 一般有 5 种环绕方式：\n\n 前置通知 (@Before)\n 返回通知 (@AfterReturning)\n 异常通知 (@AfterThrowing)\n 后置通知 (@After)\n 环绕通知 (@Around)\n\n多个切面的情况下，可以通过 @Order 指定先后顺序，数字越小，优先级越高。代码示例如下：\n\njava\n@Aspect\n@Component\npublic class WebLogAspect {\n\n    private final static Logger logger = LoggerFactory.getLogger(WebLogAspect.class);\n\n    @Pointcut(\"@annotation(cn.fighter3.spring.aop_demo.WebLog)\")\n    public void webLog() {}\n\n    @Before(\"webLog()\")\n    public void doBefore(JoinPoint joinPoint) throws Throwable {\n        // 开始打印请求日志\n        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestCont…",
+      "analysis": "【Spring / AOP】",
+      "categories": [
+        "Spring / AOP"
+      ]
+    },
+    {
+      "id": "java-core-0233",
+      "type": "short",
+      "question": "AOP的使用场景有哪些？",
+      "answer": "AOP 的使用场景有很多，比如说日志记录、事务管理、权限控制、性能监控等。\n\n我们在中主要利用 AOP 来打印接口的入参和出参日志、执行时间，方便后期 bug 溯源和性能调优。\n\n第一步，自定义注解作为切点\n\njava\n@Target({ElementType.METHOD, ElementType.TYPE})\n@Retention(RetentionPolicy.RUNTIME)\n@Documented\npublic @interface MdcDot {\n    String bizCode() default \"\";\n}\n\n第二步，配置 AOP 切面：\n\n @Aspect：标识切面\n @Pointcut：设置切点，这里以自定义注解为切点\n* @Around：环绕切点，打印方法签名和执行时间\n\n第三步，在使用的地方加上自定义注解\n\n第四步，当接口被调用时，就可以看到对应的执行日志。\n\ntext\n2023-06-16 11:06:13,008 [http-nio-8080-exec-3] INFO |00000000.1686884772947.468581113|101|c.g.p.forum.core.mdc.MdcAspect.handle(MdcAspect.java:47) - 方法执行耗时: com.github.paicoding.forum.web.front.article.rest.ArticleRestControllerrecommend = 47",
+      "analysis": "【Spring / AOP】",
+      "categories": [
+        "Spring / AOP"
+      ]
+    },
+    {
+      "id": "java-core-0234",
+      "type": "short",
+      "question": "说说 JDK 动态代理和 CGLIB 代理？",
+      "answer": "AOP 是通过动态代理实现的，代理方式有两种：JDK 动态代理和 CGLIB 代理。\n\n①、JDK 动态代理是基于接口的代理，只能代理实现了接口的类。\n\n使用 JDK 动态代理时，Spring AOP 会创建一个代理对象，该代理对象实现了目标对象所实现的接口，并在方法调用前后插入横切逻辑。\n\n优点：只需依赖 JDK 自带的 java.lang.reflect.Proxy 类，不需要额外的库；缺点：只能代理接口，不能代理类本身。\n\n示例代码：\n\njava\npublic interface Service {\n    void perform();\n}\n\npublic class ServiceImpl implements Service {\n    public void perform() {\n        System.out.println(\"Performing service...\");\n    }\n}\n\npublic class ServiceInvocationHandler implements InvocationHandler {\n    private Object target;\n\n    public ServiceInvocationHandler(Object target) {\n        this.target = target;\n    }\n\n    @Override\n    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {\n        System.out.println(\"Before method\");\n        Object result = method.invoke(target, args);\n        System.out.println(\"After method\");\n        return result;\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        Service service = new ServiceImpl();\n        Service proxy = (Service) Proxy.newProxyInstance(\n            service.getClass().getClassLoader(),\n            service.getClass().getInterfaces(),\n            new ServiceInvocationHandler(service)\n        );\n        proxy.perform();\n    }\n}\n\n②、CGLIB 动态代理是基于继承的代理，可以代理没有实现接口的类。\n\n使用 CGLIB 动态代理时，Spring AOP 会生成目标类的子类，并在方法调用前后插入横切逻辑。\n\n优点：可以代理没有实现接口的类，灵活性更高；缺点：需要依赖 CGLIB 库，创建代理对象的开销相对较大。\n\n示例代码：\n\njava\npublic class Service {\n    public void perform() {\n        System.out.println(\"Performing service...\");\n    }\n}\n\npublic class ServiceInterceptor implements MethodInterceptor {\n    @Override\n    public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {\n        System.out.println(\"Before method\");\n        Object result = proxy.invokeSuper(obj, args);\n        Sy…",
+      "analysis": "【Spring / AOP】",
+      "categories": [
+        "Spring / AOP"
+      ]
+    },
+    {
+      "id": "java-core-0235",
+      "type": "short",
+      "question": "说说 Spring AOP 和 AspectJ AOP 区别?",
+      "answer": "Spring AOP 属于运行时增强，主要具有如下特点：\n\n1. 基于动态代理来实现，默认如果使用接口的，用 JDK 提供的动态代理实现，如果是方法则使用 CGLIB 实现\n2. Spring AOP 需要依赖 IoC 容器来管理，并且只能作用于 Spring 容器，使用纯 Java 代码实现\n3. 在性能上，由于 Spring AOP 是基于动态代理来实现的，在容器启动时需要生成代理实例，在方法调用上也会增加栈的深度，使得 Spring AOP 的性能不如 AspectJ 的那么好。\n4. Spring AOP 致力于解决企业级开发中最普遍的 AOP(方法织入)。\n\nAspectJ 是一个易用的功能强大的 AOP 框架，属于编译时增强， 可以单独使用，也可以整合到其它框架中，是 AOP 编程的完全解决方案。AspectJ 需要用到单独的编译器 ajc。\n\nAspectJ 属于静态织入，通过修改代码来实现，在实际运行之前就完成了织入，所以说它生成的类是没有额外运行时开销的，一般有如下几个织入的时机：\n\n1. 编译期织入（Compile-time weaving）：如类 A 使用 AspectJ 添加了一个属性，类 B 引用了它，这个场景就需要编译期的时候就进行织入，否则没法编译类 B。\n2. 编译后织入（Post-compile weaving）：也就是已经生成了 .class 文件，或已经打成 jar 包了，这种情况我们需要增强处理的话，就要用到编译后织入。\n3. 类加载后织入（Load-time weaving）：指的是在加载类的时候进行织入，要实现这个时期的织入，有几种常见的方法\n\n整体对比如下：",
+      "analysis": "【Spring / AOP】",
+      "categories": [
+        "Spring / AOP"
+      ]
+    },
+    {
+      "id": "java-core-0236",
+      "type": "short",
+      "question": "说说 AOP 和反射的区别？（补充）",
+      "answer": "> 2024 年 7 月 27 日增补。\n\n1. 反射：用于检查和操作类的方法和字段，动态调用方法或访问字段。反射是 Java 提供的内置机制，直接操作类对象。\n2. 动态代理：通过生成代理类来拦截方法调用，通常用于 AOP 实现。动态代理使用反射来调用被代理的方法。",
+      "analysis": "【Spring / AOP】",
+      "categories": [
+        "Spring / AOP"
+      ]
+    },
+    {
+      "id": "java-core-0237",
+      "type": "short",
+      "question": "Spring 事务的种类？",
+      "answer": "在 Spring 中，事务管理可以分为两大类：声明式事务管理和编程式事务管理。\n\n介绍一下编程式事务管理？\n\n编程式事务可以使用 TransactionTemplate 和 PlatformTransactionManager 来实现，需要显式执行事务。允许我们在代码中直接控制事务的边界，通过编程方式明确指定事务的开始、提交和回滚。\n\njava\npublic class AccountService {\n    private TransactionTemplate transactionTemplate;\n\n    public void setTransactionTemplate(TransactionTemplate transactionTemplate) {\n        this.transactionTemplate = transactionTemplate;\n    }\n\n    public void transfer(final String out, final String in, final Double money) {\n        transactionTemplate.execute(new TransactionCallbackWithoutResult() {\n            @Override\n            protected void doInTransactionWithoutResult(TransactionStatus status) {\n                // 转出\n                accountDao.outMoney(out, money);\n                // 转入\n                accountDao.inMoney(in, money);\n            }\n        });\n    }\n}\n\n在上面的代码中，我们使用了 TransactionTemplate 来实现编程式事务，通过 execute 方法来执行事务，这样就可以在方法内部实现事务的控制。\n\n介绍一下声明式事务管理？\n\n声明式事务是建立在 AOP 之上的。其本质是通过 AOP 功能，对方法前后进行拦截，将事务处理的功能编织到拦截的方法中，也就是在目标方法开始之前启动一个事务，在目标方法执行完之后根据执行情况提交或者回滚事务。\n\n相比较编程式事务，优点是不需要在业务逻辑代码中掺杂事务管理的代码，Spring 推荐通过 @Transactional 注解的方式来实现声明式事务管理，也是日常开发中最常用的。\n\n不足的地方是，声明式事务管理最细粒度只能作用到方法级别，无法像编程式事务那样可以作用到代码块级别。\n\njava\n@Service\npublic class AccountService {\n    @Autowired\n    private AccountDao accountDao;\n\n    @Transactional\n    public void transfer(String out, String in, Double money) {\n        // 转出\n        accountDao.outMoney(out, money);\n        // 转入\n        accountDao.inMoney(in, money);\n    }\n}\n\n说说两者的区别？\n\n 编程式事务管理：需要在代码中显式调用事务管理的 API 来控制事务的边界，比较灵活，但是代码侵入性较强，不够优雅。\n 声明式事务管理：这种方式使用 Spring 的 AOP 来声明事务，将事务管理代码从业务代码中分离出来。优点是代码简洁，易于维护。但缺点是不够灵活，只能在预定义的方法上使用事务。",
+      "analysis": "【Spring / 事务】",
+      "categories": [
+        "Spring / 事务"
+      ]
+    },
+    {
+      "id": "java-core-0238",
+      "type": "short",
+      "question": "说说 Spring 的事务隔离级别？",
+      "answer": "好，事务的隔离级别定义了一个事务可能受其他并发事务影响的程度。SQL 标准定义了四个隔离级别，Spring 都支持，并且提供了对应的机制来配置它们，定义在 TransactionDefinition 接口中。\n\n①、ISOLATION\\_DEFAULT：使用数据库默认的隔离级别（你们爱咋咋滴 😁），MySQL 默认的是可重复读，Oracle 默认的读已提交。\n\n②、ISOLATION\\_READ\\_UNCOMMITTED：读未提交，允许事务读取未被其他事务提交的更改。这是隔离级别最低的设置，可能会导致“脏读”问题。\n\n③、ISOLATION\\_READ\\_COMMITTED：读已提交，确保事务只能读取已经被其他事务提交的更改。这可以防止“脏读”，但仍然可能发生“不可重复读”和“幻读”问题。\n\n④、ISOLATION\\_REPEATABLE\\_READ：可重复读，确保事务可以多次从一个字段中读取相同的值，即在这个事务内，其他事务无法更改这个字段，从而避免了“不可重复读”，但仍可能发生“幻读”问题。\n\n⑤、ISOLATION\\_SERIALIZABLE：串行化，这是最高的隔离级别，它完全隔离了事务，确保事务序列化执行，以此来避免“脏读”、“不可重复读”和“幻读”问题，但性能影响也最大。",
+      "analysis": "【Spring / 事务】",
+      "categories": [
+        "Spring / 事务"
+      ]
+    },
+    {
+      "id": "java-core-0239",
+      "type": "short",
+      "question": "Spring 的事务传播机制？",
+      "answer": "事务的传播机制定义了方法在被另一个事务方法调用时的事务行为，这些行为定义了事务的边界和事务上下文如何在方法调用链中传播。\n\nSpring 的默认传播行为是 PROPAGATION\\_REQUIRED，即如果当前存在事务，则加入该事务；如果当前没有事务，则创建一个新的事务。\n\n事务传播机制是使用 实现的，所以，如果调用的方法是在新线程中，事务传播会失效。\n\njava\n@Transactional\npublic void parentMethod() {\n    new Thread(() -> childMethod()).start();\n}\n\npublic void childMethod() {\n    // 这里的操作将不会在 parentMethod 的事务范围内执行\n}\n\nSpring 默认的事务传播行为是 PROPAFATION\\_REQUIRED，即如果多个 ServiceXmethodX() 都工作在事务环境下，且程序中存在这样的调用链 Service1method1()->Service2method2()->Service3method3()，那么这 3 个服务类的 3 个方法都通过 Spring 的事务传播机制工作在同一个事务中。\n\nprotected 和 private 加事务会生效吗\n\n在 Spring 中，只有通过 Spring 容器的 AOP 代理调用的公开方法（public method）上的@Transactional注解才会生效。\n\n如果在 protected、private 方法上使用@Transactional，这些事务注解将不会生效，原因：Spring 默认使用基于 JDK 的动态代理（当接口存在时）或基于 CGLIB 的代理（当只有类时）来实现事务。这两种代理机制都只能代理公开的方法。",
+      "analysis": "【Spring / 事务】",
+      "categories": [
+        "Spring / 事务"
+      ]
+    },
+    {
+      "id": "java-core-0240",
+      "type": "short",
+      "question": "声明式事务实现原理了解吗？",
+      "answer": "Spring 的声明式事务管理是通过 AOP（面向切面编程）和代理机制实现的。\n\n第一步，在 Bean 初始化阶段创建代理对象：\n\nSpring 容器在初始化单例 Bean 的时候，会遍历所有的 BeanPostProcessor 实现类，并执行其 postProcessAfterInitialization 方法。\n\n在执行 postProcessAfterInitialization 方法时会遍历容器中所有的切面，查找与当前 Bean 匹配的切面，这里会获取事务的属性切面，也就是 @Transactional 注解及其属性值。\n\n然后根据得到的切面创建一个代理对象，默认使用 JDK 动态代理创建代理，如果目标类是接口，则使用 JDK 动态代理，否则使用 Cglib。\n\n第二步，在执行目标方法时进行事务增强操作：\n\n当通过代理对象调用 Bean 方法的时候，会触发对应的 AOP 增强拦截器，声明式事务是一种环绕增强，对应接口为MethodInterceptor，事务增强对该接口的实现为TransactionInterceptor，类图如下：\n\n事务拦截器TransactionInterceptor在invoke方法中，通过调用父类TransactionAspectSupport的invokeWithinTransaction方法进行事务处理，包括开启事务、事务提交、异常回滚等。",
+      "analysis": "【Spring / 事务】",
+      "categories": [
+        "Spring / 事务"
+      ]
+    },
+    {
+      "id": "java-core-0241",
+      "type": "short",
+      "question": "声明式事务在哪些情况下会失效？",
+      "answer": "1、@Transactional 应用在非 public 修饰的方法上\n\n如果 Transactional 注解应用在非 public 修饰的方法上，Transactional 将会失效。\n\n是因为在 Spring AOP 代理时，TransactionInterceptor （事务拦截器）在目标方法执行前后进行拦截，DynamicAdvisedInterceptor（CglibAopProxy 的内部类）的 intercept 方法或 JdkDynamicAopProxy 的 invoke 方法会间接调用 AbstractFallbackTransactionAttributeSource 的 computeTransactionAttribute方法，获取 Transactional 注解的事务配置信息。\n\njava\nprotected TransactionAttribute computeTransactionAttribute(Method method,\n    Class targetClass) {\n        // Don't allow no-public methods as required.\n        if (allowPublicMethodsOnly() && !Modifier.isPublic(method.getModifiers())) {\n        return null;\n    }\n}\n\n此方法会检查目标方法的修饰符是否为 public，不是 public 则不会获取 @Transactional 的属性配置信息。\n\n2、@Transactional 注解属性 propagation 设置错误\n\n TransactionDefinition.PROPAGATION\\_SUPPORTS：如果当前存在事务，则加入该事务；如果当前没有事务，则以非事务方式执行；错误使用场景：在业务逻辑必须运行在事务环境下以确保数据一致性的情况下使用 SUPPORTS。\n TransactionDefinition.PROPAGATION\\_NOT\\_SUPPORTED：总是以非事务方式执行，如果当前存在事务，则挂起该事务。错误使用场景：在需要事务支持的操作中使用 NOT\\_SUPPORTED。\n TransactionDefinition.PROPAGATION\\_NEVER：总是以非事务方式执行，如果当前存在事务，则抛出异常。错误使用场景：在应该在事务环境下执行的操作中使用 NEVER。\n\n3、@Transactional 注解属性 rollbackFor 设置错误\n\nrollbackFor 用来指定能够触发事务回滚的异常类型。Spring 默认抛出未检查 unchecked 异常（继承自 RuntimeException 的异常）或者 Error 才回滚事务，其他异常不会触发回滚事务。\n\njava\n// 希望自定义的异常可以进行回滚\n@Transactional(propagation= Propagation.REQUIRED,rollbackFor= MyException.class)\n\n若在目标方法中抛出的异常是 rollbackFor 指定的异常的子类，事务同样会回滚。\n\n4、同一个类中方法调用，导致@Transactional 失效\n\n开发中避免不了会对同一个类里面的方法调用，比如有一个类 Test，它的一个方法 A，A 调用本类的方法 B（不论方法 B 是用 public 还是 private 修饰），但方法 A 没有声明注解事务，而 B 方法有。\n\n则外部调用方法 A 之后，方法 B 的事务是不会起作用的。这也是经常犯错误的一个地方。\n\n那为啥会出现这种情况呢？其实还是由 Spring AOP 代理造成的，因为只有事务方法被当前类以外的代码调用时，才会由 Spring 生成的代理对象来管理。\n\njava\n //@Transactional\n@GetMapping(\"/test\")\nprivate Integer A() throws Exception {\n    CityInfoDict cityInfoDict = new CityInfoDict();\n    cityIn…",
+      "analysis": "【Spring / 事务】",
+      "categories": [
+        "Spring / 事务"
+      ]
+    },
+    {
+      "id": "java-core-0242",
+      "type": "short",
+      "question": "Spring MVC 的核心组件？",
+      "answer": "1. DispatcherServlet：前置控制器，是整个流程控制的核心，控制其他组件的执行，进行统一调度，降低组件之间的耦合性，相当于总指挥。\n2. Handler：处理器，完成具体的业务逻辑，相当于 Servlet 或 Action。\n3. HandlerMapping：DispatcherServlet 接收到请求之后，通过 HandlerMapping 将不同的请求映射到不同的 Handler。\n4. HandlerInterceptor：处理器拦截器，是一个接口，如果需要完成一些拦截处理，可以实现该接口。\n5. HandlerExecutionChain：处理器执行链，包括两部分内容：Handler 和 HandlerInterceptor（系统会有一个默认的 HandlerInterceptor，如果需要额外设置拦截，可以添加拦截器）。\n6. HandlerAdapter：处理器适配器，Handler 执行业务方法之前，需要进行一系列的操作，包括表单数据的验证、数据类型的转换、将表单数据封装到 JavaBean 等，这些操作都是由 HandlerApater 来完成，开发者只需将注意力集中业务逻辑的处理上，DispatcherServlet 通过 HandlerAdapter 执行不同的 Handler。\n7. ModelAndView：装载了模型数据和视图信息，作为 Handler 的处理结果，返回给 DispatcherServlet。\n8. ViewResolver：视图解析器，DispatcheServlet 通过它将逻辑视图解析为物理视图，最终将渲染结果响应给客户端。",
+      "analysis": "【Spring / MVC】",
+      "categories": [
+        "Spring / MVC"
+      ]
+    },
+    {
+      "id": "java-core-0243",
+      "type": "short",
+      "question": "Spring MVC 的工作流程？",
+      "answer": "首先，客户端发送请求，DispatcherServlet 拦截并通过 HandlerMapping 找到对应的控制器。\n\nDispatcherServlet 使用 HandlerAdapter 调用控制器方法，执行具体的业务逻辑，返回一个 ModelAndView 对象。\n\n然后 DispatcherServlet 通过 ViewResolver 解析视图。\n\n最后，DispatcherServlet 渲染视图并将响应返回给客户端。\n\n①、发起请求：客户端通过 HTTP 协议向服务器发起请求。\n\n②、前端控制器：这个请求会先到前端控制器 DispatcherServlet，它是整个流程的入口点，负责接收请求并将其分发给相应的处理器。\n\n③、处理器映射：DispatcherServlet 调用 HandlerMapping 来确定哪个 Controller 应该处理这个请求。通常会根据请求的 URL 来确定。\n\n④、处理器适配器：一旦找到目标 Controller，DispatcherServlet 会使用 HandlerAdapter 来调用 Controller 的处理方法。\n\n⑤、执行处理器：Controller 处理请求，处理完后返回一个 ModelAndView 对象，其中包含模型数据和逻辑视图名。\n\n⑥、视图解析器：DispatcherServlet 接收到 ModelAndView 后，会使用 ViewResolver 来解析视图名称，找到具体的视图页面。\n\n⑦、渲染视图：视图使用模型数据渲染页面，生成最终的页面内容。\n\n⑧、响应结果：DispatcherServlet 将视图结果返回给客户端。\n\nSpring MVC 虽然整体流程复杂，但是实际开发中很简单，大部分的组件不需要我们开发人员创建和管理，真正需要处理的只有 Controller 、View 、Model。\n\n在前后端分离的情况下，步骤 ⑥、⑦、⑧ 会略有不同，后端通常只需要处理数据，并将 JSON 格式的数据返回给前端就可以了，而不是返回完整的视图页面。\n\n这个 Handler 是什么东西啊？为什么还需要 HandlerAdapter\n\nHandler 一般就是指 Controller，Controller 是 Spring MVC 的核心组件，负责处理请求，返回响应。\n\nSpring MVC 允许使用多种类型的处理器。不仅仅是标准的@Controller注解的类，还可以是实现了特定接口的其他类（如 HttpRequestHandler 或 SimpleControllerHandlerAdapter 等）。这些处理器可能有不同的方法签名和交互方式。\n\nHandlerAdapter 的主要职责就是调用 Handler 的方法来处理请求，并且适配不同类型的处理器。HandlerAdapter 确保 DispatcherServlet 可以以统一的方式调用不同类型的处理器，无需关心具体的执行细节。",
+      "analysis": "【Spring / MVC】",
+      "categories": [
+        "Spring / MVC"
+      ]
+    },
+    {
+      "id": "java-core-0244",
+      "type": "short",
+      "question": "SpringMVC Restful 风格的接口的流程是什么样的呢？",
+      "answer": "PS:这是一道全新的八股，毕竟 ModelAndView 这种方式应该没人用了吧？现在都是前后端分离接口，八股也该更新换代了。\n\n我们都知道 Restful 接口，响应格式是 json，这就用到了一个常用注解：@ResponseBody\n\njava\n    @GetMapping(\"/user\")\n    @ResponseBody\n    public User user(){\n        return new User(1,\"张三\");\n    }\n\n加入了这个注解后，整体的流程上和使用 ModelAndView 大体上相同，但是细节上有一些不同：\n\n1. 客户端向服务端发送一次请求，这个请求会先到前端控制器 DispatcherServlet\n2. DispatcherServlet 接收到请求后会调用 HandlerMapping 处理器映射器。由此得知，该请求该由哪个 Controller 来处理\n3. DispatcherServlet 调用 HandlerAdapter 处理器适配器，告诉处理器适配器应该要去执行哪个 Controller\n4. Controller 被封装成了 ServletInvocableHandlerMethod，HandlerAdapter 处理器适配器去执行 invokeAndHandle 方法，完成对 Controller 的请求处理\n5. HandlerAdapter 执行完对 Controller 的请求，会调用 HandlerMethodReturnValueHandler 去处理返回值，主要的过程：\n\n   5.1. 调用 RequestResponseBodyMethodProcessor，创建 ServletServerHttpResponse（Spring 对原生 ServerHttpResponse 的封装）实例\n\n   5.2.使用 HttpMessageConverter 的 write 方法，将返回值写入 ServletServerHttpResponse 的 OutputStream 输出流中\n\n   5.3.在写入的过程中，会使用 JsonGenerator（默认使用 Jackson 框架）对返回值进行 Json 序列化\n6. 执行完请求后，返回的 ModealAndView 为 null，ServletServerHttpResponse 里也已经写入了响应，所以不用关心 View 的处理",
+      "analysis": "【Spring / MVC】",
+      "categories": [
+        "Spring / MVC"
+      ]
+    },
+    {
+      "id": "java-core-0245",
+      "type": "short",
+      "question": "介绍一下 SpringBoot，有哪些优点？",
+      "answer": "Spring Boot 提供了一套默认配置，它通过约定大于配置的理念，来帮助我们快速搭建 Spring 项目骨架。\n\n以前的 Spring 开发需要配置大量的 xml 文件，并且需要引入大量的第三方 jar 包，还需要手动放到 classpath 下。现在只需要引入一个 Starter，或者一个注解，就可以轻松搞定。\n\nSpring Boot 的优点非常多，比如说：\n\n1. Spring Boot 内嵌了 Tomcat、Jetty、Undertow 等容器，直接运行 jar 包就可以启动项目。\n2. Spring Boot 内置了 Starter 和自动装配，避免繁琐的手动配置。例如，如果项目中添加了 spring-boot-starter-web，Spring Boot 会自动配置 Tomcat 和 Spring MVC。\n3. Spring Boot 内置了 Actuator 和 DevTools，便于调试和监控。\n\nSpring Boot常用注解有哪些？\n\n1. @SpringBootApplication：Spring Boot 应用的入口，用在启动类上。\n2. 还有一些 Spring 框架本身的注解，比如 @Component、@RestController、@Service、@ConfigurationProperties、@Transactional 等。",
+      "analysis": "【Spring / Spring Boot】",
+      "categories": [
+        "Spring / Spring Boot"
+      ]
+    },
+    {
+      "id": "java-core-0246",
+      "type": "short",
+      "question": "SpringBoot 自动配置原理了解吗？",
+      "answer": "在 Spring 中，自动装配是指容器利用反射技术，根据 Bean 的类型、名称等自动注入所需的依赖。\n\n在 Spring Boot 中，开启自动装配的注解是@EnableAutoConfiguration。\n\nSpring Boot 为了进一步简化，直接通过 @SpringBootApplication 注解一步搞定，该注解包含了 @EnableAutoConfiguration 注解。\n\nmain 类启动的时候，Spring Boot 会通过底层的AutoConfigurationImportSelector 类加载自动装配类。\n\njava\n@AutoConfigurationPackage //将main同级的包下的所有组件注册到容器中\n@Import({AutoConfigurationImportSelector.class}) //加载自动装配类 xxxAutoconfiguration\npublic @interface EnableAutoConfiguration {\n    String ENABLED_OVERRIDE_PROPERTY = \"spring.boot.enableautoconfiguration\";\n\n    Class[] exclude() default {};\n\n    String[] excludeName() default {};\n}\n\nAutoConfigurationImportSelector实现了ImportSelector接口，该接口的作用是收集需要导入的配置类，配合 @Import() 将相应的类导入到 Spring 容器中。\n\n获取注入类的方法是 selectImports()，它实际调用的是getAutoConfigurationEntry()，这个方法是获取自动装配类的关键。\n\njava\nprotected AutoConfigurationEntry getAutoConfigurationEntry(AnnotationMetadata annotationMetadata) {\n    // 检查自动配置是否启用。如果@ConditionalOnClass等条件注解使得自动配置不适用于当前环境，则返回一个空的配置条目。\n    if (!isEnabled(annotationMetadata)) {\n        return EMPTY_ENTRY;\n    }\n\n    // 获取启动类上的@EnableAutoConfiguration注解的属性，这可能包括对特定自动配置类的排除。\n    AnnotationAttributes attributes = getAttributes(annotationMetadata);\n\n    // 从spring.factories中获取所有候选的自动配置类。这是通过加载META-INF/spring.factories文件中对应的条目来实现的。\n    List configurations = getCandidateConfigurations(annotationMetadata, attributes);\n\n    // 移除配置列表中的重复项，确保每个自动配置类只被考虑一次。\n    configurations = removeDuplicates(configurations);\n\n    // 根据注解属性解析出需要排除的自动配置类。\n    Set exclusions = getExclusions(annotationMetadata, attributes);\n\n    // 检查排除的类是否存在于候选配置中，如果存在，则抛出异常。\n    checkExcludedClasses(configurations, exclusions);\n\n    // 从候选配置中移除排除的类。\n    configurations.removeAll(exclusions);\n\n    // 应用过滤器进一步筛选自动配置类。过滤器可能基于条件注解如@ConditionalOnBean等来排除特定的配置类。\n    configurations = getConfigurationClass…",
+      "analysis": "【Spring / Spring Boot】",
+      "categories": [
+        "Spring / Spring Boot"
+      ]
+    },
+    {
+      "id": "java-core-0247",
+      "type": "short",
+      "question": "如何自定义一个 SpringBoot Srarter?",
+      "answer": "创建一个自定义的 Spring Boot Starter，需要这几步：\n\n第一步，创建一个新的 Maven 项目，例如命名为 my-spring-boot-starter。在 pom.xml 文件中添加必要的依赖和配置：\n\nxml\n\n    2.3.1.RELEASE\n\n    \n        org.springframework.boot\n        spring-boot-autoconfigure\n        ${spring.boot.version}\n    \n    \n        org.springframework.boot\n        spring-boot-starter\n        ${spring.boot.version}\n    \n\n第二步，在 src/main/java 下创建一个自动配置类，比如 MyServiceAutoConfiguration.java：（通常是 autoconfigure 包下）。\n\njava\n@Configuration\n@EnableConfigurationProperties(MyStarterProperties.class)\npublic class MyServiceAutoConfiguration {\n\n    @Bean\n    @ConditionalOnMissingBean\n    public MyService myService(MyStarterProperties properties) {\n        return new MyService(properties.getMessage());\n    }\n}\n\n第三步，创建一个配置属性类 MyStarterProperties.java：\n\njava\n@ConfigurationProperties(prefix = \"mystarter\")\npublic class MyStarterProperties {\n    private String message = \"练习伴侣不错啊!\";\n\n    public String getMessage() {\n        return message;\n    }\n\n    public void setMessage(String message) {\n        this.message = message;\n    }\n}\n\n第四步，创建一个简单的服务类 MyService.java：\n\njava\npublic class MyService {\n    private final String message;\n\n    public MyService(String message) {\n        this.message = message;\n    }\n\n    public String getMessage() {\n        return message;\n    }\n}\n\n第五步，配置 spring.factories，在 src/main/resources/META-INF 目录下创建 spring.factories 文件，并添加：\n\ntext\norg.springframework.boot.autoconfigure.EnableAutoConfiguration=\\\ncom.itwanger.mystarter.autoconfigure.MyServiceAutoConfiguration\n\n第六步，使用 Maven 打包这个项目：\n\nshell\nmvn clean install\n\n第七步，在其他的 Spring Boot 项目中，通过 Maven 来添加这个自定义的 Starter 依赖，并通过 application.properties 配置欢迎消息：\n\nxml\nmystarter.message=javabetter.cn\n\n然后就可以在 Spring Boot 项目中注入 MyStarterProperties 来使用它。\n\n启动项目，然后在浏览器中输入 localhost:8081/hello，就可以看到欢迎消息了。\n\nSpring Boot St…",
+      "analysis": "【Spring / Spring Boot】",
+      "categories": [
+        "Spring / Spring Boot"
+      ]
+    },
+    {
+      "id": "java-core-0248",
+      "type": "short",
+      "question": "Spring Boot 启动原理了解吗？",
+      "answer": "Spring Boot 的启动由 SpringApplication 类负责：\n\n 第一步，创建 SpringApplication 实例，负责应用的启动和初始化；\n 第二步，从 application.yml 中加载配置文件和环境变量；\n 第三步，创建上下文环境 ApplicationContext，并加载 Bean，完成依赖注入；\n 第四步，启动内嵌的 Web 容器。\n 第五步，发布启动完成事件 ApplicationReadyEvent，并调用 ApplicationRunner 的 run 方法完成启动后的逻辑。\n\n关键的代码逻辑如下：\n\njava\npublic ConfigurableApplicationContext run(String... args) {\n    // 1. 创建启动时的监听器并触发启动事件\n    SpringApplicationRunListeners listeners = getRunListeners(args);\n    listeners.starting();\n\n    // 2. 准备运行环境\n    ConfigurableEnvironment environment = prepareEnvironment(listeners);\n    configureIgnoreBeanInfo(environment);\n\n    // 3. 创建上下文\n    ConfigurableApplicationContext context = createApplicationContext();\n\n    try {\n        // 4. 准备上下文\n        prepareContext(context, environment, listeners, args);\n\n        // 5. 刷新上下文，完成 Bean 初始化和装配\n        refreshContext(context);\n\n        // 6. 调用运行器\n        afterRefresh(context, args);\n\n        // 7. 触发启动完成事件\n        listeners.started(context);\n    } catch (Exception ex) {\n        handleRunFailure(context, ex, listeners);\n    }\n\n    return context;\n}\n\n以为例。在启动类 QuickForumApplication 中，main 方法会调用 SpringApplication.run() 启动项目。\n\n该方法负责 Spring 应用的上下文环境（ApplicationContext）准备，包括：\n\n 扫描配置文件，添加依赖项\n 初始化和加载 Bean 定义\n 启动内嵌的 Web 容器等\n 发布启动完成事件\n\n了解@SpringBootApplication 注解吗？\n\n@SpringBootApplication是 Spring Boot 的核心注解，经常用于主类上，作为项目启动入口的标识。它是一个组合注解：\n\n @SpringBootConfiguration：继承自 @Configuration，标注该类是一个配置类，相当于一个 Spring 配置文件。\n @EnableAutoConfiguration：告诉 Spring Boot 根据 pom.xml 中添加的依赖自动配置项目。例如，如果 spring-boot-starter-web 依赖被添加到项目中，Spring Boot 会自动配置 Tomcat 和 Spring MVC。\n @ComponentScan：扫描当前包及其子包下被@Component、@Service、@Controller、@Repository 注解标记的类，并注册为 Spring Bean。\n\njava\n@SpringBootApplication\npublic class Application {\n    public static void main(String[] args) {\n        SpringApplicati…",
+      "analysis": "【Spring / Spring Boot】",
+      "categories": [
+        "Spring / Spring Boot"
+      ]
+    },
+    {
+      "id": "java-core-0249",
+      "type": "short",
+      "question": "SpringBoot 和 SpringMVC 的区别？（补充）",
+      "answer": "> 2024 年 04 月 04 日增补\n\nSpring MVC 是基于 Spring 框架的一个模块，提供了一种 Model-View-Controller（模型-视图-控制器）的开发模式。\n\nSpring Boot 旨在简化 Spring 应用的配置和部署过程，提供了大量的自动配置选项，以及运行时环境的内嵌 Web 服务器，这样就可以更快速地开发一个 SpringMVC 的 Web 项目。",
+      "analysis": "【Spring / Spring Boot】",
+      "categories": [
+        "Spring / Spring Boot"
+      ]
+    },
+    {
+      "id": "java-core-0250",
+      "type": "short",
+      "question": "Spring Boot 和 Spring 有什么区别？（补充）",
+      "answer": "> 2024 年 07 月 09 日新增\n\nSpring Boot 是 Spring Framework 的一个扩展，提供了一套快速配置和开发的机制，可以帮助我们快速搭建 Spring 项目的骨架，提高生产效率。\n\n| 特性 | Spring Framework | Spring Boot |\n| --- | --- | --- |\n| 目的 | 提供企业级的开发工具和库 | 简化 Spring 应用的开发、配置和部署 |\n| 配置方式 | 主要通过 XML 和注解等手动配置 | 提供开箱即用的自动配置 |\n| 启动和运行 | 需要打成 war 包到 Tomcat 等容器下运行 | 已嵌入 Tomcat 等容器，打包成 JAR 文件直接运行 |\n| 依赖管理 | 手动添加和管理依赖 | 使用 spring-boot-starter 简化依赖管理 |",
+      "analysis": "【Spring / Spring Boot】",
+      "categories": [
+        "Spring / Spring Boot"
+      ]
+    },
+    {
+      "id": "java-core-0251",
+      "type": "short",
+      "question": "对 SpringCloud 了解多少？",
+      "answer": "Spring Cloud 是一个基于 Spring Boot，提供构建分布式系统和微服务架构的工具集。用于解决分布式系统中的一些常见问题，如配置管理、服务发现、负载均衡等等。\n\n什么是微服务？\n\n1. 2014 年 Martin Fowler 提出的一种新的架构形式。微服务架构是一种架构模式，提倡将单一应用程序划分成一组小的服务，服务之间相互协调，互相配合，为用户提供最终价值。每个服务运行在其独立的进程中，服务与服务之间采用轻量级的通信机制(如 HTTP 或 Dubbo)互相协作，每个服务都围绕着具体的业务进行构建，并且能够被独立的部署到生产环境中，另外，应尽量避免统一的，集中式的服务管理机制，对具体的一个服务而言，应根据业务上下文，选择合适的语言、工具(如 Maven)对其进行构建。\n2. 微服务化的核心就是将传统的一站式应用，根据业务拆分成一个一个的服务，彻底地去耦合，每一个微服务提供单个业务功能的服务，一个服务做一件事情，从技术角度看就是一种小而独立的处理过程，类似进程的概念，能够自行单独启动或销毁，拥有自己独立的数据库。\n\n微服务架构主要要解决哪些问题？\n\n1. 服务很多，客户端怎么访问，如何提供对外网关?\n2. 这么多服务，服务之间如何通信? HTTP 还是 RPC?\n3. 这么多服务，如何治理? 服务的注册和发现。\n4. 服务挂了怎么办？熔断机制。\n\n有哪些主流微服务框架？\n\n1. Spring Cloud Netflix\n2. Spring Cloud Alibaba\n3. SpringBoot + Dubbo + ZooKeeper\n\nSpringCloud 有哪些核心组件？",
+      "analysis": "【Spring / Spring Cloud】",
+      "categories": [
+        "Spring / Spring Cloud"
+      ]
+    },
+    {
+      "id": "java-core-0252",
+      "type": "short",
+      "question": "SpringTask 了解吗？",
+      "answer": "SpringTask 是 Spring 框架提供的一个轻量级的任务调度框架，它允许我们开发者通过简单的注解来配置和管理定时任务。\n\n①、@Scheduled：最常用的注解，用于标记方法为计划任务的执行点。中，就使用该注解来定时刷新 sitemap.xml：\n\njava\n@Scheduled(cron = \"0 15 5   ?\")\npublic void autoRefreshCache() {\n    log.info(\"开始刷新sitemap.xml的url地址，避免出现数据不一致问题!\");\n    refreshSitemap();\n    log.info(\"刷新完成！\");\n}\n\n@Scheduled 注解支持多种调度选项，如 fixedRate、fixedDelay 和 cron 表达式。\n\n②、@EnableScheduling：用于开启定时任务的支持。\n\n用SpringTask资源占用太高，有什么其他的方式解决？（补充）\n\n> 2024年05月27日新增\n\n第一，使用消息队列，如 RabbitMQ、Kafka、RocketMQ 等，将任务放到消息队列中，然后由消费者异步处理这些任务。\n\n①、在订单创建时，将订单超时检查任务放入消息队列，并设置延迟时间（即订单超时时间）。\n\njava\n@Service\npublic class OrderService {\n    @Autowired\n    private RabbitTemplate rabbitTemplate;\n\n    public void createOrder(Order order) {\n        // 创建订单逻辑\n        // ...\n        \n        // 发送延迟消息\n        rabbitTemplate.convertAndSend(\"orderExchange\", \"orderTimeoutQueue\", order, message -> {\n            message.getMessageProperties().setExpiration(\"600000\"); // 设置延迟时间（10分钟）\n            return message;\n        });\n    }\n}\n\n②、使用消费者从队列中消费消息，当消费到超时任务时，执行订单超时处理逻辑。\n\njava\n@Service\npublic class OrderTimeoutConsumer {\n\n    @RabbitListener(queues = \"orderTimeoutQueue\")\n    public void handleOrderTimeout(Order order) {\n        // 处理订单超时逻辑\n        // ...\n    }\n}\n\n第二，使用数据库调度器（如 Quartz）。\n\n①、创建一个 Quartz 任务类，处理订单超时逻辑。\n\njava\npublic class OrderTimeoutJob implements Job {\n    @Override\n    public void execute(JobExecutionContext context) throws JobExecutionException {\n        // 获取订单信息\n        Order order = (Order) context.getJobDetail().getJobDataMap().get(\"order\");\n\n        // 处理订单超时逻辑\n        // ...\n    }\n}\n\n②、在订单创建时，调度一个 Quartz 任务，设置任务的触发时间为订单超时时间。\n\njava\n@Service\npublic class OrderService {\n    @Autowired\n    private Scheduler scheduler;\n\n    public void createOrder(Order order) {\n        // 创建订单逻辑\n        // ...\n\n        // 调度 Quartz…",
+      "analysis": "【Spring / 补充】",
+      "categories": [
+        "Spring / 补充"
+      ]
+    },
+    {
+      "id": "java-core-0253",
+      "type": "short",
+      "question": "Spring Cache 了解吗？",
+      "answer": "Spring Cache 是 Spring 框架提供的一个缓存抽象，它通过统一的接口来支持多种缓存实现（如 Redis、Caffeine 等）。\n\n它通过注解（如 @Cacheable、@CachePut、@CacheEvict）来实现缓存管理，极大简化了代码实现。\n\n @Cacheable：缓存方法的返回值。\n @CachePut：用于更新缓存，每次调用方法都会将结果重新写入缓存。\n @CacheEvict：用于删除缓存。\n\n使用示例：\n\nSpring Cache 和 Redis 有什么区别？\n\n1. Spring Cache 是 Spring 框架提供的一个缓存抽象，它通过注解来实现缓存管理，支持多种缓存实现（如 Redis、Caffeine 等）。\n2. Redis 是一个分布式的缓存中间件，支持多种数据类型（如 String、Hash、List、Set、ZSet），还支持持久化、集群、主从复制等。\n\nSpring Cache 适合用于单机、轻量级和短时缓存场景，能够通过注解轻松控制缓存管理。\n\nRedis 是一种分布式缓存解决方案，支持多种数据结构和高并发访问，适合分布式系统和高并发场景，可以提供数据持久化和多种淘汰策略。\n\n在实际开发中，Spring Cache 和 Redis 可以结合使用，Spring Cache 提供管理缓存的注解，而 Redis 则作为分布式缓存的实现，提供共享缓存支持。\n\n有了 Redis 为什么还需要 Spring Cache？\n\n虽然 Redis 非常强大，但 Spring Cache 提供了一层缓存抽象，简化了缓存的管理。我们可以直接在方法上通过注解来实现缓存逻辑，减少了手动操作 Redis 的代码量。\n\nSpring Cache 还能灵活切换底层缓存实现。此外，Spring Cache 支持事务性缓存和条件缓存，便于在复杂场景中确保数据一致性。\n\n说说Spring Cache 的底层原理？\n\nSpring Cache 是基于 AOP 和缓存抽象层实现的。它通过 AOP 拦截被 @Cacheable、@CachePut 和 @CacheEvict 注解的方法，在方法调用前后自动执行缓存逻辑。\n\n其提供的 CacheManager 和 Cache 等接口，不依赖具体的缓存实现，因此可以灵活地集成 Redis、Caffeine 等多种缓存。\n\n ConcurrentMapCacheManager：基于 Java ConcurrentMap 的本地缓存实现。\n RedisCacheManager：基于 Redis 的分布式缓存实现。\n CaffeineCacheManager：基于 Caffeine 的缓存实现。\n\n---\n\n图文详解 41 道 Spring 面试高频题，这次吊打面试官，我觉得稳了（手动 dog）。整理：练习伴侣二，戳转载链接，作者：三分恶，戳原文链接。\n\n没有什么使我停留——除了目的，纵然岸旁有玫瑰、有绿荫、有宁静的港湾，我是不系之舟。\n\n系列内容：\n\n---",
+      "analysis": "【Spring / 补充】",
+      "categories": [
+        "Spring / 补充"
+      ]
+    }
+  ]
+}

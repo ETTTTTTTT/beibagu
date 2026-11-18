@@ -1,0 +1,570 @@
+{
+  "meta": {
+    "title": "Java SE 专项题库",
+    "questionCount": 56,
+    "exportedAt": "2026-11-18T09:22:29.540522+00:00",
+    "sourceNote": "仅供个人学习，请遵守原资料版权。"
+  },
+  "questions": [
+    {
+      "id": "java-core-0001",
+      "type": "short",
+      "question": "什么是 Java？",
+      "answer": "Java 是一门面向对象的编程语言，由 Sun 公司的詹姆斯·高斯林团队于 1995 年推出。吸收了 C++ 语言中大量的优点，但又抛弃了 C++ 中容易出错的地方，如垃圾回收、指针。\n\n同时，Java 又是一门平台无关的编程语言，即一次编译，处处运行。\n\n只需要在对应的平台上安装 JDK，就可以实现跨平台，在 Windows、macOS、Linux 操作系统上运行。\n\n多久开始学 Java 的？\n\n我是从大一下学期开始学习 Java 的，当时已经学完了 C 语言，但苦于 C 语言没有很好的应用方向，就开始学习 Java 了，因为我了解到，绝大多数的互联网公司，包括银行、国企，后端服务都是用 Java 开发的，另外就是，Java 的学习资料非常丰富，就业岗位和薪资待遇都比较理想。\n\n于是就一边学，一边实战，先做了前后端分离的社区项目，接触到了 Spring Boot、MyBatis-Plus、MySQL、Redis、ElasticSearch、MongoDB、Docker、RabbitMQ 等一系列的 Java 技术栈。\n\n后面又做了微服务项目 ，接触到了 Spring Cloud、Nacos、Sentinel、Seata、SkyWalking 等相关技术栈。\n\n平常用什么编程语言？\n\n大一上先学习的 C 语言，大一下半学期开始学习 Java，中间还学过一些 Python 和 JavaScript，但整体的感受上来说还是更喜欢 Java。\n\n因为它可以做的事情太多了，既可以用它来写 Web 后端服务，也可以用它来造一些轮子，比如 MYDB 这个轮子，就是用 Java 完成的，不进加深了我对 MySQL索引、事务、MVCC 的理解，还让我对 Java 的 NIO、多线程、JVM 有了更深的了解。\n\n平时是怎么学 Java 的？\n\n一开始，主要是跟着学校的课程走，入门后感觉课程已经满足不了我的求知欲了，于是就开始在 B 站和 GitHub 上找一些优质的视频资源和开源知识库来学习。\n\n比如说《Java 进阶之路》就很适合我的口味，从 Java 的语法、数组&字符串、OOP、集合框架、Java IO、异常处理、网络编程、NIO、并发编程、JVM 等，都有详细的讲解，还有很多手绘图和代码实例，我都跟着动手一步步实现了，感觉收获很大。\n\n后来又读了一遍《Java 编程思想》、《Effective Java》，周志明老师的《深入理解 Java 虚拟机》，以及 JDK 的一些源码，比如说 String、HashMap，还有字节码方面的知识。\n\n再后来就开始做实战项目 MYDB、、，算是彻底掌握 Java 项目的开发流程了。\n\nJava 语言和 C 语言有哪些区别？\n\nJava 是一种跨平台的编程语言，通过在不同操作系统上安装对应版本的 JVM 以实现“一次编译，处处运行”的目的。而 C 语言需要在不同的操作系统上重新编译。\n\nJava 实现了内存的自动管理，而 C 语言需要使用 malloc 和 free 来手动管理内存。",
+      "analysis": "【Java SE / Java 概述】",
+      "categories": [
+        "Java SE / Java 概述"
+      ]
+    },
+    {
+      "id": "java-core-0002",
+      "type": "short",
+      "question": "Java 语言有哪些特点？",
+      "answer": "Java 语言的特点有：\n\n①、面向对象，主要是封装，继承，多态。\n\n②、平台无关性，“一次编写，到处运行”，因此采用 Java 语言编写的程序具有很好的可移植性。\n\n③、支持多线程。C++ 语言没有内置的多线程机制，因此必须调用操作系统的 API 来完成多线程程序设计，而 Java 却提供了封装好多线程支持；\n\n④、支持 JIT 编译，也就是即时编译器，它可以在程序运行时将字节码转换为热点机器码来提高程序的运行速度。",
+      "analysis": "【Java SE / Java 概述】",
+      "categories": [
+        "Java SE / Java 概述"
+      ]
+    },
+    {
+      "id": "java-core-0003",
+      "type": "short",
+      "question": "JVM、JDK 和 JRE 有什么区别？",
+      "answer": "JVM：也就是 Java 虚拟机，是 Java 实现跨平台的关键所在，不同的操作系统有不同的 JVM 实现。JVM 负责将 Java 字节码转换为特定平台的机器码，并执行。\n\nJRE：也就是 Java 运行时环境，包含了运行 Java 程序所必需的库，以及 JVM。\n\nJDK：一套完整的 Java SDK，包括 JRE，编译器 javac、Java 文档生成工具 javadoc、Java 字节码工具 javap 等。为开发者提供了开发、编译、调试 Java 程序的一整套环境。\n\n简单来说，JDK 包含 JRE，JRE 包含 JVM。",
+      "analysis": "【Java SE / Java 概述】",
+      "categories": [
+        "Java SE / Java 概述"
+      ]
+    },
+    {
+      "id": "java-core-0004",
+      "type": "short",
+      "question": "说说什么是跨平台？原理是什么",
+      "answer": "所谓的跨平台，是指 Java 语言编写的程序，一次编译后，可以在多个操作系统上运行。\n\n原理是增加了一个中间件 JVM，JVM 负责将 Java 字节码转换为特定平台的机器码，并执行。",
+      "analysis": "【Java SE / Java 概述】",
+      "categories": [
+        "Java SE / Java 概述"
+      ]
+    },
+    {
+      "id": "java-core-0005",
+      "type": "short",
+      "question": "什么是字节码？采用字节码的好处是什么?",
+      "answer": "所谓的字节码，就是 Java 程序经过编译后产生的 .class 文件。\n\nJava 程序从源代码到运行需要经过三步：\n\n 编译：将源代码文件 .java 编译成 JVM 可以识别的字节码文件 .class\n 解释：JVM 执行字节码文件，将字节码翻译成操作系统能识别的机器码\n 执行**：操作系统执行二进制的机器码",
+      "analysis": "【Java SE / Java 概述】",
+      "categories": [
+        "Java SE / Java 概述"
+      ]
+    },
+    {
+      "id": "java-core-0006",
+      "type": "short",
+      "question": "为什么有人说 Java 是“编译与解释并存”的语言？",
+      "answer": "编译型语言是指编译器针对特定的操作系统，将源代码一次性翻译成可被该平台执行的机器码。\n\n解释型语言是指解释器对源代码进行逐行解释，解释成特定平台的机器码并执行。\n\n举个例子，我想读一本国外的小说，我有两种选择：\n\n 找个翻译，等翻译将小说全部都翻译成汉语，一次性读完。\n 找个翻译，翻译一段我读一段，慢慢把书读完。\n\n之所以有人说 Java 是“编译与解释并存”的语言，是因为 Java 程序需要先将 Java 源代码文件编译字节码文件，再解释执行。",
+      "analysis": "【Java SE / Java 概述】",
+      "categories": [
+        "Java SE / Java 概述"
+      ]
+    },
+    {
+      "id": "java-core-0007",
+      "type": "short",
+      "question": "Java 有哪些数据类型？",
+      "answer": "Java 的数据类型可以分为两种：基本数据类型和引用数据类型。\n\n基本数据类型有：\n\n①、数值型\n\n 整数类型（byte、short、int、long）\n 浮点类型（float、double）\n\n②、字符型（char）\n\n③、布尔型（boolean）\n\n它们的默认值和占用大小如下所示：\n\n| 数据类型 | 默认值 | 大小 |\n| --- | --- | --- |\n| boolean | false | 1 字节或 4 字节 |\n| char | '\\u0000' | 2 字节 |\n| byte | 0 | 1 字节 |\n| short | 0 | 2 字节 |\n| int | 0 | 4 字节 |\n| long | 0L | 8 字节 |\n| float | 0.0f | 4 字节 |\n| double | 0.0 | 8 字节 |\n\n引用数据类型有：\n\n （class）\n （interface）\n （[]）\n\nboolean 类型实际占用几个字节？\n\n这要依据具体的 JVM 实现细节。Java 虚拟机规范中，并没有明确规定 boolean 类型的大小，只规定了 boolean 类型的取值 true 或 false。\n\n> boolean: The boolean data type has only two possible values: true and false. Use this data type for simple flags that track true/false conditions. This data type represents one bit of information, but its \"size\" isn't something that's precisely defined.\n\n我本机的 64 位 JDK 中，通过 JOL 工具查看单独的 boolean 类型，以及 boolean 数组，所占用的空间都是 1 个字节。\n\n给Integer最大值+1，是什么结果？\n\n当给 Integer.MAX\\_VALUE 加 1 时，会发生溢出，变成 Integer.MIN\\_VALUE。\n\njava\nint maxValue = Integer.MAX_VALUE;\nSystem.out.println(\"Integer.MAX_VALUE = \" + maxValue); // Integer.MAX_VALUE = 2147483647\nSystem.out.println(\"Integer.MAX_VALUE + 1 = \" + (maxValue + 1)); // Integer.MAX_VALUE + 1 = -2147483648\n\n// 用二进制来表示最大值和最小值\nSystem.out.println(\"Integer.MAX_VALUE in binary: \" + Integer.toBinaryString(maxValue)); // Integer.MAX_VALUE in binary: 1111111111111111111111111111111\nSystem.out.println(\"Integer.MIN_VALUE in binary: \" + Integer.toBinaryString(Integer.MIN_VALUE)); // Integer.MIN_VALUE in binary: 10000000000000000000000000000000\n\n这是因为 Java 的整数类型采用的是二进制补码表示法，溢出时值会变成最小值。\n\n Integer.MAX\\_VALUE 的二进制表示是 01111111 11111111 11111111 11111111（32 位）。\n* 加 1 后结果变成 10000000 00000000 00000000 00000000，即 -2147483648（Integer.MIN\\_VALUE）。",
+      "analysis": "【Java SE / 基础语法】",
+      "categories": [
+        "Java SE / 基础语法"
+      ]
+    },
+    {
+      "id": "java-core-0008",
+      "type": "short",
+      "question": "自动类型转换、强制类型转换了解吗？",
+      "answer": "当把一个范围较小的数值或变量赋给另外一个范围较大的变量时，会进行自动类型转换；反之，需要强制转换。\n\n这就好像，小杯里的水倒进大杯没问题，但大杯的水倒进小杯就可能会溢出。\n\n①、float f=3.4，对吗？\n\n不正确。3.4 默认是双精度，将双精度赋值给浮点型属于下转型（down-casting，也称窄化）会造成精度丢失，因此需要强制类型转换float f =(float)3.4;或者写成float f =3.4F\n\n②、short s1 = 1; s1 = s1 + 1；对吗？short s1 = 1; s1 += 1;对吗？\n\nshort s1 = 1; s1 = s1 + 1; 会编译出错，由于 1 是 int 类型，因此 s1+1 运算结果也是 int 型，需要强制转换类型才能赋值给 short 型。\n\n而 short s1 = 1; s1 += 1;可以正确编译，因为 s1+= 1;相当于 s1 = (short(s1 + 1); 其中有隐含的强制类型转换。",
+      "analysis": "【Java SE / 基础语法】",
+      "categories": [
+        "Java SE / 基础语法"
+      ]
+    },
+    {
+      "id": "java-core-0009",
+      "type": "short",
+      "question": "什么是自动拆箱/装箱？",
+      "answer": "装箱：将基本数据类型转换为包装类型，例如 int 转换为 Integer。\n 拆箱：将包装类型转换为基本数据类型。\n\n举例：\n\njava\nInteger i = 10;  //装箱\nint n = i;   //拆箱\n\n再换句话说，i 是 Integer 类型，n 是 int 类型；变量 i 是包装器类，变量 n 是基本数据类型。",
+      "analysis": "【Java SE / 基础语法】",
+      "categories": [
+        "Java SE / 基础语法"
+      ]
+    },
+    {
+      "id": "java-core-0010",
+      "type": "short",
+      "question": "&和&&有什么区别？",
+      "answer": "& 是 逻辑与。\n\n&&是短路与运算。逻辑与跟短路与的差别是非常大的，虽然二者都要求运算符左右两端的布尔值都是 true，整个表达式的值才是 true。\n\n&&之所以称为短路运算是因为，如果&&左边的表达式的值是 false，右边的表达式会直接短路掉，不会进行运算。\n\n例如在验证用户登录时判定用户名不是 null 而且不是空字符串，应当写为username != null && !username.equals(\"\")，二者的顺序不能交换，更不能用 & 运算符，因为第一个条件如果不成立，根本不能进行字符串的 equals 比较，会抛出 。\n\n注意：逻辑或运算符（|）和短路或运算符（||）的差别也是类似。\n\n> 2024 年 12 月 23 日 更新到这里。",
+      "analysis": "【Java SE / 基础语法】",
+      "categories": [
+        "Java SE / 基础语法"
+      ]
+    },
+    {
+      "id": "java-core-0011",
+      "type": "short",
+      "question": "switch 语句能否用在 byte/long/String 类型上？",
+      "answer": "Java 5 以前 switch(expr) 中，expr 只能是 byte、short、char、int。\n\n从 Java 5 开始，Java 中引入了枚举类型， expr 也可以是 enum 类型。\n\n从 Java 7 开始，expr 还可以是字符串，但是长整型在目前所有的版本中都是不可以的。",
+      "analysis": "【Java SE / 基础语法】",
+      "categories": [
+        "Java SE / 基础语法"
+      ]
+    },
+    {
+      "id": "java-core-0012",
+      "type": "short",
+      "question": "break,continue,return 的区别及作用？",
+      "answer": "break 跳出整个循环，不再执行循环(结束当前的循环体)\n continue 跳出本次循环，继续执行下次循环(结束正在执行的循环 进入下一个循环条件)\n return 程序返回，不再执行下面的代码(结束当前的方法 直接返回**)",
+      "analysis": "【Java SE / 基础语法】",
+      "categories": [
+        "Java SE / 基础语法"
+      ]
+    },
+    {
+      "id": "java-core-0013",
+      "type": "short",
+      "question": "用效率最高的方法计算 2 乘以 8？",
+      "answer": "2 << 3。位运算，数字的二进制位左移三位相当于乘以 2 的三次方。",
+      "analysis": "【Java SE / 基础语法】",
+      "categories": [
+        "Java SE / 基础语法"
+      ]
+    },
+    {
+      "id": "java-core-0014",
+      "type": "short",
+      "question": "说说自增自减运算？",
+      "answer": "在写代码的过程中，常见的一种情况是需要某个整数类型变量增加 1 或减少 1，Java 提供了一种特殊的运算符，用于这种表达式，叫做自增运算符（++）和自减运算符（--）。\n\n++和--运算符可以放在变量之前，也可以放在变量之后。\n\n当运算符放在变量之前时(前缀)，先自增/减，再赋值；当运算符放在变量之后时(后缀)，先赋值，再自增/减。\n\n例如，当 b = ++a 时，先自增（自己增加 1），再赋值（赋值给 b）；当 b = a++ 时，先赋值(赋值给 b)，再自增（自己增加 1）。也就是，++a 输出的是 a+1 的值，a++输出的是 a 值。\n\n用一句口诀就是：“符号在前就先加/减，符号在后就后加/减”。\n\n看一下这段代码运行结果？\n\njava\nint i  = 1;\ni = i++;\nSystem.out.println(i);\n\n答案是 1。有点离谱对不对。\n\n对于 JVM 而言，它对自增运算的处理，是会先定义一个临时变量来接收 i 的值，然后进行自增运算，最后又将临时变量赋给了值为 2 的 i，所以最后的结果为 1。\n\n相当于这样的代码：\n\njava\nint i = 1；\nint temp = i;\ni++；\ni = temp;\nSystem.out.println(i);\n\n这段代码会输出什么？\n\njava\nint count = 0;\nfor(int i = 0;i < 100;i++)\n{\n    count = count++;\n}\nSystem.out.println(\"count = \"+count);\n\n答案是 0。\n\n和上面的题目一样的道理，同样是用了临时变量，count 实际是等于临时变量的值。\n\njava\nint autoAdd(int count)\n{\n    int temp = count;\n    count = count + 1;\n    return temp;\n}",
+      "analysis": "【Java SE / 基础语法】",
+      "categories": [
+        "Java SE / 基础语法"
+      ]
+    },
+    {
+      "id": "java-core-0015",
+      "type": "short",
+      "question": "float 是怎么表示小数的？（补充）",
+      "answer": "> 2024 年 04 月 21 日增补\n\nfloat类型的小数在计算机中是通过 IEEE 754 标准的单精度浮点数格式来表示的。\n\nV=(−1)S×M×2E\n\n S：符号位，0 代表正数，1 代表负数；\n M：尾数部分，用于表示数值的精度；比如说 1.25∗22；1.25 就是尾数；\n R：基数，十进制中的基数是 10，二进制中的基数是 2；\n E：指数部分，例如 10−1 中的 -1 就是指数。\n\n这种表示方法可以将非常大或非常小的数值用有限的位数表示出来，但这也意味着可能会有精度上的损失。\n\n单精度浮点数占用 4 字节（32 位），这 32 位被分为三个部分：符号位、指数部分和尾数部分。\n\n1. 符号位（Sign bit）：1 位\n2. 指数部分（Exponent）：10 位\n3. 尾数部分（Mantissa，或 Fraction）：21 位\n\n按照这个规则，将十进制数 25.125 转换为浮点数，转换过程是这样的：\n\n1. 整数部分：25 转换为二进制是 11001；\n2. 小数部分：0.125 转换为二进制是 0.001；\n3. 用二进制科学计数法表示：25.125 = 1.001001×24\n\n符号位 S 是 0，表示正数；指数部分 E 是 4，转换为二进制是 100；尾数部分 M 是 1.001001。\n\n使用浮点数时需要注意，由于精度的限制，进行数学运算时可能会遇到舍入误差，特别是连续运算累积误差可能会变得显著。\n\n对于需要高精度计算的场景（如金融计算），可能需要考虑使用BigDecimal类来避免这种误差。",
+      "analysis": "【Java SE / 基础语法】",
+      "categories": [
+        "Java SE / 基础语法"
+      ]
+    },
+    {
+      "id": "java-core-0016",
+      "type": "short",
+      "question": "讲一下数据准确性高是怎么保证的？（补充）",
+      "answer": "> 2024 年 04 月 21 日增补\n\n在金融计算中，保证数据准确性有两种方案，一种使用 BigDecimal，一种将浮点数转换为整数 int 进行计算。\n\n肯定不能使用 float 和 double 类型，它们无法避免浮点数运算中常见的精度问题，因为这些数据类型采用二进制浮点数来表示，无法准确地表示，例如 0.1。\n\njava\nBigDecimal num1 = new BigDecimal(\"0.1\");\nBigDecimal num2 = new BigDecimal(\"0.2\");\nBigDecimal sum = num1.add(num2);\nSystem.out.println(\"Sum of 0.1 and 0.2 using BigDecimal: \" + sum);  // 输出 0.3，精确计算\n\n在处理小额支付或计算时，通过转换为较小的货币单位（如分），这样不仅提高了运算速度，还保证了计算的准确性。\n\njava\nint priceInCents = 199;  // 商品价格199分\nint quantity = 3;\nint totalInCents = priceInCents * quantity;  // 计算总价\nSystem.out.println(\"Total price in cents: \" + totalInCents);  // 输出597分",
+      "analysis": "【Java SE / 基础语法】",
+      "categories": [
+        "Java SE / 基础语法"
+      ]
+    },
+    {
+      "id": "java-core-0017",
+      "type": "short",
+      "question": "⾯向对象和⾯向过程的区别?",
+      "answer": "面向过程是以过程为核心，通过函数完成任务，程序结构是函数+步骤组成的顺序流程。\n\n面向对象是以对象为核心，通过对象交互完成任务，程序结构是类和对象组成的模块化结构，代码可以通过继承、组合、多态等方式复用。\n\n在中，像 VO、DTO 都是业务抽象后的对象实体类，而 Service、Controller 则是业务逻辑的实现，这其实就是面向对象的思想。",
+      "analysis": "【Java SE / 面向对象】",
+      "categories": [
+        "Java SE / 面向对象"
+      ]
+    },
+    {
+      "id": "java-core-0018",
+      "type": "short",
+      "question": "面向对象编程有哪些特性？",
+      "answer": "面向对象编程有三大特性：封装、继承、多态。\n\n封装是什么？\n\n封装是指将数据（属性，或者叫字段）和操作数据的方法（行为）捆绑在一起，形成一个独立的对象（类的实例）。\n\njava\nclass Nvshen {\n    private String name;\n    private int age;\n\n    public void setName(String name) {\n        this.name = name;\n    }\n\n    public String getName() {\n        return name;\n    }\n\n    public void setAge(int age) {\n        this.age = age;\n    }\n}\n\n可以看得出，女神类对外没有提供 age 的 getter 方法，因为女神的年龄要保密。\n\n所以，封装是把一个对象的属性私有化，同时提供一些可以被外界访问的方法。\n\n继承是什么？\n\n继承允许一个类（子类）继承现有类（父类或者基类）的属性和方法。以提高代码的复用性，建立类之间的层次关系。\n\n同时，子类还可以重写或者扩展从父类继承来的属性和方法，从而实现多态。\n\njava\nclass Person {\n    protected String name;\n    protected int age;\n\n    public void eat() {\n        System.out.println(\"吃饭\");\n    }\n}\n\nclass Student extends Person {\n    private String school;\n\n    public void study() {\n        System.out.println(\"学习\");\n    }\n}\n\nStudent 类继承了 Person 类的属性（name、age）和方法（eat），同时还有自己的属性（school）和方法（study）。\n\n什么是多态？\n\n多态允许不同类的对象对同一消息做出响应，但表现出不同的行为（即方法的多样性）。\n\n多态其实是一种能力——同一个行为具有不同的表现形式；换句话说就是，执行一段代码，Java 在运行时能根据对象类型的不同产生不同的结果。\n\n多态的前置条件有三个：\n\n 子类继承父类\n 子类重写父类的方法\n* 父类引用指向子类的对象\n\njava\n//子类继承父类\nclass Wangxiaoer extends Wanger {\n    public void write() { // 子类重写父类方法\n        System.out.println(\"记住仇恨，表明我们要奋发图强的心智\");\n    }\n\n    public static void main(String[] args) {\n        // 父类引用指向子类对象\n        Wanger wanger = new Wangxiaoer();\n        wanger.write();\n    }\n}\n\nclass Wanger {\n    public void write() {\n        System.out.println(\"练习伴侣二是沙雕\");\n    }\n}\n\n为什么Java里面要多组合少继承？\n\n继承适合描述“is-a”的关系，但继承容易导致类之间的强耦合，一旦父类发生改变，子类也要随之改变，违背了开闭原则（尽量不修改现有代码，而是添加新的代码来实现）。\n\n组合适合描述“has-a”或“can-do”的关系，通过在类中组合其他类，能够更灵活地扩展功能。组合避免了复杂的类继承体系，同时遵循了开闭原则和松耦合的设计原则。\n\n举个例子，假设我们采用继承，每种形状和样式的组合都会导致类的急剧增加：\n\njava\n// 基类\nclass Shape {\n    public void draw() {\n        System.out.println(\"Drawing a shape\");\n    }\n}\n\n// 圆形\nclass Circle extends Shape {\n    @Override\n    public void dr…",
+      "analysis": "【Java SE / 面向对象】",
+      "categories": [
+        "Java SE / 面向对象"
+      ]
+    },
+    {
+      "id": "java-core-0019",
+      "type": "short",
+      "question": "多态解决了什么问题？（补充）",
+      "answer": "> 2024 年 03 月 26 日增补\n\n多态指同一个接口或方法在不同的类中有不同的实现，比如说动态绑定，父类引用指向子类对象，方法的具体调用会延迟到运行时决定。\n\n举例，现在有一个父类 Wanger，一个子类 Wangxiaoer，都有一个 write 方法。现在有一个父类 Wanger 类型的变量 wanger，它在执行 wanger.write() 时，究竟调用父类 Wanger 的 write() 方法，还是子类 Wangxiaoer 的 write() 方法呢？\n\njava\n//子类继承父类\nclass Wangxiaoer extends Wanger {\n    public void write() { // 子类覆盖父类方法\n        System.out.println(\"记住仇恨，表明我们要奋发图强的心智\");\n    }\n\n    public static void main(String[] args) {\n        // 父类引用指向子类对象\n        Wanger[] wangers = { new Wanger(), new Wangxiaoer() };\n\n        for (Wanger wanger : wangers) {\n            // 对象是练习伴侣二的时候输出：勿忘国耻\n            // 对象是练习伴侣小二的时候输出：记住仇恨，表明我们要奋发图强的心智\n            wanger.write();\n        }\n    }\n}\n\nclass Wanger {\n    public void write() {\n        System.out.println(\"勿忘国耻\");\n    }\n}\n\n答案是在运行时根据对象的类型进行后期绑定，编译器在编译阶段并不知道对象的类型，但是 Java 的方法调用机制能找到正确的方法体，然后执行，得到正确的结果，这就是多态的作用。\n\n多态的实现原理是什么？\n\n多态通过动态绑定实现，Java 使用虚方法表存储方法指针，方法调用时根据对象实际类型从虚方法表查找具体实现。",
+      "analysis": "【Java SE / 面向对象】",
+      "categories": [
+        "Java SE / 面向对象"
+      ]
+    },
+    {
+      "id": "java-core-0020",
+      "type": "short",
+      "question": "重载和重写的区别？",
+      "answer": "如果一个类有多个名字相同但参数个数不同的方法，我们通常称这些方法为方法重载（overload）。如果方法的功能是一样的，但参数不同，使用相同的名字可以提高程序的可读性。\n\n如果子类具有和父类一样的方法（参数相同、返回类型相同、方法名相同，但方法体可能不同），我们称之为方法重写（override）。方法重写用于提供父类已经声明的方法的特殊实现，是实现多态的基础条件。\n\n 方法重载发生在同一个类中，同名的方法如果有不同的参数（参数类型不同、参数个数不同或者二者都不同）。\n 方法重写发生在子类与父类之间，要求子类与父类具有相同的返回类型，方法名和参数列表，并且不能比父类的方法声明更多的异常，遵守里氏代换原则。\n\n什么是里氏代换原则？\n\n里氏代换原则也被称为李氏替换原则（Liskov Substitution Principle, LSP），其规定任何父类可以出现的地方，子类也一定可以出现。\n\nLSP 是继承复用的基石，只有当子类可以替换掉父类，并且单位功能不受到影响时，父类才能真正被复用，而子类也能够在父类的基础上增加新的行为。\n\n这意味着子类在扩展父类时，不应改变父类原有的行为。例如，如果有一个方法接受一个父类对象作为参数，那么传入该方法的任何子类对象也应该能正常工作。\n\njava\nclass Bird {\n    void fly() {\n        System.out.println(\"鸟正在飞\");\n    }\n}\n\nclass Duck extends Bird {\n    @Override\n    void fly() {\n        System.out.println(\"鸭子正在飞\");\n    }\n}\n\nclass Ostrich extends Bird {\n    // Ostrich违反了LSP，因为鸵鸟不会飞，但却继承了会飞的鸟类\n    @Override\n    void fly() {\n        throw new UnsupportedOperationException(\"鸵鸟不会飞\");\n    }\n}\n\n在这个例子中，Ostrich（鸵鸟）类违反了 LSP 原则，因为它改变了父类 Bird 的行为（即飞行）。设计时应该更加谨慎地使用继承关系，确保遵守 LSP 原则。\n\n除了李氏替换原则外，还有其他几个重要的面向对象设计原则，它们共同构成了 SOLID 原则，分别是：\n\n①、单一职责原则（Single Responsibility Principle, SRP），指一个类应该只有一个引起它变化的原因，即一个类只负责一项职责。这样做的目的是使类更加清晰，更容易理解和维护。\n\n②、开闭原则（Open-Closed Principle, OCP），指软件实体应该对扩展开放，对修改关闭。这意味着一个类应该通过扩展来实现新的功能，而不是通过修改已有的代码来实现。\n\n举个例子，在不遵守开闭原则的情况下，有一个需要处理不同形状的绘图功能类。\n\njava\nclass ShapeDrawer {\n    public void draw(Shape shape) {\n        if (shape instanceof Circle) {\n            drawCircle((Circle) shape);\n        } else if (shape instanceof Rectangle) {\n            drawRectangle((Rectangle) shape);\n        }\n    }\n    \n    private void drawCircle(Circle circle) {\n        // 画圆形\n    }\n    \n    private void drawRectangle(Rectangle rectangle) {\n        // 画矩形\n    }\n}\n\n每增加一种形状，就需要修改一次 draw 方法，这违反了开闭原则。正确的做法是通过继承和多态来实现新的形状类，然后在 ShapeDrawer 中添加新的 draw 方法。\n\njava\n// 抽象的 Shape 类\nabstract class Shape {\n   …",
+      "analysis": "【Java SE / 面向对象】",
+      "categories": [
+        "Java SE / 面向对象"
+      ]
+    },
+    {
+      "id": "java-core-0021",
+      "type": "short",
+      "question": "访问修饰符 public、private、protected、以及默认时的区别？",
+      "answer": "Java 中，可以使用访问控制符来保护对类、变量、方法和构造方法的访问。Java 支持 4 种不同的访问权限。\n\n default （即默认，什么也不写）: 在同一包内可见，不使用任何修饰符。可以修饰在类、接口、变量、方法。\n private : 在同一类内可见。可以修饰变量、方法。注意：不能修饰类（外部类）\n public : 对所有类可见。可以修饰类、接口、变量、方法\n protected : 对同一包内的类和所有子类可见。可以修饰变量、方法。注意：不能修饰类（外部类）。",
+      "analysis": "【Java SE / 面向对象】",
+      "categories": [
+        "Java SE / 面向对象"
+      ]
+    },
+    {
+      "id": "java-core-0022",
+      "type": "short",
+      "question": "this 关键字有什么作用？",
+      "answer": "this 是自身的一个对象，代表对象本身，可以理解为：指向对象本身的一个指针。\n\nthis 的用法在 Java 中大体可以分为 3 种：\n\n1. 普通的直接引用，this 相当于是指向当前对象本身\n2. 形参与成员变量名字重名，用 this 来区分：\n\njava\npublic Person(String name,int age){\n    this.name=name;\n    this.age=age;\n}\n\n3. 引用本类的构造方法",
+      "analysis": "【Java SE / 面向对象】",
+      "categories": [
+        "Java SE / 面向对象"
+      ]
+    },
+    {
+      "id": "java-core-0023",
+      "type": "short",
+      "question": "抽象类和接口有什么区别？",
+      "answer": "一个类只能继承一个抽象类；但一个类可以实现多个接口。所以我们在新建线程类的时候一般推荐使用实现 Runnable 接口的方式，这样线程类还可以继承其他类，而不单单是 Thread 类。\n\n抽象类符合 is-a 的关系，而接口更像是 has-a 的关系，比如说一个类可以序列化的时候，它只需要实现 Serializable 接口就可以了，不需要去继承一个序列化类。\n\n抽象类更多地是用来为多个相关的类提供一个共同的基础框架，包括状态的初始化，而接口则是定义一套行为标准，让不同的类可以实现同一接口，提供行为的多样化实现。\n\n抽象类可以定义构造方法吗？\n\n可以，抽象类可以有构造方法。\n\njava\nabstract class Animal {\n    protected String name;\n\n    public Animal(String name) {\n        this.name = name;\n    }\n\n    public abstract void makeSound();\n}\n\npublic class Dog extends Animal {\n    private int age;\n\n    public Dog(String name, int age) {\n        super(name);  // 调用抽象类的构造函数\n        this.age = age;\n    }\n\n    @Override\n    public void makeSound() {\n        System.out.println(name + \" says: Bark\");\n    }\n}\n\n接口可以定义构造方法吗？\n\n不能，接口主要用于定义一组方法规范，没有具体的实现细节。\n\nJava支持多继承吗？\n\nJava 不支持多继承，一个类只能继承一个类，多继承会引发菱形继承问题。\n\njava\nclass A {\n    void show() { System.out.println(\"A\"); }\n}\n\nclass B extends A {\n    void show() { System.out.println(\"B\"); }\n}\n\nclass C extends A {\n    void show() { System.out.println(\"C\"); }\n}\n\n// 如果 Java 支持多继承\nclass D extends B, C {\n    // 调用 show() 方法时，D 应该调用 B 的 show() 还是 C 的 show()？\n}\n\n接口可以多继承吗？\n\n接口可以多继承，一个接口可以继承多个接口，使用逗号分隔。\n\njava\ninterface InterfaceA {\n    void methodA();\n}\n\ninterface InterfaceB {\n    void methodB();\n}\n\ninterface InterfaceC extends InterfaceA, InterfaceB {\n    void methodC();\n}\n\nclass MyClass implements InterfaceC {\n    public void methodA() {\n        System.out.println(\"Method A\");\n    }\n\n    public void methodB() {\n        System.out.println(\"Method B\");\n    }\n\n    public void methodC() {\n        System.out.println(\"Method C\");\n    }\n\n    public static void main(String[] args) {\n        MyClass myClass = new MyClass();\n        myClass.methodA();\n        myClass.methodB();\n        myClass.methodC();\n    }\n}\n\n在上面的例子中，InterfaceA 和 InterfaceB 是两…",
+      "analysis": "【Java SE / 面向对象】",
+      "categories": [
+        "Java SE / 面向对象"
+      ]
+    },
+    {
+      "id": "java-core-0024",
+      "type": "short",
+      "question": "成员变量与局部变量的区别有哪些？",
+      "answer": "1. 从语法形式上看：成员变量是属于类的，⽽局部变量是在⽅法中定义的变量或是⽅法的参数；成员变量可以被 public , private , static 等修饰符所修饰，⽽局部变量不能被访问控制修饰符及 static 所修饰；但是，成员变量和局部变量都能被 final 所修饰。\n2. 从变量在内存中的存储⽅式来看：如果成员变量是使⽤ static 修饰的，那么这个成员变量是属于类的，如果没有使⽤ static 修饰，这个成员变量是属于实例的。对象存于堆内存，如果局部变量类型为基本数据类型，那么存储在栈内存，如果为引⽤数据类型，那存放的是指向堆内存对象的引⽤或者是指向常量池中的地址。\n3. 从变量在内存中的⽣存时间上看：成员变量是对象的⼀部分，它随着对象的创建⽽存在，⽽局部变量随着⽅法的调⽤⽽⾃动消失。\n4. 成员变量如果没有被赋初值：则会⾃动以类型的默认值⽽赋值（⼀种情况例外:被 final 修饰的成员变量也必须显式地赋值），⽽局部变量则不会⾃动赋值。",
+      "analysis": "【Java SE / 面向对象】",
+      "categories": [
+        "Java SE / 面向对象"
+      ]
+    },
+    {
+      "id": "java-core-0025",
+      "type": "short",
+      "question": "static 关键字了解吗？",
+      "answer": "static 关键字可以用来修饰变量、方法、代码块和内部类，以及导入包。\n\n| 修饰对象 | 作用 |\n| --- | --- |\n| 变量 | 静态变量，类级别变量，所有实例共享同一份数据。 |\n| 方法 | 静态方法，类级别方法，与实例无关。 |\n| 代码块 | 在类加载时初始化一些数据，只执行一次。 |\n| 内部类 | 与外部类绑定但独立于外部类实例。 |\n| 导入 | 可以直接访问静态成员，无需通过类名引用，简化代码书写，但会降低代码可读性。 |\n\n静态变量和实例变量的区别？\n\n静态变量: 是被 static 修饰符修饰的变量，也称为类变量，它属于类，不属于类的任何一个对象，一个类不管创建多少个对象，静态变量在内存中有且仅有一个副本。\n\n实例变量: 必须依存于某一实例，需要先创建对象然后通过对象才能访问到它。静态变量可以实现让多个对象共享内存。\n\n静态⽅法和实例⽅法有何不同?\n\n类似地。\n\n静态方法：static 修饰的方法，也被称为类方法。在外部调⽤静态⽅法时，可以使⽤\"类名.⽅法名\"的⽅式，也可以使⽤\"对象名.⽅法名\"的⽅式。静态方法里不能访问类的非静态成员变量和方法。\n\n实例⽅法：依存于类的实例，需要使用\"对象名.⽅法名\"的⽅式调用；可以访问类的所有成员变量和方法。",
+      "analysis": "【Java SE / 面向对象】",
+      "categories": [
+        "Java SE / 面向对象"
+      ]
+    },
+    {
+      "id": "java-core-0026",
+      "type": "short",
+      "question": "final 关键字有什么作用？",
+      "answer": "①、当 final 修饰一个类时，表明这个类不能被继承。比如，String 类、Integer 类和其他包装类都是用 final 修饰的。\n\n②、当 final 修饰一个方法时，表明这个方法不能被重写（Override）。也就是说，如果一个类继承了某个类，并且想要改变父类中被 final 修饰的方法的行为，是不被允许的。\n\n③、当 final 修饰一个变量时，表明这个变量的值一旦被初始化就不能被修改。\n\n如果是基本数据类型的变量，其数值一旦在初始化之后就不能更改；如果是引用类型的变量，在对其初始化之后就不能再让其指向另一个对象。\n\n但是引用指向的对象内容可以改变。",
+      "analysis": "【Java SE / 面向对象】",
+      "categories": [
+        "Java SE / 面向对象"
+      ]
+    },
+    {
+      "id": "java-core-0027",
+      "type": "short",
+      "question": "final、finally、finalize 的区别？",
+      "answer": "①、，可以修饰类、方法和变量。当 final 修饰一个类时，表明这个类不能被继承；当 final 修饰一个方法时，表明这个方法不能被重写；当 final 修饰一个变量时，表明这个变量是个常量，一旦赋值后，就不能再被修改了。\n\n②、finally 是 Java 中异常处理的一部分，用来创建 try 块后面的 finally 块。无论 try 块中的代码是否抛出异常，finally 块中的代码总是会被执行。通常，finally 块被用来释放资源，如关闭文件、数据库连接等。\n\n③、finalize 是的一个方法，用于在垃圾回收器将对象从内存中清除出去之前做一些必要的清理工作。\n\n这个方法在垃圾回收器准备释放对象占用的内存之前被自动调用。我们不能显式地调用 finalize 方法，因为它总是由垃圾回收器在适当的时间自动调用。",
+      "analysis": "【Java SE / 面向对象】",
+      "categories": [
+        "Java SE / 面向对象"
+      ]
+    },
+    {
+      "id": "java-core-0028",
+      "type": "short",
+      "question": "==和 equals 的区别？",
+      "answer": "在 Java 中，== 操作符和 equals() 方法用于比较两个对象：\n\n①、==：用于比较两个对象的引用，即它们是否指向同一个对象实例。\n\n如果两个变量引用同一个对象实例，== 返回 true，否则返回 false。\n\n对于基本数据类型（如 int, double, char 等），== 比较的是值是否相等。\n\n②、equals() 方法：用于比较两个对象的内容是否相等。默认情况下，equals() 方法的行为与 == 相同，即比较对象引用，如在超类 Object 中：\n\njava\npublic boolean equals(Object obj) {\n    return (this == obj);\n}\n\n然而，equals() 方法通常被各种类重写。例如，String 类重写了 equals() 方法，以便它可以比较两个字符串的字符内容是否完全一样。\n\n举个例子：\n\njava\nString a = new String(\"练习伴侣二\");\nString b = new String(\"练习伴侣二\");\n\n// 使用 == 比较\nSystem.out.println(a == b); // 输出 false，因为 a 和 b 引用不同的对象\n\n// 使用 equals() 比较\nSystem.out.println(a.equals(b)); // 输出 true，因为 a 和 b 的内容相同",
+      "analysis": "【Java SE / 面向对象】",
+      "categories": [
+        "Java SE / 面向对象"
+      ]
+    },
+    {
+      "id": "java-core-0029",
+      "type": "short",
+      "question": "为什么重写 equals 时必须重写 hashCode ⽅法？",
+      "answer": "因为基于哈希的集合类（如 HashMap）需要基于这一点来正确存储和查找对象。\n\n具体地说，HashMap 通过对象的哈希码将其存储在不同的“桶”中，当查找对象时，它需要使用 key 的哈希码来确定对象在哪个桶中，然后再通过 equals() 方法找到对应的对象。\n\n如果重写了 equals()方法而没有重写 hashCode()方法，那么被认为相等的对象可能会有不同的哈希码，从而导致无法在 HashMap 中正确处理这些对象。\n\n什么是 hashCode 方法？\n\nhashCode() 方法的作⽤是获取哈希码，它会返回⼀个 int 整数，定义在 中， 是一个本地⽅法。\n\njava\npublic native int hashCode();\n\n为什么要有 hashCode 方法？\n\nhashCode 方法主要用来获取对象的哈希码，哈希码是由对象的内存地址或者对象的属性计算出来的，它是⼀个 int 类型的整数，通常是不会重复的，因此可以用来作为键值对的建，以提高查询效率。\n\n例如 中的 key 就是通过 hashCode 来实现的，通过调用 hashCode 方法获取键的哈希码，并将其与右移 16 位的哈希码进行异或运算。\n\njava\nstatic final int hash(Object key) {\n    int h;\n    return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);\n}\n\n为什么两个对象有相同的 hashcode 值，它们也不⼀定相等？\n\n这主要是由于哈希码（hashCode）的本质和目的所决定的。\n\n哈希码是通过哈希函数将对象中映射成一个整数值，其主要目的是在哈希表中快速定位对象的存储位置。\n\n由于哈希函数将一个较大的输入域映射到一个较小的输出域，不同的输入值（即不同的对象）可能会产生相同的输出值（即相同的哈希码）。\n\n这种情况被称为哈希冲突。当两个不相等的对象发生哈希冲突时，它们会有相同的 hashCode。\n\n为了解决哈希冲突的问题，哈希表在处理键时，不仅会比较键对象的哈希码，还会使用 equals 方法来检查键对象是否真正相等。如果两个对象的哈希码相同，但通过 equals 方法比较结果为 false，那么这两个对象就不被视为相等。\n\njava\nif (p.hash == hash &&\n    ((k = p.key) == key || (key != null && key.equals(k))))\n    e = p;\n\nhashCode 和 equals 方法的关系？\n\n如果两个对象通过 equals 相等，它们的 hashCode 必须相等。否则会导致哈希表类数据结构（如 HashMap、HashSet）的行为异常。\n\n在哈希表中，如果 equals 相等但 hashCode 不相等，哈希表可能无法正确处理这些对象，导致重复元素或键值冲突等问题。",
+      "analysis": "【Java SE / 面向对象】",
+      "categories": [
+        "Java SE / 面向对象"
+      ]
+    },
+    {
+      "id": "java-core-0030",
+      "type": "short",
+      "question": "Java 是值传递，还是引用传递？",
+      "answer": "Java 是值传递，不是引用传递。\n\n当一个对象被作为参数传递到方法中时，参数的值就是该对象的引用。引用的值是对象在堆中的地址。\n\n对象是存储在堆中的，所以传递对象的时候，可以理解为把变量存储的对象地址给传递过去。\n\n引用类型的变量有什么特点？\n\n引用类型的变量存储的是对象的地址，而不是对象本身。因此，引用类型的变量在传递时，传递的是对象的地址，也就是说，传递的是引用的值。",
+      "analysis": "【Java SE / 面向对象】",
+      "categories": [
+        "Java SE / 面向对象"
+      ]
+    },
+    {
+      "id": "java-core-0031",
+      "type": "short",
+      "question": "说说深拷贝和浅拷贝的区别?",
+      "answer": "在 Java 中，深拷贝（Deep Copy）和浅拷贝（Shallow Copy）是两种拷贝对象的方式，它们在拷贝对象的方式上有很大不同。\n\n浅拷贝会创建一个新对象，但这个新对象的属性（字段）和原对象的属性完全相同。如果属性是基本数据类型，拷贝的是基本数据类型的值；如果属性是引用类型，拷贝的是引用地址，因此新旧对象共享同一个引用对象。\n\n浅拷贝的实现方式为：实现 Cloneable 接口并重写 clone() 方法。\n\njava\nclass Person implements Cloneable {\n    String name;\n    int age;\n    Address address;\n\n    public Person(String name, int age, Address address) {\n        this.name = name;\n        this.age = age;\n        this.address = address;\n    }\n\n    @Override\n    protected Object clone() throws CloneNotSupportedException {\n        return super.clone();\n    }\n}\n\nclass Address {\n    String city;\n\n    public Address(String city) {\n        this.city = city;\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) throws CloneNotSupportedException {\n        Address address = new Address(\"河南省洛阳市\");\n        Person person1 = new Person(\"练习伴侣二\", 18, address);\n        Person person2 = (Person) person1.clone();\n\n        System.out.println(person1.address == person2.address); // true\n    }\n}\n\n深拷贝也会创建一个新对象，但会递归地复制所有的引用对象，确保新对象和原对象完全独立。新对象与原对象的任何更改都不会相互影响。\n\n深拷贝的实现方式有：手动复制所有的引用对象，或者使用序列化与反序列化。\n\n①、手动拷贝\n\njava\nclass Person {\n    String name;\n    int age;\n    Address address;\n\n    public Person(String name, int age, Address address) {\n        this.name = name;\n        this.age = age;\n        this.address = address;\n    }\n\n    public Person(Person person) {\n        this.name = person.name;\n        this.age = person.age;\n        this.address = new Address(person.address.city);\n    }\n}\n\nclass Address {\n    String city;\n\n    public Address(String city) {\n        this.city = city;\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        Address address = new Address(\"河南省洛阳市\");\n        Person person1 = new Person(\"练习伴侣二\", 18, address);\n        Person p…",
+      "analysis": "【Java SE / 面向对象】",
+      "categories": [
+        "Java SE / 面向对象"
+      ]
+    },
+    {
+      "id": "java-core-0032",
+      "type": "short",
+      "question": "Java 创建对象有哪几种方式？",
+      "answer": "Java 有四种创建对象的方式：\n\n①、new 关键字创建，这是最常见和直接的方式，通过调用类的构造方法来创建对象。\n\njava\nPerson person = new Person();\n\n②、反射机制创建，反射机制允许在运行时创建对象，并且可以访问类的私有成员，在框架和工具类中比较常见。\n\njava\nClass clazz = Class.forName(\"Person\");\nPerson person = (Person) clazz.newInstance();\n\n③、clone 拷贝创建，通过 clone 方法创建对象，需要实现 Cloneable 接口并重写 clone 方法。\n\njava\nPerson person = new Person();\nPerson person2 = (Person) person.clone();\n\n④、序列化机制创建，通过序列化将对象转换为字节流，再通过反序列化从字节流中恢复对象。需要实现 Serializable 接口。\n\njava\nPerson person = new Person();\nObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(\"person.txt\"));\noos.writeObject(person);\nObjectInputStream ois = new ObjectInputStream(new FileInputStream(\"person.txt\"));\nPerson person2 = (Person) ois.readObject();\n\nnew 子类的时候，子类和父类静态代码块，构造方法的执行顺序\n\n在 Java 中，当创建一个子类对象时，子类和父类的静态代码块、构造方法的执行顺序遵循一定的规则。这些规则主要包括以下几个步骤：\n\n1. 首先执行父类的静态代码块（仅在类第一次加载时执行）。\n2. 接着执行子类的静态代码块（仅在类第一次加载时执行）。\n3. 再执行父类的构造方法。\n4. 最后执行子类的构造方法。\n\n下面是一个详细的代码示例：\n\njava\nclass Parent {\n    // 父类静态代码块\n    static {\n        System.out.println(\"父类静态代码块\");\n    }\n\n    // 父类构造方法\n    public Parent() {\n        System.out.println(\"父类构造方法\");\n    }\n}\n\nclass Child extends Parent {\n    // 子类静态代码块\n    static {\n        System.out.println(\"子类静态代码块\");\n    }\n\n    // 子类构造方法\n    public Child() {\n        System.out.println(\"子类构造方法\");\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        new Child();\n    }\n}\n\n执行上述代码时，输出结果如下：\n\ntext\n父类静态代码块\n子类静态代码块\n父类构造方法\n子类构造方法\n\n 静态代码块：在类加载时执行，仅执行一次，按父类-子类的顺序执行。\n 构造方法：在每次创建对象时执行，按父类-子类的顺序执行，先初始化块后构造方法。",
+      "analysis": "【Java SE / 面向对象】",
+      "categories": [
+        "Java SE / 面向对象"
+      ]
+    },
+    {
+      "id": "java-core-0033",
+      "type": "short",
+      "question": "String 是 Java 基本数据类型吗？可以被继承吗？",
+      "answer": "不是，String 是一个类，属于引用数据类型。Java 的基本数据类型包括八种：四种整型（byte、short、int、long）、两种浮点型（float、double）、一种字符型（char）和一种布尔型（boolean）。\n\nString 类可以继承吗？\n\n不行。String 类使用 final 修饰，是所谓的不可变类，无法被继承。\n\nString 有哪些常用方法？\n\n我自己常用的有：\n\n1. length() - 返回字符串的长度。\n2. charAt(int index) - 返回指定位置的字符。\n3. substring(int beginIndex, int endIndex) - 返回字符串的一个子串，从 beginIndex 到 endIndex-1。\n4. contains(CharSequence s) - 检查字符串是否包含指定的字符序列。\n5. equals(Object anotherObject) - 比较两个字符串的内容是否相等。\n6. indexOf(int ch) 和 indexOf(String str) - 返回指定字符或字符串首次出现的位置。\n7. replace(char oldChar, char newChar) 和 replace(CharSequence target, CharSequence replacement) - 替换字符串中的字符或字符序列。\n8. trim() - 去除字符串两端的空白字符。\n9. split(String regex) - 根据给定正则表达式的匹配拆分此字符串。",
+      "analysis": "【Java SE / String】",
+      "categories": [
+        "Java SE / String"
+      ]
+    },
+    {
+      "id": "java-core-0034",
+      "type": "short",
+      "question": "String 和 StringBuilder、StringBuffer 的区别？",
+      "answer": "String、StringBuilder和StringBuffer在 Java 中都是用于处理字符串的，它们之间的区别是，String 是不可变的，平常开发用得最多，当遇到大量字符串连接时，就用 StringBuilder，它不会生成很多新的对象，StringBuffer 和 StringBuilder 类似，但每个方法上都加了 synchronized 关键字，所以是线程安全的。\n\n请说说 String 的特点\n\n String类的对象是。也就是说，一旦一个String对象被创建，它所包含的字符串内容是不可改变的。\n 每次对String对象进行修改操作（如拼接、替换等）实际上都会生成一个新的String对象，而不是修改原有对象。这可能会导致内存和性能开销，尤其是在大量字符串操作的情况下。\n\n请说说 StringBuilder 的特点\n\n StringBuilder提供了一系列的方法来进行字符串的增删改查操作，这些操作都是直接在原有字符串对象的底层数组上进行的，而不是生成新的 String 对象。\n StringBuilder不是线程安全的。这意味着在没有外部同步的情况下，它不适用于多线程环境。\n 相比于String，在进行频繁的字符串修改操作时，StringBuilder能提供更好的性能。 Java 中的字符串连+操作其实就是通过StringBuilder实现的。\n\n请说说 StringBuffer 的特点\n\nStringBuffer和StringBuilder类似，但StringBuffer是线程安全的，方法前面都加了synchronized关键字。\n\n请总结一下使用场景\n\n String：适用于字符串内容不会改变的场景，比如说作为 HashMap 的 key。\n StringBuilder：适用于单线程环境下需要频繁修改字符串内容的场景，比如在循环中拼接或修改字符串，是 String 的完美替代品。\n StringBuffer：现在已经不怎么用了，因为一般不会在多线程场景下去频繁的修改字符串内容。",
+      "analysis": "【Java SE / String】",
+      "categories": [
+        "Java SE / String"
+      ]
+    },
+    {
+      "id": "java-core-0035",
+      "type": "short",
+      "question": "String str1 = new String(\"abc\") 和 String str2 = \"abc\" 的区别？",
+      "answer": "直接使用双引号为字符串变量赋值时，Java 首先会检查字符串常量池中是否已经存在相同内容的字符串。\n\n如果存在，Java 就会让新的变量引用池中的那个字符串；如果不存在，它会创建一个新的字符串，放入池中，并让变量引用它。\n\n使用 new String(\"abc\") 的方式创建字符串时，实际分为两步：\n\n 第一步，先检查字符串字面量 \"abc\" 是否在字符串常量池中，如果没有则创建一个；如果已经存在，则引用它。\n 第二步，在堆中再创建一个新的字符串对象，并将其初始化为字符串常量池中 \"abc\" 的一个副本。\n\n也就是说：\n\njava\nString s1 = \"练习伴侣二\";\nString s2 = \"练习伴侣二\";\nString s3 = new String(\"练习伴侣二\");\n\nSystem.out.println(s1 == s2); // 输出 true，因为 s1 和 s2 引用的是字符串常量池中同一个对象。\nSystem.out.println(s1 == s3); // 输出 false，因为 s3 是通过 new 关键字显式创建的，指向堆上不同的对象。\n\nString s = new String(\"abc\")创建了几个对象？\n\n字符串常量池中如果之前已经有一个，则不再创建新的，直接引用；如果没有，则创建一个。\n\n堆中肯定有一个，因为只要使用了 new 关键字，肯定会在堆中创建一个。",
+      "analysis": "【Java SE / String】",
+      "categories": [
+        "Java SE / String"
+      ]
+    },
+    {
+      "id": "java-core-0036",
+      "type": "short",
+      "question": "String 是不可变类吗？字符串拼接是如何实现的？",
+      "answer": "String 是不可变的，这意味着一旦一个 String 对象被创建，其存储的文本内容就不能被改变。这是因为：\n\n①、不可变性使得 String 对象在使用中更加安全。因为字符串经常用作参数传递给其他 Java 方法，例如网络连接、打开文件等。\n\n如果 String 是可变的，这些方法调用的参数值就可能在不知不觉中被改变，从而导致网络连接被篡改、文件被莫名其妙地修改等问题。\n\n②、不可变的对象因为状态不会改变，所以更容易进行缓存和重用。字符串常量池的出现正是基于这个原因。\n\n当代码中出现相同的字符串字面量时，JVM 会确保所有的引用都指向常量池中的同一个对象，从而节约内存。\n\n③、因为 String 的内容不会改变，所以它的哈希值也就固定不变。这使得 String 对象特别适合作为 HashMap 或 HashSet 等集合的键，因为计算哈希值只需要进行一次，提高了哈希表操作的效率。\n\n字符串拼接是如何实现的？\n\n因为 String 是不可变的，因此通过“+”操作符进行的字符串拼接，会生成新的字符串对象。\n\n例如：\n\njava\nString a = \"hello \";\nString b = \"world!\";\nString ab = a + b;\n\na 和 b 是通过双引号定义的，所以会在字符串常量池中，而 ab 是通过“+”操作符拼接的，所以会在堆中生成一个新的对象。\n\nJava 8 时，JDK 对“+”号的字符串拼接进行了优化，Java 会在编译期基于 StringBuilder 的 append 方法进行拼接。\n\n下面是通过 javap -verbose 命令反编译后的字节码，能清楚的看到 StringBuilder 的创建和 append 方法的调用。\n\njava\nstack=2, locals=4, args_size=1\n     0: ldc           2                  // String hello\n     2: astore_1\n     3: ldc           3                  // String world!\n     5: astore_2\n     6: new           4                  // class java/lang/StringBuilder\n     9: dup\n    10: invokespecial 5                  // Method java/lang/StringBuilder.\"\":()V\n    13: aload_1\n    14: invokevirtual 6                  // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;\n    17: aload_2\n    18: invokevirtual 6                  // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;\n    21: invokevirtual 7                  // Method java/lang/StringBuilder.toString:()Ljava/lang/String;\n    24: astore_3\n    25: return\n\n也就是说，上面的代码相当于：\n\njava\nString a = \"hello \";\nString b = \"world!\";\nStringBuilder sb = new StringBuilder();\nsb.append(a);\nsb.append(b);\nString ab = sb.toString();\n\n因此，如果笼统地讲，通过加号拼接字符串时会创建多个 String 对象是不准确的。因为加号拼接在编译期还会创建一个 StringBuilder 对象，最终调用 toString() 方法的时候再返回一个新的 String 对象。\n\nja…",
+      "analysis": "【Java SE / String】",
+      "categories": [
+        "Java SE / String"
+      ]
+    },
+    {
+      "id": "java-core-0037",
+      "type": "short",
+      "question": "intern 方法有什么作用？",
+      "answer": "JDK 源码里已经对这个方法进行了说明：\n\njava\n \n When the intern method is invoked, if the pool already contains a\n string equal to this {@code String} object as determined by\n the {@link equals(Object)} method, then the string from the pool is\n returned. Otherwise, this {@code String} object is added to the\n pool and a reference to this {@code String} object is returned.\n \n\n意思也很好懂：\n\n 如果当前字符串内容存在于字符串常量池（即 equals()方法为 true，也就是内容一样），直接返回字符串常量池中的字符串\n* 否则，将此 String 对象添加到池中，并返回 String 对象的引用",
+      "analysis": "【Java SE / String】",
+      "categories": [
+        "Java SE / String"
+      ]
+    },
+    {
+      "id": "java-core-0038",
+      "type": "short",
+      "question": "Integer a= 127，Integer b = 127；Integer c= 128，Integer d = 128；相等吗?",
+      "answer": "a 和 b 相等，c 和 d 不相等。\n\n这个问题涉及到 Java 的自动装箱机制以及Integer类的缓存机制。\n\n对于第一对：\n\njava\nInteger a = 127;\nInteger b = 127;\n\na和b是相等的。这是因为 Java 在自动装箱过程中，会使用Integer.valueOf()方法来创建Integer对象。\n\nInteger.valueOf()方法会针对数值在-128 到 127 之间的Integer对象使用缓存。因此，a和b实际上引用了常量池中相同的Integer对象。\n\n对于第二对：\n\njava\nInteger c = 128;\nInteger d = 128;\n\nc和d不相等。这是因为 128 超出了Integer缓存的范围(-128 到 127)。\n\n因此，自动装箱过程会为c和d创建两个不同的Integer对象，它们有不同的引用地址。\n\n可以通过==运算符来检查它们是否相等：\n\njava\nSystem.out.println(a == b); // 输出true\nSystem.out.println(c == d); // 输出false\n\n要比较Integer对象的数值是否相等，应该使用equals方法，而不是==运算符：\n\njava\nSystem.out.println(a.equals(b)); // 输出true\nSystem.out.println(c.equals(d)); // 输出true\n\n使用equals方法时，c和d的比较结果为true，因为equals比较的是对象的数值，而不是引用地址。\n\n什么是 Integer 缓存？\n\n就拿 Integer 的缓存吃来说吧。根据实践发现，大部分的数据操作都集中在值比较小的范围，因此 Integer 搞了个缓存池，默认范围是 -128 到 127。\n\n当我们使用自动装箱来创建这个范围内的 Integer 对象时，Java 会直接从缓存中返回一个已存在的对象，而不是每次都创建一个新的对象。这意味着，对于这个值范围内的所有 Integer 对象，它们实际上是引用相同的对象实例。\n\nInteger 缓存的主要目的是优化性能和内存使用。对于小整数的频繁操作，使用缓存可以显著减少对象创建的数量。\n\n可以在运行的时候添加 -Djava.lang.Integer.IntegerCache.high=1000 来调整缓存池的最大值。\n\n引用是 Integer 类型，= 右侧是 int 基本类型时，会进行自动装箱，调用的其实是 Integer.valueOf()方法，它会调用 IntegerCache。\n\njava\npublic static Integer valueOf(int i) {\n    if (i >= IntegerCache.low && i <= IntegerCache.high)\n        return IntegerCache.cache[i + (-IntegerCache.low)];\n    return new Integer(i);\n}\n\nIntegerCache 是一个静态内部类，在静态代码块中会初始化好缓存的值。\n\njava\nprivate static class IntegerCache {\n    ……\n    static {\n        //创建Integer对象存储\n        for(int k = 0; k < cache.length; k++)\n            cache[k] = new Integer(j++);\n        ……\n    }\n}\n\nnew Integer(10) == new Integer(10) 相等吗\n\n在 Java 中，使用new Integer(10) == new Integer(10)进行比较时，结果是 false。\n\n这是因为 new 关键字会在堆（Heap）上为每个 Integer 对象分配新的内存空间，所以这里创建了两个不同的 Integer 对象，它们有不同的内存地址。\n\n当使用==运算符比较这两个对象时，实际上比较的是它们的内存地址，而不是它们的值，因此即使两个对象代表相同的数值（10），结果也是 false。",
+      "analysis": "【Java SE / Integer】",
+      "categories": [
+        "Java SE / Integer"
+      ]
+    },
+    {
+      "id": "java-core-0039",
+      "type": "short",
+      "question": "String 怎么转成 Integer 的？原理？",
+      "answer": "PS:这道题印象中在一些面经中出场过几次。\n\nString 转成 Integer，主要有两个方法：\n\n Integer.parseInt(String s)\n Integer.valueOf(String s)\n\n不管哪一种，最终还是会调用 Integer 类内中的parseInt(String s, int radix)方法。\n\n抛去一些边界之类的看看核心代码：\n\njava\npublic static int parseInt(String s, int radix)\n                throws NumberFormatException\n    {\n\n        int result = 0;\n        //是否是负数\n        boolean negative = false;\n        //char字符数组下标和长度\n        int i = 0, len = s.length();\n        ……\n        int digit;\n        //判断字符长度是否大于0，否则抛出异常\n        if (len > 0) {\n            ……\n            while (i < len) {\n                // Accumulating negatively avoids surprises near MAX_VALUE\n                //返回指定基数中字符表示的数值。（此处是十进制数值）\n                digit = Character.digit(s.charAt(i++),radix);\n                //进制位乘以数值\n                result *= radix;\n                result -= digit;\n            }\n        }\n        //根据上面得到的是否负数，返回相应的值\n        return negative ? result : -result;\n    }\n\n去掉枝枝蔓蔓（当然这些枝枝蔓蔓可以去看看，源码 cover 了很多情况），其实剩下的就是一个简单的字符串遍历计算，不过计算方式有点反常规，是用负的值累减。",
+      "analysis": "【Java SE / Integer】",
+      "categories": [
+        "Java SE / Integer"
+      ]
+    },
+    {
+      "id": "java-core-0040",
+      "type": "short",
+      "question": "Object 类的常见方法？",
+      "answer": "在 Java 中，经常提到一个词“万物皆对象”，其中的“万物”指的是 Java 中的所有类，而这些类都是 Object 类的子类。\n\nObject 主要提供了 11 个方法，大致可以分为六类：\n\n对象比较：\n\n①、public native int hashCode() ：，用于返回对象的哈希码。\n\njava\npublic native int hashCode();\n\n按照约定，相等的对象必须具有相等的哈希码。如果重写了 equals 方法，就应该重写 hashCode 方法。可以使用 方法来生成哈希码。\n\njava\npublic int hashCode() {\n    return Objects.hash(name, age);\n}\n\n②、public boolean equals(Object obj)：用于比较 2 个对象的内存地址是否相等。\n\njava\npublic boolean equals(Object obj) {\n    return (this == obj);\n}\n\n如果比较的是两个对象的值是否相等，就要重写该方法，比如 、Integer 类等都重写了该方法。举个例子，假如有一个 Person 类，我们认为只要年龄和名字相同，就是同一个人，那么就可以这样重写 equals 方法：\n\njava\nclass Person1 {\n    private String name;\n    private int age;\n\n    // 省略 gettter 和 setter 方法\n\n    public boolean equals(Object obj) {\n        if (this == obj) {\n            return true;\n        }\n        if (obj instanceof Person1) {\n            Person1 p = (Person1) obj;\n            return this.name.equals(p.getName()) && this.age == p.getAge();\n        }\n        return false;\n    }\n}\n\n对象拷贝：\n\nprotected native Object clone() throws CloneNotSupportedException：naitive 方法，返回此对象的一个副本。默认实现只做，且类必须实现 Cloneable 接口。\n\nObject 本身没有实现 Cloneable 接口，所以在不重写 clone 方法的情况下直接直接调用该方法会发生 CloneNotSupportedException 异常。\n\n对象转字符串：\n\npublic String toString()：返回对象的字符串表示。默认实现返回类名@哈希码的十六进制表示，但通常会被重写以返回更有意义的信息。\n\njava\npublic String toString() {\n    return getClass().getName() + \"@\" + Integer.toHexString(hashCode());\n}\n\n比如说一个 Person 类，我们可以重写 toString 方法，返回一个有意义的字符串：\n\njava\npublic String toString() {\n    return \"Person{\" +\n            \"name='\" + name + '\\'' +\n            \", age=\" + age +\n            '}';\n}\n\n当然了，这项工作也可以直接交给 IDE，比如 IntelliJ IDEA，直接右键选择 Generate，然后选择 toString 方法，就会自动生成一个 toString 方法。\n\n也可以交给 ，使用 @Data 注解，它会自动生成 toString 方法。\n\n数组也是一个对象，所以通常我们打印数组的时候，会看到诸如 I@1b6d3586 这样的字符串，这个就是 int 数组的哈希码。\n\n[多线程调度：\n\n每个对象都可以调用 Object 的 wait/notify 方法来实现等…",
+      "analysis": "【Java SE / Object】",
+      "categories": [
+        "Java SE / Object"
+      ]
+    },
+    {
+      "id": "java-core-0041",
+      "type": "short",
+      "question": "Java 中异常处理体系?",
+      "answer": "Java 中的异常处理机制用于处理程序运行过程中可能发生的各种异常情况，通常通过 try-catch-finally 语句和 throw 关键字来实现。\n\nThrowable 是 Java 语言中所有错误和异常的基类。它有两个主要的子类：Error 和 Exception，这两个类分别代表了 Java 异常处理体系中的两个分支。\n\nError 类代表那些严重的错误，这类错误通常是程序无法处理的。比如，OutOfMemoryError 表示内存不足，StackOverflowError 表示栈溢出。这些错误通常与 JVM 的运行状态有关，一旦发生，应用程序通常无法恢复。\n\nException 类代表程序可以处理的异常。它分为两大类：编译时异常（Checked Exception）和运行时异常（Runtime Exception）。\n\n①、编译时异常（Checked Exception）：这类异常在编译时必须被显式处理（捕获或声明抛出）。\n\n如果方法可能抛出某种编译时异常，但没有捕获它（try-catch）或没有在方法声明中用 throws 子句声明它，那么编译将不会通过。例如：IOException、SQLException 等。\n\n②、运行时异常（Runtime Exception）：这类异常在运行时抛出，它们都是 RuntimeException 的子类。对于运行时异常，Java 编译器不要求必须处理它们（即不需要捕获也不需要声明抛出）。\n\n运行时异常通常是由程序逻辑错误导致的，如 NullPointerException、IndexOutOfBoundsException 等。",
+      "analysis": "【Java SE / 异常处理】",
+      "categories": [
+        "Java SE / 异常处理"
+      ]
+    },
+    {
+      "id": "java-core-0042",
+      "type": "short",
+      "question": "异常的处理方式？",
+      "answer": "①、遇到异常时可以不处理，直接通过throw 和 throws 抛出异常，交给上层调用者处理。\n\nthrows 关键字用于声明可能会抛出的异常，而 throw 关键字用于抛出异常。\n\njava\npublic void test() throws Exception {\n    throw new Exception(\"抛出异常\");\n}\n\n②、使用 try-catch 捕获异常，处理异常。\n\njava\ntry {\n    //包含可能会出现异常的代码以及声明异常的方法\n}catch(Exception e) {\n    //捕获异常并进行处理\n}finally {\n    //可选，必执行的代码\n}\n\ncatch和finally的异常可以同时抛出吗？\n\n如果 catch 块抛出一个异常，而 finally 块中也抛出异常，那么最终抛出的将是 finally 块中的异常。catch 块中的异常会被丢弃，而 finally 块中的异常会覆盖并向上传递。\n\njava\npublic class Example {\n    public static void main(String[] args) {\n        try {\n            throw new Exception(\"Exception in try\");\n        } catch (Exception e) {\n            throw new RuntimeException(\"Exception in catch\");\n        } finally {\n            throw new IllegalArgumentException(\"Exception in finally\");\n        }\n    }\n}\n\n try 块首先抛出一个 Exception。\n 控制流进入 catch 块，catch 块中又抛出了一个 RuntimeException。\n* 但是在 finally 块中，抛出了一个 IllegalArgumentException，最终程序抛出的异常是 finally 块中的 IllegalArgumentException。\n\n虽然 catch 和 finally 中的异常不能同时抛出，但可以手动捕获 finally 块中的异常，并将 catch 块中的异常保留下来，避免被覆盖。常见的做法是使用一个变量临时存储 catch 中的异常，然后在 finally 中处理该异常：\n\njava\npublic class Example {\n    public static void main(String[] args) {\n        Exception catchException = null;\n        try {\n            throw new Exception(\"Exception in try\");\n        } catch (Exception e) {\n            catchException = e;\n            throw new RuntimeException(\"Exception in catch\");\n        } finally {\n            try {\n                throw new IllegalArgumentException(\"Exception in finally\");\n            } catch (IllegalArgumentException e) {\n                if (catchException != null) {\n                    System.out.println(\"Catch exception: \" + catchException.getMessage());\n                }\n                System.out.println(\"Finally exception: \" + e.getMessage());\n            }\n        }\n…",
+      "analysis": "【Java SE / 异常处理】",
+      "categories": [
+        "Java SE / 异常处理"
+      ]
+    },
+    {
+      "id": "java-core-0043",
+      "type": "short",
+      "question": "三道经典异常处理代码题",
+      "answer": "题目 1\n\njava\npublic class TryDemo {\n    public static void main(String[] args) {\n        System.out.println(test());\n    }\n    public static int test() {\n        try {\n            return 1;\n        } catch (Exception e) {\n            return 2;\n        } finally {\n            System.out.print(\"3\");\n        }\n    }\n}\n\n在test()方法中，首先有一个try块，接着是一个catch块（用于捕获异常），最后是一个finally块（无论是否捕获到异常，finally块总会执行）。\n\n①、try块中包含一条return 1;语句。正常情况下，如果try块中的代码能够顺利执行，那么方法将返回数字1。在这个例子中，try块中没有任何可能抛出异常的操作，因此它会正常执行完毕，并准备返回1。\n\n②、由于try块中没有异常发生，所以catch块中的代码不会执行。\n\n③、无论前面的代码是否发生异常，finally块总是会执行。在这个例子中，finally块包含一条System.out.print(\"3\");语句，意味着在方法结束前，会在控制台打印出3。\n\n当执行main方法时，控制台的输出将会是：\n\ntext\n31\n\n这是因为finally块确保了它包含的System.out.print(\"3\");会执行并打印3，随后test()方法返回try块中的值1，最终结果就是31。\n\n题目 2\n\njava\npublic class TryDemo {\n    public static void main(String[] args) {\n        System.out.println(test1());\n    }\n    public static int test1() {\n        try {\n            return 2;\n        } finally {\n            return 3;\n        }\n    }\n}\n\n执行结果：3。\n\ntry 返回前先执行 finally，结果 finally 里不按套路出牌，直接 return 了，自然也就走不到 try 里面的 return 了。\n\n注意：finally 里面使用 return 仅存在于面试题中，实际开发这么写要挨吊的（😂）。\n\n题目 3\n\njava\npublic class TryDemo {\n    public static void main(String[] args) {\n        System.out.println(test1());\n    }\n    public static int test1() {\n        int i = 0;\n        try {\n            i = 2;\n            return i;\n        } finally {\n            i = 3;\n        }\n    }\n}\n\n执行结果：2。\n\n大家可能会以为结果应该是 3，因为在 return 前会执行 finally，而 i 在 finally 中被修改为 3 了，那最终返回 i 不是应该为 3 吗？\n\n但其实，在执行 finally 之前，JVM 会先将 i 的结果暂存起来，然后 finally 执行完毕后，会返回之前暂存的结果，而不是返回 i，所以即使 i 已经被修改为 3，最终返回的还是之前暂存起来的结果 2。",
+      "analysis": "【Java SE / 异常处理】",
+      "categories": [
+        "Java SE / 异常处理"
+      ]
+    },
+    {
+      "id": "java-core-0044",
+      "type": "short",
+      "question": "Java 中 IO 流分为几种?",
+      "answer": "Java IO 流的划分可以根据多个维度进行，包括数据流的方向（输入或输出）、处理的数据单位（字节或字符）、流的功能以及流是否支持随机访问等。\n\n按照数据流方向如何划分？\n\n 输入流（Input Stream）：从源（如文件、网络等）读取数据到程序。\n 输出流（Output Stream）：将数据从程序写出到目的地（如文件、网络、控制台等）。\n\n按处理数据单位如何划分？\n\n 字节流（Byte Streams）：以字节为单位读写数据，主要用于处理二进制数据，如音频、图像文件等。\n 字符流（Character Streams）：以字符为单位读写数据，主要用于处理文本数据。\n\n按功能如何划分？\n\n 节点流（Node Streams）：直接与数据源或目的地相连，如 FileInputStream、FileOutputStream。\n 处理流（Processing Streams）：对一个已存在的流进行包装，如缓冲流 BufferedInputStream、BufferedOutputStream。\n 管道流（Piped Streams）：用于线程之间的数据传输，如 PipedInputStream、PipedOutputStream。\n\nIO 流用到了什么设计模式？\n\n其实，Java 的 IO 流体系还用到了一个设计模式——装饰器模式。\n\nJava 缓冲区溢出，如何预防\n\nJava 缓冲区溢出主要是由于向缓冲区写入的数据超过其能够存储的数据量。可以采用这些措施来避免：\n\n①、合理设置缓冲区大小：在创建缓冲区时，应根据实际需求合理设置缓冲区的大小，避免创建过大或过小的缓冲区。\n\n②、控制写入数据量**：在向缓冲区写入数据时，应该控制写入的数据量，确保不会超过缓冲区的容量。Java 的 ByteBuffer 类提供了remaining()方法，可以获取缓冲区中剩余的可写入数据量。\n\njava\nimport java.nio.ByteBuffer;\n\npublic class ByteBufferExample {\n\n    public static void main(String[] args) {\n        // 模拟接收到的数据\n        byte[] receivedData = {1, 2, 3, 4, 5};\n        int bufferSize = 1024;  // 设置一个合理的缓冲区大小\n\n        // 创建ByteBuffer\n        ByteBuffer buffer = ByteBuffer.allocate(bufferSize);\n\n        // 写入数据之前检查容量是否足够\n        if (buffer.remaining() >= receivedData.length) {\n            buffer.put(receivedData);\n        } else {\n            System.out.println(\"Not enough space in buffer to write data.\");\n        }\n\n        // 准备读取数据：将limit设置为当前位置，position设回0\n        buffer.flip();\n\n        // 读取数据\n        while (buffer.hasRemaining()) {\n            byte data = buffer.get();\n            System.out.println(\"Read data: \" + data);\n        }\n\n        // 清空缓冲区以便再次使用\n        buffer.clear();\n    }\n}",
+      "analysis": "【Java SE / I/O】",
+      "categories": [
+        "Java SE / I/O"
+      ]
+    },
+    {
+      "id": "java-core-0045",
+      "type": "short",
+      "question": "既然有了字节流,为什么还要有字符流?",
+      "answer": "其实字符流是由 Java 虚拟机将字节转换得到的，问题就出在这个过程还比较耗时，并且，如果我们不知道编码类型就很容易出现乱码问题。\n\n所以， I/O 流就干脆提供了一个直接操作字符的接口，方便我们平时对字符进行流操作。如果音频文件、图片等媒体文件用字节流比较好，如果涉及到字符的话使用字符流比较好。\n\n文本存储是字节流还是字符流，视频文件呢？\n\n在计算机中，文本和视频都是按照字节存储的，只是如果是文本文件的话，我们可以通过字符流的形式去读取，这样更方面的我们进行直接处理。\n\n比如说我们需要在一个大文本文件中查找某个字符串，可以直接通过字符流来读取判断。\n\n处理视频文件时，通常使用字节流（如 Java 中的FileInputStream、FileOutputStream）来读取或写入数据，并且会尽量使用缓冲流（如BufferedInputStream、BufferedOutputStream）来提高读写效率。\n\n在项目中，对于文本，比如说文章和教程内容，是直接存储在数据库中的，而对于视频和图片等大文件，是存储在 OSS 中的。\n\n因此，无论是文本文件还是视频文件，它们在物理存储层面都是以字节流的形式存在。区别在于，我们如何通过 Java 代码来解释和处理这些字节流：作为编码后的字符还是作为二进制数据。",
+      "analysis": "【Java SE / I/O】",
+      "categories": [
+        "Java SE / I/O"
+      ]
+    },
+    {
+      "id": "java-core-0046",
+      "type": "short",
+      "question": "BIO、NIO、AIO 之间的区别？",
+      "answer": "Java 常见的 IO 模型有三种：BIO、NIO 和 AIO。\n\nBIO：采用阻塞式 I/O 模型，线程在执行 I/O 操作时被阻塞，无法处理其他任务，适用于连接数较少的场景。\n\nNIO：采用非阻塞 I/O 模型，线程在等待 I/O 时可执行其他任务，通过 Selector 监控多个 Channel 上的事件，适用于连接数多但连接时间短的场景。\n\nAIO：使用异步 I/O 模型，线程发起 I/O 请求后立即返回，当 I/O 操作完成时通过回调函数通知线程，适用于连接数多且连接时间长的场景。\n\n简单说一下 BIO？\n\nBIO，也就是传统的 IO，基于字节流或字符流（如 FileInputStream、BufferedReader 等）进行文件读写，基于 Socket 和 ServerSocket 进行网络通信。\n\n对于每个连接，都需要创建一个独立的线程来处理读写操作。\n\n简单说下 NIO？\n\nNIO，JDK 1.4 时引入，放在 java.nio 包下，提供了 Channel、Buffer、Selector 等新的抽象，基于 RandomAccessFile、FileChannel、ByteBuffer 进行文件读写，基于 SocketChannel 和 ServerSocketChannel 进行网络通信。\n\n实际上，“旧”的 I/O 包已经使用 NIO 重新实现过，所以在进行文件读写时，NIO 并无法体现出比 BIO 更可靠的性能。\n\nNIO 的魅力主要体现在网络编程中，服务器可以用一个线程处理多个客户端连接，通过 Selector 监听多个 Channel 来实现多路复用，极大地提高了网络编程的性能。\n\n缓冲区 Buffer 也能极大提升一次 IO 操作的效率。\n\n简单说下 AIO？\n\nAIO 是 Java 7 引入的，放在 java.nio.channels 包下，提供了 AsynchronousFileChannel、AsynchronousSocketChannel 等异步 Channel。\n\n它引入了异步通道的概念，使得 I/O 操作可以异步进行。这意味着线程发起一个读写操作后不必等待其完成，可以立即进行其他任务，并且当读写操作真正完成时，线程会被异步地通知。\n\njava\nAsynchronousFileChannel fileChannel = AsynchronousFileChannel.open(Paths.get(\"test.txt\"), StandardOpenOption.READ);\nByteBuffer buffer = ByteBuffer.allocate(1024);\nFuture result = fileChannel.read(buffer, 0);\nwhile (!result.isDone()) {\n    // do something\n}",
+      "analysis": "【Java SE / I/O】",
+      "categories": [
+        "Java SE / I/O"
+      ]
+    },
+    {
+      "id": "java-core-0047",
+      "type": "short",
+      "question": "什么是序列化？什么是反序列化？",
+      "answer": "序列化（Serialization）是指将对象转换为字节流的过程，以便能够将该对象保存到文件、数据库，或者进行网络传输。\n\n反序列化（Deserialization）就是将字节流转换回对象的过程，以便构建原始对象。\n\nSerializable 接口有什么用？\n\nSerializable接口用于标记一个类可以被序列化。\n\njava\npublic class Person implements Serializable {\n    private String name;\n    private int age;\n    // 省略 getter 和 setter 方法\n}\n\nserialVersionUID 有什么用？\n\nserialVersionUID 是 Java 序列化机制中用于标识类版本的唯一标识符。它的作用是确保在序列化和反序列化过程中，类的版本是兼容的。\n\njava\nimport java.io.Serializable;\n\npublic class MyClass implements Serializable {\n    private static final long serialVersionUID = 1L;\n    private String name;\n    private int age;\n\n    // getters and setters\n}\n\nserialVersionUID 被设置为 1L 是一种比较省事的做法，也可以使用 Intellij IDEA 进行自动生成。\n\n但只要 serialVersionUID 在序列化和反序列化过程中保持一致，就不会出现问题。\n\n如果不显式声明 serialVersionUID，Java 运行时会根据类的详细信息自动生成一个 serialVersionUID。那么当类的结构发生变化时，自动生成的 serialVersionUID 就会发生变化，导致反序列化失败。\n\nJava 序列化不包含静态变量吗？\n\n是的，序列化机制只会保存对象的状态，而静态变量属于类的状态，不属于对象的状态。\n\n如果有些变量不想序列化，怎么办？\n\n可以使用transient关键字修饰不想序列化的变量。\n\njava\npublic class Person implements Serializable {\n    private String name;\n    private transient int age;\n    // 省略 getter 和 setter 方法\n}\n\n能解释一下序列化的过程和作用吗？\n\n序列化过程通常涉及到以下几个步骤：\n\n第一步，实现 Serializable 接口。\n\njava\npublic class Person implements Serializable {\n    private String name;\n    private int age;\n\n    // 省略构造方法、getters和setters\n}\n\n第二步，使用 ObjectOutputStream 来将对象写入到输出流中。\n\njava\nObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(\"person.ser\"));\n\n第三步，调用 ObjectOutputStream 的 writeObject 方法，将对象序列化并写入到输出流中。\n\njava\nPerson person = new Person(\"练习伴侣二\", 18);\nout.writeObject(person);",
+      "analysis": "【Java SE / 序列化】",
+      "categories": [
+        "Java SE / 序列化"
+      ]
+    },
+    {
+      "id": "java-core-0048",
+      "type": "short",
+      "question": "说说有几种序列化方式？",
+      "answer": "Java 序列化方式有很多，常见的有三种：\n\n Java 对象序列化 ：Java 原生序列化方法即通过 Java 原生流(InputStream 和 OutputStream 之间的转化)的方式进行转化，一般是对象输出流 ObjectOutputStream和对象输入流ObjectInputStream。\n Json 序列化：这个可能是我们最常用的序列化方式，Json 序列化的选择很多，一般会使用 jackson 包，通过 ObjectMapper 类来进行一些操作，比如将对象转化为 byte 数组或者将 json 串转化为对象。\n* ProtoBuff 序列化：ProtocolBuffer 是一种轻便高效的结构化数据存储格式，ProtoBuff 序列化对象可以很大程度上将其压缩，可以大大减少数据传输大小，提高系统性能。",
+      "analysis": "【Java SE / 序列化】",
+      "categories": [
+        "Java SE / 序列化"
+      ]
+    },
+    {
+      "id": "java-core-0049",
+      "type": "short",
+      "question": "了解过Socket网络套接字吗？（补充）",
+      "answer": "> 2024 年 11 月 28 日 增补\n\nSocket 是网络通信的基础，表示两台设备之间通信的一个端点。Socket 通常用于建立 TCP 或 UDP 连接，实现进程间的网络通信。\n\n一个简单的 TCP 客户端：\n\njava\nclass TcpClient {\n    public static void main(String[] args) throws IOException {\n        Socket socket = new Socket(\"127.0.0.1\", 8080); // 连接服务器\n        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));\n        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);\n\n        out.println(\"Hello, Server!\"); // 发送消息\n        System.out.println(\"Server response: \" + in.readLine()); // 接收服务器响应\n\n        socket.close();\n    }\n}\n\nTCP 服务端：\n\njava\nclass TcpServer {\n    public static void main(String[] args) throws IOException {\n        ServerSocket serverSocket = new ServerSocket(8080); // 创建服务器端Socket\n        System.out.println(\"Server started, waiting for connection...\");\n        Socket socket = serverSocket.accept(); // 等待客户端连接\n        System.out.println(\"Client connected: \" + socket.getInetAddress());\n\n        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));\n        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);\n\n        String message;\n        while ((message = in.readLine()) != null) {\n            System.out.println(\"Received: \" + message);\n            out.println(\"Echo: \" + message); // 回送消息\n        }\n\n        socket.close();\n        serverSocket.close();\n    }\n}\n\nRPC框架了解吗？\n\nRPC是一种协议，允许程序调用位于远程服务器上的方法，就像调用本地方法一样。RPC 通常基于 Socket 通信实现。\n\n> RPC，Remote Procedure Call，远程过程调用\n\nRPC 框架支持高效的序列化（如 Protocol Buffers）和通信协议（如 HTTP/2），屏蔽了底层网络通信的细节，开发者只需关注业务逻辑即可。\n\n常见的 RPC 框架包括：\n\n1. gRPC：基于 HTTP/2 和 Protocol Buffers。\n2. Dubbo：阿里开源的分布式 RPC 框架，适合微服务场景。\n3. Spring Cloud OpenFeign：基于 REST 的轻量级 RPC 框架。\n4. Thrift：Apache 的跨语言 RPC 框架，支持多语言代码生成。",
+      "analysis": "【Java SE / 网络编程】",
+      "categories": [
+        "Java SE / 网络编程"
+      ]
+    },
+    {
+      "id": "java-core-0050",
+      "type": "short",
+      "question": "Java 泛型了解么？",
+      "answer": "泛型主要用于提高代码的类型安全，它允许在定义类、接口和方法时使用类型参数，这样可以在编译时检查类型一致性，避免不必要的类型转换和类型错误。\n\n没有泛型的时候，像 List 这样的集合类存储的是 Object 类型，导致从集合中读取数据时，必须进行强制类型转换，否则会引发 ClassCastException。\n\njava\nList list = new ArrayList();\nlist.add(\"hello\");\nString str = (String) list.get(0);  // 必须强制类型转换\n\n泛型一般有三种使用方式:泛型类、泛型接口、泛型方法。\n\n1.泛型类：\n\njava\n//此处T可以随便写为任意标识，常见的如T、E、K、V等形式的参数常用于表示泛型\n//在实例化泛型类时，必须指定T的具体类型\npublic class Generic{\n\n    private T key;\n\n    public Generic(T key) {\n        this.key = key;\n    }\n\n    public T getKey(){\n        return key;\n    }\n}\n\n如何实例化泛型类：\n\njava\nGeneric genericInteger = new Generic(123456);\n\n2.泛型接口 ：\n\njava\npublic interface Generator {\n    public T method();\n}\n\n实现泛型接口，指定类型：\n\njava\nclass GeneratorImpl implements Generator{\n    @Override\n    public String method() {\n        return \"hello\";\n    }\n}\n\n3.泛型方法 ：\n\njava\n   public static  void printArray( E[] inputArray )\n   {\n         for ( E element : inputArray ){\n            System.out.printf( \"%s \", element );\n         }\n         System.out.println();\n    }\n\n使用：\n\njava\n// 创建不同类型数组： Integer, Double 和 Character\nInteger[] intArray = { 1, 2, 3 };\nString[] stringArray = { \"Hello\", \"World\" };\nprintArray( intArray  );\nprintArray( stringArray  );\n\n泛型常用的通配符有哪些？\n\n常用的通配符为： T，E，K，V，？\n\n ？ 表示不确定的 java 类型\n T (type) 表示具体的一个 java 类型\n K V (key value) 分别代表 java 键值中的 Key Value\n E (element) 代表 Element\n\n什么是泛型擦除？\n\n所谓的泛型擦除，官方名叫“类型擦除”。\n\nJava 的泛型是伪泛型，这是因为 Java 在编译期间，所有的类型信息都会被擦掉。\n\n也就是说，在运行的时候是没有泛型的。\n\n例如这段代码，往一群猫里放条狗：\n\njava\nLinkedList cats = new LinkedList();\nLinkedList list = cats;  // 注意我在这里把范型去掉了，但是list和cats是同一个链表！\nlist.add(new Dog());  // 完全没问题！\n\n因为 Java 的范型只存在于源码里，编译的时候给你静态地检查一下范型类型是否正确，而到了运行时就不检查了。上面这段代码在 JRE（Java运行环境）看来和下面这段没区别：\n\njava\nLinkedList cats = new LinkedList();  // 注意：没有范型！\nLinkedList list = cats;\nlist.add(new Dog());\n\n为什么要类型擦除呢？\n\n主要是为了向下兼容，因为 JDK5 之前是没有泛型的…",
+      "analysis": "【Java SE / 泛型】",
+      "categories": [
+        "Java SE / 泛型"
+      ]
+    },
+    {
+      "id": "java-core-0051",
+      "type": "short",
+      "question": "说一下你对注解的理解？",
+      "answer": "Java 注解本质上是一个标记，可以理解成生活中的一个人的一些小装扮，比如戴什么什么帽子，戴什么眼镜。\n\n注解可以标记在类上、方法上、属性上等，标记自身也可以设置一些值，比如帽子颜色是绿色。\n\n有了标记之后，我们就可以在编译或者运行阶段去识别这些标记，然后搞一些事情，这就是注解的用处。\n\n例如我们常见的 AOP，使用注解作为切点就是运行期注解的应用；比如 lombok，就是注解在编译期的运行。\n\n注解生命周期有三大类，分别是：\n\n RetentionPolicy.SOURCE：给编译器用的，不会写入 class 文件\n RetentionPolicy.CLASS：会写入 class 文件，在类加载阶段丢弃，也就是运行的时候就没这个信息了\n RetentionPolicy.RUNTIME：会写入 class 文件，永久保存，可以通过反射获取注解信息\n\n所以我上文写的是解析的时候，没写具体是解析啥，因为不同的生命周期的解析动作是不同的。\n\n像常见的：\n\n就是给编译器用的，编译器编译的时候检查没问题就 over 了，class 文件里面不会有 Override 这个标记。\n\n再比如 Spring 常见的 Autowired ，就是 RUNTIME 的，所以在运行的时候可以通过反射得到注解的信息**，还能拿到标记的值 required 。",
+      "analysis": "【Java SE / 注解】",
+      "categories": [
+        "Java SE / 注解"
+      ]
+    },
+    {
+      "id": "java-core-0052",
+      "type": "short",
+      "question": "什么是反射？应用？原理？",
+      "answer": "反射允许 Java 在运行时检查和操作类的方法和字段。通过反射，可以动态地获取类的字段、方法、构造方法等信息，并在运行时调用方法或访问字段。\n\n比如创建一个对象是通过 new 关键字来实现的：\n\njava\nPerson person = new Person();\n\nPerson 类的信息在编译时就确定了，那假如在编译期无法确定类的信息，但又想在运行时获取类的信息、创建类的实例、调用类的方法，这时候就要用到反射。\n\n反射功能主要通过 java.lang.Class 类及 java.lang.reflect 包中的类如 Method, Field, Constructor 等来实现。\n\n比如说我们可以装来动态加载类并创建对象：\n\njava\nString className = \"java.util.Date\";\nClass cls = Class.forName(className);\nObject obj = cls.newInstance();\nSystem.out.println(obj.getClass().getName());\n\n比如说我们可以这样来访问字段和方法：\n\njava\n// 加载并实例化类\nClass cls = Class.forName(\"java.util.Date\");\nObject obj = cls.newInstance();\n\n// 获取并调用方法\nMethod method = cls.getMethod(\"getTime\");\nObject result = method.invoke(obj);\nSystem.out.println(\"Time: \" + result);\n\n// 访问字段\nField field = cls.getDeclaredField(\"fastTime\");\nfield.setAccessible(true); // 对于私有字段需要这样做\nSystem.out.println(\"fastTime: \" + field.getLong(obj));\n\n反射有哪些应用场景？\n\n①、Spring 框架就大量使用了反射来动态加载和管理 Bean。\n\njava\nClass clazz = Class.forName(\"com.example.MyClass\");\nObject instance = clazz.newInstance();\n\n②、Java 的动态代理（Dynamic Proxy）机制就使用了反射来创建代理类。代理类可以在运行时动态处理方法调用，这在实现 AOP 和拦截器时非常有用。\n\njava\nInvocationHandler handler = new MyInvocationHandler();\nMyInterface proxyInstance = (MyInterface) Proxy.newProxyInstance(\n    MyInterface.class.getClassLoader(),\n    new Class[] { MyInterface.class },\n    handler\n);\n\n③、JUnit 和 TestNG 等测试框架使用反射机制来发现和执行测试方法。反射允许框架扫描类，查找带有特定注解（如 @Test）的方法，并在运行时调用它们。\n\njava\nMethod testMethod = testClass.getMethod(\"testSomething\");\ntestMethod.invoke(testInstance);\n\n反射的原理是什么？\n\nJava 程序的执行分为编译和运行两步，编译之后会生成字节码(.class)文件，JVM 进行类加载的时候，会加载字节码文件，将类型相关的所有信息加载进方法区，反射就是去获取这些信息，然后进行各种操作。",
+      "analysis": "【Java SE / 反射】",
+      "categories": [
+        "Java SE / 反射"
+      ]
+    },
+    {
+      "id": "java-core-0053",
+      "type": "short",
+      "question": "JDK 1.8 都有哪些新特性？",
+      "answer": "JDK 1.8 新增了不少新的特性，如 Lambda 表达式、接口默认方法、Stream API、日期时间 API、Optional 类等。\n\n①、Java 8 允许在接口中添加默认方法和静态方法。\n\njava\npublic interface MyInterface {\n    default void myDefaultMethod() {\n        System.out.println(\"My default method\");\n    }\n\n    static void myStaticMethod() {\n        System.out.println(\"My static method\");\n    }\n}\n\n②、Lambda 表达式描述了一个代码块（或者叫匿名方法），可以将其作为参数传递给构造方法或者普通方法以便后续执行。\n\njava\npublic class LamadaTest {\n    public static void main(String[] args) {\n        new Thread(() -> System.out.println(\"练习伴侣二\")).start();\n    }\n}\n\n《Effective Java》的作者 Josh Bloch 建议使用 Lambda 表达式时，最好不要超过 3 行。否则代码可读性会变得很差。\n\n③、Stream 是对 Java 集合框架的增强，它提供了一种高效且易于使用的数据处理方式。\n\njava\nList list = new ArrayList<>();\nlist.add(\"中国加油\");\nlist.add(\"世界加油\");\nlist.add(\"世界加油\");\n\nlong count = list.stream().distinct().count();\nSystem.out.println(count);\n\n④、Java 8 引入了一个全新的日期和时间 API，位于java.time包中。这个新的 API 纠正了旧版java.util.Date类中的许多缺陷。\n\njava\nLocalDate today = LocalDate.now();\nSystem.out.println(\"Today's Local date : \" + today);\n\nLocalTime time = LocalTime.now();\nSystem.out.println(\"Local time : \" + time);\n\nLocalDateTime now = LocalDateTime.now();\nSystem.out.println(\"Current DateTime : \" + now);\n\n⑤、引入 Optional 是为了减少空指针异常。\n\njava\nOptional optional = Optional.of(\"练习伴侣二\");\noptional.isPresent();           // true\noptional.get();                 // \"练习伴侣二\"\noptional.orElse(\"练习伴侣三\");    // \"bam\"\noptional.ifPresent((s) -> System.out.println(s.charAt(0)));     // \"沉\"",
+      "analysis": "【Java SE / JDK1.8 新特性】",
+      "categories": [
+        "Java SE / JDK1.8 新特性"
+      ]
+    },
+    {
+      "id": "java-core-0054",
+      "type": "short",
+      "question": "Lambda 表达式了解多少？",
+      "answer": "Lambda 表达式主要用于提供一种简洁的方式来表示匿名方法，使 Java 具备了函数式编程的特性。\n\n比如说我们可以使用 Lambda 表达式来简化线程的创建：\n\njava\nnew Thread(() -> System.out.println(\"Hello World\")).start();\n\n这比以前的匿名内部类要简洁很多。\n\n所谓的函数式编程，就是把函数作为参数传递给方法，或者作为方法的结果返回。比如说我们可以配合 Stream 流进行数据过滤：\n\njava\nList numbers = Arrays.asList(1, 2, 3, 4, 5, 6);\nList evenNumbers = numbers.stream()\n    .filter(n -> n % 2 == 0)\n    .collect(Collectors.toList());\n\n其中 n -> n % 2 == 0 就是一个 Lambda 表达式。表示传入一个参数 n，返回 n % 2 == 0 的结果。\n\nJava8 有哪些内置函数式接口？\n\nJDK 1.8 API 包含了很多内置的函数式接口。其中就包括我们在老版本中经常见到的 Comparator 和 Runnable，Java 8 为他们都添加了 @FunctionalInterface 注解，以用来支持 Lambda 表达式。\n\n除了这两个之外，还有 Callable、Predicate、Function、Supplier、Consumer 等等。",
+      "analysis": "【Java SE / JDK1.8 新特性】",
+      "categories": [
+        "Java SE / JDK1.8 新特性"
+      ]
+    },
+    {
+      "id": "java-core-0055",
+      "type": "short",
+      "question": "Optional 了解吗？",
+      "answer": "Optional是用于防范NullPointerException。\n\n可以将 Optional 看做是包装对象（可能是 null, 也有可能非 null）的容器。当我们定义了 一个方法，这个方法返回的对象可能是空，也有可能非空的时候，我们就可以考虑用 Optional 来包装它，这也是在 Java 8 被推荐使用的做法。\n\njava\nOptional optional = Optional.of(\"bam\");\n\noptional.isPresent();           // true\noptional.get();                 // \"bam\"\noptional.orElse(\"fallback\");    // \"bam\"\n\noptional.ifPresent((s) -> System.out.println(s.charAt(0)));     // \"b\"",
+      "analysis": "【Java SE / JDK1.8 新特性】",
+      "categories": [
+        "Java SE / JDK1.8 新特性"
+      ]
+    },
+    {
+      "id": "java-core-0056",
+      "type": "short",
+      "question": "Stream 流用过吗？",
+      "answer": "Stream 流，简单来说，使用 java.util.Stream 对一个包含一个或多个元素的集合做各种操作。这些操作可能是 中间操作 亦或是 终端操作。 终端操作会返回一个结果，而中间操作会返回一个 Stream 流。\n\nStream 流一般用于集合，我们对一个集合做几个常见操作：\n\njava\nList stringCollection = new ArrayList<>();\nstringCollection.add(\"ddd2\");\nstringCollection.add(\"aaa2\");\nstringCollection.add(\"bbb1\");\nstringCollection.add(\"aaa1\");\nstringCollection.add(\"bbb3\");\nstringCollection.add(\"ccc\");\nstringCollection.add(\"bbb2\");\nstringCollection.add(\"ddd1\");\n\n Filter 过滤\n\njava\nstringCollection\n    .stream()\n    .filter((s) -> s.startsWith(\"a\"))\n    .forEach(System.out::println);\n\n// \"aaa2\", \"aaa1\"\n\n Sorted 排序\n\njava\nstringCollection\n    .stream()\n    .sorted()\n    .filter((s) -> s.startsWith(\"a\"))\n    .forEach(System.out::println);\n\n// \"aaa1\", \"aaa2\"\n\n Map 转换\n\njava\nstringCollection\n    .stream()\n    .map(String::toUpperCase)\n    .sorted((a, b) -> b.compareTo(a))\n    .forEach(System.out::println);\n\n// \"DDD2\", \"DDD1\", \"CCC\", \"BBB3\", \"BBB2\", \"AAA2\", \"AAA1\"\n\n Match 匹配\n\njava\n// 验证 list 中 string 是否有以 a 开头的, 匹配到第一个，即返回 true\nboolean anyStartsWithA =\n    stringCollection\n        .stream()\n        .anyMatch((s) -> s.startsWith(\"a\"));\n\nSystem.out.println(anyStartsWithA);      // true\n\n// 验证 list 中 string 是否都是以 a 开头的\nboolean allStartsWithA =\n    stringCollection\n        .stream()\n        .allMatch((s) -> s.startsWith(\"a\"));\n\nSystem.out.println(allStartsWithA);      // false\n\n// 验证 list 中 string 是否都不是以 z 开头的,\nboolean noneStartsWithZ =\n    stringCollection\n        .stream()\n        .noneMatch((s) -> s.startsWith(\"z\"));\n\nSystem.out.println(noneStartsWithZ);      // true\n\n Count 计数\n\ncount 是一个终端操作，它能够统计 stream 流中的元素总数，返回值是 long 类型。\n\njava\n// 先对 list 中字符串开头为 b 进行过滤，让后统计数量\nlong startsWithB =\n    stringCollection\n        .stream()\n        .filter((s) -> s.startsWith(\"b\"))\n        .count();\n\nSystem.out.println(startsWithB); …",
+      "analysis": "【Java SE / JDK1.8 新特性】",
+      "categories": [
+        "Java SE / JDK1.8 新特性"
+      ]
+    }
+  ]
+}

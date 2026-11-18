@@ -3,7 +3,7 @@ const path = require('path');
 
 const src = require('../media/questions.json');
 const qs = src.questions || [];
-const outDir = path.join(process.env.USERPROFILE, 'Desktop', '面试背题-题库导出');
+const outDir = path.join(__dirname, '..', '..', 'banks');
 fs.mkdirSync(outDir, { recursive: true });
 const now = new Date().toISOString();
 

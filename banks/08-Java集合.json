@@ -1,0 +1,310 @@
+{
+  "meta": {
+    "title": "Java集合 专项题库",
+    "questionCount": 30,
+    "exportedAt": "2026-11-18T09:22:29.543527+00:00",
+    "sourceNote": "仅供个人学习，请遵守原资料版权。"
+  },
+  "questions": [
+    {
+      "id": "java-core-0057",
+      "type": "short",
+      "question": "说说有哪些常见的集合框架？",
+      "answer": "集合框架可以分为两条大的支线：\n\n①、第一条支线 Collection，主要由 List、Set、Queue 组成：\n\n List 代表有序、可重复的集合，典型代表就是封装了动态数组的 和封装了链表的 ；\n Set 代表无序、不可重复的集合，典型代表就是 HashSet 和 TreeSet；\n Queue 代表队列，典型代表就是双端队列 ，以及优先级队列 。\n\n②、第二条支线 Map，代表键值对的集合，典型代表就是 。\n\n另外一个回答版本：\n\n①、Collection 接口：最基本的集合框架表示方式，提供了添加、删除、清空等基本操作，它主要有三个子接口：\n\n List：一个有序的集合，可以包含重复的元素。实现类包括 ArrayList、LinkedList 等。\n Set：一个不包含重复元素的集合。实现类包括 HashSet、LinkedHashSet、TreeSet 等。\n Queue：一个用于保持元素队列的集合。实现类包括 PriorityQueue、ArrayDeque 等。\n\n②、Map 接口：表示键值对的集合，一个键映射到一个值。键不能重复，每个键只能对应一个值。Map 接口的实现类包括 HashMap、LinkedHashMap、TreeMap 等。\n\n集合框架有哪几个常用工具类？\n\n集合框架位于 java.util 包下，提供了两个常用的工具类：\n\n ：提供了一些对集合进行排序、二分查找、同步的静态方法。\n ：提供了一些对数组进行排序、打印、和 List 进行转换的静态方法。\n\n简单介绍一下队列\n\nJava 中的队列主要通过 Queue 接口和并发包下的 BlockingQueue 两个接口来实现。\n\n优先级队列 PriorityQueue 实现了 Queue 接口，是一个无界队列，它的元素按照自然顺序排序或者 Comparator 比较器进行排序。\n\n双端队列 ArrayDeque 也实现了 Queue 接口，是一个基于数组的，可以在两端插入和删除元素的队列。\n\nLinkedList 实现了 Queue 接口的子类 Deque，所以也可以当做双端队列来使用。\n\n用过哪些集合类，它们的优劣？\n\n我常用的集合类有 ArrayList、LinkedList、HashMap、LinkedHashMap。\n\n1. ArrayList 可以看作是一个动态数组，可以在需要时动态扩容数组的容量，只不过需要复制元素到新的数组。优点是访问速度快，可以通过索引直接查找到元素。缺点是插入和删除元素可能需要移动或者复制元素。\n2. LinkedList 是一个双向链表，适合频繁的插入和删除操作。优点是插入和删除元素的时候只需要改变节点的前后指针，缺点是访问元素时需要遍历链表。\n3. HashMap 是一个基于哈希表的键值对集合。优点是可以根据键的哈希值快速查找到值，但有可能会发生哈希冲突，并且不保留键值对的插入顺序。\n4. LinkedHashMap 在 HashMap 的基础上增加了一个双向链表来保持键值对的插入顺序。\n\n队列和栈的区别了解吗？\n\n队列是一种先进先出（FIFO, First-In-First-Out）的数据结构，第一个加入队列的元素会成为第一个被移除的元素。\n\n栈是一种后进先出（LIFO, Last-In-First-Out）的数据结构，最后一个加入栈的元素会成为第一个被移除的元素。\n\n哪些是线程安全的容器？\n\n像 Vector、Hashtable、ConcurrentHashMap、CopyOnWriteArrayList、ConcurrentLinkedQueue、ArrayBlockingQueue、LinkedBlockingQueue 都是线程安全的。\n\nCollection 继承了哪些接口？\n\nCollection 继承了 Iterable 接口，这意味着所有实现 Collection 接口的类都必须实现 iterator() 方法，之后就可以使用增强型 for 循环遍历集合中的元素了。",
+      "analysis": "【Java集合 / 引言】",
+      "categories": [
+        "Java集合 / 引言"
+      ]
+    },
+    {
+      "id": "java-core-0058",
+      "type": "short",
+      "question": "ArrayList 和 LinkedList 有什么区别？",
+      "answer": "ArrayList 是基于数组实现的，LinkedList 是基于链表实现的。\n\nArrayList 和 LinkedList 的用途有什么不同？\n\n多数情况下，ArrayList 更利于查找，LinkedList 更利于增删。\n\n①、由于 ArrayList 是基于数组实现的，所以 get(int index) 可以直接通过数组下标获取，时间复杂度是 O(1)；LinkedList 是基于链表实现的，get(int index) 需要遍历链表，时间复杂度是 O(n)。\n\n当然，get(E element) 这种查找，两种集合都需要遍历通过 equals 比较获取元素，所以时间复杂度都是 O(n)。\n\n②、ArrayList 如果增删的是数组的尾部，时间复杂度是 O(1)；如果 add 的时候涉及到扩容，时间复杂度会上升到 O(n)。\n\n但如果插入的是中间的位置，就需要把插入位置后的元素向前或者向后移动，甚至还有可能触发扩容，效率就会低很多，变成 O(n)。\n\nLinkedList 因为是链表结构，插入和删除只需要改变前置节点、后置节点和插入节点的引用，因此不需要移动元素。\n\n如果是在链表的头部插入或者删除，时间复杂度是 O(1)；如果是在链表的中间插入或者删除，时间复杂度是 O(n)，因为需要遍历链表找到插入位置；如果是在链表的尾部插入或者删除，时间复杂度是 O(1)。\n\nArrayList 和 LinkedList 是否支持随机访问？\n\n①、ArrayList 是基于数组的，也实现了 RandomAccess 接口，所以它支持随机访问，可以通过下标直接获取元素。\n\n②、LinkedList 是基于链表的，所以它没法根据下标直接获取元素，不支持随机访问。\n\nArrayList 和 LinkedList 内存占用有何不同？\n\nArrayList 是基于数组的，是一块连续的内存空间，所以它的内存占用是比较紧凑的；但如果涉及到扩容，就会重新分配内存，空间是原来的 1.5 倍。\n\nLinkedList 是基于链表的，每个节点都有一个指向下一个节点和上一个节点的引用，于是每个节点占用的内存空间比 ArrayList 稍微大一点。\n\nArrayList 和 LinkedList 的使用场景有什么不同？\n\nArrayList 适用于：\n\n 随机访问频繁：需要频繁通过索引访问元素的场景。\n 读取操作远多于写入操作：如存储不经常改变的列表。\n 末尾添加元素：需要频繁在列表末尾添加元素的场景。\n\nLinkedList 适用于：\n\n 频繁插入和删除：在列表中间频繁插入和删除元素的场景。\n 不需要快速随机访问：顺序访问多于随机访问的场景。\n 队列和栈：由于其双向链表的特性，LinkedList 可以实现队列（FIFO）和栈（LIFO）。\n\n链表和数组有什么区别？\n\n 数组在内存中占用的是一块连续的存储空间，因此我们可以通过数组下标快速访问任意元素。数组在创建时必须指定大小，一旦分配内存，数组的大小就固定了。\n 链表的元素存储在于内存中的任意位置，每个节点通过指针指向下一个节点。",
+      "analysis": "【Java集合 / List】",
+      "categories": [
+        "Java集合 / List"
+      ]
+    },
+    {
+      "id": "java-core-0059",
+      "type": "short",
+      "question": "ArrayList 的扩容机制了解吗？",
+      "answer": "了解。当往 ArrayList 中添加元素时，会先检查是否需要扩容，如果当前容量+1 超过数组长度，就会进行扩容。\n\n扩容后的新数组长度是原来的 1.5 倍，然后再把原数组的值拷贝到新数组中。\n\njava\nprivate void grow(int minCapacity) {\n    // overflow-conscious code\n    int oldCapacity = elementData.length;\n    int newCapacity = oldCapacity + (oldCapacity >> 1);\n    if (newCapacity - minCapacity  0)\n        newCapacity = hugeCapacity(minCapacity);\n    // minCapacity is usually close to size, so this is a win:\n    elementData = Arrays.copyOf(elementData, newCapacity);\n}",
+      "analysis": "【Java集合 / List】",
+      "categories": [
+        "Java集合 / List"
+      ]
+    },
+    {
+      "id": "java-core-0060",
+      "type": "short",
+      "question": "ArrayList 怎么序列化的知道吗？",
+      "answer": "在 ArrayList 中，writeObject 方法被重写了，用于自定义序列化逻辑：只序列化有效数据，因为 elementData 数组的容量一般大于实际的元素数量，声明的时候也加了 transient 关键字。\n\n为什么 ArrayList 不直接序列化元素数组呢？\n\n出于效率的考虑，数组可能长度 100，但实际只用了 50，剩下的 50 没用到，也就不需要序列化。\n\njava\nprivate void writeObject(java.io.ObjectOutputStream s)\n    throws java.io.IOException {\n    // 将当前 ArrayList 的结构进行序列化\n    int expectedModCount = modCount;\n    s.defaultWriteObject(); // 序列化非 transient 字段\n    // 序列化数组的大小\n    s.writeInt(size);\n    // 序列化每个元素\n    for (int i = 0; i < size; i++) {\n        s.writeObject(elementData[i]);\n    }\n    // 检查是否在序列化期间发生了并发修改\n    if (modCount != expectedModCount) {\n        throw new ConcurrentModificationException();\n    }\n}",
+      "analysis": "【Java集合 / List】",
+      "categories": [
+        "Java集合 / List"
+      ]
+    },
+    {
+      "id": "java-core-0061",
+      "type": "short",
+      "question": "快速失败fail-fast了解吗？",
+      "answer": "fail—fast 是 Java 集合的一种错误检测机制。\n\n在用迭代器遍历集合对象时，如果线程 A 遍历过程中，线程 B 对集合对象的内容进行了修改，就会抛出 Concurrent Modification Exception。\n\n迭代器在遍历时直接访问集合中的内容，并且在遍历过程中使用一个 modCount 变量。集合在被遍历期间如果内容发生变化，就会改变modCount的值。每当迭代器使用 hashNext()/next()遍历下一个元素之前，都会检测 modCount 变量是否为 expectedmodCount 值，是的话就返回遍历；否则抛出异常，终止遍历。\n\n异常的抛出条件是检测到 modCount！=expectedmodCount 这个条件。如果集合发生变化时修改 modCount 值刚好又设置为了 expectedmodCount 值，则异常不会抛出。因此，不能依赖于这个异常是否抛出而进行并发操作的编程，这个异常只建议用于检测并发修改的 bug。\n\njava.util 包下的集合类都是快速失败的，不能在多线程下发生并发修改（迭代过程中被修改），比如 ArrayList 类。\n\n什么是安全失败（fail—safe）呢？\n\n采用安全失败机制的集合容器，在遍历时不是直接在集合内容上访问的，而是先复制原有集合内容，在拷贝的集合上进行遍历。\n\n原理：由于迭代时是对原集合的拷贝进行遍历，所以在遍历过程中对原集合所作的修改并不能被迭代器检测到，所以不会触发 Concurrent Modification Exception。\n\n缺点：基于拷贝内容的优点是避免了 Concurrent Modification Exception，但同样地，迭代器并不能访问到修改后的内容，即：迭代器遍历的是开始遍历那一刻拿到的集合拷贝，在遍历期间原集合发生的修改迭代器是不知道的。\n\n场景：java.util.concurrent 包下的容器都是安全失败，可以在多线程下并发使用，并发修改，比如 CopyOnWriteArrayList 类。",
+      "analysis": "【Java集合 / List】",
+      "categories": [
+        "Java集合 / List"
+      ]
+    },
+    {
+      "id": "java-core-0062",
+      "type": "short",
+      "question": "有哪几种实现 ArrayList 线程安全的方法？",
+      "answer": "常用的有两种。\n\n可以使用 Collections.synchronizedList() 方法，它可以返回一个线程安全的 List。\n\njava\nSynchronizedList list = Collections.synchronizedList(new ArrayList());\n\n内部是通过 加锁来实现的。\n\n也可以直接使用 ，它是线程安全的 ArrayList，遵循写时复制的原则，每当对列表进行修改时，都会创建一个新副本，这个新副本会替换旧的列表，而对旧列表的所有读取操作仍然在原有的列表上进行。\n\njava\nCopyOnWriteArrayList list = new CopyOnWriteArrayList();\n\n通俗的讲，CopyOnWrite 就是当我们往一个容器添加元素的时候，不直接往容器中添加，而是先复制出一个新的容器，然后在新的容器里添加元素，添加完之后，再将原容器的引用指向新的容器。多个线程在读的时候，不需要加锁，因为当前容器不会添加任何元素。这样就实现了线程安全。\n\nArrayList 和 Vector 的区别？\n\nVector 属于 JDK 1.0 时期的遗留类，不推荐使用，仍然保留着是因为 Java 希望向后兼容。\n\nArrayList 是在 JDK 1.2 时引入的，用于替代 Vector 作为主要的非同步动态数组实现。因为 Vector 所有的方法都使用了 synchronized 关键字进行同步，所以单线程环境下效率较低。",
+      "analysis": "【Java集合 / List】",
+      "categories": [
+        "Java集合 / List"
+      ]
+    },
+    {
+      "id": "java-core-0063",
+      "type": "short",
+      "question": "CopyOnWriteArrayList 了解多少？",
+      "answer": "CopyOnWriteArrayList 就是线程安全版本的 ArrayList。\n\nCopyOnWrite——写时复制，已经明示了它的原理。\n\nCopyOnWriteArrayList 采用了一种读写分离的并发策略。CopyOnWriteArrayList 容器允许并发读，读操作是无锁的。至于写操作，比如说向容器中添加一个元素，首先将当前容器复制一份，然后在新副本上执行写操作，结束之后再将原容器的引用指向新容器。",
+      "analysis": "【Java集合 / List】",
+      "categories": [
+        "Java集合 / List"
+      ]
+    },
+    {
+      "id": "java-core-0064",
+      "type": "short",
+      "question": "能说一下 HashMap 的底层数据结构吗？",
+      "answer": "JDK 8 中 HashMap 的数据结构是数组+链表+红黑树。\n\n数组用来存储键值对，每个键值对可以通过索引直接拿到，索引是通过对键的哈希值进行进一步的 hash() 处理得到的。\n\n当多个键经过哈希处理后得到相同的索引时，需要通过链表来解决哈希冲突——将具有相同索引的键值对通过链表存储起来。\n\n不过，链表过长时，查询效率会比较低，于是当链表的长度超过 8 时（且数组的长度大于 64），链表就会转换为红黑树。红黑树的查询效率是 O(logn)，比链表的 O(n) 要快。\n\nhash() 方法的目标是尽量减少哈希冲突，保证元素能够均匀地分布在数组的每个位置上。\n\njava\nstatic final int hash(Object key) {\n    int h;\n    return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);\n}\n\n如果键的哈希值已经在数组中存在，其对应的值将被新值覆盖。\n\nHashMap 的初始容量是 16，随着元素的不断添加，HashMap 就需要进行扩容，阈值是capacity * loadFactor，capacity 为容量，loadFactor 为负载因子，默认为 0.75。\n\n扩容后的数组大小是原来的 2 倍，然后把原来的元素重新计算哈希值，放到新的数组中。",
+      "analysis": "【Java集合 / Map】",
+      "categories": [
+        "Java集合 / Map"
+      ]
+    },
+    {
+      "id": "java-core-0065",
+      "type": "short",
+      "question": "你对红黑树了解多少？",
+      "answer": "红黑树是一种自平衡的二叉查找树：\n\n1. 每个节点要么是红色，要么是黑色；\n2. 根节点永远是黑色；\n3. 所有的叶子节点都是是黑色的（下图中的 NULL 节点）；\n4. 红色节点的子节点一定是黑色的；\n5. 从任一节点到其每个叶子的所有简单路径都包含相同数目的黑色节点。\n\n为什么不用二叉树？\n\n二叉树是最基本的树结构，每个节点最多有两个子节点，但是二叉树容易出现极端情况，比如插入的数据是有序的，那么二叉树就会退化成链表，查询效率就会变成 O(n)。\n\n为什么不用平衡二叉树？\n\n平衡二叉树比红黑树的要求更高，每个节点的左右子树的高度最多相差 1，这种高度的平衡保证了极佳的查找效率，但在进行插入和删除操作时，可能需要频繁地进行旋转来维持树的平衡，维护成本更高。\n\n为什么用红黑树？\n\n链表的查找时间复杂度是 O(n)，当链表长度较长时，查找性能会下降。红黑树是一种折中的方案，查找、插入、删除的时间复杂度都是 O(log n)。",
+      "analysis": "【Java集合 / Map】",
+      "categories": [
+        "Java集合 / Map"
+      ]
+    },
+    {
+      "id": "java-core-0066",
+      "type": "short",
+      "question": "红黑树怎么保持平衡的？",
+      "answer": "旋转和染色。\n\n①、通过左旋和右旋来调整树的结构，避免某一侧过深。\n\n②、染⾊，修复红黑规则，从而保证树的高度不会失衡。",
+      "analysis": "【Java集合 / Map】",
+      "categories": [
+        "Java集合 / Map"
+      ]
+    },
+    {
+      "id": "java-core-0067",
+      "type": "short",
+      "question": "HashMap 的 put 流程知道吗？",
+      "answer": "哈希寻址 → 处理哈希冲突（链表还是红黑树）→ 判断是否需要扩容 → 插入/覆盖节点。\n\n详细版：\n\n第一步，通过 hash 方法进一步扰动哈希值，以减少哈希冲突。\n\njava\nstatic final int hash(Object key) {\n    int h;\n    return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);\n}\n\n第二步，进行第一次的数组扩容；并使用哈希值和数组长度进行取模运算，确定索引位置。\n\njava\nif ((tab = table) == null || (n = tab.length) == 0)\n    n = (tab = resize()).length;\n\nif ((p = tab[i = (n - 1) & hash]) == null)\n    tab[i] = newNode(hash, key, value, null);\n\n如果当前位置为空，直接将键值对插入该位置；否则判断当前位置的第一个节点是否与新节点的 key 相同，如果相同直接覆盖 value，如果不同，说明发生哈希冲突。\n\n如果是链表，将新节点添加到链表的尾部；如果链表长度大于等于 8，则将链表转换为红黑树。\n\njava\npublic V put(K key, V value) {\n    return putVal(hash(key), key, value, false, true);\n}\n\nfinal V putVal(int hash, K key, V value, boolean onlyIfAbsent, boolean evict) {\n    Node[] tab; Node p; int n, i;\n    // 如果 table 为空，先进行初始化\n    if ((tab = table) == null || (n = tab.length) == 0)\n        n = (tab = resize()).length;\n    \n    // 计算索引位置，并找到对应的桶\n    if ((p = tab[i = (n - 1) & hash]) == null)\n        tab[i] = newNode(hash, key, value, null); // 如果桶为空，直接插入\n    else {\n        Node e; K k;\n        // 检查第一个节点是否匹配\n        if (p.hash == hash && ((k = p.key) == key || (key != null && key.equals(k))))\n            e = p; // 覆盖\n        // 如果是树节点，放入树中\n        else if (p instanceof TreeNode)\n            e = ((TreeNode)p).putTreeVal(this, tab, hash, key, value);\n        // 如果是链表，遍历插入到尾部\n        else {\n            for (int binCount = 0; ; ++binCount) {\n                if ((e = p.next) == null) {\n                    p.next = newNode(hash, key, value, null);\n                    // 如果链表长度达到阈值，转换为红黑树\n                    if (binCount >= TREEIFY_THRESHOLD - 1)\n                        treeifyBin(tab, hash);\n                    break;\n                }\n                if (e.hash == hash && ((k = e.key) == key || (key != null && key.equals(k)))…",
+      "analysis": "【Java集合 / Map】",
+      "categories": [
+        "Java集合 / Map"
+      ]
+    },
+    {
+      "id": "java-core-0068",
+      "type": "short",
+      "question": "HashMap 怎么查找元素的呢？",
+      "answer": "通过哈希值定位索引 → 定位桶 → 检查第一个节点 → 遍历链表或红黑树查找 → 返回结果。",
+      "analysis": "【Java集合 / Map】",
+      "categories": [
+        "Java集合 / Map"
+      ]
+    },
+    {
+      "id": "java-core-0069",
+      "type": "short",
+      "question": "HashMap 的 hash 函数是怎么设计的?",
+      "answer": "先拿到 key 的哈希值，是一个 32 位的 int 类型数值，然后再让哈希值的高 16 位和低 16 位进行异或操作，这样能保证哈希分布均匀。\n\njava\nstatic final int hash(Object key) {\n    int h;\n    // 如果 key 为 null，返回 0；否则，使用 hashCode 并进行扰动\n    return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);\n}",
+      "analysis": "【Java集合 / Map】",
+      "categories": [
+        "Java集合 / Map"
+      ]
+    },
+    {
+      "id": "java-core-0070",
+      "type": "short",
+      "question": "为什么 hash 函数能减少哈希冲突？",
+      "answer": "快速回答：哈希表的索引是通过 h & (n-1) 计算的，n 是底层数组的容量；n-1 和某个哈希值做 & 运算，相当于截取了最低的四位。如果数组的容量很小，只取 h 的低位很容易导致哈希冲突。\n\n通过异或操作将 h 的高位引入低位，可以增加哈希值的随机性，从而减少哈希冲突。\n\n解释一下。\n\n以初始长度 16 为例，16-1=15。2 进制表示是0000 0000 0000 0000 0000 0000 0000 1111。只取最后 4 位相等于哈希值的高位都丢弃了。\n\n比如说 1111 1111 1111 1111 1111 1111 1111 1111，取最后 4 位，也就是 1111。\n\n1110 1111 1111 1111 1111 1111 1111 1111，取最后 4 位，也是 1111。\n\n不就发生哈希冲突了吗？\n\n这时候 hash 函数 (h = key.hashCode()) ^ (h >>> 16) 就派上用场了。\n\n将哈希值无符号右移 16 位，意味着原哈希值的高 16 位被移到了低 16 位的位置。这样，原始哈希值的高 16 位和低 16 位就可以参与到最终用于索引计算的低位中。\n\n选择 16 位是因为它是 32 位整数的一半，这样处理既考虑了高位的信息，又没有完全忽视低位原本的信息，从而达到了一种微妙的平衡状态。\n\n举个例子（数组长度为 16）。\n\n 第一个键值对的键：h1 = 0001 0010 0011 0100 0101 0110 0111 1000\n 第二个键值对的键：h2 = 0001 0010 0011 0101 0101 0110 0111 1000\n\n如果没有 hash 函数，直接取低 4 位，那么 h1 和 h2 的低 4 位都是 1000，也就是说两个键值对都会放在数组的第 8 个位置。\n\n来看一下 hash 函数的处理过程。\n\n①、对于第一个键h1的计算：\n\ntext\n原始: 0001 0010 0011 0100 0101 0110 0111 1000\n右移: 0000 0000 0000 0000 0001 0010 0011 0100\n异或: ---------------------------------------\n结果: 0001 0010 0011 0100 0100 0100 0100 1100\n\n②、对于第二个键h2的计算：\n\ntext\n原始: 0001 0010 0011 0101 0101 0110 0111 1000\n右移: 0000 0000 0000 0000 0001 0010 0011 0101\n异或: ---------------------------------------\n结果: 0001 0010 0011 0101 0100 0100 0100 1101\n\n通过上述计算，我们可以看到h1和h2经过h ^ (h >>> 16)操作后得到了不同的结果。\n\n现在，考虑数组长度为 16 时（需要最低 4 位来确定索引）：\n\n 对于h1的最低 4 位是1100（十进制中为 12）\n 对于h2的最低 4 位是1101（十进制中为 13）\n\n这样，h1和h2就会被分别放在数组的第 12 个位置和第 13 个位置上，从而避免了哈希冲突。",
+      "analysis": "【Java集合 / Map】",
+      "categories": [
+        "Java集合 / Map"
+      ]
+    },
+    {
+      "id": "java-core-0071",
+      "type": "short",
+      "question": "为什么 HashMap 的容量是 2 的幂次方？",
+      "answer": "是为了快速定位元素在底层数组中的下标。\n\nHashMap 是通过 hash & (n-1) 来定位元素下标的，n 为数组的大小，也就是 HashMap 底层数组的容量。\n\n数组长度-1 正好相当于一个“低位掩码”——掩码的低位最好全是 1，这样 & 运算才有意义，否则结果一定是 0。\n\n2 幂次方刚好是偶数，偶数-1 是奇数，奇数的二进制最后一位是 1，也就保证了 hash &(length-1) 的最后一位可能为 0，也可能为 1（取决于 hash 的值），这样可以保证哈希值的均匀分布。\n\n换句话说，& 操作的结果就是将哈希值的高位全部归零，只保留低位值。\n\n> a&b 的结果是：a、b 中对应位同时为 1，则结果为 1，否则为 0。例如 5&3=1，5 的二进制是 0101，3 的二进制是 0011，5&3=0001=1。\n\n假设某哈希值的二进制为 10100101 11000100 00100101，用它来做 & 运算，我们来看一下结果。\n\n已知 HashMap 的初始长度为 16，16-1=15，二进制是 00000000 00000000 00001111（高位用 0 来补齐）：\n\ntext\n\t 10100101 11000100 00100101\n&\t 00000000 00000000 00001111\n----------------------------------\n\t 00000000 00000000 00000101\n\n因为 15 的高位全部是 0，所以 & 运算后的高位结果肯定也是 0，只剩下 4 个低位 0101，也就是十进制的 5。\n\n这样，哈希值为 10100101 11000100 00100101 的键就会放在数组的第 5 个位置上。\n\n对数组长度取模定位数组下标，这块有没有优化策略？\n\n快速回答：HashMap 的策略是将取模运算 hash % table.length 优化为位运算 hash & (length - 1)。\n\n因为当数组的长度是 2 的 N 次幂时，hash & (length - 1) = hash % length。\n\n比如说 9 % 4 = 1，9 的二进制是 1001，4 - 1 = 3，3 的二进制是 0011，9 & 3 = 1001 & 0011 = 0001 = 1。\n\n再比如说 10 % 4 = 2，10 的二进制是 1010，4 - 1 = 3，3 的二进制是 0011，10 & 3 = 1010 & 0011 = 0010 = 2。\n\n当数组的长度不是 2 的 n 次方时，hash % length 和 hash & (length - 1) 的结果就不一致了。\n\n比如说 7 % 3 = 1，7 的二进制是 0111，3 - 1 = 2，2 的二进制是 0010，7 & 2 = 0111 & 0010 = 0010 = 2。\n\n从二进制角度来看，hash / length = hash / 2n = hash >> n，即把 hash 右移 n 位，此时得到了 hash / 2n 的商。\n\n而被移调的部分，则是 hash % 2n，也就是余数。\n\n2n 的二进制形式为 1，后面跟着 n 个 0，那 2n - 1 的二进制则是 n 个 1。例如 8 = 23，二进制是 1000，7 = 23 - 1，二进制为 0111。\n\nhash % length的操作是求 hash 除以 2n 的余数。在二进制中，这个操作的结果就是 hash 的二进制表示中最低 n 位的值。\n\n因为在 2n 取模的操作中，高于 2n 表示位的所有数值对结果没有贡献，只有低于这个阈值的部分才决定余数。\n\n比如说 26 的二进制是 11010，要计算 26 % 8，8 是 23，所以我们关注的是 26 的二进制表示中最低 3 位：11010 的最低 3 位是 010。\n\n010 对应于十进制中的 2，26 % 8 的结果是 2。\n\n当执行hash & (length - 1)时，实际上是保留 hash 二进制表示的最低 n 位，其他高位都被清零。\n\n举个例子，hash 为 14，n 为 3，也就是数组长度为 23，也就是 8。\n\ntext\n  1110 (hash = 14)\n& 0111…",
+      "analysis": "【Java集合 / Map】",
+      "categories": [
+        "Java集合 / Map"
+      ]
+    },
+    {
+      "id": "java-core-0072",
+      "type": "short",
+      "question": "如果初始化 HashMap，传一个 17 的容量，它会怎么处理？",
+      "answer": "HashMap 会将容量调整到大于等于 17 的最小的 2 的幂次方，也就是 32。\n\n这是因为哈希表的大小最好是 2 的 N 次幂，这样可以通过 (n - 1) & hash 高效计算出索引值。\n\n解释一下。\n\n在 HashMap 的初始化构造方法中，有这样⼀段代码：\n\njava\npublic HashMap(int initialCapacity, float loadFactor) {\n ...\n this.loadFactor = loadFactor;\n this.threshold = tableSizeFor(initialCapacity);\n}\n\n阀值 threshold 会通过⽅法 tableSizeFor() 进⾏计算。\n\njava\nstatic final int tableSizeFor(int cap) {\n    int n = cap - 1;\n    n |= n >>> 1;\n    n |= n >>> 2;\n    n |= n >>> 4;\n    n |= n >>> 8;\n    n |= n >>> 16;\n    return (n = MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + 1;\n}\n\n①、int n = cap - 1; 避免刚好是 2 的幂次方时，容量直接翻倍。\n\n②、接下来通过不断右移（>>>）并与自身进行或运算（|=），将 n 的二进制表示中的所有低位设置为 1。\n\n n |= n >>> 1; 将最高位的 1 扩展到下一位。\n n |= n >>> 2; 扩展到后两位。\n* 依此类推，直到 n |= n >>> 16;，扩展到后十六位，这样从最高位的 1 到最低位，就都变成了 1。\n\n③、如果 n 小于 0，说明 cap 是负数，直接返回 1。\n\n如果 n 大于或等于 MAXIMUM\\_CAPACITY（通常是230），则返回 MAXIMUM\\_CAPACITY。\n\n否则，返回 n + 1，这是因为 n 的所有低位都是 1，所以 n + 1 就是大于 cap 的最小的 2 的幂次方。\n\n初始化 HashMap 的时候需要传入容量吗？\n\n如果预先知道 Map 将存储大量键值对，提前指定一个足够大的初始容量可以减少因扩容导致的重哈希操作。\n\n因为每次扩容时，HashMap 需要将现有的元素插入到新的数组中，这个过程相对耗时，尤其是当 Map 中已有大量数据时。\n\n当然了，过大的初始容量会浪费内存，特别是当实际存储的元素远少于初始容量时。如果不指定初始容量，HashMap 将使用默认的初始容量 16。",
+      "analysis": "【Java集合 / Map】",
+      "categories": [
+        "Java集合 / Map"
+      ]
+    },
+    {
+      "id": "java-core-0073",
+      "type": "short",
+      "question": "你还知道哪些哈希函数的构造方法呢？",
+      "answer": "①、除留取余法：H(key)=key%p(p<=N)，关键字除以一个不大于哈希表长度的正整数 p，所得余数为地址，当然 HashMap 里进行了优化改造，效率更高，散列也更均衡。\n\n除此之外，还有这几种常见的哈希函数构造方法：\n\n②、直接定址法：直接根据key来映射到对应的数组位置，例如 1232 放到下标 1232 的位置。\n\n③、数字分析法：取key的某些数字（例如十位和百位）作为映射的位置\n\n④、平方取中法：取key平方的中间几位作为映射的位置\n\n⑤、将key分割成位数相同的几段，然后把它们的叠加和作为映射的位置。",
+      "analysis": "【Java集合 / Map】",
+      "categories": [
+        "Java集合 / Map"
+      ]
+    },
+    {
+      "id": "java-core-0074",
+      "type": "short",
+      "question": "解决哈希冲突有哪些方法？",
+      "answer": "简版回答：我知道的有 3 种，再哈希法、开放地址法和拉链法。\n\n什么是再哈希法？\n\n准备两套哈希算法，当发生哈希冲突的时候，使用另外一种哈希算法，直到找到空槽为止。对哈希算法的设计要求比较高。\n\n什么是开放地址法？\n\n遇到哈希冲突的时候，就去寻找下一个空的槽。有 3 种方法：\n\n 线性探测：从冲突的位置开始，依次往后找，直到找到空槽。\n 二次探测：从冲突的位置 x 开始，第一次增加 12 个位置，第二次增加 22，直到找到空槽。\n 双重哈希：和再哈希法类似，准备多个哈希函数，发生冲突的时候，使用另外一个哈希函数。\n\n什么是拉链法？\n\n也就是链地址法，当发生哈希冲突的时候，使用链表将冲突的元素串起来。HashMap 采用的正是拉链法。\n\n怎么判断 key 相等呢？\n\n依赖于key的equals()方法和hashCode()方法。\n\njava\nif (e.hash == hash &&\n((k = e.key) == key || (key != null && key.equals(k))))\n\n①、hashCode() ：使用key的hashCode()方法计算key的哈希码。\n\n②、equals()** ：当两个key的哈希码相同时，HashMap还会调用key的equals()方法进行精确比较。只有当equals()方法返回true时，两个key才被认为是完全相同的。\n\n如果两个key的引用指向了同一个对象，那么它们的hashCode()和equals()方法都会返回true，所以在 equals 判断之前可以先使用==运算符判断一次。",
+      "analysis": "【Java集合 / Map】",
+      "categories": [
+        "Java集合 / Map"
+      ]
+    },
+    {
+      "id": "java-core-0075",
+      "type": "short",
+      "question": "为什么 HashMap 链表转红黑树的阈值为 8 呢？",
+      "answer": "树化发生在 table 数组的长度大于 64，且链表的长度大于 8 的时候。\n\n为什么是 8 呢？源码的注释也给出了答案。\n\n红黑树节点的大小大概是普通节点大小的两倍，所以转红黑树，牺牲了空间换时间，更多的是一种兜底的策略，保证极端情况下的查找效率。\n\n阈值为什么要选 8 呢？和统计学有关。理想情况下，使用随机哈希码，链表里的节点符合泊松分布，出现节点个数的概率是递减的，节点个数为 8 的情况，发生概率仅为0.00000006。\n\n至于红黑树转回链表的阈值为什么是 6，而不是 8？是因为如果这个阈值也设置成 8，假如发生碰撞，节点增减刚好在 8 附近，会发生链表和红黑树的不断转换，导致资源浪费。",
+      "analysis": "【Java集合 / Map】",
+      "categories": [
+        "Java集合 / Map"
+      ]
+    },
+    {
+      "id": "java-core-0076",
+      "type": "short",
+      "question": "HashMap扩容发生在什么时候呢？",
+      "answer": "当键值对数量超过阈值，也就是容量 \\* 负载因子时。\n\n默认的负载因子是多少？\n\n0.75。\n\n初始容量是多少？\n\n16。\n\n1 左移 4 位，0000 0001 → 0001 0000，也就是 2 的 4 次方。\n\njava\nstatic final int DEFAULT_INITIAL_CAPACITY = 1 << 4; // aka 16\n\n为什么使用 1 << 4 而不是直接写 16？\n\n写 1<<4 主要是为了强调这个值是 2 的幂次方，而不是一个完全随机的选择。\n\n无论 HashMap 是否扩容，其底层的数组长度都应该是 2 的幂次方，因为这样可以通过位运算快速计算出元素的索引。\n\n为什么选择 0.75 作为 HashMap 的默认负载因子呢？\n\n这是一个经验值。如果设置得太低，如 0.5，会浪费空间；如果设置得太高，如 0.9，会增加哈希冲突。\n\n0.75 是 JDK 作者经过大量验证后得出的最优解，能够最大限度减少 rehash 的次数。",
+      "analysis": "【Java集合 / Map】",
+      "categories": [
+        "Java集合 / Map"
+      ]
+    },
+    {
+      "id": "java-core-0077",
+      "type": "short",
+      "question": "HashMap的扩容机制了解吗？",
+      "answer": "扩容时，HashMap 会创建一个新的数组，其容量是原来的两倍。然后遍历旧哈希表中的元素，将其重新分配到新的哈希表中。\n\n如果当前桶中只有一个元素，那么直接通过键的哈希值与数组大小取模锁定新的索引位置：e.hash & (newCap - 1)。\n\n如果当前桶是红黑树，那么会调用 split() 方法分裂树节点，以保证树的平衡。\n\n如果当前桶是链表，会通过旧键的哈希值与旧的数组大小取模 (e.hash & oldCap) == 0 来作为判断条件，如果条件为真，元素保留在原索引的位置；否则元素移动到原索引 + 旧数组大小的位置。\n\nJDK 7 扩容的时候有什么问题？\n\nJDK 7 在扩容的时候使用头插法来重新插入链表节点，这样会导致链表无法保持原有的顺序。\n\n详细解释一下。\n\nJDK 7 是通过哈希值与数组大小-1 进行与运算确定元素下标的。\n\njava\nstatic int indexFor(int h, int length) {\n    return h & (length-1);\n}\n\n我们来假设：\n\n 数组 table 的长度为 2\n 键的哈希值为 3、7、5\n\n取模运算后，键发生了哈希冲突，它们都需要放到 table[1] 的桶上。那么扩容前就是这个样子：\n\n假设负载因子 loadFactor 为 1，也就是当元素的个数大于 table 的长度时进行扩容。\n\n扩容后的数组容量为 4。\n\n key 3 取模（3%4）后是 3，放在 table[3] 上。\n key 7 取模（7%4）后是 3，放在 table[3] 上的链表头部。\n key 5 取模（5%4）后是 1，放在 table[1] 上。\n\n可以看到，由于 JDK 采用的是头插法，7 跑到 3 的前面了，原来的顺序是 3、7、5，7 在 3 的后面。\n\njava\nfor (Entry e : oldTable) {\n    while (null != e) {\n        Entry next = e.next;\n        int i = indexFor(e.hash, newCapacity);\n        e.next = newTable[i];\n        newTable[i] = e;\n        e = next;\n    }\n}\n\n最好的情况就是，扩容后的 7 还在 3 的后面，保持原来的顺序。\n\nJDK 8 是怎么解决这个问题的？\n\nJDK 8 改用了尾插法，并且当 (e.hash & oldCap) == 0 时，元素保留在原索引的位置；否则元素移动到原索引 + 旧数组大小的位置。\n\njava\nNode loHead = null, loTail = null;\nNode hiHead = null, hiTail = null;\nNode next;\ndo {\n    next = e.next;\n    if ((e.hash & oldCap) == 0) {\n        if (loTail == null)\n            loHead = e;\n        else\n            loTail.next = e;\n        loTail = e;\n    }\n    else {\n        if (hiTail == null)\n            hiHead = e;\n        else\n            hiTail.next = e;\n        hiTail = e;\n    }\n} while ((e = next) != null);\nif (loHead != null)\n    newTab[j] = loHead;\nif (hiHead != null)\n    newTab[j + oldCap] = hiHead;\n\n由于扩容时，数组长度会翻倍，例如：16 → 32， 因此，新数组的索引范围是原索引范围的两倍。\n\n原索引 index = (n - 1) & hash，扩容后的新索引就是 index = (2n - 1) & hash。\n\n也就是说，如果 (e.hash & oldCap) == 0，元素在新数组中的位置与旧位置相…",
+      "analysis": "【Java集合 / Map】",
+      "categories": [
+        "Java集合 / Map"
+      ]
+    },
+    {
+      "id": "java-core-0078",
+      "type": "short",
+      "question": "JDK 8 对 HashMap 做了哪些优化呢？",
+      "answer": "①、底层数据结构由数组 + 链表改成了数组 + 链表或红黑树的结构。\n\n如果多个键映射到了同一个哈希值，链表会变得很长，在最坏的情况下，当所有的键都映射到同一个桶中时，性能会退化到 O(n)，而红黑树的时间复杂度是 O(logn)。\n\n②、链表的插入方式由头插法改为了尾插法。头插法在扩容后容易改变原来链表的顺序。\n\n③、扩容的时机由插入时判断改为插入后判断，这样可以避免在每次插入时都进行不必要的扩容检查，因为有可能插入后仍然不需要扩容。\n\n④、哈希扰动算法也进行了优化。JDK 7 是通过多次移位和异或运算来实现的。\n\nJDK 8 让 hash 值的高 16 位和低 16 位进行了异或运算，让高位的信息也能参与到低位的计算中，这样可以极大程度上减少哈希碰撞。",
+      "analysis": "【Java集合 / Map】",
+      "categories": [
+        "Java集合 / Map"
+      ]
+    },
+    {
+      "id": "java-core-0079",
+      "type": "short",
+      "question": "你能自己设计实现一个 HashMap 吗？",
+      "answer": "> 这道题快手常考。红黑树版咱们多半是写不出来的，但是数组+链表版还是问题不大，详细可见： 手写 HashMap，快手面试官直呼内行！。\n\n可以，我先说一下整体的设计思路：\n\n 第一步，实现一个 hash 函数，对键的 hashCode 进行扰动\n 第二步，实现一个拉链法的方法来解决哈希冲突\n* 第三步，扩容后，重新计算哈希值，将元素放到新的数组中\n\n完整代码：",
+      "analysis": "【Java集合 / Map】",
+      "categories": [
+        "Java集合 / Map"
+      ]
+    },
+    {
+      "id": "java-core-0080",
+      "type": "short",
+      "question": "HashMap 是线程安全的吗？",
+      "answer": "HashMap 不是线程安全的，主要有以下几个问题：\n\n①、多线程下扩容会死循环。JDK7 中的 HashMap 使用的是头插法来处理链表，在多线程环境下扩容会出现环形链表，造成死循环。\n\n不过，JDK 8 时通过尾插法修复了这个问题，扩容时会保持链表原来的顺序。\n\n②、多线程在进行 put 元素的时候，可能会导致元素丢失。因为计算出来的位置可能会被其他线程覆盖掉，比如说一个县城 put 3 的时候，另外一个线程 put 了 7，就把 3 给弄丢了。\n\n③、put 和 get 并发时，可能导致 get 为 null。线程 1 执行 put 时，因为元素个数超出阈值而扩容，线程 2 此时执行 get，就有可能出现这个问题。\n\n因为线程 1 执行完 table = newTab 之后，线程 2 中的 table 已经发生了改变，比如说索引 3 的键值对移动到了索引 7 的位置，此时线程 2 去 get 索引 3 的元素就 get 不到了。",
+      "analysis": "【Java集合 / Map】",
+      "categories": [
+        "Java集合 / Map"
+      ]
+    },
+    {
+      "id": "java-core-0081",
+      "type": "short",
+      "question": "怎么解决 HashMap 线程不安全的问题呢？",
+      "answer": "在早期的 JDK 版本中，可以用 Hashtable 来保证线程安全。Hashtable 在方法上加了 。\n\n另外，可以通过 Collections.synchronizedMap 方法返回一个线程安全的 Map，内部是通过 synchronized 对象锁来保证线程安全的，比在方法上直接加 synchronized 关键字更轻量级。\n\n更优雅的解决方案是使用并发工具包下的 ，使用了+ 来保证线程安全。",
+      "analysis": "【Java集合 / Map】",
+      "categories": [
+        "Java集合 / Map"
+      ]
+    },
+    {
+      "id": "java-core-0082",
+      "type": "short",
+      "question": "HashMap 内部节点是有序的吗？",
+      "answer": "无序的，根据 hash 值随机插入。",
+      "analysis": "【Java集合 / Map】",
+      "categories": [
+        "Java集合 / Map"
+      ]
+    },
+    {
+      "id": "java-core-0083",
+      "type": "short",
+      "question": "讲讲 LinkedHashMap 怎么实现有序的？",
+      "answer": "LinkedHashMap 在 HashMap 的基础上维护了一个双向链表，通过 before 和 after 标识前置节点和后置节点。\n\n从而实现插入的顺序或访问顺序。",
+      "analysis": "【Java集合 / Map】",
+      "categories": [
+        "Java集合 / Map"
+      ]
+    },
+    {
+      "id": "java-core-0084",
+      "type": "short",
+      "question": "讲讲 TreeMap 怎么实现有序的？",
+      "answer": "TreeMap 通过 key 的比较器来决定元素的顺序，如果没有指定比较器，那么 key 必须实现 。\n\nTreeMap 的底层是红黑树，红黑树是一种自平衡的二叉查找树，每个节点都大于其左子树中的任何节点，小于其右子节点树种的任何节点。\n\n插入或者删除元素时通过旋转和染色来保持树的平衡。\n\n查找的时候从根节点开始，利用二叉查找树的特点，逐步向左子树或者右子树递归查找，直到找到目标元素。",
+      "analysis": "【Java集合 / Map】",
+      "categories": [
+        "Java集合 / Map"
+      ]
+    },
+    {
+      "id": "java-core-0085",
+      "type": "short",
+      "question": "TreeMap 和 HashMap 的区别",
+      "answer": "①、HashMap 是基于数组+链表+红黑树实现的，put 元素的时候会先计算 key 的哈希值，然后通过哈希值计算出元素在数组中的存放下标，然后将元素插入到指定的位置，如果发生哈希冲突，会使用链表来解决，如果链表长度大于 8，会转换为红黑树。\n\n②、TreeMap 是基于红黑树实现的，put 元素的时候会先判断根节点是否为空，如果为空，直接插入到根节点，如果不为空，会通过 key 的比较器来判断元素应该插入到左子树还是右子树。\n\n在没有发生哈希冲突的情况下，HashMap 的查找效率是 O(1)。适用于查找操作比较频繁的场景。\n\nTreeMap 的查找效率是 O(logn)。并且保证了元素的顺序，因此适用于需要大量范围查找或者有序遍历的场景。",
+      "analysis": "【Java集合 / Map】",
+      "categories": [
+        "Java集合 / Map"
+      ]
+    },
+    {
+      "id": "java-core-0086",
+      "type": "short",
+      "question": "讲讲 HashSet 的底层实现？",
+      "answer": "HashSet 是由 HashMap 实现的，只不过值由一个固定的 Object 对象填充，而键用于操作。\n\njava\npublic class HashSet\n    extends AbstractSet\n    implements Set, Cloneable, java.io.Serializable\n{\n    static final long serialVersionUID = -5024744406713321676L;\n    private transient HashMap map;\n    // Dummy value to associate with an Object in the backing Map\n    private static final Object PRESENT = new Object();\n    // ……\n}\n\n实际开发中，HashSet 并不常用，比如，如果我们需要按照顺序存储一组元素，那么 ArrayList 和 LinkedList 更适合；如果我们需要存储键值对并根据键进行查找，那么 HashMap 可能更适合。\n\nHashSet 主要用于去重，比如，我们需要统计一篇文章中有多少个不重复的单词，就可以使用 HashSet 来实现。\n\njava\n// 创建一个 HashSet 对象\nHashSet set = new HashSet<>();\n\n// 添加元素\nset.add(\"practice-mate\");\nset.add(\"练习伴侣二\");\nset.add(\"陈清扬\");\nset.add(\"practice-mate\");\n\n// 输出 HashSet 的元素个数\nSystem.out.println(\"HashSet size: \" + set.size()); // output: 3\n\n// 遍历 HashSet\nfor (String s : set) {\n    System.out.println(s);\n}\n\nHashSet 会自动去重，因为它是用 HashMap 实现的，HashMap 的键是唯一的，相同键会覆盖掉原来的键，于是第二次 add 一个相同键的元素会直接覆盖掉第一次的键。\n\nHashSet 和 ArrayList 的区别\n\n ArrayList 是基于动态数组实现的，HashSet 是基于 HashMap 实现的。\n ArrayList 允许重复元素和 null 值，可以有多个相同的元素；HashSet 保证每个元素唯一，不允许重复元素，基于元素的 hashCode 和 equals 方法来确定元素的唯一性。\n* ArrayList 保持元素的插入顺序，可以通过索引访问元素；HashSet 不保证元素的顺序，元素的存储顺序依赖于哈希算法，并且可能随着元素的添加或删除而改变。\n\nHashSet 怎么判断元素重复，重复了是否 put\n\nHashSet 的 add 方法是通过调用 HashMap 的 put 方法实现的：\n\njava\npublic boolean add(E e) {\n    return map.put(e, PRESENT)==null;\n}\n\n所以 HashSet 判断元素重复的逻辑底层依然是 HashMap 的底层逻辑：\n\nHashMap 在插入元素时，通常需要三步：\n\n第一步，通过 hash 方法计算 key 的哈希值。\n\njava\nstatic final int hash(Object key) {\n    int h;\n    return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);\n}\n\n第二步，数组进行第一次扩容。\n\njava\nif ((tab = table) == null || (n = tab.length) == 0)\n    n = (tab = resize()).length;\n\n第三步，根据哈希值计算 key 在数组中的下标，如果对应下标正好没有存放数据，则直接插入。\n\njava\nif ((p = tab[i = (n - 1) & hash]) == null)\n    tab[i] = newNode(hash, k…",
+      "analysis": "【Java集合 / Set】",
+      "categories": [
+        "Java集合 / Set"
+      ]
+    }
+  ]
+}

@@ -38,6 +38,7 @@
 beibagu/
 ├── idea/       # IntelliJ IDEA 插件源码（Gradle）
 ├── vscode/     # VS Code 插件源码
+├── banks/      # 可直接导入的题库 JSON + 自制模板
 ├── releases/   # 可直接安装的打包产物
 ├── LICENSE     # MIT
 └── README.md
@@ -75,7 +76,20 @@ cd vscode
 npm run package                      # 打出 vscode/beibagu-*.vsix
 ```
 
-## 题库说明
+## 题库导入（省事版）
+
+仓库 [`banks/`](./banks/) 已放好可直接导入的 JSON，不用自己从零整理：
+
+| 文件 | 用途 |
+|---|---|
+| `banks/00-入门体验-10题.json` | 先跑通导入 |
+| `banks/01-Java面试核心-全部.json` | Java 核心 394 题 |
+| `banks/02-MySQL.json` 等 | 按专题拆分的专项包 |
+| `banks/80-面试鸭公开题-自研答法.json` | 公开题干练习包 |
+| `banks/99-自制题库模板.json` | 自制题库模板 |
+
+插件内点 **导入题目**（合并）/ **导入题库**（替换）→ 选文件即可。  
+自制格式与字段说明见 [`banks/README.md`](./banks/README.md)。
 
 内置题库整理自「二哥的 Java 进阶之路 / 面渣逆袭」等公开面试资料，**仅供个人学习**。商业使用请自行确认版权。
 
