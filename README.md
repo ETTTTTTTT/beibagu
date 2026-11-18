@@ -1,8 +1,8 @@
 # beibagu · 面试背题
 
 <p align="center">
-  <img src="docs/idea.png" alt="IntelliJ IDEA 版" width="48%" />
-  <img src="docs/vscode.png" alt="VS Code / Cursor 版" width="48%" />
+![输入图片说明](docs/idea.png)
+![输入图片说明](docs/vscode.png)
 </p>
 <p align="center">
   <b>IDEA</b> &nbsp;&nbsp;|&nbsp;&nbsp; <b>VS Code / Cursor</b>
