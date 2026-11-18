@@ -81,6 +81,14 @@ npm run package
 - 邮箱：445446974@qq.com
 - 微信：B2951057
 
+## 打赏支持
+
+如果项目对你有帮助，欢迎扫码请我喝杯咖啡 ☕
+
+| 支付宝 | 微信 |
+|:---:|:---:|
+| <img src="docs/donate-alipay.jpg" alt="支付宝收款码" width="240" /> | <img src="docs/donate-wechat.jpg" alt="微信收款码" width="240" /> |
+
 ## License
 
 [MIT](./LICENSE)
