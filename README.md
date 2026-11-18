@@ -4,9 +4,11 @@
 
 简答练习 · 错题强化 · 艾宾浩斯间隔复习 · 题库导入导出 · DeepSeek 详解 / 打分（自动填入并发送）
 
+开源地址：https://gitee.com/gooooooooo/beibagu
+
 ## 下载安装包
 
-见仓库 [`releases/`](./releases/) 目录：
+见仓库 [`releases/`](./releases/) 目录，或 [Releases 页面](https://gitee.com/gooooooooo/beibagu/releases)：
 
 | 平台 | 文件 | 安装方式 |
 |---|---|---|
