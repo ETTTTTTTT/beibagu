@@ -2,7 +2,7 @@
 
 ## 环境
 
-- IDE：（IDEA / Cursor / VS Code）及版本
+- IDE：（IDEA / VS Code）及版本
 - 插件版本：
 
 ## 复现步骤

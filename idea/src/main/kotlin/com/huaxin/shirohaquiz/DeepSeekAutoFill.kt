@@ -25,7 +25,7 @@ import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicInteger
 
 /**
- * Chrome CDP：打开 DeepSeek 并把提示词自动写入聊天输入框（对齐 Cursor 版）。
+ * Chrome CDP：打开 DeepSeek 并把提示词自动写入聊天输入框（对齐 VS Code 版）。
  */
 object DeepSeekAutoFill {
   private val log = Logger.getInstance(DeepSeekAutoFill::class.java)

@@ -4,13 +4,13 @@
 <p align="center">
   <img src="docs/idea.png" alt="IntelliJ IDEA 版" width="100%" />
 </p>
-<p align="center"><b>VS Code / Cursor</b></p>
+<p align="center"><b>VS Code</b></p>
 <p align="center">
-  <img src="docs/vscode.png" alt="VS Code / Cursor 版" width="100%" />
+  <img src="docs/vscode.png" alt="VS Code 版" width="100%" />
 </p>
 
 **程序员上班摸鱼神器：刷八股文、背面试题。**  
-IDEA / Cursor / VS Code **编辑器插件**，**免费开源**。
+IDEA / VS Code **编辑器插件**，**免费开源**。
 
 在编辑器里直接练：简答练习 · 错题强化 · 艾宾浩斯间隔复习 · 题库导入导出 · DeepSeek 详解 / 打分
 
@@ -23,19 +23,19 @@ IDEA / Cursor / VS Code **编辑器插件**，**免费开源**。
 | 平台 | 文件 | 安装方式 |
 |---|---|---|
 | IntelliJ IDEA | `beibagu-idea-0.1.64.zip` | Settings → Plugins → 齿轮 → **Install Plugin from Disk…** |
-| Cursor / VS Code | `beibagu-vscode-0.1.59.vsix` | 扩展面板 → **Install from VSIX…** |
+| VS Code | `beibagu-vscode-0.1.59.vsix` | 扩展面板 → **Install from VSIX…** |
 
 安装后重启 IDE。打开方式：
 
 - IDEA：右侧工具窗口「面试背题」，或 `Ctrl+Alt+B`
-- Cursor / VS Code：左侧「面试背题」，或 `Ctrl+Alt+B` / `F9`
+- VS Code：左侧「面试背题」，或 `Ctrl+Alt+B` / `F9`
 
 ## 仓库结构
 
 ```
 beibagu/
 ├── idea/       # IntelliJ IDEA 插件源码（Gradle）
-├── vscode/     # Cursor / VS Code 插件源码
+├── vscode/     # VS Code 插件源码
 ├── releases/   # 可直接安装的打包产物
 ├── LICENSE     # MIT
 └── README.md
@@ -61,16 +61,15 @@ cd idea
 
 产物：`idea/build/distributions/beibagu-*.zip`
 
-### VS Code / Cursor 插件
+### VS Code 插件
 
-普通用户装 `releases/` 里的 `.vsix` 即可（Cursor / VS Code 都行，不必装另一款编辑器）。
+普通用户装 `releases/` 里的 `.vsix` 即可。
 
-开发调试（把源码联接到本机扩展目录）：
+开发调试（把源码联接到本机 VS Code 扩展目录）：
 
 ```powershell
 cd vscode
-.\install-to-cursor.ps1              # 自动装到已安装的 Cursor 和/或 VS Code
-.\install-to-cursor.ps1 -Target vscode
+.\install-to-vscode.ps1
 npm run package                      # 打出 vscode/beibagu-*.vsix
 ```
 

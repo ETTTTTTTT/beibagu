@@ -1,26 +1,22 @@
-# beibagu · 面试背题（Cursor / VS Code 插件）
+# beibagu · 面试背题（VS Code 插件）
 
-在编辑器中间背程序员面试题：简答练习、艾宾浩斯间隔复习、题库管理、DeepSeek 详解/打分。
+在 VS Code 里背程序员面试题：简答练习、艾宾浩斯间隔复习、题库管理、DeepSeek 详解/打分。
 
 ## 给普通用户（推荐）
 
-下载仓库 `releases/` 里的 `.vsix`，在 **Cursor 或 VS Code** 里：
+下载仓库 `releases/` 里的 `.vsix`，在 VS Code 中：
 
 扩展面板 → **…** → **Install from VSIX…**
-
-不要求同时安装 Cursor 和 VS Code，装你日常用的那一个就行。
 
 ## 给开发者（源码联接）
 
 ```powershell
 cd vscode
-.\install-to-cursor.ps1              # 自动检测：有 Cursor / VS Code 就装进去
-.\install-to-cursor.ps1 -Target vscode
-.\install-to-cursor.ps1 -Target cursor
+.\install-to-vscode.ps1
 ```
 
-需要：Windows + Node.js + 至少装了 Cursor 或 VS Code 之一。  
-然后在对应编辑器里 **Reload Window**。
+需要：Windows + 已安装 VS Code。  
+然后在 VS Code 里 **Reload Window**。
 
 或打包 VSIX：
 
@@ -38,14 +34,9 @@ npm run package
 
 ## 数据目录
 
-Cursor：
-
-- `%APPDATA%\Cursor\User\globalStorage\huaxin.beibagu\quiz-state.json`
-- `%APPDATA%\Cursor\User\globalStorage\huaxin.beibagu\custom-questions.json`
-
-VS Code：
-
 - `%APPDATA%\Code\User\globalStorage\huaxin.beibagu\quiz-state.json`
 - `%APPDATA%\Code\User\globalStorage\huaxin.beibagu\custom-questions.json`
 
-从旧版 `huaxin.shiroha-quiz-cursor` 升级时，会自动尝试拷贝进度。
+## License
+
+[MIT](../LICENSE)

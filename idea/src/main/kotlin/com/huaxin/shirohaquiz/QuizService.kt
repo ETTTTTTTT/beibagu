@@ -31,7 +31,7 @@ import kotlin.math.min
 import kotlin.math.roundToInt
 
 /**
- * 背题数据与消息处理（对齐 Cursor 版 extension.js 的核心能力）。
+ * 背题数据与消息处理（对齐 VS Code 版 extension.js 的核心能力）。
  */
 class QuizService(private val project: Project?) {
   private val gson: Gson = GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create()

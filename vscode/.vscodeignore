@@ -4,5 +4,6 @@
 data/**
 **/*.map
 **/*.vsix
+install-to-vscode.ps1
 install-to-cursor.ps1
 scripts/**

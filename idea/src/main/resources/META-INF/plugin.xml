@@ -14,7 +14,7 @@
     <p>0.1.60 - 插件显示名改为「面试背题」。</p>
     <p>0.1.59 - DeepSeek 详解/打分改为剪贴板粘贴，修复 414 URI Too Large。</p>
     <p>0.1.58 - 兼容 IDEA 2026.1（build 261+）。</p>
-    <p>0.1.57 - 首版 IDEA 插件，复用 Cursor 版背题界面与 7 档艾宾浩斯质量评分。</p>
+    <p>0.1.57 - 首版 IDEA 插件，复用 VS Code 版背题界面与 7 档艾宾浩斯质量评分。</p>
   ]]></change-notes>
 
   <depends>com.intellij.modules.platform</depends>

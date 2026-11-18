@@ -52,7 +52,7 @@ cd beibagu
 
 ## 数据目录
 
-学习进度与自定义题库存于 IDEA 配置目录下的 `shiroha-quiz/`（与 Cursor 版数据不互通）。
+学习进度与自定义题库存于 IDEA 配置目录下的 `shiroha-quiz/`（与 VS Code 版数据不互通）。
 
 ## License
 
