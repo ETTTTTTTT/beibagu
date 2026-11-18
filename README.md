@@ -1,11 +1,12 @@
 # beibagu · 面试背题
 
+<p align="center"><b>IntelliJ IDEA</b></p>
 <p align="center">
-![输入图片说明](docs/idea.png)
-![输入图片说明](docs/vscode.png)
+  <img src="docs/idea.png" alt="IntelliJ IDEA 版" width="100%" />
 </p>
+<p align="center"><b>VS Code / Cursor</b></p>
 <p align="center">
-  <b>IDEA</b> &nbsp;&nbsp;|&nbsp;&nbsp; <b>VS Code / Cursor</b>
+  <img src="docs/vscode.png" alt="VS Code / Cursor 版" width="100%" />
 </p>
 
 **程序员上班摸鱼神器：刷八股文、背面试题。**  
