@@ -1,5 +1,13 @@
 # beibagu · 面试背题
 
+<p align="center">
+  <img src="docs/idea.png" alt="IntelliJ IDEA 版" width="48%" />
+  <img src="docs/vscode.png" alt="VS Code / Cursor 版" width="48%" />
+</p>
+<p align="center">
+  <b>IDEA</b> &nbsp;&nbsp;|&nbsp;&nbsp; <b>VS Code / Cursor</b>
+</p>
+
 **程序员上班摸鱼神器：刷八股文、背面试题。**  
 IDEA / Cursor / VS Code **编辑器插件**，**免费开源**。
 
