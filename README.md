@@ -1,4 +1,4 @@
-# beibagu · 编辑器插件 · 摸鱼刷题 · AI 辅助解析 / 理解 / 记忆
+# beibagu · IDEA / VS Code 插件 · 摸鱼刷题 · AI 辅助解析 / 理解 / 记忆
 
 > IDEA / VS Code 面试背题插件 · DeepSeek 一键详解打分 · 白嫖网页 Token · 免费开源
 
