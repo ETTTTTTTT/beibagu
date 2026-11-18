@@ -1,7 +1,6 @@
 # Dev install: junction this folder into Cursor and/or VS Code extensions.
-# End users: install the packaged .vsix (no clone / no Node required).
+# End users should install the packaged .vsix instead.
 param(
-  # cursor | vscode | all | auto(default: whatever is installed)
   [ValidateSet("cursor", "vscode", "all", "auto")]
   [string]$Target = "auto"
 )
@@ -9,11 +8,11 @@ param(
 $ErrorActionPreference = "Stop"
 $src = $PSScriptRoot
 
-if (-not (Get-Command node -ErrorAction SilentlyContinue)) {
-  throw "需要 Node.js 在 PATH 中（仅开发联接安装需要；普通用户请改用 .vsix）"
+$pkgPath = Join-Path $src "package.json"
+if (-not (Test-Path $pkgPath)) {
+  throw "package.json not found: $pkgPath"
 }
-
-$ver = (& node -p "require(require('path').join(process.argv[1], 'package.json')).version" $src).Trim()
+$ver = (Get-Content $pkgPath -Raw -Encoding UTF8 | ConvertFrom-Json).version
 if (-not $ver) { throw "cannot read version from package.json" }
 
 $id = "huaxin.beibagu"
@@ -26,10 +25,14 @@ $candidates = @(
 
 function Test-EditorPresent([string]$key, [string]$root) {
   if ($key -eq "cursor") {
-    return (Test-Path $root) -or (Get-Command cursor -ErrorAction SilentlyContinue) -or (Test-Path (Join-Path $env:LOCALAPPDATA "Programs\cursor"))
+    return (Test-Path $root) -or
+      [bool](Get-Command cursor -ErrorAction SilentlyContinue) -or
+      (Test-Path (Join-Path $env:LOCALAPPDATA "Programs\cursor"))
   }
   if ($key -eq "vscode") {
-    return (Test-Path $root) -or (Get-Command code -ErrorAction SilentlyContinue) -or (Test-Path (Join-Path $env:LOCALAPPDATA "Programs\Microsoft VS Code"))
+    return (Test-Path $root) -or
+      [bool](Get-Command code -ErrorAction SilentlyContinue) -or
+      (Test-Path (Join-Path $env:LOCALAPPDATA "Programs\Microsoft VS Code"))
   }
   return $false
 }
@@ -76,16 +79,15 @@ switch ($Target) {
 }
 
 if ($selected.Count -eq 0) {
-  throw @"
-未检测到 Cursor 或 VS Code。
-- 已安装请指定: .\install-to-cursor.ps1 -Target cursor
-                 .\install-to-cursor.ps1 -Target vscode
-- 普通用户请用 releases 里的 .vsix：扩展面板 → Install from VSIX…
-"@
+  Write-Host "No Cursor / VS Code detected."
+  Write-Host "  .\install-to-cursor.ps1 -Target cursor"
+  Write-Host "  .\install-to-cursor.ps1 -Target vscode"
+  Write-Host "Or install releases/*.vsix via Install from VSIX."
+  throw "no editor target"
 }
 
 foreach ($ed in $selected) {
   Install-Junction $ed.Name $ed.Root
 }
 
-Write-Host "Reload Window ONCE in the editor you use. Later media changes hot-reload; use Refresh UI if needed."
+Write-Host "Reload Window ONCE in the editor you use."
