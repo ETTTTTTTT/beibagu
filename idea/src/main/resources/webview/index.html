@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="webview.css" />
+  <style>
+    .hidden{display:none!important}
+    body{
+      margin:0;
+      background:#1e1e1e;
+      color:#dddddd;
+      font:13px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    }
+    #boot-error{padding:16px;color:#f87171}
+  </style>
+  <title>面试背题</title>
+</head>
+<body>
+  <div id="app">
+    <header class="top">
+      <div class="title-block">
+        <b>面试背题</b>
+        <span id="meta" class="muted">加载中…</span>
+        <span id="bank" class="bank-tag">题库</span>
+      </div>
+      <div class="actions tabs">
+        <button id="tab-practice" class="tab active">刷题</button>
+        <button id="tab-bank" class="tab">题库列表</button>
+        <button id="tab-mastery" class="tab">分类理解度</button>
+        <button id="tab-history" class="tab">答题历史</button>
+      </div>
+    </header>
+    <div class="toolbar" id="toolbar-practice">
+      <button id="btn-topic" class="ghost">分类筛选</button>
+      <div class="mode-switch" role="tablist" aria-label="刷题模式">
+        <button id="btn-mode-practice" class="mode-btn active" role="tab" aria-selected="true" type="button" title="按分类刷题">练习<span id="mode-practice-badge" class="mode-badge mode-badge-soft hidden"></span></button>
+        <button id="btn-mode-weak" class="mode-btn" role="tab" aria-selected="false" type="button" title="理解度未到 100% 的题，专项强化">错题强化<span id="mode-weak-badge" class="mode-badge mode-badge-weak hidden"></span></button>
+        <button id="btn-mode-review" class="mode-btn" role="tab" aria-selected="false" type="button" title="艾宾浩斯间隔复习：仅到期题">复习<span id="mode-review-badge" class="mode-badge hidden"></span></button>
+      </div>
+      <button id="btn-import-merge" class="ghost">导入题目</button>
+      <button id="btn-reset" class="ghost">重置进度</button>
+      <button id="btn-reload-ui" class="ghost">刷新界面</button>
+    </div>
+    <div class="toolbar hidden" id="toolbar-bank" style="display:none">
+      <input id="bank-search" class="search" type="search" placeholder="搜索题目 / 主题 / id…" />
+      <button id="btn-add" class="primary">新增题目</button>
+      <button id="btn-export" class="ghost">导出 JSON</button>
+      <button id="btn-import-replace-2" class="ghost">导入题库</button>
+    </div>
+    <div class="toolbar hidden" id="toolbar-mastery" style="display:none">
+      <span class="muted">分类理解程度 = 该分类下每题理解程度均值（未答按 0%）</span>
+      <button id="btn-mastery-weak" class="ghost">去刷理解度最低分类</button>
+    </div>
+    <div class="toolbar hidden" id="toolbar-history" style="display:none">
+      <button id="btn-history-all" class="ghost">全部题目</button>
+      <button id="btn-history-current" class="ghost">仅本题</button>
+      <span id="history-filter-label" class="muted"></span>
+    </div>
+    <main id="main" class="main"><div class="muted" style="padding:16px">正在加载题目…</div></main>
+    <footer class="foot" id="foot-practice">
+      <div class="foot-group">
+        <button id="btn-prev" class="ghost" title="上一题">上一题</button>
+        <button id="btn-next" class="ghost" title="下一题">下一题</button>
+      </div>
+      <div class="foot-group foot-understand" title="7 档质量对应艾宾浩斯 7 档间隔">
+        <span class="foot-label muted">答题质量</span>
+        <button id="btn-q1" class="ghost quality-btn" data-u="15" type="button" title="档1 · 约 1 天后">不会</button>
+        <button id="btn-q2" class="ghost quality-btn" data-u="30" type="button" title="档2 · 约 2 天后">生疏</button>
+        <button id="btn-q3" class="ghost quality-btn" data-u="45" type="button" title="档3 · 约 4 天后">半懂</button>
+        <button id="btn-q4" class="ghost quality-btn" data-u="60" type="button" title="档4 · 约 7 天后">勉强</button>
+        <button id="btn-q5" class="ghost quality-btn" data-u="75" type="button" title="档5 · 约 15 天后">会了</button>
+        <button id="btn-q6" class="ghost quality-btn" data-u="90" type="button" title="档6 · 约 30 天后">较熟</button>
+        <button id="btn-q7" class="ghost quality-btn" data-u="100" type="button" title="档7 · 约 60 天后">掌握</button>
+      </div>
+      <div class="foot-group more-wrap">
+        <button id="btn-more" class="ghost" type="button" aria-expanded="false">更多 ▾</button>
+        <div id="more-menu" class="more-menu hidden" style="display:none">
+          <button id="btn-edit-answer-foot" class="more-item" type="button">改参考答案</button>
+          <button id="btn-delete" class="more-item danger-text" type="button">删除本题</button>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <div id="boot-error" class="hidden"></div>
+  <script>
+    window.acquireVsCodeApi = function () {
+      return {
+        postMessage: function (msg) {
+          if (typeof window.__SHIROHA_IDEA_POST__ === 'function') {
+            window.__SHIROHA_IDEA_POST__(JSON.stringify(msg));
+          } else {
+            console.warn('IDEA bridge not ready', msg && msg.type);
+          }
+        },
+        getState: function () { return window.__SHIROHA_STATE__ || null; },
+        setState: function (s) { window.__SHIROHA_STATE__ = s; }
+      };
+    };
+    window.__SHIROHA_IDEA_ON_HOST__ = function (data) {
+      window.dispatchEvent(new MessageEvent('message', { data: data }));
+    };
+  </script>
+  <script src="webview.js"></script>
+</body>
+</html>

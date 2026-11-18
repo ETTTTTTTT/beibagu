@@ -1,0 +1,108 @@
+{
+  "name": "beibagu",
+  "displayName": "beibagu · 面试背题",
+  "description": "在 Cursor / VS Code 里背程序员面试题：简答练习、间隔复习、删除题目、本地持久化。",
+  "version": "0.1.59",
+  "publisher": "huaxin",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Education",
+    "Other"
+  ],
+  "keywords": [
+    "interview",
+    "java",
+    "quiz",
+    "八股文",
+    "背题",
+    "beibagu"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./src/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "shirohaQuiz.open",
+        "title": "打开背题面板",
+        "category": "beibagu",
+        "icon": "$(book)"
+      },
+      {
+        "command": "shirohaQuiz.importBank",
+        "title": "导入题库 JSON",
+        "category": "beibagu"
+      },
+      {
+        "command": "shirohaQuiz.resetProgress",
+        "title": "重置学习进度",
+        "category": "beibagu"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "shirohaQuiz.open",
+        "key": "ctrl+alt+b",
+        "mac": "cmd+alt+b"
+      },
+      {
+        "command": "shirohaQuiz.open",
+        "key": "f9"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "shirohaQuiz",
+          "title": "面试背题",
+          "icon": "resources/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "shirohaQuiz": [
+        {
+          "id": "shirohaQuiz.launcher",
+          "name": "面试背题"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "shirohaQuiz.open",
+          "when": "view == shirohaQuiz.launcher",
+          "group": "navigation"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "shirohaQuiz.open",
+          "group": "navigation",
+          "icon": "$(book)"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "beibagu",
+      "properties": {
+        "shirohaQuiz.chromePath": {
+          "type": "string",
+          "default": "",
+          "description": "Google Chrome 可执行文件路径。留空则自动检测，用于「DeepSeek 详解」等外链打开。"
+        },
+        "shirohaQuiz.openLinksInChrome": {
+          "type": "boolean",
+          "default": true,
+          "description": "外链（如 DeepSeek 详解）优先用 Chrome 打开"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "package": "npx --yes @vscode/vsce package --allow-missing-repository"
+  }
+}

@@ -1,0 +1,8 @@
+.git/**
+.vscode/**
+**/*.md
+data/**
+**/*.map
+**/*.vsix
+install-to-cursor.ps1
+scripts/**

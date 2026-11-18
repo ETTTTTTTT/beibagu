@@ -1,0 +1,40 @@
+<idea-plugin>
+  <id>com.huaxin.shiroha-quiz</id>
+  <name>面试背题</name>
+  <vendor email="" url="">huaxin</vendor>
+  <description><![CDATA[
+    <p>在 IntelliJ IDEA 中背程序员面试题：简答练习、艾宾浩斯间隔复习、题库管理、本地持久化。</p>
+    <p>打开方式：右侧工具窗口「面试背题」，或菜单 Tools → 打开面试背题，或快捷键 Ctrl+Alt+B。</p>
+  ]]></description>
+  <change-notes><![CDATA[
+    <p>0.1.64 - 工程名改为 beibagu。</p>
+    <p>0.1.63 - DeepSeek 填入后自动点击发送，无需手动提交。</p>
+    <p>0.1.62 - DeepSeek 填入后保持 Chrome 在前台，不再弹窗抢回 IDEA。</p>
+    <p>0.1.61 - DeepSeek 详解/打分经 Chrome CDP 自动写入聊天框。</p>
+    <p>0.1.60 - 插件显示名改为「面试背题」。</p>
+    <p>0.1.59 - DeepSeek 详解/打分改为剪贴板粘贴，修复 414 URI Too Large。</p>
+    <p>0.1.58 - 兼容 IDEA 2026.1（build 261+）。</p>
+    <p>0.1.57 - 首版 IDEA 插件，复用 Cursor 版背题界面与 7 档艾宾浩斯质量评分。</p>
+  ]]></change-notes>
+
+  <depends>com.intellij.modules.platform</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <toolWindow id="ShirohaQuiz"
+                anchor="right"
+                secondary="false"
+                icon="/webview/icon.svg"
+                factoryClass="com.huaxin.shirohaquiz.QuizToolWindowFactory"/>
+    <notificationGroup id="面试背题" displayType="BALLOON"/>
+  </extensions>
+
+  <actions>
+    <action id="ShirohaQuiz.Open"
+            class="com.huaxin.shirohaquiz.OpenQuizAction"
+            text="打开面试背题"
+            description="打开面试背题面板">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt B"/>
+    </action>
+  </actions>
+</idea-plugin>

@@ -1,0 +1,4481 @@
+{
+  "meta": {
+    "title": "面试鸭公开题目录（自研答案）",
+    "questionCount": 289,
+    "source": "https://www.mianshiya.com/",
+    "sourceNote": "题目标题来自面试鸭公开列表 API；答案为本地生成的面试答法，不是站点付费原文。仅供个人背题。",
+    "importedAt": "2026-11-09T06:05:31.490Z"
+  },
+  "questions": [
+    {
+      "id": "msy-1772519661640982530",
+      "type": "short",
+      "question": "什么是 MyBatis-Plus？它有什么作用？它和 MyBatis 有哪些区别？\n",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n什么是 MyBatis-Plus？它有什么作用？它和 MyBatis 有哪些区别？\n\n\n建议按 4 段答：\n1) 一句话结论（面向 后端）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Mybatis-plus",
+        "编程导航",
+        "MyBatis",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Mybatis-plus / 编程导航 / MyBatis / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772882950057148418",
+      "type": "short",
+      "question": "如何设计一个点赞系统？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n如何设计一个点赞系统？\n\n建议按 4 段答：\n1) 一句话结论（面向 系统设计）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "系统设计",
+        "场景题",
+        "面试鸭"
+      ],
+      "topic": "系统设计",
+      "category": "系统设计 / 场景题 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294699868162",
+      "type": "short",
+      "question": "Java 中有哪些集合类？请简单介绍",
+      "answer": "Collection 三大支：\n- List：ArrayList（数组）、LinkedList（双向链表）、Vector（同步，少用）\n- Set：HashSet、LinkedHashSet、TreeSet\n- Queue/Deque：ArrayDeque、PriorityQueue、LinkedList\nMap 另成体系：HashMap、LinkedHashMap、TreeMap、Hashtable、ConcurrentHashMap。\n按场景选：随机访问→ArrayList；频繁头尾插入→LinkedList/ArrayDeque；去重→HashSet；排序→Tree*；并发→Concurrent*。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 集合",
+        "Java",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java 集合",
+      "category": "Java 集合 / Java / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294704062466",
+      "type": "short",
+      "question": "数组和链表在 Java 中的区别是什么？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n数组和链表在 Java 中的区别是什么？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 集合）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 集合",
+        "Java",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java 集合",
+      "category": "Java 集合 / Java / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294750199809",
+      "type": "short",
+      "question": "Java 中 HashMap 的扩容机制是怎样的？",
+      "answer": "结论：先说数据结构与复杂度，再谈线程安全与扩容。\nArrayList 数组随机访问快；LinkedList 链表改动局部快但局部性差。\nHashMap：数组+链表/红黑树，非线程安全。\nConcurrentHashMap：CAS+桶锁，适合并发读多写。\n答完给一个项目选型例子更加分。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 集合",
+        "Java",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java 集合",
+      "category": "Java 集合 / Java / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294754394113",
+      "type": "short",
+      "question": "为什么 HashMap 在 Java 中扩容时采用 2 的 n 次方倍？",
+      "answer": "结论：先说数据结构与复杂度，再谈线程安全与扩容。\nArrayList 数组随机访问快；LinkedList 链表改动局部快但局部性差。\nHashMap：数组+链表/红黑树，非线程安全。\nConcurrentHashMap：CAS+桶锁，适合并发读多写。\n答完给一个项目选型例子更加分。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 集合",
+        "Java",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java 集合",
+      "category": "Java 集合 / Java / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294758588418",
+      "type": "short",
+      "question": "为什么 Java 中 HashMap 的默认负载因子是 0.75？",
+      "answer": "结论：先说数据结构与复杂度，再谈线程安全与扩容。\nArrayList 数组随机访问快；LinkedList 链表改动局部快但局部性差。\nHashMap：数组+链表/红黑树，非线程安全。\nConcurrentHashMap：CAS+桶锁，适合并发读多写。\n答完给一个项目选型例子更加分。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 集合",
+        "Java",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java 集合",
+      "category": "Java 集合 / Java / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294771171329",
+      "type": "short",
+      "question": "为什么 JDK 1.8 对 HashMap 进行了红黑树的改动？",
+      "answer": "链表过长时，查找从 O(n) 退化。红黑树把最坏查找降到 O(log n)。\n触发：单桶链表长度≥8 且数组容量≥64 才树化；过小先扩容。\n退化：树节点过少（≤6）会转回链表，平衡空间与复杂度。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 集合",
+        "Java",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java 集合",
+      "category": "Java 集合 / Java / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294775365634",
+      "type": "short",
+      "question": "JDK 1.8 对 HashMap 除了红黑树还进行了哪些改动？",
+      "answer": "1) 头插改尾插，避免扩容死链（并发下旧问题）。\n2) 扩容时用 hash 高位决定留在原位还是 i+oldCap，效率更高。\n3) hash 扰动简化；Node 替代 Entry。\n4) 引入 TreeNode；优化扩容与树化阈值配合。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 集合",
+        "Java",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java 集合",
+      "category": "Java 集合 / Java / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294813114369",
+      "type": "short",
+      "question": "Java 中 ConcurrentHashMap 1.7 和 1.8 之间有哪些区别？",
+      "answer": "1.7：分段锁 Segment + HashEntry，锁粒度是段。\n1.8：取消 Segment，数组 + 链表/红黑树；用 CAS + synchronized 锁桶头节点，锁粒度更细。\n1.8 扩容支持多线程协助迁移；size 用 CounterCell 近似统计。\n结论：1.8 并发度更高、结构更接近 HashMap。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 集合",
+        "Java",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java 集合",
+      "category": "Java 集合 / Java / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294859251714",
+      "type": "short",
+      "question": "线程和进程有什么区别？",
+      "answer": "结论：并发关键是可见性、原子性、有序性。\nsynchronized：监视器锁，可重入；锁升级偏向→轻量→重量。\nvolatile：可见性与有序性，不保证复合操作原子性。\n线程池：核心参数（core/max/queue/reject）；线上要监控队列与拒绝策略。\n加分：AQS、CAS、happens-before。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "操作系统",
+        "计算机基础",
+        "Java 并发",
+        "面试鸭"
+      ],
+      "topic": "操作系统",
+      "category": "操作系统 / 计算机基础 / Java 并发 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294871834626",
+      "type": "short",
+      "question": "线程的生命周期在 Java 中是如何定义的？",
+      "answer": "结论：并发关键是可见性、原子性、有序性。\nsynchronized：监视器锁，可重入；锁升级偏向→轻量→重量。\nvolatile：可见性与有序性，不保证复合操作原子性。\n线程池：核心参数（core/max/queue/reject）；线上要监控队列与拒绝策略。\n加分：AQS、CAS、happens-before。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java并发",
+        "Java",
+        "Java 并发",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java并发",
+      "category": "Java并发 / Java / Java 并发 / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294892806145",
+      "type": "short",
+      "question": "你了解 Java 线程池的原理吗？",
+      "answer": "结论：并发关键是可见性、原子性、有序性。\nsynchronized：监视器锁，可重入；锁升级偏向→轻量→重量。\nvolatile：可见性与有序性，不保证复合操作原子性。\n线程池：核心参数（core/max/queue/reject）；线上要监控队列与拒绝策略。\n加分：AQS、CAS、happens-before。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java并发",
+        "Java",
+        "Java 并发",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java并发",
+      "category": "Java并发 / Java / Java 并发 / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294905389057",
+      "type": "short",
+      "question": "如何合理地设置 Java 线程池的线程数？",
+      "answer": "结论：并发关键是可见性、原子性、有序性。\nsynchronized：监视器锁，可重入；锁升级偏向→轻量→重量。\nvolatile：可见性与有序性，不保证复合操作原子性。\n线程池：核心参数（core/max/queue/reject）；线上要监控队列与拒绝策略。\n加分：AQS、CAS、happens-before。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java并发",
+        "Java",
+        "Java 并发",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java并发",
+      "category": "Java并发 / Java / Java 并发 / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294909583361",
+      "type": "short",
+      "question": "Java 线程池有哪些拒绝策略？",
+      "answer": "结论：并发关键是可见性、原子性、有序性。\nsynchronized：监视器锁，可重入；锁升级偏向→轻量→重量。\nvolatile：可见性与有序性，不保证复合操作原子性。\n线程池：核心参数（core/max/queue/reject）；线上要监控队列与拒绝策略。\n加分：AQS、CAS、happens-before。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java并发",
+        "Java",
+        "Java 并发",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java并发",
+      "category": "Java并发 / Java / Java 并发 / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294930554882",
+      "type": "short",
+      "question": "你使用过哪些 Java 并发工具类？",
+      "answer": "结论：并发关键是可见性、原子性、有序性。\nsynchronized：监视器锁，可重入；锁升级偏向→轻量→重量。\nvolatile：可见性与有序性，不保证复合操作原子性。\n线程池：核心参数（core/max/queue/reject）；线上要监控队列与拒绝策略。\n加分：AQS、CAS、happens-before。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java并发",
+        "Java",
+        "Java 并发",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java并发",
+      "category": "Java并发 / Java / Java 并发 / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294976692225",
+      "type": "short",
+      "question": "Synchronized 和 ReentrantLock 有什么区别？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nSynchronized 和 ReentrantLock 有什么区别？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java并发）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java并发",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java并发",
+      "category": "Java并发 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294980886530",
+      "type": "short",
+      "question": "Java 的 synchronized 是怎么实现的？",
+      "answer": "结论：并发关键是可见性、原子性、有序性。\nsynchronized：监视器锁，可重入；锁升级偏向→轻量→重量。\nvolatile：可见性与有序性，不保证复合操作原子性。\n线程池：核心参数（core/max/queue/reject）；线上要监控队列与拒绝策略。\n加分：AQS、CAS、happens-before。",
+      "analysis": "难度：困难；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java并发",
+        "Java",
+        "Java 并发",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java并发",
+      "category": "Java并发 / Java / Java 并发 / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295010246658",
+      "type": "short",
+      "question": "如何优化 Java 中的锁的使用？",
+      "answer": "结论：并发关键是可见性、原子性、有序性。\nsynchronized：监视器锁，可重入；锁升级偏向→轻量→重量。\nvolatile：可见性与有序性，不保证复合操作原子性。\n线程池：核心参数（core/max/queue/reject）；线上要监控队列与拒绝策略。\n加分：AQS、CAS、happens-before。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java并发",
+        "Java",
+        "Java 并发",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java并发",
+      "category": "Java并发 / Java / Java 并发 / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295018635266",
+      "type": "short",
+      "question": "说说 AQS 吧？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n说说 AQS 吧？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java并发）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java并发",
+        "Java",
+        "Java 并发",
+        "面试鸭"
+      ],
+      "topic": "Java并发",
+      "category": "Java并发 / Java / Java 并发 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295027023873",
+      "type": "short",
+      "question": "什么是 Java 的 CAS（Compare-And-Swap）操作？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n什么是 Java 的 CAS（Compare-And-Swap）操作？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java并发）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java并发",
+        "Java",
+        "Java 并发",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java并发",
+      "category": "Java并发 / Java / Java 并发 / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295031218178",
+      "type": "short",
+      "question": "什么是 Java 内存模型（JMM）？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n什么是 Java 内存模型（JMM）？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java并发）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：困难；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java并发",
+        "Java",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java并发",
+      "category": "Java并发 / Java / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295035412481",
+      "type": "short",
+      "question": "什么是 Java 中的原子性、可见性和有序性？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n什么是 Java 中的原子性、可见性和有序性？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java并发）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：困难；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java并发",
+        "Java",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java并发",
+      "category": "Java并发 / Java / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295047995393",
+      "type": "short",
+      "question": "Java 中的 final 关键字是否能保证变量的可见性？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nJava 中的 final 关键字是否能保证变量的可见性？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java并发）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java并发",
+        "Java",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java并发",
+      "category": "Java并发 / Java / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295073161218",
+      "type": "short",
+      "question": "为什么 Java 中的 ThreadLocal 对 key 的引用为弱引用？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n为什么 Java 中的 ThreadLocal 对 key 的引用为弱引用？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java并发）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java并发",
+        "Java",
+        "Java 并发",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java并发",
+      "category": "Java并发 / Java / Java 并发 / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295110909953",
+      "type": "short",
+      "question": "Java 中什么情况会导致死锁？如何避免？",
+      "answer": "结论：并发关键是可见性、原子性、有序性。\nsynchronized：监视器锁，可重入；锁升级偏向→轻量→重量。\nvolatile：可见性与有序性，不保证复合操作原子性。\n线程池：核心参数（core/max/queue/reject）；线上要监控队列与拒绝策略。\n加分：AQS、CAS、happens-before。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java并发",
+        "Java",
+        "Java 并发",
+        "操作系统",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java并发",
+      "category": "Java并发 / Java / Java 并发 / 操作系统 / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295115104258",
+      "type": "short",
+      "question": "Java 中 volatile 关键字的作用是什么？",
+      "answer": "结论：并发关键是可见性、原子性、有序性。\nsynchronized：监视器锁，可重入；锁升级偏向→轻量→重量。\nvolatile：可见性与有序性，不保证复合操作原子性。\n线程池：核心参数（core/max/queue/reject）；线上要监控队列与拒绝策略。\n加分：AQS、CAS、happens-before。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java并发",
+        "Java",
+        "Java 并发",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java并发",
+      "category": "Java并发 / Java / Java 并发 / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295123492866",
+      "type": "short",
+      "question": "什么是 Java 中的 ABA 问题？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n什么是 Java 中的 ABA 问题？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java并发）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：困难；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java并发",
+        "Java",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java并发",
+      "category": "Java并发 / Java / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295161241602",
+      "type": "short",
+      "question": "编译执行与解释执行的区别是什么？JVM 使用哪种方式？",
+      "answer": "结论：JVM 管内存与执行；面试重点是运行时数据区、GC、类加载。\n堆分新生代/老年代；GC 算法与收集器要能对比场景。\n类加载：加载-验证-准备-解析-初始化；双亲委派防核心类被篡改。\n排查：heap dump、GC 日志、jstack/jmap/arthas。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "JVM",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "JVM",
+      "category": "JVM / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295169630210",
+      "type": "short",
+      "question": "JVM 的内存区域是如何划分的？",
+      "answer": "结论：JVM 管内存与执行；面试重点是运行时数据区、GC、类加载。\n堆分新生代/老年代；GC 算法与收集器要能对比场景。\n类加载：加载-验证-准备-解析-初始化；双亲委派防核心类被篡改。\n排查：heap dump、GC 日志、jstack/jmap/arthas。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "JVM",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "JVM",
+      "category": "JVM / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295215767553",
+      "type": "short",
+      "question": "Java 中常见的垃圾收集器有哪些？",
+      "answer": "结论：JVM 管内存与执行；面试重点是运行时数据区、GC、类加载。\n堆分新生代/老年代；GC 算法与收集器要能对比场景。\n类加载：加载-验证-准备-解析-初始化；双亲委派防核心类被篡改。\n排查：heap dump、GC 日志、jstack/jmap/arthas。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "JVM",
+        "Java",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "JVM",
+      "category": "JVM / Java / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295228350466",
+      "type": "short",
+      "question": "为什么 Java 8 移除了永久代（PermGen）并引入了元空间（Metaspace）？",
+      "answer": "结论：JVM 管内存与执行；面试重点是运行时数据区、GC、类加载。\n堆分新生代/老年代；GC 算法与收集器要能对比场景。\n类加载：加载-验证-准备-解析-初始化；双亲委派防核心类被篡改。\n排查：heap dump、GC 日志、jstack/jmap/arthas。",
+      "analysis": "难度：困难；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "JVM",
+        "Java",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "JVM",
+      "category": "JVM / Java / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295236739074",
+      "type": "short",
+      "question": "Java 中有哪些垃圾回收算法？",
+      "answer": "结论：JVM 管内存与执行；面试重点是运行时数据区、GC、类加载。\n堆分新生代/老年代；GC 算法与收集器要能对比场景。\n类加载：加载-验证-准备-解析-初始化；双亲委派防核心类被篡改。\n排查：heap dump、GC 日志、jstack/jmap/arthas。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "JVM",
+        "Java",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "JVM",
+      "category": "JVM / Java / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295303847937",
+      "type": "short",
+      "question": "JVM 垃圾回收调优的主要目标是什么？",
+      "answer": "结论：JVM 管内存与执行；面试重点是运行时数据区、GC、类加载。\n堆分新生代/老年代；GC 算法与收集器要能对比场景。\n类加载：加载-验证-准备-解析-初始化；双亲委派防核心类被篡改。\n排查：heap dump、GC 日志、jstack/jmap/arthas。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "JVM",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "JVM",
+      "category": "JVM / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295308042242",
+      "type": "short",
+      "question": "如何对 Java 的垃圾回收进行调优？",
+      "answer": "结论：JVM 管内存与执行；面试重点是运行时数据区、GC、类加载。\n堆分新生代/老年代；GC 算法与收集器要能对比场景。\n类加载：加载-验证-准备-解析-初始化；双亲委派防核心类被篡改。\n排查：heap dump、GC 日志、jstack/jmap/arthas。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "JVM",
+        "Java",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "JVM",
+      "category": "JVM / Java / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295312236546",
+      "type": "short",
+      "question": "常用的 JVM 配置参数有哪些？",
+      "answer": "结论：JVM 管内存与执行；面试重点是运行时数据区、GC、类加载。\n堆分新生代/老年代；GC 算法与收集器要能对比场景。\n类加载：加载-验证-准备-解析-初始化；双亲委派防核心类被篡改。\n排查：heap dump、GC 日志、jstack/jmap/arthas。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "JVM",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "JVM",
+      "category": "JVM / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295320625154",
+      "type": "short",
+      "question": "看过源码吗？说下 Spring 由哪些重要的模块组成？",
+      "answer": "结论：Spring 核心是 IoC（容器管依赖）与 AOP（横切逻辑）。\nBean 生命周期：实例化 → 属性填充 → 初始化回调 → 销毁。\n循环依赖：单例三级缓存思路（早期引用）；构造器循环依赖无法解决。\nBoot 自动配置：条件注解 + starter + spi/imports，约定优于配置。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Spring",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Spring / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295329013762",
+      "type": "short",
+      "question": "什么是 Spring IOC？",
+      "answer": "结论：Spring 核心是 IoC（容器管依赖）与 AOP（横切逻辑）。\nBean 生命周期：实例化 → 属性填充 → 初始化回调 → 销毁。\n循环依赖：单例三级缓存思路（早期引用）；构造器循环依赖无法解决。\nBoot 自动配置：条件注解 + starter + spi/imports，约定优于配置。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Spring",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Spring / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295333208066",
+      "type": "short",
+      "question": "Spring 中的 DI 是什么？",
+      "answer": "结论：Spring 核心是 IoC（容器管依赖）与 AOP（横切逻辑）。\nBean 生命周期：实例化 → 属性填充 → 初始化回调 → 销毁。\n循环依赖：单例三级缓存思路（早期引用）；构造器循环依赖无法解决。\nBoot 自动配置：条件注解 + starter + spi/imports，约定优于配置。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Spring",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Spring / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295362568194",
+      "type": "short",
+      "question": "什么是 AOP？",
+      "answer": "结论：Spring 核心是 IoC（容器管依赖）与 AOP（横切逻辑）。\nBean 生命周期：实例化 → 属性填充 → 初始化回调 → 销毁。\n循环依赖：单例三级缓存思路（早期引用）；构造器循环依赖无法解决。\nBoot 自动配置：条件注解 + starter + spi/imports，约定优于配置。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Spring",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Spring / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295366762497",
+      "type": "short",
+      "question": "Spring AOP默认用的是什么动态代理，两者的区别？",
+      "answer": "结论：Spring 核心是 IoC（容器管依赖）与 AOP（横切逻辑）。\nBean 生命周期：实例化 → 属性填充 → 初始化回调 → 销毁。\n循环依赖：单例三级缓存思路（早期引用）；构造器循环依赖无法解决。\nBoot 自动配置：条件注解 + starter + spi/imports，约定优于配置。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Spring",
+        "设计模式",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Spring / 设计模式 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295379345410",
+      "type": "short",
+      "question": "什么是循环依赖（常问）？",
+      "answer": "结论：Spring 核心是 IoC（容器管依赖）与 AOP（横切逻辑）。\nBean 生命周期：实例化 → 属性填充 → 初始化回调 → 销毁。\n循环依赖：单例三级缓存思路（早期引用）；构造器循环依赖无法解决。\nBoot 自动配置：条件注解 + starter + spi/imports，约定优于配置。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Spring",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Spring / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295383539714",
+      "type": "short",
+      "question": "Spring 如何解决循环依赖？",
+      "answer": "结论：Spring 核心是 IoC（容器管依赖）与 AOP（横切逻辑）。\nBean 生命周期：实例化 → 属性填充 → 初始化回调 → 销毁。\n循环依赖：单例三级缓存思路（早期引用）；构造器循环依赖无法解决。\nBoot 自动配置：条件注解 + starter + spi/imports，约定优于配置。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Spring",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Spring / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295387734017",
+      "type": "short",
+      "question": "为什么 Spring 循环依赖需要三级缓存，二级不够吗？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Spring",
+        "Redis",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Spring / Redis / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295396122626",
+      "type": "short",
+      "question": "说下 Spring Bean 的生命周期？",
+      "answer": "结论：Spring 核心是 IoC（容器管依赖）与 AOP（横切逻辑）。\nBean 生命周期：实例化 → 属性填充 → 初始化回调 → 销毁。\n循环依赖：单例三级缓存思路（早期引用）；构造器循环依赖无法解决。\nBoot 自动配置：条件注解 + starter + spi/imports，约定优于配置。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Spring",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Spring / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295400316931",
+      "type": "short",
+      "question": "Spring MVC 具体的工作原理？",
+      "answer": "结论：Spring 核心是 IoC（容器管依赖）与 AOP（横切逻辑）。\nBean 生命周期：实例化 → 属性填充 → 初始化回调 → 销毁。\n循环依赖：单例三级缓存思路（早期引用）；构造器循环依赖无法解决。\nBoot 自动配置：条件注解 + starter + spi/imports，约定优于配置。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Spring",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Spring / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295408705538",
+      "type": "short",
+      "question": "你了解的 Spring 都用到哪些设计模式？",
+      "answer": "结论：Spring 核心是 IoC（容器管依赖）与 AOP（横切逻辑）。\nBean 生命周期：实例化 → 属性填充 → 初始化回调 → 销毁。\n循环依赖：单例三级缓存思路（早期引用）；构造器循环依赖无法解决。\nBoot 自动配置：条件注解 + starter + spi/imports，约定优于配置。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Spring",
+        "设计模式",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Spring / 设计模式 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295417094146",
+      "type": "short",
+      "question": "Spring 有哪几种事务传播行为?",
+      "answer": "结论：事务 ACID；并发问题有脏读/不可重复读/幻读；靠隔离级别与锁/MVCC 解决。\nInnoDB 默认可重复读，用 MVCC + Next-Key Lock 处理多数幻读场景。\n答题结构：定义问题 → 隔离级别对照表 → InnoDB 实现 → 业务选型（别盲目串行化）。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Spring",
+        "MySQL",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Spring / MySQL / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295429677057",
+      "type": "short",
+      "question": "详细描述一条 SQL 语句在 MySQL 中的执行过程。",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n详细描述一条 SQL 语句在 MySQL 中的执行过程。\n\n建议按 4 段答：\n1) 一句话结论（面向 后端）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "MySQL",
+        "数据库",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / MySQL / 数据库 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295433871361",
+      "type": "short",
+      "question": "MySQL 的存储引擎有哪些？它们之间有什么区别？",
+      "answer": "常见：InnoDB、MyISAM、Memory 等。\nInnoDB：默认，事务、行锁、外键、崩溃恢复、聚簇索引。\nMyISAM：表锁，非事务，曾适合只读；现较少用于主业务。\nMemory：内存表，快但不持久。\n业务库几乎都选 InnoDB。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "MySQL",
+        "数据库",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / MySQL / 数据库 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295438065665",
+      "type": "short",
+      "question": "MySQL 的索引类型有哪些？",
+      "answer": "按结构：B+树索引（主流）、哈希（Memory）、全文、空间索引。\n按特性：主键、唯一、普通、前缀、联合索引。\nInnoDB 主键是聚簇索引；二级索引存主键值。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "MySQL",
+        "数据库",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / MySQL / 数据库 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295442259970",
+      "type": "short",
+      "question": "MySQL InnoDB 引擎中的聚簇索引和非聚簇索引有什么区别？",
+      "answer": "聚簇索引：数据和主键索引在一起，叶节点是整行。\n二级（非聚簇）索引：叶节点存主键值，需再回表。\n一张表一个聚簇索引；无显式主键时 InnoDB 会隐式生成。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "MySQL",
+        "数据库",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / MySQL / 数据库 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295446454273",
+      "type": "short",
+      "question": "MySQL 中的回表是什么？",
+      "answer": "通过二级索引找到主键后，再回聚簇索引取完整行，叫回表。\n覆盖索引可避免回表。大量回表可能不如全表扫描，需结合优化器。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "MySQL",
+        "数据库",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / MySQL / 数据库 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295450648578",
+      "type": "short",
+      "question": "MySQL 索引的最左前缀匹配原则是什么？",
+      "answer": "联合索引 (a,b,c) 会按最左连续列匹配：可用 a、(a,b)、(a,b,c)；不能跳过 a 直接用 b、c。\nlike 'abc%' 可用；'%abc' 通常不可用。\n范围条件后可能让后续列失效（优化器版本有差异，但答题按经典规则说）。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "MySQL",
+        "数据库",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / MySQL / 数据库 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295454842881",
+      "type": "short",
+      "question": "MySQL 的覆盖索引是什么？",
+      "answer": "查询所需列都能被索引覆盖，无需回表拿整行。\n例：索引 (a,b)，查询 select a,b from t where a=? 可覆盖。\n好处：减少 IO，提升性能。explain 中 Using index 常表示覆盖。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "MySQL",
+        "数据库",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / MySQL / 数据库 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295459037186",
+      "type": "short",
+      "question": "MySQL 的索引下推是什么？",
+      "answer": "结论：MySQL InnoDB 主流用 B+ 树索引，叶节点有序且双向链表，适合范围查。\n要点：\n1) 聚簇索引存整行；二级索引存主键，可能回表。\n2) 联合索引遵循最左前缀；覆盖索引可避免回表。\n3) 不是索引越多越好：写放大、空间占用、优化器误选。\n排查：explain 看 type/key/rows/Extra；结合慢日志与基数。\n加分：索引下推、ICP、函数会导致索引失效的常见写法。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "MySQL",
+        "数据库",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / MySQL / 数据库 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295459037187",
+      "type": "short",
+      "question": "在 MySQL 中建索引时需要注意哪些事项？",
+      "answer": "结论：MySQL InnoDB 主流用 B+ 树索引，叶节点有序且双向链表，适合范围查。\n要点：\n1) 聚簇索引存整行；二级索引存主键，可能回表。\n2) 联合索引遵循最左前缀；覆盖索引可避免回表。\n3) 不是索引越多越好：写放大、空间占用、优化器误选。\n排查：explain 看 type/key/rows/Extra；结合慢日志与基数。\n加分：索引下推、ICP、函数会导致索引失效的常见写法。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "MySQL",
+        "数据库",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / MySQL / 数据库 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295463231490",
+      "type": "short",
+      "question": "MySQL 中使用索引一定有效吗？如何排查索引效果？",
+      "answer": "结论：MySQL InnoDB 主流用 B+ 树索引，叶节点有序且双向链表，适合范围查。\n要点：\n1) 聚簇索引存整行；二级索引存主键，可能回表。\n2) 联合索引遵循最左前缀；覆盖索引可避免回表。\n3) 不是索引越多越好：写放大、空间占用、优化器误选。\n排查：explain 看 type/key/rows/Extra；结合慢日志与基数。\n加分：索引下推、ICP、函数会导致索引失效的常见写法。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "MySQL",
+        "数据库",
+        "场景题",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / MySQL / 数据库 / 场景题 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295467425794",
+      "type": "short",
+      "question": "MySQL 中的索引数量是否越多越好？为什么？",
+      "answer": "结论：MySQL InnoDB 主流用 B+ 树索引，叶节点有序且双向链表，适合范围查。\n要点：\n1) 聚簇索引存整行；二级索引存主键，可能回表。\n2) 联合索引遵循最左前缀；覆盖索引可避免回表。\n3) 不是索引越多越好：写放大、空间占用、优化器误选。\n排查：explain 看 type/key/rows/Extra；结合慢日志与基数。\n加分：索引下推、ICP、函数会导致索引失效的常见写法。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "MySQL",
+        "数据库",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / MySQL / 数据库 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295471620098",
+      "type": "short",
+      "question": "请详细描述 MySQL 的 B+ 树中查询数据的全过程",
+      "answer": "结论：MySQL InnoDB 主流用 B+ 树索引，叶节点有序且双向链表，适合范围查。\n要点：\n1) 聚簇索引存整行；二级索引存主键，可能回表。\n2) 联合索引遵循最左前缀；覆盖索引可避免回表。\n3) 不是索引越多越好：写放大、空间占用、优化器误选。\n排查：explain 看 type/key/rows/Extra；结合慢日志与基数。\n加分：索引下推、ICP、函数会导致索引失效的常见写法。",
+      "analysis": "难度：困难；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "MySQL",
+        "数据库",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / MySQL / 数据库 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295475814402",
+      "type": "short",
+      "question": "为什么 MySQL 选择使用 B+ 树作为索引结构？",
+      "answer": "结论：MySQL InnoDB 主流用 B+ 树索引，叶节点有序且双向链表，适合范围查。\n要点：\n1) 聚簇索引存整行；二级索引存主键，可能回表。\n2) 联合索引遵循最左前缀；覆盖索引可避免回表。\n3) 不是索引越多越好：写放大、空间占用、优化器误选。\n排查：explain 看 type/key/rows/Extra；结合慢日志与基数。\n加分：索引下推、ICP、函数会导致索引失效的常见写法。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "MySQL",
+        "数据库",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / MySQL / 数据库 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295475814403",
+      "type": "short",
+      "question": "MySQL 是如何实现事务的？",
+      "answer": "结论：事务 ACID；并发问题有脏读/不可重复读/幻读；靠隔离级别与锁/MVCC 解决。\nInnoDB 默认可重复读，用 MVCC + Next-Key Lock 处理多数幻读场景。\n答题结构：定义问题 → 隔离级别对照表 → InnoDB 实现 → 业务选型（别盲目串行化）。",
+      "analysis": "难度：困难；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "MySQL",
+        "数据库",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / MySQL / 数据库 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295480008706",
+      "type": "short",
+      "question": "MySQL 中长事务可能会导致哪些问题？",
+      "answer": "结论：事务 ACID；并发问题有脏读/不可重复读/幻读；靠隔离级别与锁/MVCC 解决。\nInnoDB 默认可重复读，用 MVCC + Next-Key Lock 处理多数幻读场景。\n答题结构：定义问题 → 隔离级别对照表 → InnoDB 实现 → 业务选型（别盲目串行化）。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "MySQL",
+        "数据库",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / MySQL / 数据库 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295484203009",
+      "type": "short",
+      "question": "MySQL 中的 MVCC 是什么？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nMySQL 中的 MVCC 是什么？\n\n建议按 4 段答：\n1) 一句话结论（面向 后端）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：困难；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "MySQL",
+        "数据库",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / MySQL / 数据库 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295492591617",
+      "type": "short",
+      "question": "MySQL 中的事务隔离级别有哪些？",
+      "answer": "结论：事务 ACID；并发问题有脏读/不可重复读/幻读；靠隔离级别与锁/MVCC 解决。\nInnoDB 默认可重复读，用 MVCC + Next-Key Lock 处理多数幻读场景。\n答题结构：定义问题 → 隔离级别对照表 → InnoDB 实现 → 业务选型（别盲目串行化）。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "MySQL",
+        "数据库",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / MySQL / 数据库 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295492591618",
+      "type": "short",
+      "question": "MySQL 默认的事务隔离级别是什么？为什么选择这个级别？",
+      "answer": "结论：事务 ACID；并发问题有脏读/不可重复读/幻读；靠隔离级别与锁/MVCC 解决。\nInnoDB 默认可重复读，用 MVCC + Next-Key Lock 处理多数幻读场景。\n答题结构：定义问题 → 隔离级别对照表 → InnoDB 实现 → 业务选型（别盲目串行化）。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "MySQL",
+        "数据库",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / MySQL / 数据库 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295496785922",
+      "type": "short",
+      "question": "数据库的脏读、不可重复读和幻读分别是什么？",
+      "answer": "脏读：读到未提交数据，对方回滚则读到脏数据。\n不可重复读：同一事务两次读同一行，中间被更新，结果不同。\n幻读：同一范围条件两次查询，行数变化（插入/删除）。\n隔离级别：读未提交→脏读；读已提交→防脏读；可重复读→防不可重复读（InnoDB 用 MVCC+间隙锁近似防幻）；串行化最强最慢。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "MySQL",
+        "数据库",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / MySQL / 数据库 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295500980225",
+      "type": "short",
+      "question": "MySQL 中有哪些锁类型？",
+      "answer": "结论：并发关键是可见性、原子性、有序性。\nsynchronized：监视器锁，可重入；锁升级偏向→轻量→重量。\nvolatile：可见性与有序性，不保证复合操作原子性。\n线程池：核心参数（core/max/queue/reject）；线上要监控队列与拒绝策略。\n加分：AQS、CAS、happens-before。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "MySQL",
+        "数据库",
+        "Java 并发",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / MySQL / 数据库 / Java 并发 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295505174530",
+      "type": "short",
+      "question": "MySQL 的乐观锁和悲观锁是什么？",
+      "answer": "结论：并发关键是可见性、原子性、有序性。\nsynchronized：监视器锁，可重入；锁升级偏向→轻量→重量。\nvolatile：可见性与有序性，不保证复合操作原子性。\n线程池：核心参数（core/max/queue/reject）；线上要监控队列与拒绝策略。\n加分：AQS、CAS、happens-before。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "MySQL",
+        "数据库",
+        "Java 并发",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / MySQL / 数据库 / Java 并发 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295505174531",
+      "type": "short",
+      "question": "MySQL 中如果发生死锁应该如何解决？",
+      "answer": "结论：并发关键是可见性、原子性、有序性。\nsynchronized：监视器锁，可重入；锁升级偏向→轻量→重量。\nvolatile：可见性与有序性，不保证复合操作原子性。\n线程池：核心参数（core/max/queue/reject）；线上要监控队列与拒绝策略。\n加分：AQS、CAS、happens-before。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "MySQL",
+        "数据库",
+        "Java 并发",
+        "操作系统",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / MySQL / 数据库 / Java 并发 / 操作系统 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295509368833",
+      "type": "short",
+      "question": "如何使用 MySQL 的 EXPLAIN 语句进行查询分析？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n如何使用 MySQL 的 EXPLAIN 语句进行查询分析？\n\n建议按 4 段答：\n1) 一句话结论（面向 后端）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "MySQL",
+        "数据库",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / MySQL / 数据库 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295513563137",
+      "type": "short",
+      "question": "MySQL 中 count(*)、count(1) 和 count(字段名) 有什么区别？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nMySQL 中 count(*)、count(1) 和 count(字段名) 有什么区别？\n\n建议按 4 段答：\n1) 一句话结论（面向 后端）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "MySQL",
+        "数据库",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / MySQL / 数据库 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295521951745",
+      "type": "short",
+      "question": "MySQL 中如何进行 SQL 调优？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nMySQL 中如何进行 SQL 调优？\n\n建议按 4 段答：\n1) 一句话结论（面向 后端）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "MySQL",
+        "数据库",
+        "场景题",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / MySQL / 数据库 / 场景题 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295538728962",
+      "type": "short",
+      "question": "什么是 MySQL 的主从同步机制？它是如何实现的？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n什么是 MySQL 的主从同步机制？它是如何实现的？\n\n建议按 4 段答：\n1) 一句话结论（面向 后端）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "MySQL",
+        "数据库",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / MySQL / 数据库 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295542923266",
+      "type": "short",
+      "question": "如何处理 MySQL 的主从同步延迟？",
+      "answer": "结论：消息队列用于解耦、削峰、异步。\n可靠投递：生产者确认、持久化、消费者手动 ack、重试与死信。\n幂等：唯一键、业务去重表、状态机。\n顺序：单分区/单队列有序；乱序要用业务键路由。\n选型：吞吐量/生态/延迟/运维成本综合看。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "MySQL",
+        "数据库",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / MySQL / 数据库 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295542923267",
+      "type": "short",
+      "question": "什么是分库分表？分库分表有哪些类型（或策略）？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n什么是分库分表？分库分表有哪些类型（或策略）？\n\n建议按 4 段答：\n1) 一句话结论（面向 后端）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "MySQL",
+        "数据库",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / MySQL / 数据库 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295572283394",
+      "type": "short",
+      "question": "MySQL 中如何解决深度分页的问题？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nMySQL 中如何解决深度分页的问题？\n\n建议按 4 段答：\n1) 一句话结论（面向 后端）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "MySQL",
+        "数据库",
+        "场景题",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / MySQL / 数据库 / 场景题 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295584866306",
+      "type": "short",
+      "question": "Redis 通常应用于哪些场景？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Redis",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Redis / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295589060609",
+      "type": "short",
+      "question": "Redis 为什么这么快？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Redis",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Redis / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295593254914",
+      "type": "short",
+      "question": "为什么 Redis 设计为单线程？6.0 版本为何引入多线程？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Redis",
+        "Java 并发",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Redis / Java 并发 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295593254915",
+      "type": "short",
+      "question": "Redis 中常见的数据类型有哪些？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Redis",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Redis / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295597449217",
+      "type": "short",
+      "question": "Redis 中跳表的实现原理是什么？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：困难；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Redis",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Redis / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295601643521",
+      "type": "short",
+      "question": "Redis 的 hash 是什么？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Redis",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Redis / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295605837825",
+      "type": "short",
+      "question": "Redis 和 Memcached 有哪些区别？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Redis",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Redis / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295610032129",
+      "type": "short",
+      "question": "Redis 支持事务吗？如何实现？",
+      "answer": "结论：事务 ACID；并发问题有脏读/不可重复读/幻读；靠隔离级别与锁/MVCC 解决。\nInnoDB 默认可重复读，用 MVCC + Next-Key Lock 处理多数幻读场景。\n答题结构：定义问题 → 隔离级别对照表 → InnoDB 实现 → 业务选型（别盲目串行化）。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Redis",
+        "MySQL",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Redis / MySQL / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295614226434",
+      "type": "short",
+      "question": "Redis 数据过期后的删除策略是什么？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Redis",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Redis / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295618420737",
+      "type": "short",
+      "question": "Redis 中有哪些内存淘汰策略？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Redis",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Redis / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295618420738",
+      "type": "short",
+      "question": "Redis 的 Lua 脚本功能是什么？如何使用？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Redis",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Redis / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295622615042",
+      "type": "short",
+      "question": "Redis 的 Pipeline 功能是什么？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Redis",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Redis / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295626809345",
+      "type": "short",
+      "question": "Redis 中的 Big Key 问题是什么？如何解决？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Redis",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Redis / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295631003650",
+      "type": "short",
+      "question": "如何解决 Redis 中的热点 key 问题？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Redis",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Redis / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295635197954",
+      "type": "short",
+      "question": "Redis 的持久化机制有哪些？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Redis",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Redis / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295639392257",
+      "type": "short",
+      "question": "Redis 在生成 RDB 文件时如何处理请求？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Redis",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Redis / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295643586562",
+      "type": "short",
+      "question": "Redis 的哨兵机制是什么？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Redis",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Redis / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295647780865",
+      "type": "short",
+      "question": "Redis 主从复制的实现原理是什么？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Redis",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Redis / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295651975169",
+      "type": "short",
+      "question": "Redis 集群的实现原理是什么？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Redis",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Redis / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295651975170",
+      "type": "short",
+      "question": "Redis 集群会出现脑裂问题吗？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Redis",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Redis / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295660363778",
+      "type": "short",
+      "question": "Redis 中如何实现分布式锁？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Redis",
+        "Java 并发",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Redis / Java 并发 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295668752385",
+      "type": "short",
+      "question": "Redis 实现分布式锁时可能��到的问题有哪些？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Redis",
+        "Java 并发",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Redis / Java 并发 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295672946690",
+      "type": "short",
+      "question": "Redis 中的缓存击穿、缓存穿透和缓存雪崩是什么？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Redis",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Redis / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772565639773396993",
+      "type": "short",
+      "question": "JDK 和 JRE 和 JVM 分别是什么，有什么区别？",
+      "answer": "JVM：虚拟机，负责字节码执行与内存管理。\nJRE：运行环境 = JVM + 核心库，可运行程序。\nJDK：开发工具包 = JRE + javac 等工具，用来开发编译。\n关系：JDK ⊃ JRE ⊃ JVM。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "JVM",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / JVM / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772566662923526145",
+      "type": "short",
+      "question": "什么是字节码？采用字节码的最大好处是什么？",
+      "answer": "字节码是 .class 中的中间码，与具体 OS/CPU 无关。\n好处：一次编译、到处运行；由 JVM 解释/JIT 成机器码。也便于安全校验与运行时优化。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772566989882105858",
+      "type": "short",
+      "question": "Java 和 C++、Go 语言的区别，各自的优缺点？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nJava 和 C++、Go 语言的区别，各自的优缺点？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772568162827608065",
+      "type": "short",
+      "question": "Java 中 final 关键字有什么用？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nJava 中 final 关键字有什么用？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772568783219695618",
+      "type": "short",
+      "question": "Java 中 hashCode 和 equals 方法是什么？它们与 == 操作符有什么区别？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nJava 中 hashCode 和 equals 方法是什么？它们与 == 操作符有什么区别？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772573071266390017",
+      "type": "short",
+      "question": "什么是反射机制？说说反射机制的优缺点、应用场景？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n什么是反射机制？说说反射机制的优缺点、应用场景？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772573577451773954",
+      "type": "short",
+      "question": "Java 访问修饰符 public、private、protected，以及无修饰符（默认）的区别",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nJava 访问修饰符 public、private、protected，以及无修饰符（默认）的区别\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772573871761891330",
+      "type": "short",
+      "question": "String 和 StringBuffer、StringBuilder 的区别是什么？",
+      "answer": "String 不可变，改内容会新建对象。\nStringBuilder 可变、非线程安全、性能好。\nStringBuffer 可变、方法同步、多线程更安全但慢。\n单线程拼接优先 StringBuilder。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772574379134263297",
+      "type": "short",
+      "question": "什么是 Java 内部类？ 内部类的分类有哪些 ？内部类有哪些优点和应用场景？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n什么是 Java 内部类？ 内部类的分类有哪些 ？内部类有哪些优点和应用场景？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772880236942245889",
+      "type": "short",
+      "question": "什么是 BIO、NIO、AIO？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n什么是 BIO、NIO、AIO？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java",
+      "category": "Java / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294381101057",
+      "type": "short",
+      "question": "你认为 Java 的优势是什么？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n你认为 Java 的优势是什么？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294406266881",
+      "type": "short",
+      "question": "什么是 Java 的多态特性？",
+      "answer": "同一行为因对象实际类型不同而有不同实现。\n实现：继承/接口 + 方法重写 + 向上转型。\n编译看父类型，运行调子类实现（动态绑定）。好处：扩展性、可替换。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294414655490",
+      "type": "short",
+      "question": "Java 中的参数传递是按值还是按引用？",
+      "answer": "一律按值传递。\n基本类型：传值副本。\n对象类型：传的是引用的副本（指向同一对象）；方法内改引用指向不影响外部变量，但改对象字段外部可见。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294427238401",
+      "type": "short",
+      "question": "接口和抽象类有什么区别？",
+      "answer": "抽象类：可有成员变量、构造、普通/抽象方法；单继承。\n接口：更侧重能力契约；可多实现；Java8+ 可有 default/static。\n选型：is-a 且共享实现→抽象类；can-do 能力组合→接口。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294435627010",
+      "type": "short",
+      "question": "为什么 Java 不支持多重继承？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n为什么 Java 不支持多重继承？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294448209922",
+      "type": "short",
+      "question": "Java 中的序列化和反序列化是什么？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nJava 中的序列化和反序列化是什么？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294456598529",
+      "type": "short",
+      "question": "什么是 Java 中的不可变类？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n什么是 Java 中的不可变类？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294469181442",
+      "type": "short",
+      "question": "Java 中 Exception 和 Error 有什么区别？",
+      "answer": "都是 Throwable。\nException：可预期异常，分受检/非受检，应处理或声明。\nError：严重系统错误（如 OOM），通常不捕获业务处理。\n实践：捕获具体异常，避免吞掉异常。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294477570050",
+      "type": "short",
+      "question": "Java 面向对象编程与面向过程编程的区别是什么？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nJava 面向对象编程与面向过程编程的区别是什么？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294490152961",
+      "type": "short",
+      "question": "Java 方法重载和方法重写之间的区别是什么？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nJava 方法重载和方法重写之间的区别是什么？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294498541569",
+      "type": "short",
+      "question": "什么是 Java 内部类？它有什么作用？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n什么是 Java 内部类？它有什么作用？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294502735873",
+      "type": "short",
+      "question": "Java8 有哪些新特性？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nJava8 有哪些新特性？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294511124482",
+      "type": "short",
+      "question": "为什么 JDK 9 中将 String 的 char 数组改为 byte 数组？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n为什么 JDK 9 中将 String 的 char 数组改为 byte 数组？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294519513089",
+      "type": "short",
+      "question": "Java 中 String、StringBuffer 和 StringBuilder 的区别是什么？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nJava 中 String、StringBuffer 和 StringBuilder 的区别是什么？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294532096002",
+      "type": "short",
+      "question": "Java 的 StringBuilder 是怎么实现的？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nJava 的 StringBuilder 是怎么实现的？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294544678914",
+      "type": "short",
+      "question": "Java 中包装类型和基本类型的区别是什么？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nJava 中包装类型和基本类型的区别是什么？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294557261825",
+      "type": "short",
+      "question": "JDK 和 JRE 有什么区别？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nJDK 和 JRE 有什么区别？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294561456129",
+      "type": "short",
+      "question": "你使用过哪些 JDK 提供的工具？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n你使用过哪些 JDK 提供的工具？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294574039042",
+      "type": "short",
+      "question": "Java 中的 hashCode 和 equals 方法之间有什么关系？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nJava 中的 hashCode 和 equals 方法之间有什么关系？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294590816257",
+      "type": "short",
+      "question": "什么是 Java 中的动态代理？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n什么是 Java 中的动态代理？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "设计模式",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 设计模式 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294599204866",
+      "type": "short",
+      "question": "JDK 动态代理和 CGLIB 动态代理有什么区别？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nJDK 动态代理和 CGLIB 动态代理有什么区别？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "设计模式",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 设计模式 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294607593473",
+      "type": "short",
+      "question": "Java 中的注解原理是什么？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nJava 中的注解原理是什么？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294611787778",
+      "type": "short",
+      "question": "你使用过 Java 的反射机制吗？如何应用反射？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n你使用过 Java 的反射机制吗？如何应用反射？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294620176386",
+      "type": "short",
+      "question": "什么是 Java 的 SPI（Service Provider Interface）机制？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n什么是 Java 的 SPI（Service Provider Interface）机制？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294628564993",
+      "type": "short",
+      "question": "Java 泛型的作用是什么？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nJava 泛型的作用是什么？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294636953601",
+      "type": "short",
+      "question": "什么是 Java 泛型的上下界限定符？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n什么是 Java 泛型的上下界限定符？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294641147906",
+      "type": "short",
+      "question": "Java 中的深拷贝和浅拷贝有什么区别？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nJava 中的深拷贝和浅拷贝有什么区别？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294657925121",
+      "type": "short",
+      "question": "什么是 Java 的 Integer 缓存池？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "Redis",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / Redis / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294662119426",
+      "type": "short",
+      "question": "Java 的类加载过程是怎样的？",
+      "answer": "结论：JVM 管内存与执行；面试重点是运行时数据区、GC、类加载。\n堆分新生代/老年代；GC 算法与收集器要能对比场景。\n类加载：加载-验证-准备-解析-初始化；双亲委派防核心类被篡改。\n排查：heap dump、GC 日志、jstack/jmap/arthas。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "JVM",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / JVM / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294670508033",
+      "type": "short",
+      "question": "什么是 Java 中的双亲委派模型？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n什么是 Java 中的双亲委派模型？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java",
+        "Java 基础",
+        "JVM",
+        "面试鸭"
+      ],
+      "topic": "Java",
+      "category": "Java / Java 基础 / JVM / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294674702337",
+      "type": "short",
+      "question": "什么是 Java 的 BigDecimal？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n什么是 Java 的 BigDecimal？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294678896641",
+      "type": "short",
+      "question": "使用 new String(\"yupi\") 语句在 Java 中会创建多少个对象？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n使用 new String(\"yupi\") 语句在 Java 中会创建多少个对象？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294687285250",
+      "type": "short",
+      "question": "Java 中 final、finally 和 finalize 各有什么区别？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nJava 中 final、finally 和 finalize 各有什么区别？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294691479554",
+      "type": "short",
+      "question": "为什么在 Java 中编写代码时会遇到乱码问题？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n为什么在 Java 中编写代码时会遇到乱码问题？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295849107457",
+      "type": "short",
+      "question": "什么是 Channel？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n什么是 Channel？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java",
+      "category": "Java / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295853301762",
+      "type": "short",
+      "question": "什么是 Selector？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n什么是 Selector？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java",
+      "category": "Java / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1798608674087317506",
+      "type": "short",
+      "question": "如何在 Java 中调用外部可执行程序或系统命令？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n如何在 Java 中调用外部可执行程序或系统命令？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1800331617560240129",
+      "type": "short",
+      "question": "如果一个线程在 Java 中被两次调用 start() 方法，会发生什么？",
+      "answer": "结论：并发关键是可见性、原子性、有序性。\nsynchronized：监视器锁，可重入；锁升级偏向→轻量→重量。\nvolatile：可见性与有序性，不保证复合操作原子性。\n线程池：核心参数（core/max/queue/reject）；线上要监控队列与拒绝策略。\n加分：AQS、CAS、happens-before。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "Java 并发",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / Java 并发 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1800343420860178433",
+      "type": "short",
+      "question": "栈和队列在 Java 中的区别是什么？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n栈和队列在 Java 中的区别是什么？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1800345746421391361",
+      "type": "short",
+      "question": "Java 的 Optional 类是什么？它有什么用？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nJava 的 Optional 类是什么？它有什么用？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1800347227602100226",
+      "type": "short",
+      "question": "Java 的 I/O 流是什么？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nJava 的 I/O 流是什么？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1800349212845875202",
+      "type": "short",
+      "question": "什么是 Java 的网络编程？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n什么是 Java 的网络编程？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "计算机网络",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 计算机网络 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1800392994257707009",
+      "type": "short",
+      "question": "Java 中的基本数据类型有哪些？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nJava 中的基本数据类型有哪些？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1800393156791181313",
+      "type": "short",
+      "question": "什么是 Java 中的自动装箱和拆箱？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n什么是 Java 中的自动装箱和拆箱？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1800708852364419073",
+      "type": "short",
+      "question": "什么是 Java 中的迭代器（Iterator）？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n什么是 Java 中的迭代器（Iterator）？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1800708991904718849",
+      "type": "short",
+      "question": "Java 运行时异常和编译时异常之间的区别是什么？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nJava 运行时异常和编译时异常之间的区别是什么？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1800716178584576002",
+      "type": "short",
+      "question": "Java 中 for 循环与 foreach 循环的区别是什么？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nJava 中 for 循环与 foreach 循环的区别是什么？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1800783859023159298",
+      "type": "short",
+      "question": "什么是 Java 中的继承机制？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n什么是 Java 中的继承机制？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1800784210786852866",
+      "type": "short",
+      "question": "什么是 Java 的封装特性？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n什么是 Java 的封装特性？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1800784356723466242",
+      "type": "short",
+      "question": "Java 中的访问修饰符有哪些？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nJava 中的访问修饰符有哪些？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1800784527800737793",
+      "type": "short",
+      "question": "Java 中静态方法和实例方法的区别是什么？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nJava 中静态方法和实例方法的区别是什么？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 基础）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 基础",
+      "category": "Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1828622076837330945",
+      "type": "short",
+      "question": "Java 中 wait() 和 sleep()  的区别？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nJava 中 wait() 和 sleep()  的区别？\n\n建议按 4 段答：\n1) 一句话结论（面向 后端）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Java",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Java / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1828673006161068034",
+      "type": "short",
+      "question": "Java 和 Go 的区别",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nJava 和 Go 的区别\n\n建议按 4 段答：\n1) 一句话结论（面向 后端）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Java",
+        "Java 基础",
+        "Go",
+        "Go基础",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Java / Java 基础 / Go / Go基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1828674310883213313",
+      "type": "short",
+      "question": "Java Object 类中有什么方法，有什么作用？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nJava Object 类中有什么方法，有什么作用？\n\n建议按 4 段答：\n1) 一句话结论（面向 后端）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Java",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Java / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1828676252029325313",
+      "type": "short",
+      "question": "Java 中的字节码是什么？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nJava 中的字节码是什么？\n\n建议按 4 段答：\n1) 一句话结论（面向 后端）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Java 基础",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Java 基础 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1833434214495657985",
+      "type": "short",
+      "question": "Java 泛型擦除是什么？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nJava 泛型擦除是什么？\n\n建议按 4 段答：\n1) 一句话结论（面向 后端）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Java",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Java / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1834107117591187457",
+      "type": "short",
+      "question": "说说 Java 中 HashMap 的原理？",
+      "answer": "HashMap 基于数组 + 链表（JDK8 起链表过长转红黑树）实现哈希表。\n1) put：算 hash，定位桶；冲突则拉链；树化阈值默认 8，且数组长度≥64。\n2) get：同样 hash 定位，比较 equals。\n3) 扩容：默认负载因子 0.75，容量翻倍并重新分布。\n4) 关键点：允许 null key/value；非线程安全；遍历无序（JDK8 不完全保证插入序）。\n面试可补充：扰动函数、尾插法（JDK8）、扩容时高低位拆分。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java",
+        "Java 基础",
+        "Java 集合",
+        "面试鸭"
+      ],
+      "topic": "Java",
+      "category": "Java / Java 基础 / Java 集合 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1861417708154970114",
+      "type": "short",
+      "question": "BigDecimal 为什么能保证精度不丢失?\n",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nBigDecimal 为什么能保证精度不丢失?\n\n\n建议按 4 段答：\n1) 一句话结论（面向 Java）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java",
+      "category": "Java / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1963426799499132929",
+      "type": "short",
+      "question": "Float 经过一系列的操作后(加减乘除)，如何判断是否和另一个数相等呢？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nFloat 经过一系列的操作后(加减乘除)，如何判断是否和另一个数相等呢？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java",
+      "category": "Java / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294708256769",
+      "type": "short",
+      "question": "Java 中的 List 接口有哪些实现类？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nJava 中的 List 接口有哪些实现类？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 集合）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 集合",
+        "Java",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java 集合",
+      "category": "Java 集合 / Java / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294720839681",
+      "type": "short",
+      "question": "Java 中的 HashMap 和 Hashtable 有什么区别？",
+      "answer": "结论：先说数据结构与复杂度，再谈线程安全与扩容。\nArrayList 数组随机访问快；LinkedList 链表改动局部快但局部性差。\nHashMap：数组+链表/红黑树，非线程安全。\nConcurrentHashMap：CAS+桶锁，适合并发读多写。\n答完给一个项目选型例子更加分。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 集合",
+        "Java",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java 集合",
+      "category": "Java 集合 / Java / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294729228289",
+      "type": "short",
+      "question": "Java 中的 HashSet 和 HashMap 有什么区别？",
+      "answer": "结论：先说数据结构与复杂度，再谈线程安全与扩容。\nArrayList 数组随机访问快；LinkedList 链表改动局部快但局部性差。\nHashMap：数组+链表/红黑树，非线程安全。\nConcurrentHashMap：CAS+桶锁，适合并发读多写。\n答完给一个项目选型例子更加分。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 集合",
+        "Java",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java 集合",
+      "category": "Java 集合 / Java / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294783754241",
+      "type": "short",
+      "question": "Java 中的 LinkedHashMap 是什么？",
+      "answer": "结论：先说数据结构与复杂度，再谈线程安全与扩容。\nArrayList 数组随机访问快；LinkedList 链表改动局部快但局部性差。\nHashMap：数组+链表/红黑树，非线程安全。\nConcurrentHashMap：CAS+桶锁，适合并发读多写。\n答完给一个项目选型例子更加分。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 集合",
+        "Java",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java 集合",
+      "category": "Java 集合 / Java / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294796337153",
+      "type": "short",
+      "question": "Java 中的 TreeMap 是什么？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nJava 中的 TreeMap 是什么？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 集合）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 集合",
+        "Java",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java 集合",
+      "category": "Java 集合 / Java / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294800531458",
+      "type": "short",
+      "question": "Java 中的 IdentityHashMap 是什么？",
+      "answer": "结论：先说数据结构与复杂度，再谈线程安全与扩容。\nArrayList 数组随机访问快；LinkedList 链表改动局部快但局部性差。\nHashMap：数组+链表/红黑树，非线程安全。\nConcurrentHashMap：CAS+桶锁，适合并发读多写。\n答完给一个项目选型例子更加分。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 集合",
+        "Java",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java 集合",
+      "category": "Java 集合 / Java / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294804725761",
+      "type": "short",
+      "question": "Java 中的 WeakHashMap 是什么 ？",
+      "answer": "结论：先说数据结构与复杂度，再谈线程安全与扩容。\nArrayList 数组随机访问快；LinkedList 链表改动局部快但局部性差。\nHashMap：数组+链表/红黑树，非线程安全。\nConcurrentHashMap：CAS+桶锁，适合并发读多写。\n答完给一个项目选型例子更加分。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 集合",
+        "Java",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java 集合",
+      "category": "Java 集合 / Java / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294829891585",
+      "type": "short",
+      "question": "Java 中 ConcurrentHashMap 的 get 方法是否需要加锁？",
+      "answer": "结论：并发关键是可见性、原子性、有序性。\nsynchronized：监视器锁，可重入；锁升级偏向→轻量→重量。\nvolatile：可见性与有序性，不保证复合操作原子性。\n线程池：核心参数（core/max/queue/reject）；线上要监控队列与拒绝策略。\n加分：AQS、CAS、happens-before。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 集合",
+        "Java",
+        "Java 并发",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java 集合",
+      "category": "Java 集合 / Java / Java 并发 / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294834085890",
+      "type": "short",
+      "question": "为什么 Java 的 ConcurrentHashMap 不支持 key 或 value 为 null？",
+      "answer": "结论：先说数据结构与复杂度，再谈线程安全与扩容。\nArrayList 数组随机访问快；LinkedList 链表改动局部快但局部性差。\nHashMap：数组+链表/红黑树，非线程安全。\nConcurrentHashMap：CAS+桶锁，适合并发读多写。\n答完给一个项目选型例子更加分。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 集合",
+        "Java",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java 集合",
+      "category": "Java 集合 / Java / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294838280194",
+      "type": "short",
+      "question": "Java 中的 CopyOnWriteArrayList 是什么？",
+      "answer": "结论：先说数据结构与复杂度，再谈线程安全与扩容。\nArrayList 数组随机访问快；LinkedList 链表改动局部快但局部性差。\nHashMap：数组+链表/红黑树，非线程安全。\nConcurrentHashMap：CAS+桶锁，适合并发读多写。\n答完给一个项目选型例子更加分。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 集合",
+        "Java",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java 集合",
+      "category": "Java 集合 / Java / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933294846668801",
+      "type": "short",
+      "question": "你遇到过 ConcurrentModificationException 错误吗？它是如何产生的？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n你遇到过 ConcurrentModificationException 错误吗？它是如何产生的？\n\n建议按 4 段答：\n1) 一句话结论（面向 Java 集合）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java 集合",
+        "Java",
+        "面试鸭"
+      ],
+      "topic": "Java 集合",
+      "category": "Java 集合 / Java / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1799763214902566914",
+      "type": "short",
+      "question": "如果没有内存限制，如何快速、安全地将 1000 亿条数据插入到 HashMap 中？",
+      "answer": "结论：先说数据结构与复杂度，再谈线程安全与扩容。\nArrayList 数组随机访问快；LinkedList 链表改动局部快但局部性差。\nHashMap：数组+链表/红黑树，非线程安全。\nConcurrentHashMap：CAS+桶锁，适合并发读多写。\n答完给一个项目选型例子更加分。",
+      "analysis": "难度：困难；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "HashMap",
+        "Java 集合",
+        "场景题",
+        "面试鸭"
+      ],
+      "topic": "HashMap",
+      "category": "HashMap / Java 集合 / 场景题 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1821470164721016833",
+      "type": "short",
+      "question": "Java 的 CopyOnWriteArrayList 和 Collections.synchronizedList 有什么区别？分别有什么优缺点？",
+      "answer": "结论：并发关键是可见性、原子性、有序性。\nsynchronized：监视器锁，可重入；锁升级偏向→轻量→重量。\nvolatile：可见性与有序性，不保证复合操作原子性。\n线程池：核心参数（core/max/queue/reject）；线上要监控队列与拒绝策略。\n加分：AQS、CAS、happens-before。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Java 集合",
+        "Java 并发",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Java 集合 / Java 并发 / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1821481519536611330",
+      "type": "short",
+      "question": "什么是 Hash 碰撞？怎么解决哈希碰撞？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n什么是 Hash 碰撞？怎么解决哈希碰撞？\n\n建议按 4 段答：\n1) 一句话结论（面向 后端）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Java 集合",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Java 集合 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1821510409319555074",
+      "type": "short",
+      "question": "使用 HashMap 时，有哪些提升性能的技巧？",
+      "answer": "结论：先说数据结构与复杂度，再谈线程安全与扩容。\nArrayList 数组随机访问快；LinkedList 链表改动局部快但局部性差。\nHashMap：数组+链表/红黑树，非线程安全。\nConcurrentHashMap：CAS+桶锁，适合并发读多写。\n答完给一个项目选型例子更加分。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Java 集合",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Java 集合 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1839515038747066370",
+      "type": "short",
+      "question": "Java ArrayList 的扩容机制是什么？",
+      "answer": "结论：先说数据结构与复杂度，再谈线程安全与扩容。\nArrayList 数组随机访问快；LinkedList 链表改动局部快但局部性差。\nHashMap：数组+链表/红黑树，非线程安全。\nConcurrentHashMap：CAS+桶锁，适合并发读多写。\n答完给一个项目选型例子更加分。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java",
+        "Java 集合",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java",
+      "category": "Java / Java 集合 / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1839516705798356994",
+      "type": "short",
+      "question": "Java 中 ArrayList 和 LinkedList 有什么区别？",
+      "answer": "结论：先说数据结构与复杂度，再谈线程安全与扩容。\nArrayList 数组随机访问快；LinkedList 链表改动局部快但局部性差。\nHashMap：数组+链表/红黑树，非线程安全。\nConcurrentHashMap：CAS+桶锁，适合并发读多写。\n答完给一个项目选型例子更加分。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Java",
+        "Java 集合",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Java",
+      "category": "Java / Java 集合 / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1854745940761190402",
+      "type": "short",
+      "question": "ConcurrentHashMap 和 Hashtable 的区别是什么？",
+      "answer": "结论：先说数据结构与复杂度，再谈线程安全与扩容。\nArrayList 数组随机访问快；LinkedList 链表改动局部快但局部性差。\nHashMap：数组+链表/红黑树，非线程安全。\nConcurrentHashMap：CAS+桶锁，适合并发读多写。\n答完给一个项目选型例子更加分。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Java",
+        "Java 集合",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Java / Java 集合 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772574696160731137",
+      "type": "short",
+      "question": "什么是数据库事务？讲一下事务的 ACID 特性？",
+      "answer": "结论：事务 ACID；并发问题有脏读/不可重复读/幻读；靠隔离级别与锁/MVCC 解决。\nInnoDB 默认可重复读，用 MVCC + Next-Key Lock 处理多数幻读场景。\n答题结构：定义问题 → 隔离级别对照表 → InnoDB 实现 → 业务选型（别盲目串行化）。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "MySQL",
+        "数据库",
+        "面试鸭"
+      ],
+      "topic": "MySQL",
+      "category": "MySQL / 数据库 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772575207802904578",
+      "type": "short",
+      "question": "MySQL 中的日志类型有哪些？binlog、redo log 和 undo log 的作用和区别是什么？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nMySQL 中的日志类型有哪些？binlog、redo log 和 undo log 的作用和区别是什么？\n\n建议按 4 段答：\n1) 一句话结论（面向 MySQL）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "MySQL",
+        "面试鸭"
+      ],
+      "topic": "MySQL",
+      "category": "MySQL / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772576803819462658",
+      "type": "short",
+      "question": "什么是数据库的索引？索引的作用是什么？索引适用于哪些场景？",
+      "answer": "结论：MySQL InnoDB 主流用 B+ 树索引，叶节点有序且双向链表，适合范围查。\n要点：\n1) 聚簇索引存整行；二级索引存主键，可能回表。\n2) 联合索引遵循最左前缀；覆盖索引可避免回表。\n3) 不是索引越多越好：写放大、空间占用、优化器误选。\n排查：explain 看 type/key/rows/Extra；结合慢日志与基数。\n加分：索引下推、ICP、函数会导致索引失效的常见写法。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "MySQL",
+        "数据库",
+        "面试鸭"
+      ],
+      "topic": "MySQL",
+      "category": "MySQL / 数据库 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772577234398322690",
+      "type": "short",
+      "question": "如何在 MySQL 中进行数据备份？如何恢复半个月前的数据？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n如何在 MySQL 中进行数据备份？如何恢复半个月前的数据？\n\n建议按 4 段答：\n1) 一句话结论（面向 MySQL）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "MySQL",
+        "面试鸭"
+      ],
+      "topic": "MySQL",
+      "category": "MySQL / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772580224828022785",
+      "type": "short",
+      "question": "MySQL 事务的隔离级别有��些？每个隔离级别的特点是什么？MySQL 默认的隔离级别是什么？",
+      "answer": "结论：事务 ACID；并发问题有脏读/不可重复读/幻读；靠隔离级别与锁/MVCC 解决。\nInnoDB 默认可重复读，用 MVCC + Next-Key Lock 处理多数幻读场景。\n答题结构：定义问题 → 隔离级别对照表 → InnoDB 实现 → 业务选型（别盲目串行化）。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "MySQL",
+        "面试鸭"
+      ],
+      "topic": "MySQL",
+      "category": "MySQL / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772581095645224961",
+      "type": "short",
+      "question": "MySQL 中的意向锁是什么？作用是什么？它是表级锁还是行级锁？",
+      "answer": "结论：并发关键是可见性、原子性、有序性。\nsynchronized：监视器锁，可重入；锁升级偏向→轻量→重量。\nvolatile：可见性与有序性，不保证复合操作原子性。\n线程池：核心参数（core/max/queue/reject）；线上要监控队列与拒绝策略。\n加分：AQS、CAS、happens-before。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "MySQL",
+        "Java 并发",
+        "面试鸭"
+      ],
+      "topic": "MySQL",
+      "category": "MySQL / Java 并发 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772582920637227009",
+      "type": "short",
+      "question": "MySQL 中的覆盖索引和联合索引是什么？索引的最左前缀匹配原则是什么？",
+      "answer": "结论：MySQL InnoDB 主流用 B+ 树索引，叶节点有序且双向链表，适合范围查。\n要点：\n1) 聚簇索引存整行；二级索引存主键，可能回表。\n2) 联合索引遵循最左前缀；覆盖索引可避免回表。\n3) 不是索引越多越好：写放大、空间占用、优化器误选。\n排查：explain 看 type/key/rows/Extra；结合慢日志与基数。\n加分：索引下推、ICP、函数会导致索引失效的常见写法。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "MySQL",
+        "面试鸭"
+      ],
+      "topic": "MySQL",
+      "category": "MySQL / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772583519495757826",
+      "type": "short",
+      "question": "什么是 MySQL 的执行计划？如何获取执行计划并对其进行分析？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n什么是 MySQL 的执行计划？如何获取执行计划并对其进行分析？\n\n建议按 4 段答：\n1) 一句话结论（面向 MySQL）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "MySQL",
+        "面试鸭"
+      ],
+      "topic": "MySQL",
+      "category": "MySQL / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772585151591718914",
+      "type": "short",
+      "question": "MySQL 支持哪些存储引擎？默认使用哪个？MyISAM 和 InnoDB 引擎有什么区别，如何选择？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nMySQL 支持哪些存储引擎？默认使用哪个？MyISAM 和 InnoDB 引擎有什么区别，如何选择？\n\n建议按 4 段答：\n1) 一句话结论（面向 MySQL）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "MySQL",
+        "面试鸭"
+      ],
+      "topic": "MySQL",
+      "category": "MySQL / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295488397313",
+      "type": "short",
+      "question": "如果 MySQL 中没有 MVCC，会有什么影响？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n如果 MySQL 中没有 MVCC，会有什么影响？\n\n建议按 4 段答：\n1) 一句话结论（面向 后端）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：困难；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "MySQL",
+        "数据库",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / MySQL / 数据库 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295517757441",
+      "type": "short",
+      "question": "MySQL 中 int(11) 的 11 表示什么？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nMySQL 中 int(11) 的 11 表示什么？\n\n建议按 4 段答：\n1) 一句话结论（面向 后端）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "MySQL",
+        "数据库",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / MySQL / 数据库 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295517757442",
+      "type": "short",
+      "question": "MySQL 中 varchar 和 char 有什么区别？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nMySQL 中 varchar 和 char 有什么区别？\n\n建议按 4 段答：\n1) 一句话结论（面向 后端）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "MySQL",
+        "数据库",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / MySQL / 数据库 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295526146049",
+      "type": "short",
+      "question": "MySQL 中的数据排序是怎么实现的？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\nMySQL 中的数据排序是怎么实现的？\n\n建议按 4 段答：\n1) 一句话结论（面向 后端）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "MySQL",
+        "数据库",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / MySQL / 数据库 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295530340354",
+      "type": "short",
+      "question": "如何在 MySQL 中避免单点故障？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n如何在 MySQL 中避免单点故障？\n\n建议按 4 段答：\n1) 一句话结论（面向 后端）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "MySQL",
+        "数据库",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / MySQL / 数据库 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295534534657",
+      "type": "short",
+      "question": "如何在 MySQL 中实现读写分离？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n如何在 MySQL 中实现读写分离？\n\n建议按 4 段答：\n1) 一句话结论（面向 后端）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "MySQL",
+        "数据库",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / MySQL / 数据库 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1770998897104138242",
+      "type": "short",
+      "question": "在项目中如何利用 Redis 实现分布式 Session？Redis 的主要优势是什么？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Redis",
+        "编程导航",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Redis / 编程导航 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1770999671527845889",
+      "type": "short",
+      "question": "在 Redis 中，使用 Hash 代替 String 存储用户信息的好处是什么？Hash 与 String 存储方式有何区别？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Redis",
+        "编程导航",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Redis / 编程导航 / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1771005674554142721",
+      "type": "short",
+      "question": "为什么在 Redis 中需要自定义序列化器？如何实现自定义序列化器？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Redis",
+        "编程导航",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Redis / 编程导航 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1771006256132141057",
+      "type": "short",
+      "question": "在项目中如何实现 Redis 缓存？你选择了哪种 Redis 数据结构？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Redis",
+        "编程导航",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Redis / 编程导航 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1771007349121626113",
+      "type": "short",
+      "question": "使用 Redis 缓存时可能出现的常见问题有哪些？你是如何解决这些问题的？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Redis",
+        "编程导航",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Redis / 编程导航 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772827984068132865",
+      "type": "short",
+      "question": "Redis 是什么？Redis 的特点和常见应用场景有哪些？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Redis",
+        "面试鸭"
+      ],
+      "topic": "Redis",
+      "category": "Redis / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772829641560604673",
+      "type": "short",
+      "question": "Redis 基础类型中的 String 底层实现是什么？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：困难；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Redis",
+        "Java 基础",
+        "面试鸭"
+      ],
+      "topic": "Redis",
+      "category": "Redis / Java 基础 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772830587208384514",
+      "type": "short",
+      "question": "如何使用 Redis 实现一个排行榜？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Redis",
+        "面试鸭"
+      ],
+      "topic": "Redis",
+      "category": "Redis / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772831636359004161",
+      "type": "short",
+      "question": "Redis 的持久化机制有哪些？它们的优缺点和应用场景是什么？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Redis",
+        "面试鸭"
+      ],
+      "topic": "Redis",
+      "category": "Redis / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772837481117433857",
+      "type": "short",
+      "question": "如何用 Redis 实现分布式 Session？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Redis",
+        "面试鸭"
+      ],
+      "topic": "Redis",
+      "category": "Redis / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772837748386873345",
+      "type": "short",
+      "question": "Redis 的内存淘汰机制是什么？有哪些内存淘汰策略？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Redis",
+        "面试鸭"
+      ],
+      "topic": "Redis",
+      "category": "Redis / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772838958330331138",
+      "type": "short",
+      "question": "Redis 中有哪些数据类型？基础数据结构有几种？有哪些高级数据结构？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Redis",
+        "面试鸭"
+      ],
+      "topic": "Redis",
+      "category": "Redis / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772839809966981122",
+      "type": "short",
+      "question": "如何使用 Redis 实现分布式锁？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Redis",
+        "Java 并发",
+        "面试鸭"
+      ],
+      "topic": "Redis",
+      "category": "Redis / Java 并发 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772840399447048193",
+      "type": "short",
+      "question": "如何使用 Redis 的 HyperLogLog 统计页面 UV？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Redis",
+        "面试鸭"
+      ],
+      "topic": "Redis",
+      "category": "Redis / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1773283267047415810",
+      "type": "short",
+      "question": "Redis 分布式 Session 实现用户登录的原理是什么？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Redis",
+        "编程导航",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Redis / 编程导航 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1776560599812018178",
+      "type": "short",
+      "question": "Redis 中的三种高效缓存读写策略是什么？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Redis",
+        "面试鸭"
+      ],
+      "topic": "Redis",
+      "category": "Redis / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1776560801641926658",
+      "type": "short",
+      "question": "Redis 的五种基本数据类型及其优化技巧是什么？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Redis",
+        "面试鸭"
+      ],
+      "topic": "Redis",
+      "category": "Redis / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1776561274428067842",
+      "type": "short",
+      "question": "Redis 中的跳表是什么？你了解多少？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Redis",
+        "面试鸭"
+      ],
+      "topic": "Redis",
+      "category": "Redis / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295656169474",
+      "type": "short",
+      "question": "Redis 的订阅发布功能是什么？你了解吗？",
+      "answer": "结论：Redis 是内存数据结构存储，常作缓存、分布式锁、计数、会话等。\n常考：5 种基础类型与场景；持久化 RDB/AOF；过期与淘汰；集群/哨兵。\n缓存三问题：穿透（布隆/空值）、击穿（互斥锁/逻辑过期）、雪崩（过期分散/多级缓存）。\n分布式锁：SET key value NX EX + 持有者校验删除；红锁慎用，优先看业务容错。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Redis",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Redis / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1771005166586179585",
+      "type": "short",
+      "question": "你是如何测试批量导入数据库的性能的？用了哪些工具或方法？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n你是如何测试批量导入数据库的性能的？用了哪些工具或方法？\n\n建议按 4 段答：\n1) 一句话结论（面向 后端）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Spring",
+        "编程导航",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Spring / 编程导航 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772810031624929282",
+      "type": "short",
+      "question": "Spring 框架是什么？使用 Spring 框架有哪些好处？",
+      "answer": "结论：Spring 核心是 IoC（容器管依赖）与 AOP（横切逻辑）。\nBean 生命周期：实例化 → 属性填充 → 初始化回调 → 销毁。\n循环依赖：单例三级缓存思路（早期引用）；构造器循环依赖无法解决。\nBoot 自动配置：条件注解 + starter + spi/imports，约定优于配置。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Spring",
+        "面试鸭"
+      ],
+      "topic": "Spring",
+      "category": "Spring / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772812023982243842",
+      "type": "short",
+      "question": "Spring 的两大核心概念是什么？简单讲一下你对它们的理解",
+      "answer": "结论：Spring 核心是 IoC（容器管依赖）与 AOP（横切逻辑）。\nBean 生命周期：实例化 → 属性填充 → 初始化回调 → 销毁。\n循环依赖：单例三级缓存思路（早期引用）；构造器循环依赖无法解决。\nBoot 自动配置：条件注解 + starter + spi/imports，约定优于配置。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Spring",
+        "面试鸭"
+      ],
+      "topic": "Spring",
+      "category": "Spring / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772813140589854721",
+      "type": "short",
+      "question": "什么是 IOC，简单讲一下 Spring IOC 的实现机制？",
+      "answer": "结论：Spring 核心是 IoC（容器管依赖）与 AOP（横切逻辑）。\nBean 生命周期：实例化 → 属性填充 → 初始化回调 → 销毁。\n循环依赖：单例三级缓存思路（早期引用）；构造器循环依赖无法解决。\nBoot 自动配置：条件注解 + starter + spi/imports，约定优于配置。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Spring",
+        "面试鸭"
+      ],
+      "topic": "Spring",
+      "category": "Spring / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772814247567343617",
+      "type": "short",
+      "question": "Spring 框架中都用到了哪些设计模式？",
+      "answer": "结论：Spring 核心是 IoC（容器管依赖）与 AOP（横切逻辑）。\nBean 生命周期：实例化 → 属性填充 → 初始化回调 → 销毁。\n循环依赖：单例三级缓存思路（早期引用）；构造器循环依赖无法解决。\nBoot 自动配置：条件注解 + starter + spi/imports，约定优于配置。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Spring",
+        "设计模式",
+        "面试鸭"
+      ],
+      "topic": "Spring",
+      "category": "Spring / 设计模式 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772815827649740802",
+      "type": "short",
+      "question": "Spring、SpringMVC、SpringBoot 三者之间是什么关系？",
+      "answer": "结论：Spring 核心是 IoC（容器管依赖）与 AOP（横切逻辑）。\nBean 生命周期：实例化 → 属性填充 → 初始化回调 → 销毁。\n循环依赖：单例三级缓存思路（早期引用）；构造器循环依赖无法解决。\nBoot 自动配置：条件注解 + starter + spi/imports，约定优于配置。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Spring",
+        "SpringBoot",
+        "面试鸭"
+      ],
+      "topic": "Spring",
+      "category": "Spring / SpringBoot / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772816244379009026",
+      "type": "short",
+      "question": "有哪些注解可以注入 Bean？@Autowired 和 @Resource 的区别？",
+      "answer": "结论：Spring 核心是 IoC（容器管依赖）与 AOP（横切逻辑）。\nBean 生命周期：实例化 → 属性填充 → 初始化回调 → 销毁。\n循环依赖：单例三级缓存思路（早期引用）；构造器循环依赖无法解决。\nBoot 自动配置：条件注解 + starter + spi/imports，约定优于配置。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Spring",
+        "面试鸭"
+      ],
+      "topic": "Spring",
+      "category": "Spring / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772818452722008066",
+      "type": "short",
+      "question": "Spring 如何处理线程并发问题，ThreadLocal 你了解过吗？",
+      "answer": "结论：Spring 核心是 IoC（容器管依赖）与 AOP（横切逻辑）。\nBean 生命周期：实例化 → 属性填充 → 初始化回调 → 销毁。\n循环依赖：单例三级缓存思路（早期引用）；构造器循环依赖无法解决。\nBoot 自动配置：条件注解 + starter + spi/imports，约定优于配置。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Spring",
+        "Java 并发",
+        "面试鸭"
+      ],
+      "topic": "Spring",
+      "category": "Spring / Java 并发 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772823521546780673",
+      "type": "short",
+      "question": "Spring 中的 BeanFactory 和 ApplicationContext 有什么区别和联系？",
+      "answer": "结论：Spring 核心是 IoC（容器管依赖）与 AOP（横切逻辑）。\nBean 生命周期：实例化 → 属性填充 → 初始化回调 → 销毁。\n循环依赖：单例三级缓存思路（早期引用）；构造器循环依赖无法解决。\nBoot 自动配置：条件注解 + starter + spi/imports，约定优于配置。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Spring",
+        "面试鸭"
+      ],
+      "topic": "Spring",
+      "category": "Spring / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772823973042634754",
+      "type": "short",
+      "question": "讲一讲 Spring 框架中 Bean 的生命周期？",
+      "answer": "结论：Spring 核心是 IoC（容器管依赖）与 AOP（横切逻辑）。\nBean 生命周期：实例化 → 属性填充 → 初始化回调 → 销毁。\n循环依赖：单例三级缓存思路（早期引用）；构造器循环依赖无法解决。\nBoot 自动配置：条件注解 + starter + spi/imports，约定优于配置。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Spring",
+        "面试鸭"
+      ],
+      "topic": "Spring",
+      "category": "Spring / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772825388641206274",
+      "type": "short",
+      "question": "Spring 支持哪几种事务管理类型，Spring 的事务实现方式和实现原理是？",
+      "answer": "结论：事务 ACID；并发问题有脏读/不可重复读/幻读；靠隔离级别与锁/MVCC 解决。\nInnoDB 默认可重复读，用 MVCC + Next-Key Lock 处理多数幻读场景。\n答题结构：定义问题 → 隔离级别对照表 → InnoDB 实现 → 业务选型（别盲目串行化）。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Spring",
+        "MySQL",
+        "面试鸭"
+      ],
+      "topic": "Spring",
+      "category": "Spring / MySQL / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772825780024295426",
+      "type": "short",
+      "question": "什么是 Spring 的依赖注入，依赖注入的基本原则以及好处？",
+      "answer": "结论：Spring 核心是 IoC（容器管依赖）与 AOP（横切逻辑）。\nBean 生命周期：实例化 → 属性填充 → 初始化回调 → 销毁。\n循环依赖：单例三级缓存思路（早期引用）；构造器循环依赖无法解决。\nBoot 自动配置：条件注解 + starter + spi/imports，约定优于配置。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Spring",
+        "面试鸭"
+      ],
+      "topic": "Spring",
+      "category": "Spring / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772826987228872706",
+      "type": "short",
+      "question": "什么是 AOP？有哪些实现 AOP 的方式？Spring AOP 和 AspectJ AOP 有什么区别？",
+      "answer": "结论：Spring 核心是 IoC（容器管依赖）与 AOP（横切逻辑）。\nBean 生命周期：实例化 → 属性填充 → 初始化回调 → 销毁。\n循环依赖：单例三级缓存思路（早期引用）；构造器循环依赖无法解决。\nBoot 自动配置：条件注解 + starter + spi/imports，约定优于配置。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Spring",
+        "面试鸭"
+      ],
+      "topic": "Spring",
+      "category": "Spring / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295329013763",
+      "type": "short",
+      "question": "Spring IOC 有什么好处？",
+      "answer": "结论：Spring 核心是 IoC（容器管依赖）与 AOP（横切逻辑）。\nBean 生命周期：实例化 → 属性填充 → 初始化回调 → 销毁。\n循环依赖：单例三级缓存思路（早期引用）；构造器循环依赖无法解决。\nBoot 自动配置：条件注解 + starter + spi/imports，约定优于配置。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Spring",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Spring / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295337402370",
+      "type": "short",
+      "question": "什么是 Spring Bean？",
+      "answer": "结论：Spring 核心是 IoC（容器管依赖）与 AOP（横切逻辑）。\nBean 生命周期：实例化 → 属性填充 → 初始化回调 → 销毁。\n循环依赖：单例三级缓存思路（早期引用）；构造器循环依赖无法解决。\nBoot 自动配置：条件注解 + starter + spi/imports，约定优于配置。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Spring",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Spring / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295341596674",
+      "type": "short",
+      "question": "Spring 中的 BeanFactory 是什么？",
+      "answer": "结论：Spring 核心是 IoC（容器管依赖）与 AOP（横切逻辑）。\nBean 生命周期：实例化 → 属性填充 → 初始化回调 → 销毁。\n循环依赖：单例三级缓存思路（早期引用）；构造器循环依赖无法解决。\nBoot 自动配置：条件注解 + starter + spi/imports，约定优于配置。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Spring",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Spring / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295345790977",
+      "type": "short",
+      "question": "Spring 中的 FactoryBean 是什么？",
+      "answer": "结论：Spring 核心是 IoC（容器管依赖）与 AOP（横切逻辑）。\nBean 生命周期：实例化 → 属性填充 → 初始化回调 → 销毁。\n循环依赖：单例三级缓存思路（早期引用）；构造器循环依赖无法解决。\nBoot 自动配置：条件注解 + starter + spi/imports，约定优于配置。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Spring",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Spring / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295349985282",
+      "type": "short",
+      "question": "Spring 中的 ObjectFactory 是什么？",
+      "answer": "结论：Spring 核心是 IoC（容器管依赖）与 AOP（横切逻辑）。\nBean 生命周期：实例化 → 属性填充 → 初始化回调 → 销毁。\n循环依赖：单例三级缓存思路（早期引用）；构造器循环依赖无法解决。\nBoot 自动配置：条件注解 + starter + spi/imports，约定优于配置。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Spring",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Spring / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295349985283",
+      "type": "short",
+      "question": "Spring 中的 ApplicationContext 是什么？",
+      "answer": "结论：Spring 核心是 IoC（容器管依赖）与 AOP（横切逻辑）。\nBean 生命周期：实例化 → 属性填充 → 初始化回调 → 销毁。\n循环依赖：单例三级缓存思路（早期引用）；构造器循环依赖无法解决。\nBoot 自动配置：条件注解 + starter + spi/imports，约定优于配置。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Spring",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Spring / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295354179585",
+      "type": "short",
+      "question": "Spring Bean 一共有几种作用域？",
+      "answer": "结论：Spring 核心是 IoC（容器管依赖）与 AOP（横切逻辑）。\nBean 生命周期：实例化 → 属性填充 → 初始化回调 → 销毁。\n循环依赖：单例三级缓存思路（早期引用）；构造器循环依赖无法解决。\nBoot 自动配置：条件注解 + starter + spi/imports，约定优于配置。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Spring",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Spring / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295358373890",
+      "type": "short",
+      "question": "Spring 一共有几种注入方式？",
+      "answer": "结论：Spring 核心是 IoC（容器管依赖）与 AOP（横切逻辑）。\nBean 生命周期：实例化 → 属性填充 → 初始化回调 → 销毁。\n循环依赖：单例三级缓存思路（早期引用）；构造器循环依赖无法解决。\nBoot 自动配置：条件注解 + starter + spi/imports，约定优于配置。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Spring",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Spring / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295370956802",
+      "type": "short",
+      "question": "能说说 Spring 拦截链的实现吗？",
+      "answer": "结论：Spring 核心是 IoC（容器管依赖）与 AOP（横切逻辑）。\nBean 生命周期：实例化 → 属性填充 → 初始化回调 → 销毁。\n循环依赖：单例三级缓存思路（早期引用）；构造器循环依赖无法解决。\nBoot 自动配置：条件注解 + starter + spi/imports，约定优于配置。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Spring",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Spring / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295375151105",
+      "type": "short",
+      "question": "Spring AOP 和 AspectJ 有什么区别？",
+      "answer": "结论：Spring 核心是 IoC（容器管依赖）与 AOP（横切逻辑）。\nBean 生命周期：实例化 → 属性填充 → 初始化回调 → 销毁。\n循环依赖：单例三级缓存思路（早期引用）；构造器循环依赖无法解决。\nBoot 自动配置：条件注解 + starter + spi/imports，约定优于配置。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Spring",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Spring / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295400316930",
+      "type": "short",
+      "question": "说下对 Spring MVC 的理解？",
+      "answer": "结论：Spring 核心是 IoC（容器管依赖）与 AOP（横切逻辑）。\nBean 生命周期：实例化 → 属性填充 → 初始化回调 → 销毁。\n循环依赖：单例三级缓存思路（早期引用）；构造器循环依赖无法解决。\nBoot 自动配置：条件注解 + starter + spi/imports，约定优于配置。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Spring",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Spring / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295404511234",
+      "type": "short",
+      "question": "SpringMVC 父子容器是什么知道吗？",
+      "answer": "结论：Spring 核心是 IoC（容器管依赖）与 AOP（横切逻辑）。\nBean 生命周期：实例化 → 属性填充 → 初始化回调 → 销毁。\n循环依赖：单例三级缓存思路（早期引用）；构造器循环依赖无法解决。\nBoot 自动配置：条件注解 + starter + spi/imports，约定优于配置。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Spring",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Spring / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295412899842",
+      "type": "short",
+      "question": "Spring 事务有几个隔离级别？",
+      "answer": "结论：事务 ACID；并发问题有脏读/不可重复读/幻读；靠隔离级别与锁/MVCC 解决。\nInnoDB 默认可重复读，用 MVCC + Next-Key Lock 处理多数幻读场景。\n答题结构：定义问题 → 隔离级别对照表 → InnoDB 实现 → 业务选型（别盲目串行化）。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Spring",
+        "MySQL",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Spring / MySQL / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1780933295421288449",
+      "type": "short",
+      "question": "Spring 事务传播行为有什么用?",
+      "answer": "结论：事务 ACID；并发问题有脏读/不可重复读/幻读；靠隔离级别与锁/MVCC 解决。\nInnoDB 默认可重复读，用 MVCC + Next-Key Lock 处理多数幻读场景。\n答题结构：定义问题 → 隔离级别对照表 → InnoDB 实现 → 业务选型（别盲目串行化）。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Spring",
+        "MySQL",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Spring / MySQL / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1797566381592543233",
+      "type": "short",
+      "question": "Spring 的优点",
+      "answer": "结论：Spring 核心是 IoC（容器管依赖）与 AOP（横切逻辑）。\nBean 生命周期：实例化 → 属性填充 → 初始化回调 → 销毁。\n循环依赖：单例三级缓存思路（早期引用）；构造器循环依赖无法解决。\nBoot 自动配置：条件注解 + starter + spi/imports，约定优于配置。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "Spring",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / Spring / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772201089530114049",
+      "type": "short",
+      "question": "分布式消息队列有哪些应用场景？",
+      "answer": "结论：消息队列用于解耦、削峰、异步。\n可靠投递：生产者确认、持久化、消费者手动 ack、重试与死信。\n幂等：唯一键、业务去重表、状态机。\n顺序：单分区/单队列有序；乱序要用业务键路由。\n选型：吞吐量/生态/延迟/运维成本综合看。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "消息队列",
+        "编程导航",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / 消息队列 / 编程导航 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772201836887977985",
+      "type": "short",
+      "question": "你在项目中为什么使用分布式消息队列来存储任务消息？\n",
+      "answer": "结论：消息队列用于解耦、削峰、异步。\n可靠投递：生产者确认、持久化、消费者手动 ack、重试与死信。\n幂等：唯一键、业务去重表、状态机。\n顺序：单分区/单队列有序；乱序要用业务键路由。\n选型：吞吐量/生态/延迟/运维成本综合看。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "消息队列",
+        "编程导航",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / 消息队列 / 编程导航 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772203052556660737",
+      "type": "short",
+      "question": "为什么使用 RabbitMQ 这个消息队列？它相比于其他的消息队列有哪些优点和缺点？",
+      "answer": "结论：消息队列用于解耦、削峰、异步。\n可靠投递：生产者确认、持久化、消费者手动 ack、重试与死信。\n幂等：唯一键、业务去重表、状态机。\n顺序：单分区/单队列有序；乱序要用业务键路由。\n选型：吞吐量/生态/延迟/运维成本综合看。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "消息队列",
+        "编程导航",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / 消息队列 / 编程导航 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772203449530757122",
+      "type": "short",
+      "question": "RabbitMQ 有哪几种交换机？你在项目中选择了哪个交换机？",
+      "answer": "结论：消息队列用于解耦、削峰、异步。\n可靠投递：生产者确认、持久化、消费者手动 ack、重试与死信。\n幂等：唯一键、业务去重表、状态机。\n顺序：单分区/单队列有序；乱序要用业务键路由。\n选型：吞吐量/生态/延迟/运维成本综合看。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "消息队列",
+        "编程导航",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / 消息队列 / 编程导航 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772875123703988225",
+      "type": "short",
+      "question": "什么是消息队列？消息队列有哪些应用场景？",
+      "answer": "结论：消息队列用于解耦、削峰、异步。\n可靠投递：生产者确认、持久化、消费者手动 ack、重试与死信。\n幂等：唯一键、业务去重表、状态机。\n顺序：单分区/单队列有序；乱序要用业务键路由。\n选型：吞吐量/生态/延迟/运维成本综合看。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "消息队列",
+        "面试鸭"
+      ],
+      "topic": "消息队列",
+      "category": "消息队列 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772875433931489282",
+      "type": "short",
+      "question": "有哪些主流的消息队列，它们分别有什么优缺点、各自的适用场景是什么？",
+      "answer": "结论：消息队列用于解耦、削峰、异步。\n可靠投递：生产者确认、持久化、消费者手动 ack、重试与死信。\n幂等：唯一键、业务去重表、状态机。\n顺序：单分区/单队列有序；乱序要用业务键路由。\n选型：吞吐量/生态/延迟/运维成本综合看。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "消息队列",
+        "面试鸭"
+      ],
+      "topic": "消息队列",
+      "category": "消息队列 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1772876445136240641",
+      "type": "short",
+      "question": "有哪些常见的消息队列模型？分别适用于什么场景？",
+      "answer": "结论：消息队列用于解耦、削峰、异步。\n可靠投递：生产者确认、持久化、消费者手动 ack、重试与死信。\n幂等：唯一键、业务去重表、状态机。\n顺序：单分区/单队列有序；乱序要用业务键路由。\n选型：吞吐量/生态/延迟/运维成本综合看。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "消息队列",
+        "面试鸭"
+      ],
+      "topic": "消息队列",
+      "category": "消息队列 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1801516316525666305",
+      "type": "short",
+      "question": "什么是消息队列？",
+      "answer": "结论：消息队列用于解耦、削峰、异步。\n可靠投递：生产者确认、持久化、消费者手动 ack、重试与死信。\n幂等：唯一键、业务去重表、状态机。\n顺序：单分区/单队列有序；乱序要用业务键路由。\n选型：吞吐量/生态/延迟/运维成本综合看。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "消息队列",
+        "后端",
+        "面试鸭"
+      ],
+      "topic": "消息队列",
+      "category": "消息队列 / 后端 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1801517574921723905",
+      "type": "short",
+      "question": "为什么需要消息队列？",
+      "answer": "结论：消息队列用于解耦、削峰、异步。\n可靠投递：生产者确认、持久化、消费者手动 ack、重试与死信。\n幂等：唯一键、业务去重表、状态机。\n顺序：单分区/单队列有序；乱序要用业务键路由。\n选型：吞吐量/生态/延迟/运维成本综合看。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "消息队列",
+        "后端",
+        "面试鸭"
+      ],
+      "topic": "消息队列",
+      "category": "消息队列 / 后端 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1801520684633235458",
+      "type": "short",
+      "question": "说一下消息队列的模型有哪些？",
+      "answer": "结论：消息队列用于解耦、削峰、异步。\n可靠投递：生产者确认、持久化、消费者手动 ack、重试与死信。\n幂等：唯一键、业务去重表、状态机。\n顺序：单分区/单队列有序；乱序要用业务键路由。\n选型：吞吐量/生态/延迟/运维成本综合看。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "消息队列",
+        "后端",
+        "面试鸭"
+      ],
+      "topic": "消息队列",
+      "category": "消息队列 / 后端 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1801946173436928001",
+      "type": "short",
+      "question": "简述下消息队列核心的一些术语？",
+      "answer": "结论：消息队列用于解耦、削峰、异步。\n可靠投递：生产者确认、持久化、消费者手动 ack、重试与死信。\n幂等：唯一键、业务去重表、状态机。\n顺序：单分区/单队列有序；乱序要用业务键路由。\n选型：吞吐量/生态/延迟/运维成本综合看。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "消息队列",
+        "后端",
+        "面试鸭"
+      ],
+      "topic": "消息队列",
+      "category": "消息队列 / 后端 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1801955779278086145",
+      "type": "short",
+      "question": "消息队列如何保证消息不丢失？",
+      "answer": "结论：消息队列用于解耦、削峰、异步。\n可靠投递：生产者确认、持久化、消费者手动 ack、重试与死信。\n幂等：唯一键、业务去重表、状态机。\n顺序：单分区/单队列有序；乱序要用业务键路由。\n选型：吞吐量/生态/延迟/运维成本综合看。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "消息队列",
+        "后端",
+        "面试鸭"
+      ],
+      "topic": "消息队列",
+      "category": "消息队列 / 后端 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1801964482106564610",
+      "type": "short",
+      "question": "消息队列如何处理重复消息（保证消息的幂等性）？",
+      "answer": "结论：消息队列用于解耦、削峰、异步。\n可靠投递：生产者确认、持久化、消费者手动 ack、重试与死信。\n幂等：唯一键、业务去重表、状态机。\n顺序：单分区/单队列有序；乱序要用业务键路由。\n选型：吞吐量/生态/延迟/运维成本综合看。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "消息队列",
+        "后端",
+        "面试鸭"
+      ],
+      "topic": "消息队列",
+      "category": "消息队列 / 后端 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1802305740993798145",
+      "type": "short",
+      "question": "消息队列如何保证消息的有序性（顺序性）？",
+      "answer": "结论：消息队列用于解耦、削峰、异步。\n可靠投递：生产者确认、持久化、消费者手动 ack、重试与死信。\n幂等：唯一键、业务去重表、状态机。\n顺序：单分区/单队列有序；乱序要用业务键路由。\n选型：吞吐量/生态/延迟/运维成本综合看。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "消息队列",
+        "后端",
+        "面试鸭"
+      ],
+      "topic": "消息队列",
+      "category": "消息队列 / 后端 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1802306411117748226",
+      "type": "short",
+      "question": "消息队列如何处理消息堆积？",
+      "answer": "结论：JVM 管内存与执行；面试重点是运行时数据区、GC、类加载。\n堆分新生代/老年代；GC 算法与收集器要能对比场景。\n类加载：加载-验证-准备-解析-初始化；双亲委派防核心类被篡改。\n排查：heap dump、GC 日志、jstack/jmap/arthas。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "消息队列",
+        "后端",
+        "JVM",
+        "面试鸭"
+      ],
+      "topic": "消息队列",
+      "category": "消息队列 / 后端 / JVM / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1802333941753257985",
+      "type": "short",
+      "question": "消息队列设计成推消息还是拉消息？推拉模式的优缺点？",
+      "answer": "结论：消息队列用于解耦、削峰、异步。\n可靠投递：生产者确认、持久化、消费者手动 ack、重试与死信。\n幂等：唯一键、业务去重表、状态机。\n顺序：单分区/单队列有序；乱序要用业务键路由。\n选型：吞吐量/生态/延迟/运维成本综合看。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "消息队列",
+        "后端",
+        "场景题",
+        "面试鸭"
+      ],
+      "topic": "消息队列",
+      "category": "消息队列 / 后端 / 场景题 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1802338786811912193",
+      "type": "short",
+      "question": "RocketMQ 的事务消息有什么缺点？你还了解过别的事务消息实现吗？",
+      "answer": "结论：事务 ACID；并发问题有脏读/不可重复读/幻读；靠隔离级别与锁/MVCC 解决。\nInnoDB 默认可重复读，用 MVCC + Next-Key Lock 处理多数幻读场景。\n答题结构：定义问题 → 隔离级别对照表 → InnoDB 实现 → 业务选型（别盲目串行化）。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "消息队列",
+        "后端",
+        "RocketMQ",
+        "MySQL",
+        "面试鸭"
+      ],
+      "topic": "消息队列",
+      "category": "消息队列 / 后端 / RocketMQ / MySQL / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1802465623588282370",
+      "type": "short",
+      "question": "说一下 RocketMQ 中关于事务消息的实现？",
+      "answer": "结论：事务 ACID；并发问题有脏读/不可重复读/幻读；靠隔离级别与锁/MVCC 解决。\nInnoDB 默认可重复读，用 MVCC + Next-Key Lock 处理多数幻读场景。\n答题结构：定义问题 → 隔离级别对照表 → InnoDB 实现 → 业务选型（别盲目串行化）。",
+      "analysis": "难度：困难；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "RocketMQ",
+        "后端",
+        "消息队列",
+        "MySQL",
+        "面试鸭"
+      ],
+      "topic": "RocketMQ",
+      "category": "RocketMQ / 后端 / 消息队列 / MySQL / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1802605640969166849",
+      "type": "short",
+      "question": "说一下 Kafka 中关于事务消息的实现？",
+      "answer": "结论：事务 ACID；并发问题有脏读/不可重复读/幻读；靠隔离级别与锁/MVCC 解决。\nInnoDB 默认可重复读，用 MVCC + Next-Key Lock 处理多数幻读场景。\n答题结构：定义问题 → 隔离级别对照表 → InnoDB 实现 → 业务选型（别盲目串行化）。",
+      "analysis": "难度：困难；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Kafka",
+        "消息队列",
+        "后端",
+        "MySQL",
+        "面试鸭"
+      ],
+      "topic": "Kafka",
+      "category": "Kafka / 消息队列 / 后端 / MySQL / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1802609006872961026",
+      "type": "short",
+      "question": "你了解 Kafka 中的时间轮实现吗?",
+      "answer": "结论：消息队列用于解耦、削峰、异步。\n可靠投递：生产者确认、持久化、消费者手动 ack、重试与死信。\n幂等：唯一键、业务去重表、状态机。\n顺序：单分区/单队列有序；乱序要用业务键路由。\n选型：吞吐量/生态/延迟/运维成本综合看。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "消息队列",
+        "后端",
+        "Kafka",
+        "面试鸭"
+      ],
+      "topic": "消息队列",
+      "category": "消息队列 / 后端 / Kafka / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1803040468897357825",
+      "type": "short",
+      "question": "Kafka的索引设计有什么亮点？",
+      "answer": "结论：MySQL InnoDB 主流用 B+ 树索引，叶节点有序且双向链表，适合范围查。\n要点：\n1) 聚簇索引存整行；二级索引存主键，可能回表。\n2) 联合索引遵循最左前缀；覆盖索引可避免回表。\n3) 不是索引越多越好：写放大、空间占用、优化器误选。\n排查：explain 看 type/key/rows/Extra；结合慢日志与基数。\n加分：索引下推、ICP、函数会导致索引失效的常见写法。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Kafka",
+        "消息队列",
+        "后端",
+        "MySQL",
+        "面试鸭"
+      ],
+      "topic": "Kafka",
+      "category": "Kafka / 消息队列 / 后端 / MySQL / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1803060011975827457",
+      "type": "short",
+      "question": " 看过源码？那说说 Kafka 控制器事件处理全流程？",
+      "answer": "结论：消息队列用于解耦、削峰、异步。\n可靠投递：生产者确认、持久化、消费者手动 ack、重试与死信。\n幂等：唯一键、业务去重表、状态机。\n顺序：单分区/单队列有序；乱序要用业务键路由。\n选型：吞吐量/生态/延迟/运维成本综合看。",
+      "analysis": "难度：困难；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Kafka",
+        "消息队列",
+        "后端",
+        "面试鸭"
+      ],
+      "topic": "Kafka",
+      "category": "Kafka / 消息队列 / 后端 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1803079507444752385",
+      "type": "short",
+      "question": "Kafka 中  Zookeeper 的作用？",
+      "answer": "结论：消息队列用于解耦、削峰、异步。\n可靠投递：生产者确认、持久化、消费者手动 ack、重试与死信。\n幂等：唯一键、业务去重表、状态机。\n顺序：单分区/单队列有序；乱序要用业务键路由。\n选型：吞吐量/生态/延迟/运维成本综合看。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Kafka",
+        "消息队列",
+        "后端",
+        "面试鸭"
+      ],
+      "topic": "Kafka",
+      "category": "Kafka / 消息队列 / 后端 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1803241276880445442",
+      "type": "short",
+      "question": "Kafka为什么要抛弃  Zookeeper？",
+      "answer": "结论：消息队列用于解耦、削峰、异步。\n可靠投递：生产者确认、持久化、消费者手动 ack、重试与死信。\n幂等：唯一键、业务去重表、状态机。\n顺序：单分区/单队列有序；乱序要用业务键路由。\n选型：吞吐量/生态/延迟/运维成本综合看。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Kafka",
+        "Zookeeper",
+        "消息队列",
+        "面试鸭"
+      ],
+      "topic": "Kafka",
+      "category": "Kafka / Zookeeper / 消息队列 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1803246892680208385",
+      "type": "short",
+      "question": "看过源码？那说说 Kafka 处理请求的全流程？",
+      "answer": "结论：消息队列用于解耦、削峰、异步。\n可靠投递：生产者确认、持久化、消费者手动 ack、重试与死信。\n幂等：唯一键、业务去重表、状态机。\n顺序：单分区/单队列有序；乱序要用业务键路由。\n选型：吞吐量/生态/延迟/运维成本综合看。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "Kafka",
+        "消息队列",
+        "后端",
+        "面试鸭"
+      ],
+      "topic": "Kafka",
+      "category": "Kafka / 消息队列 / 后端 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1803521393330479105",
+      "type": "short",
+      "question": "RabbitMQ 中无法路由的消息会去到哪里？",
+      "answer": "结论：消息队列用于解耦、削峰、异步。\n可靠投递：生产者确认、持久化、消费者手动 ack、重试与死信。\n幂等：唯一键、业务去重表、状态机。\n顺序：单分区/单队列有序；乱序要用业务键路由。\n选型：吞吐量/生态/延迟/运维成本综合看。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "RabbitMQ",
+        "消息队列",
+        "后端",
+        "面试鸭"
+      ],
+      "topic": "RabbitMQ",
+      "category": "RabbitMQ / 消息队列 / 后端 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1803522489495052290",
+      "type": "short",
+      "question": "RabbitMQ 中消息什么时候会进入死信交换机？",
+      "answer": "结论：消息队列用于解耦、削峰、异步。\n可靠投递：生产者确认、持久化、消费者手动 ack、重试与死信。\n幂等：唯一键、业务去重表、状态机。\n顺序：单分区/单队列有序；乱序要用业务键路由。\n选型：吞吐量/生态/延迟/运维成本综合看。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "RabbitMQ",
+        "消息队列",
+        "后端",
+        "面试鸭"
+      ],
+      "topic": "RabbitMQ",
+      "category": "RabbitMQ / 消息队列 / 后端 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1803525202618343426",
+      "type": "short",
+      "question": "说一下 AMQP 协议？",
+      "answer": "【自研面试答法｜题干参考面试鸭公开列表】\n说一下 AMQP 协议？\n\n建议按 4 段答：\n1) 一句话结论（面向 RabbitMQ）\n2) 核心原理/流程（3 点）\n3) 对比与适用场景\n4) 项目实践与排查\n\n把名词落到你做过的系统上，比背长文更有效。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "RabbitMQ",
+        "消息队列",
+        "后端",
+        "面试鸭"
+      ],
+      "topic": "RabbitMQ",
+      "category": "RabbitMQ / 消息队列 / 后端 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1803530785241161729",
+      "type": "short",
+      "question": "说一下 RabbitMQ 的事务机制？",
+      "answer": "结论：事务 ACID；并发问题有脏读/不可重复读/幻读；靠隔离级别与锁/MVCC 解决。\nInnoDB 默认可重复读，用 MVCC + Next-Key Lock 处理多数幻读场景。\n答题结构：定义问题 → 隔离级别对照表 → InnoDB 实现 → 业务选型（别盲目串行化）。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "RabbitMQ",
+        "消息队列",
+        "后端",
+        "MySQL",
+        "面试鸭"
+      ],
+      "topic": "RabbitMQ",
+      "category": "RabbitMQ / 消息队列 / 后端 / MySQL / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1803765503060598785",
+      "type": "short",
+      "question": "RabbitMQ 中主要有哪几个角色或者说概念？",
+      "answer": "结论：消息队列用于解耦、削峰、异步。\n可靠投递：生产者确认、持久化、消费者手动 ack、重试与死信。\n幂等：唯一键、业务去重表、状态机。\n顺序：单分区/单队列有序；乱序要用业务键路由。\n选型：吞吐量/生态/延迟/运维成本综合看。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "RabbitMQ",
+        "消息队列",
+        "后端",
+        "面试鸭"
+      ],
+      "topic": "RabbitMQ",
+      "category": "RabbitMQ / 消息队列 / 后端 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1803776657292861442",
+      "type": "short",
+      "question": "RabbitMQ 的 routing key 和 binding key 的最大长度是多少字节？",
+      "answer": "结论：消息队列用于解耦、削峰、异步。\n可靠投递：生产者确认、持久化、消费者手动 ack、重试与死信。\n幂等：唯一键、业务去重表、状态机。\n顺序：单分区/单队列有序；乱序要用业务键路由。\n选型：吞吐量/生态/延迟/运维成本综合看。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "RabbitMQ",
+        "消息队列",
+        "后端",
+        "面试鸭"
+      ],
+      "topic": "RabbitMQ",
+      "category": "RabbitMQ / 消息队列 / 后端 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1803968345437184001",
+      "type": "short",
+      "question": "说说 RabbitMQ 的工作模式？",
+      "answer": "结论：消息队列用于解耦、削峰、异步。\n可靠投递：生产者确认、持久化、消费者手动 ack、重试与死信。\n幂等：唯一键、业务去重表、状态机。\n顺序：单分区/单队列有序；乱序要用业务键路由。\n选型：吞吐量/生态/延迟/运维成本综合看。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "消息队列",
+        "RabbitMQ",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / 消息队列 / RabbitMQ / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1805318051737575426",
+      "type": "short",
+      "question": "说说 RabbitMQ 的集群模式？",
+      "answer": "结论：消息队列用于解耦、削峰、异步。\n可靠投递：生产者确认、持久化、消费者手动 ack、重试与死信。\n幂等：唯一键、业务去重表、状态机。\n顺序：单分区/单队列有序；乱序要用业务键路由。\n选型：吞吐量/生态/延迟/运维成本综合看。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "RabbitMQ",
+        "消息队列",
+        "后端",
+        "面试鸭"
+      ],
+      "topic": "RabbitMQ",
+      "category": "RabbitMQ / 消息队列 / 后端 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1806753671221846017",
+      "type": "short",
+      "question": "为什么 RocketMQ 不使用 Zookeeper 作为注册中心呢？而选择自己实现 NameServer？",
+      "answer": "结论：消息队列用于解耦、削峰、异步。\n可靠投递：生产者确认、持久化、消费者手动 ack、重试与死信。\n幂等：唯一键、业务去重表、状态机。\n顺序：单分区/单队列有序；乱序要用业务键路由。\n选型：吞吐量/生态/延迟/运维成本综合看。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "RocketMQ",
+        "消息队列",
+        "后端",
+        "面试鸭"
+      ],
+      "topic": "RocketMQ",
+      "category": "RocketMQ / 消息队列 / 后端 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1807085859591135233",
+      "type": "short",
+      "question": "说一下 Kafka 为什么性能高？",
+      "answer": "结论：消息队列用于解耦、削峰、异步。\n可靠投递：生产者确认、持久化、消费者手动 ack、重试与死信。\n幂等：唯一键、业务去重表、状态机。\n顺序：单分区/单队列有序；乱序要用业务键路由。\n选型：吞吐量/生态/延迟/运维成本综合看。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "消息队列",
+        "后端",
+        "Kafka",
+        "面试鸭"
+      ],
+      "topic": "消息队列",
+      "category": "消息队列 / 后端 / Kafka / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1821833585917763586",
+      "type": "short",
+      "question": "游戏开发中，哪些场景可能会应用到消息队列？它如何提高系统性能和可靠性？",
+      "answer": "结论：消息队列用于解耦、削峰、异步。\n可靠投递：生产者确认、持久化、消费者手动 ack、重试与死信。\n幂等：唯一键、业务去重表、状态机。\n顺序：单分区/单队列有序；乱序要用业务键路由。\n选型：吞吐量/生态/延迟/运维成本综合看。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "游戏开发",
+        "消息队列",
+        "面试鸭"
+      ],
+      "topic": "游戏开发",
+      "category": "游戏开发 / 消息队列 / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1824003166933868546",
+      "type": "short",
+      "question": "RabbitMQ 怎么实现延迟队列？",
+      "answer": "常见：TTL + 死信交换机（消息过期进入 DLX 再路由到业务队列）；或延迟插件 rabbitmq_delayed_message_exchange。\n注意：队列级 TTL 会阻塞头阻塞；插件更适合灵活延迟。",
+      "analysis": "难度：中等；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "消息队列",
+        "RabbitMQ",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / 消息队列 / RabbitMQ / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1850081849150304258",
+      "type": "short",
+      "question": "RabbitMQ 是什么？它有哪些主要应用场景？",
+      "answer": "结论：消息队列用于解耦、削峰、异步。\n可靠投递：生产者确认、持久化、消费者手动 ack、重试与死信。\n幂等：唯一键、业务去重表、状态机。\n顺序：单分区/单队列有序；乱序要用业务键路由。\n选型：吞吐量/生态/延迟/运维成本综合看。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "消息队列",
+        "RabbitMQ",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / 消息队列 / RabbitMQ / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1850081849821392897",
+      "type": "short",
+      "question": "RabbitMQ 的基本架构是什么？包括哪些核心组件？",
+      "answer": "结论：消息队列用于解耦、削峰、异步。\n可靠投递：生产者确认、持久化、消费者手动 ack、重试与死信。\n幂等：唯一键、业务去重表、状态机。\n顺序：单分区/单队列有序；乱序要用业务键路由。\n选型：吞吐量/生态/延迟/运维成本综合看。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "消息队列",
+        "RabbitMQ",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / 消息队列 / RabbitMQ / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    },
+    {
+      "id": "msy-1850081851079684097",
+      "type": "short",
+      "question": "如何在 RabbitMQ 中声明一个队列？有哪些必要参数？",
+      "answer": "结论：消息队列用于解耦、削峰、异步。\n可靠投递：生产者确认、持久化、消费者手动 ack、重试与死信。\n幂等：唯一键、业务去重表、状态机。\n顺序：单分区/单队列有序；乱序要用业务键路由。\n选型：吞吐量/生态/延迟/运维成本综合看。",
+      "analysis": "难度：简单；来源题目标题参考面试鸭公开列表",
+      "categories": [
+        "后端",
+        "消息队列",
+        "RabbitMQ",
+        "面试鸭"
+      ],
+      "topic": "后端",
+      "category": "后端 / 消息队列 / RabbitMQ / 面试鸭",
+      "sourceUrl": "https://www.mianshiya.com/"
+    }
+  ]
+}
