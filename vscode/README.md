@@ -5,7 +5,7 @@
 ## 安装到 Cursor
 
 ```powershell
-cd d:\huaxin\beibagu-vscode
+cd vscode
 .\install-to-cursor.ps1
 ```
 
